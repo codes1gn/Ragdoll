@@ -8,6 +8,7 @@ add_mlir_conversion_library(RagdollPipeline
   LINK_LIBS PUBLIC
   MLIRIR
   RagdollIR
+  AutodiffIR
 
   )
 

@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.13.4)
 project(RagDoll LANGUAGES CXX C)
 
+# add_compile_options("-Ofast")
 
 set(CMAKE_BUILD_WITH_INSTALL_NAME_DIR ON)
 
-set(CMAKE_CXX_STANDARD 17 CACHE STRING "C++ standard to conform to")
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20 CACHE STRING "C++ standard to conform to")
 
 # configure llvm, mlir and lld path for later compilation
 find_package(MLIR REQUIRED CONFIG)
