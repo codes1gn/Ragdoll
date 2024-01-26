@@ -1,15 +1,17 @@
-# An MLIR boilerplate github-template with my personal flavour
+# Ragdoll = Generative Language for Domain-specific Computing with Automatic Optimisations
 
-This repository contains a github-template for boilerplating MLIR infrastructure.
-Alongside with the very basic standalone build given in MLIR reference example, this boilerplate is featured by:
-* Full support of system-installed toolchain: llvm, mlir, lit, filecheck, etc...
-* The folder organisation is tuned and ready for C++/PYTHON mix project develop
-* The folder organisation is readible for full-featured compiler arch, with dialect, transforms, conversions, pipeline all follow LLVM convention.
-* Optimised cmake modules to allow more specialised code maintainance.
-* WIP: putting segmented parts for cpp/python/jupyter tests and demos
-* WIP: enhancing docs to support both MLIR-style docs system and Rust-style docs
+Domain-specific computing focuses on developing computational tools and techniques tailored for specific fields or applications, such as bioinformatics, finance, or image processing. This specialization enables more efficient and effective solutions to complex, domain-specific problems. However, the power of domain-specific computing is significantly enhanced by leveraging generalized techniques. For instance, probabilistic programming allows for flexible modeling of uncertainty, which is a common aspect across many fields. It enables domain experts to build complex statistical models without delving into the intricacies of underlying algorithms. Automatic differentiation, another versatile technique, streamlines the computation of gradients, which are crucial in optimization problems prevalent in various domains, from machine learning to engineering design. Reversible transformations offer efficient memory use in simulations, which is beneficial in fields like physics or chemistry simulations. These general techniques not only provide a robust foundation for building domain-specific tools but also facilitate cross-domain knowledge transfer, enhancing innovation and efficiency in specialized computing tasks. Thus, the synergy between domain-specific focus and general-purpose computational techniques leads to a more powerful and versatile technology landscape.
 
-## How to build
+We hereby present Ragdoll, representing the Generative Language for Domain-specific Computing with Automatic Optimisations, which builds domain-specific languages atop of generalised computing paradigms, include AutoDiff, ProbProgramming, Automatic Reversible Transformations, and so on. In general, Ragdoll is featured with: 
+* AutoDiff:
+* Probablistic Pogramming: 
+* Automatic Reversible Transformations:
+* Automatic Fusion:
+* Cache Reuse Optimisations:
+* High abstraction level symbolic optimisations:
+* Leverage the kernel generation with IREE system
+
+## How to build from source (with customised settings)
 
 This setup assumes that you have built LLVM and MLIR in `$MLIR_BUILD_DIR` and installed them to `$MLIR_INSTALL_DIR`. To build and launch the tests, run
 ```sh
@@ -20,12 +22,12 @@ cmake -G Ninja -S $SOURCE_DIR \
     -DLLVM_EXTERNAL_LIT=$(which lit)
 cmake --build . --target check-ragdoll
 ```
-where <ragdoll> is the nickname of basic module.
+You can further customise Ragdoll build process with following CMAKE options:
+* CMAKE_xxx
+* TODO: add more desc
 
 To build the documentation from the TableGen description of the dialect
 operations, run
 ```sh
 cmake --build . --target mlir-doc
 ```
-## Acknowledgement
-This template is adjusted from https://github.com/jmgorius/mlir-standalone-template, with my personal flavour.
