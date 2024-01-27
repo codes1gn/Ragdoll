@@ -1,5 +1,5 @@
-#include "Utils/Builder.hpp"
-#include "Utils/Compat.hpp"
+#include "Utils/Builder.h"
+#include "Utils/Compat.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 
 namespace mlir::autodiff::utils {

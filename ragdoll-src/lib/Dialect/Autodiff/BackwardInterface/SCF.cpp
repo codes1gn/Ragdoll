@@ -1,4 +1,4 @@
-#include "SCF.hpp"
+#include "SCF.h"
 
 #include "Dialect/Autodiff/AutodiffInterface.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"

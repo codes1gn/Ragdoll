@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef AUTODIFF_AUTODIFF_OPS_H
-#define AUTODIFF_AUTODIFF_OPS_H
+#ifndef AUTODIFF_AUTODIFFOPS_H
+#define AUTODIFF_AUTODIFFOPS_H
 
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/Dialect.h"
@@ -24,4 +24,4 @@
 #define GET_OP_CLASSES
 #include "Dialect/Autodiff/AutodiffOps.h.inc"
 
-#endif // AUTODIFF_AUTODIFF_OPS_H
+#endif // AUTODIFF_AUTODIFFOPS_H

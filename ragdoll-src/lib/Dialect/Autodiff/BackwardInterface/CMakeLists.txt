@@ -16,7 +16,7 @@ add_mlir_library(NablaBackwardInterface
     Tosa/FullyConnected.cpp
     Func.cpp
     SCF.cpp
-    NablaExperimental.cpp
+    AutodiffExperimental.cpp
 
     DEPENDS
     NablaUtils

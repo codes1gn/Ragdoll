@@ -1,4 +1,4 @@
-#include "Tensor.hpp"
+#include "Tensor.h"
 
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LIB_AUTODIFF_BACKWARDINTERFACE_LINALG_H
+#define LIB_AUTODIFF_BACKWARDINTERFACE_LINALG_H
 
 #include "Dialect/Autodiff/AutodiffInterface.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
@@ -62,3 +63,5 @@ SmallVector<utils::IteratorType> getIterTypes(SmallVector<AffineMap> outMaps);
 
 } // namespace backward::linalg
 } // namespace mlir::autodiff
+
+#endif // LIB_AUTODIFF_BACKWARDINTERFACE_LINALG_H

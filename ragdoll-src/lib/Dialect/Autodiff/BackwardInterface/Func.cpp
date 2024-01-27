@@ -1,4 +1,4 @@
-#include "Func.hpp"
+#include "Func.h"
 
 #include "Dialect/Autodiff/AutodiffOps.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"

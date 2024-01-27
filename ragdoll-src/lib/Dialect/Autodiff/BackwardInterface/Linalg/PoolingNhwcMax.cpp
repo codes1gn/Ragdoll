@@ -1,9 +1,9 @@
-#include "../Linalg.hpp"
-#include "Utils/Builder.hpp"
+#include "../Linalg.h"
+#include "Utils/Builder.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include <ranges>
 
-#include "Utils/Compat.hpp"
+#include "Utils/Compat.h"
 
 namespace mlir::autodiff::backward {
 

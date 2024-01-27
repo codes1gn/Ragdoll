@@ -1,5 +1,5 @@
-#include "../Tosa.hpp"
-#include "Utils/Builder.hpp"
+#include "../Tosa.h"
+#include "Utils/Builder.h"
 #include <ranges>
 
 namespace mlir::autodiff::backward {

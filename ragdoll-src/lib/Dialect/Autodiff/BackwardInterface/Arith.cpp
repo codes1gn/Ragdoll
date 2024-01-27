@@ -1,4 +1,4 @@
-#include "Arith.hpp"
+#include "Arith.h"
 
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Arith/Utils/Utils.h"

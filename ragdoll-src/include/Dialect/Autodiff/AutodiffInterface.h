@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef AUTODIFF_AUTODIFF_INTERFACES_H
-#define AUTODIFF_AUTODIFF_INTERFACES_H
+#ifndef AUTODIFF_AUTODIFFINTERFACES_H
+#define AUTODIFF_AUTODIFFINTERFACES_H
 
 // clang-format off
 #include "mlir/IR/OpDefinition.h"
@@ -47,4 +47,4 @@ private:
 } // namespace backward
 }  // namespace mlir::autodiff
 
-#endif // AUTODIFF_AUTODIFF_INTERFACES_H
+#endif // AUTODIFF_AUTODIFFINTERFACES_H

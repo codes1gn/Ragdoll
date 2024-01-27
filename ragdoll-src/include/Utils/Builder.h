@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTILS_BUILDER_H
+#define UTILS_BUILDER_H
 
 #include "mlir/Dialect/Arith/IR/Arith.h"
 
@@ -75,3 +76,5 @@ auto select(OpBuilder& builder, Value cond, Value on_true, Value on_false)
 } // namespace arith
 } // namespace builder
 } // namespace mlir::autodiff
+
+#endif // UTILS_BUILDER_H

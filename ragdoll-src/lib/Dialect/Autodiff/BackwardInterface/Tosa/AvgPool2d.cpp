@@ -1,6 +1,6 @@
-#include "../Tosa.hpp"
-#include "Utils/Builder.hpp"
-#include "Utils/Padding.hpp"
+#include "../Tosa.h"
+#include "Utils/Builder.h"
+#include "Utils/Padding.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include <numeric>
 

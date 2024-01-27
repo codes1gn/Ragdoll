@@ -1,6 +1,6 @@
-#include "../Tosa.hpp"
-#include "Utils/Builder.hpp"
-#include "Utils/Compat.hpp"
+#include "../Tosa.h"
+#include "Utils/Builder.h"
+#include "Utils/Compat.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 
 namespace mlir::autodiff::backward {

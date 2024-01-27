@@ -1,4 +1,4 @@
-#include "Linalg.hpp"
+#include "Linalg.h"
 
 #include "Dialect/Autodiff/AutodiffOps.h"
 #include "mlir/Dialect/Arith/Utils/Utils.h"

@@ -1,3 +1,6 @@
+#ifndef LIB_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H
+#define LIB_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H
+
 #include "Dialect/Autodiff/AutodiffOps.h"
 
 namespace mlir::autodiff {
@@ -38,3 +41,5 @@ void backprop(SmallVector<Operation*> ops, GradientMap& grads,
               OpBuilder& builder);
 
 } // namespace mlir::autodiff
+
+#endif // LIB_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H

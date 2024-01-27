@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTILS_COMPAT_H
+#define UTILS_COMPAT_H
 
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/Value.h"
@@ -15,3 +16,5 @@ inline auto type_as_tensor(Type type) -> TensorType {
 }
 
 } // namespace mlir::autodiff::compat
+   
+#endif // UTILS_COMPAT_H

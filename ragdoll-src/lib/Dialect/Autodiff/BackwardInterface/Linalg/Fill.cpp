@@ -1,4 +1,4 @@
-#include "../Linalg.hpp"
+#include "../Linalg.h"
 
 namespace mlir::autodiff::backward {
 

@@ -1,8 +1,8 @@
-#include "Linalg.hpp"
+#include "Linalg.h"
 
 #include "GradientMap.h"
-#include "Utils/Builder.hpp"
-#include "Utils/Compat.hpp"
+#include "Utils/Builder.h"
+#include "Utils/Compat.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"

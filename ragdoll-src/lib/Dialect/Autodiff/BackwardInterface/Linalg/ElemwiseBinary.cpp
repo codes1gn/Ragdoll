@@ -1,6 +1,6 @@
-#include "../Linalg.hpp"
-#include "Utils/Builder.hpp"
-#include "Utils/Compat.hpp"
+#include "../Linalg.h"
+#include "Utils/Builder.h"
+#include "Utils/Compat.h"
 
 namespace mlir::autodiff::backward {
 
