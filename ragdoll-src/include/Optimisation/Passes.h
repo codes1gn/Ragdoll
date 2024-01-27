@@ -24,7 +24,6 @@
 // Advantage: allow for cross-module references
 #include "Dialect/Ragdoll/RagdollDialect.h"
 
-
 namespace mlir {
 namespace ragdoll {
 
@@ -36,7 +35,7 @@ std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
 //===----------------------------------------------------------------------===//
 
 //===----------------------------------------------------------------------===//
-// Declaration 
+// Declaration
 //===----------------------------------------------------------------------===//
 
 #define GEN_PASS_DECL
@@ -49,9 +48,8 @@ std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
 #define GEN_PASS_REGISTRATION
 #include "Optimisation/Passes.h.inc"
 
-
 //===----------------------------------------------------------------------===//
-// Classes 
+// Classes
 //===----------------------------------------------------------------------===//
 //
 #define GEN_PASS_CLASSES

@@ -27,7 +27,7 @@ concept is_operand_role =
     std::is_enum_v<T> && std::is_unsigned_v<std::underlying_type_t<T>>;
 
 template <typename T, typename Role>
-  requires is_operand_role<Role>
+requires is_operand_role<Role>
 class BackwardTemplate
     : public BackwardInterface::ExternalModel<BackwardTemplate<T, Role>, T> {
 public:
@@ -40,11 +40,12 @@ public:
 
 private:
   using Fn = function_ref<Value(T, Value, OpBuilder&)>;
-  template <Role> static auto backward(T, Value, OpBuilder&) -> Value;
+  template <Role>
+  static auto backward(T, Value, OpBuilder&) -> Value;
   static auto fn(Role role) -> Fn;
 };
 
 } // namespace backward
-}  // namespace mlir::autodiff
+} // namespace mlir::autodiff
 
 #endif // AUTODIFF_AUTODIFFINTERFACES_H

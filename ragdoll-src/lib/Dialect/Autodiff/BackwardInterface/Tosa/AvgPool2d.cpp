@@ -80,7 +80,8 @@ auto B::backward<Role::INPUT>(T op, Value dtarget, OpBuilder& builder)
   return autodiff::utils::unpad4d(generic->getResult(0), op.getPad(), builder);
 }
 
-template <> auto B::fn(Role role) -> Fn {
+template <>
+auto B::fn(Role role) -> Fn {
   switch (role) {
   case Role::INPUT:
     return backward<Role::INPUT>;

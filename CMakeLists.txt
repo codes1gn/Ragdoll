@@ -48,3 +48,41 @@ add_definitions(${LLVM_DEFINITIONS})
 add_subdirectory(ragdoll-src)
 add_subdirectory(tests)
 
+
+
+
+# ==============================================================
+# ==   house-keeping code
+# ==============================================================
+
+# config clang-format target
+file(GLOB_RECURSE ALL_SOURCE_FILES 
+	${CMAKE_SOURCE_DIR}/ragdoll-src/*.cpp 
+	${CMAKE_SOURCE_DIR}/ragdoll-src/*.h)
+
+# Define CMAKE target for invoking clang-format
+add_custom_command(
+    OUTPUT clang_format_check_only
+    COMMAND clang-format
+    ARGS --dry-run -Werror ${ALL_SOURCE_FILES}
+    COMMENT "Running clang-format"
+    VERBATIM
+)
+
+add_custom_command(
+    OUTPUT clang_format_and_revise
+    COMMAND clang-format
+    ARGS -i -Werror ${ALL_SOURCE_FILES}
+    COMMENT "Running clang-format"
+    VERBATIM
+)
+
+add_custom_target(
+    format-code
+    DEPENDS clang_format_and_revise
+)
+
+add_custom_target(
+    check-code-format 
+    DEPENDS clang_format_check_only
+)

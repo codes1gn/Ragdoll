@@ -65,7 +65,8 @@ auto B::backward<Role::INPUT>(T op, Value dtarget, OpBuilder& builder)
   SmallVector<AffineMap, 6> indexingMaps;
 }
 
-template <> auto B::fn(Role role) -> Fn {
+template <>
+auto B::fn(Role role) -> Fn {
   switch (role) {
   case Role::INPUT:
     return backward<Role::INPUT>;

@@ -6,5 +6,5 @@
 namespace mlir::autodiff {
 auto populateAutodiffInlinePatterns(RewritePatternSet& patterns) -> void;
 } // namespace mlir::autodiff
-   
+
 #endif // UTILS_INLINE_H

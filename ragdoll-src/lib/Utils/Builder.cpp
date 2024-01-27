@@ -162,8 +162,9 @@ template auto reduce<mlir::arith::AddFOp>(OpBuilder&, Tensor, ArrayRef<int64_t>)
     -> Tensor;
 
 template <typename T>
-  requires std::is_floating_point<T>::value
-auto fill(OpBuilder& builder, Tensor empty, T value) -> Tensor {
+requires std::is_floating_point<T>::value auto fill(OpBuilder& builder,
+                                                    Tensor empty, T value)
+    -> Tensor {
   FloatAttr attr;
 
   if constexpr (std::is_same<T, float>::value) {

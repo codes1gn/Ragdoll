@@ -40,8 +40,9 @@ auto reduce(OpBuilder& builder, Tensor tensor, ArrayRef<int64_t> dimentions)
     -> Tensor;
 
 template <typename T = float>
-  requires std::is_floating_point<T>::value
-auto fill(OpBuilder& builder, Tensor empty, T value = 0.0) -> Tensor;
+requires std::is_floating_point<T>::value auto fill(OpBuilder& builder,
+                                                    Tensor empty, T value = 0.0)
+    -> Tensor;
 } // namespace linalg
 
 namespace tosa {

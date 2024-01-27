@@ -6,15 +6,15 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "Dialect/Autodiff/AutodiffDialect.h"
 #include "Dialect/Autodiff/AutodiffOps.h"
+#include "Dialect/Autodiff/AutodiffDialect.h"
 #include "Dialect/Autodiff/AutodiffInterface.h"
 
-#include "llvm/ADT/StringExtras.h"
-#include "llvm/ADT/TypeSwitch.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include "mlir/IR/OpImplementation.h"
 #include "mlir/Interfaces/FunctionImplementation.h"
+#include "llvm/ADT/StringExtras.h"
+#include "llvm/ADT/TypeSwitch.h"
 
 #define GET_OP_CLASSES
 #include "Dialect/Autodiff/AutodiffOps.cpp.inc"
@@ -37,7 +37,7 @@ LogicalResult AdjointOp::verify() {
     return emitOpError("dtarget must have the same type as target");
   }
 
-  auto *definingOp = target.getDefiningOp();
+  auto* definingOp = target.getDefiningOp();
 
   // `linalg.generic` 只有 ins 视为 inputs
   auto generic = dyn_cast<linalg::GenericOp>(definingOp);
@@ -75,11 +75,12 @@ LogicalResult AccumulateOp::verify() {
 //===----------------------------------------------------------------------===//
 
 // FIXME: 以 math ops 开始会引起 segment fault
-ParseResult AutodiffFuncOp::parse(OpAsmParser &parser, OperationState &result) {
-  auto buildFuncType =
-      [](Builder &builder, ArrayRef<Type> argTypes, ArrayRef<Type> results,
-         function_interface_impl::VariadicFlag,
-         std::string &) { return builder.getFunctionType(argTypes, results); };
+ParseResult AutodiffFuncOp::parse(OpAsmParser& parser, OperationState& result) {
+  auto buildFuncType = [](Builder& builder, ArrayRef<Type> argTypes,
+                          ArrayRef<Type> results,
+                          function_interface_impl::VariadicFlag, std::string&) {
+    return builder.getFunctionType(argTypes, results);
+  };
 
   return function_interface_impl::parseFunctionOp(
       parser, result, /*allowVariadic=*/false,
@@ -87,7 +88,7 @@ ParseResult AutodiffFuncOp::parse(OpAsmParser &parser, OperationState &result) {
       getArgAttrsAttrName(result.name), getResAttrsAttrName(result.name));
 }
 
-void AutodiffFuncOp::print(OpAsmPrinter &p) {
+void AutodiffFuncOp::print(OpAsmPrinter& p) {
   function_interface_impl::printFunctionOp(
       p, *this, /*isVariadic=*/false, getFunctionTypeAttrName(),
       getArgAttrsAttrName(), getResAttrsAttrName());
@@ -122,7 +123,7 @@ LogicalResult AutodiffReturnOp::verify() {
   auto function = cast<AutodiffFuncOp>((*this)->getParentOp());
 
   // The operand number and types must match the function signature.
-  const auto &results = function.getFunctionType().getResults();
+  const auto& results = function.getFunctionType().getResults();
   if (getNumOperands() != results.size()) {
     return emitOpError("has ")
            << getNumOperands() << " operands, but enclosing function (@"

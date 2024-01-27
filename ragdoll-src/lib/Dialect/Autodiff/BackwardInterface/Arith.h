@@ -5,6 +5,6 @@
 
 namespace mlir::autodiff {
 void registerArithBackwardInterface(DialectRegistry& registry);
-}  // namespace mlir::autodiff
+} // namespace mlir::autodiff
 
 #endif // LIB_AUTODIFF_BACKWARDINTERFACE_ARITH_H

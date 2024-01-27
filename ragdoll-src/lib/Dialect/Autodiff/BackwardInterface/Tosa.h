@@ -41,6 +41,6 @@ using FullyConnectedBackward =
     BackwardTemplate<FullyConnectedOp, FullyConnectedRole>;
 
 } // namespace backward::tosa
-}  // namespace mlir::autodiff
+} // namespace mlir::autodiff
 
 #endif // LIB_AUTODIFF_BACKWARDINTERFACE_TOSA_H

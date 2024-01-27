@@ -21,7 +21,8 @@ auto AddBackward::backward<Role::RHS>(AddOp binary, Value dtarget,
   return dtarget;
 }
 
-template <> auto AddBackward::fn(Role role) -> Fn {
+template <>
+auto AddBackward::fn(Role role) -> Fn {
   switch (role) {
   case Role::LHS:
     return backward<Role::LHS>;
@@ -58,7 +59,8 @@ auto MulBackward::backward<Role::RHS>(MulOp binary, Value dtarget,
       .getResult(0);
 }
 
-template <> auto MulBackward::fn(Role role) -> Fn {
+template <>
+auto MulBackward::fn(Role role) -> Fn {
   switch (role) {
   case Role::LHS:
     return backward<Role::LHS>;

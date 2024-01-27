@@ -16,5 +16,5 @@ inline auto type_as_tensor(Type type) -> TensorType {
 }
 
 } // namespace mlir::autodiff::compat
-   
+
 #endif // UTILS_COMPAT_H

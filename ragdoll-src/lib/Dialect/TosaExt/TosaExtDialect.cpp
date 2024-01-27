@@ -6,15 +6,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "llvm/ADT/StringExtras.h"
-#include "llvm/ADT/TypeSwitch.h"
 #include "Dialect/TosaExt/TosaExtDialect.h"
 #include "Dialect/TosaExt/TosaExtOps.h"
 #include "mlir/IR/DialectImplementation.h"
+#include "llvm/ADT/StringExtras.h"
+#include "llvm/ADT/TypeSwitch.h"
 
 using namespace mlir;
 using namespace mlir::tosaext;
-
 
 //===----------------------------------------------------------------------===//
 // TosaExt dialect.
@@ -25,11 +24,9 @@ using namespace mlir::tosaext;
 #define GET_OP_CLASSES
 #include "Dialect/TosaExt/TosaExtOps.cpp.inc"
 
-
 void TosaExtDialect::initialize() {
   addOperations<
 #define GET_OP_LIST
 #include "Dialect/TosaExt/TosaExtOps.cpp.inc"
       >();
 }
-

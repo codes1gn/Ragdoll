@@ -5,6 +5,6 @@
 
 namespace mlir::autodiff {
 void registerArithAdjointInterface(DialectRegistry& registry);
-}  // namespace mlir::autodiff
+} // namespace mlir::autodiff
 
 #endif // LIB_AUTODIFF_ADJOINTINTERFACE_ARITH_H

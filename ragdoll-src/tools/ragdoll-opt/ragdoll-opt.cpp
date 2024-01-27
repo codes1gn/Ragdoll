@@ -22,7 +22,7 @@
 #include "Dialect/Ragdoll/RagdollDialect.h"
 #include "Pipeline/Pipelines.h"
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
   mlir::DialectRegistry registry;
 
   // load MLIR builtin utility

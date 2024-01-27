@@ -20,7 +20,7 @@ concept has_get_inputs = requires(T t) {
 } // namespace linalg
 
 template <typename OpTy, unsigned size>
-  requires linalg::has_get_inputs<OpTy>
+requires linalg::has_get_inputs<OpTy>
 class LinalgSourceOfSize : public BackwardSourceInterface::ExternalModel<
                                LinalgSourceOfSize<OpTy, size>, OpTy> {
 public:
@@ -30,7 +30,7 @@ public:
 };
 
 template <typename OpTy>
-  requires linalg::has_get_inputs<OpTy>
+requires linalg::has_get_inputs<OpTy>
 class LinalgSource
     : public BackwardSourceInterface::ExternalModel<LinalgSource<OpTy>, OpTy> {
 public:

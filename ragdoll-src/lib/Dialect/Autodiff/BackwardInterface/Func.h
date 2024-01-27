@@ -5,6 +5,6 @@
 
 namespace mlir::autodiff {
 void registerFuncBackwardInterface(DialectRegistry& registry);
-}  // namespace mlir::autodiff
+} // namespace mlir::autodiff
 
 #endif // LIB_AUTODIFF_BACKWARDINTERFACE_FUNC_H

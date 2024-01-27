@@ -20,7 +20,8 @@ auto B::backward<Role::RHS>(T mm, Value dtarget, OpBuilder& builder) -> Value {
                                    static_cast<unsigned>(Role::LHS), builder);
 }
 
-template <> auto B::fn(Role role) -> Fn {
+template <>
+auto B::fn(Role role) -> Fn {
   switch (role) {
   case Role::LHS:
     return backward<Role::LHS>;

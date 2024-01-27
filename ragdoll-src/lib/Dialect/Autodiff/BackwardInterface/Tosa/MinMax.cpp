@@ -7,10 +7,10 @@ namespace mlir::autodiff::backward {
 namespace tosa {
 
 template <typename T>
-  requires std::is_same<T, mlir::tosa::MaximumOp>::value ||
-           std::is_same<T, mlir::tosa::MinimumOp>::value
-auto minmax_backward(T op, Value dtarget, Value wrt, OpBuilder& builder)
-    -> Value {
+requires std::is_same<T, mlir::tosa::MaximumOp>::value ||
+    std::is_same<T, mlir::tosa::MinimumOp>::value auto
+    minmax_backward(T op, Value dtarget, Value wrt, OpBuilder& builder)
+        -> Value {
   auto lhs = op.getInput1();
   auto rhs = op.getInput2();
   auto lhsTy = lhs.getType();
@@ -65,7 +65,8 @@ auto MaB::backward<MaRole::RHS>(MaT op, Value dtarget, OpBuilder& builder)
   return tosa::minmax_backward(op, dtarget, op.getInput2(), builder);
 }
 
-template <> auto MaB::fn(MaRole role) -> Fn {
+template <>
+auto MaB::fn(MaRole role) -> Fn {
   switch (role) {
   case MaRole::LHS:
     return backward<MaRole::LHS>;
@@ -92,7 +93,8 @@ auto MiB::backward<MiRole::RHS>(MiT op, Value dtarget, OpBuilder& builder)
   return tosa::minmax_backward(op, dtarget, op.getInput2(), builder);
 }
 
-template <> auto MiB::fn(MiRole role) -> Fn {
+template <>
+auto MiB::fn(MiRole role) -> Fn {
   switch (role) {
   case MiRole::LHS:
     return backward<MiRole::LHS>;

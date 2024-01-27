@@ -22,7 +22,8 @@ auto B::backward<Role::WEIGHT>(T conv, Value dtarget, OpBuilder& builder)
                                 static_cast<unsigned>(Role::INPUT), builder);
 }
 
-template <> auto B::fn(Role role) -> Fn {
+template <>
+auto B::fn(Role role) -> Fn {
   switch (role) {
   case Role::INPUT:
     return backward<Role::INPUT>;

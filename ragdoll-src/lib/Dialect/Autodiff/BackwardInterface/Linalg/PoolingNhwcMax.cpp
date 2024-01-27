@@ -54,7 +54,8 @@ auto B::backward<Role::INPUT>(T pool, Value dtarget, OpBuilder& builder)
       .getResult(0);
 }
 
-template <> auto B::fn(Role role) -> Fn {
+template <>
+auto B::fn(Role role) -> Fn {
   switch (role) {
   case Role::INPUT:
     return backward<Role::INPUT>;

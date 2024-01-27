@@ -1,4 +1,5 @@
-//===- RagdollDummyPattern.cpp --- Loop tiling pass ------------------------------*-===//
+//===- RagdollDummyPattern.cpp --- Loop tiling pass
+//------------------------------*-===//
 //
 // Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -10,8 +11,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "mlir/Dialect/Affine/Passes.h"
 #include "Optimisation/Passes.h"
+#include "mlir/Dialect/Affine/Passes.h"
 
 #include "mlir/Dialect/Affine/Analysis/AffineAnalysis.h"
 #include "mlir/Dialect/Affine/Analysis/AffineStructures.h"
@@ -27,7 +28,6 @@
 #include "llvm/Support/Debug.h"
 #include <optional>
 
-
 using namespace mlir;
 
 #define DEBUG_TYPE "ragdoll-dummy-pass"
@@ -40,7 +40,8 @@ namespace {
 /// =========================================================
 
 /// A pass to perform loop tiling on all suitable loop nests of a Function.
-struct RagdollDummyPattern : public ragdoll::RagdollDummyPassBase<RagdollDummyPattern> {
+struct RagdollDummyPattern
+    : public ragdoll::RagdollDummyPassBase<RagdollDummyPattern> {
   explicit RagdollDummyPattern() {
     // TODO: add your pattern init code
     // this->data-field-1 = kDefaultTileSize / 1024;
@@ -59,12 +60,10 @@ void RagdollDummyPattern::runOnOperation() {
 
 } // namespace
 
-
 // bypass the implementation
-std::unique_ptr<OperationPass<mlir::func::FuncOp>> ragdoll::createRagdollDummyPass() {
+std::unique_ptr<OperationPass<mlir::func::FuncOp>>
+ragdoll::createRagdollDummyPass() {
   return std::make_unique<RagdollDummyPattern>();
 }
 
 } // namespace mlir
-
-

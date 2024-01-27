@@ -5,8 +5,7 @@ namespace mlir {
 namespace ragdoll {
 
 // Bootstrap utility for entire system
-void bootstrapRagdollCompiler(mlir::DialectRegistry &registry);
+void bootstrapRagdollCompiler(mlir::DialectRegistry& registry);
 
 } // namespace ragdoll
 } // namespace mlir
-

@@ -42,7 +42,8 @@ auto B::backward<Role::BIAS>(T op, Value dtarget, OpBuilder& builder) -> Value {
                                  {0});
 }
 
-template <> auto B::fn(Role role) -> Fn {
+template <>
+auto B::fn(Role role) -> Fn {
   switch (role) {
   case Role::INPUT:
     return backward<Role::INPUT>;

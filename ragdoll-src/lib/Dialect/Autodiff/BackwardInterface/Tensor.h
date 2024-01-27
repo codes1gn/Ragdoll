@@ -5,6 +5,6 @@
 
 namespace mlir::autodiff {
 void registerTensorBackwardInterface(DialectRegistry& registry);
-}  // namespace mlir::autodiff
+} // namespace mlir::autodiff
 
 #endif // LIB_AUTODIFF_BACKWARDINTERFACE_TENSOR_H

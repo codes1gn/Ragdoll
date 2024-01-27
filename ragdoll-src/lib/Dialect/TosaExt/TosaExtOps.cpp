@@ -6,15 +6,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "Dialect/TosaExt/TosaExtDialect.h"
 #include "Dialect/TosaExt/TosaExtOps.h"
+#include "Dialect/TosaExt/TosaExtDialect.h"
 
-#include "llvm/ADT/StringExtras.h"
-#include "llvm/ADT/TypeSwitch.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include "mlir/IR/OpImplementation.h"
 #include "mlir/Interfaces/FunctionImplementation.h"
+#include "llvm/ADT/StringExtras.h"
+#include "llvm/ADT/TypeSwitch.h"
 
 #define GET_OP_CLASSES
 #include "Dialect/TosaExt/TosaExtOps.cpp.inc"
-

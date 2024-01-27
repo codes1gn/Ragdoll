@@ -43,7 +43,8 @@ auto AbsBackward::backward<Role::INPUT>(AbsOp unary, Value dtarget,
       .getResult(0);
 }
 
-template <> auto AbsBackward::fn(Role role) -> Fn {
+template <>
+auto AbsBackward::fn(Role role) -> Fn {
   switch (role) {
   case Role::INPUT:
     return backward<Role::INPUT>;
@@ -80,7 +81,8 @@ auto LogBackward::backward<Role::INPUT>(LogOp unary, Value dtarget,
       .getResult(0);
 }
 
-template <> auto LogBackward::fn(Role role) -> Fn {
+template <>
+auto LogBackward::fn(Role role) -> Fn {
   switch (role) {
   case Role::INPUT:
     return backward<Role::INPUT>;

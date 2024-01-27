@@ -6,22 +6,20 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "llvm/ADT/StringExtras.h"
-#include "llvm/ADT/TypeSwitch.h"
 #include "Dialect/Autodiff/AutodiffDialect.h"
 #include "Dialect/Autodiff/AutodiffOps.h"
 #include "mlir/IR/DialectImplementation.h"
+#include "llvm/ADT/StringExtras.h"
+#include "llvm/ADT/TypeSwitch.h"
 
 using namespace mlir;
 using namespace mlir::autodiff;
-
 
 //===----------------------------------------------------------------------===//
 // Autodiff dialect.
 //===----------------------------------------------------------------------===//
 
 #include "Dialect/Autodiff/AutodiffDialect.cpp.inc"
-
 
 #define GET_ATTRDEF_CLASSES
 #include "Dialect/Autodiff/AutodiffEnums.cpp.inc"
@@ -40,4 +38,3 @@ void AutodiffDialect::initialize() {
 #include "Dialect/Autodiff/AutodiffAttrs.cpp.inc"
       >();
 }
-
