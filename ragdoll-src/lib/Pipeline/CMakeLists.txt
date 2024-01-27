@@ -9,6 +9,7 @@ add_mlir_conversion_library(RagdollPipeline
   MLIRIR
   RagdollIR
   AutodiffIR
+  TosaExtIR
 
   )
 

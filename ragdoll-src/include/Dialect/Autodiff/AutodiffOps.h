@@ -19,6 +19,8 @@
 
 #define GET_ATTRDEF_CLASSES
 #include "Dialect/Autodiff/AutodiffEnums.h.inc"
+
+#define GET_ATTRDEF_CLASSES
 #include "Dialect/Autodiff/AutodiffAttrs.h.inc"
 
 #define GET_OP_CLASSES

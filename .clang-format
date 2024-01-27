@@ -1,2 +1,4 @@
+Language: Cpp
 BasedOnStyle: LLVM
 AlwaysBreakTemplateDeclarations: Yes
+PointerAlignment: Left

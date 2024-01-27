@@ -7,6 +7,7 @@ include "mlir/Interfaces/CallInterfaces.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
 
 // generate adjoint op for input op
+// TODO rename to AdjointableTrait
 def Autodiff_AdjointInterface : OpInterface<"AdjointInterface"> {
   let cppNamespace = "::mlir::autodiff";
 
@@ -20,6 +21,7 @@ def Autodiff_AdjointInterface : OpInterface<"AdjointInterface"> {
   ];
 }
 
+// TODO rename to BackwardableTrait 
 def Autodiff_BackwardInterface : OpInterface<"BackwardInterface"> {
   let cppNamespace = "::mlir::autodiff";
 
@@ -33,6 +35,8 @@ def Autodiff_BackwardInterface : OpInterface<"BackwardInterface"> {
   ];
 }
 
+// TODO rename to BackwardSourcableTrait 
+// TODO what is source? users? or operands?
 def Autodiff_BackwardSourceInterface : OpInterface<"BackwardSourceInterface"> {
   let cppNamespace = "::mlir::autodiff";
 

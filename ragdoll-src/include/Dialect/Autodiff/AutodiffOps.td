@@ -48,7 +48,7 @@ def Autodiff_AccumulateOp : Autodiff_Op<"accumulate", [SameOperandsAndResultType
   let hasVerifier = 1;
 }
 
-// 从给定值开始构建反向图，类似于 torch.Tensor.backward
+// Construct the backward DAG from given op/node in reverse-DAG-order, similar to torch.Tensor.backward
 def Autodiff_BackwardOp : Autodiff_Op<"backward", [SameOperandsShape, SameOperandsElementType]> {
   let summary = "backprop from target";
 
@@ -58,7 +58,7 @@ def Autodiff_BackwardOp : Autodiff_Op<"backward", [SameOperandsShape, SameOperan
   );
 }
 
-// 记录反向过程对 target 的梯度贡献
+// Record the gradient proportion from a value users
 def Autodiff_TapeOp : Autodiff_Op<"tape", [SameOperandsAndResultType]> {
   let summary = "tape gradient contributions from value users";
 
@@ -73,6 +73,7 @@ def Autodiff_TapeOp : Autodiff_Op<"tape", [SameOperandsAndResultType]> {
 }
 
 
+// generate the VJP function for input function
 def Autodiff_VjpOp : Autodiff_Op<"vjp", [Pure]> {
   let summary = "generate vjp of given function";
 
@@ -95,6 +96,7 @@ def Autodiff_VjpOp : Autodiff_Op<"vjp", [Pure]> {
 include "mlir/Interfaces/FunctionInterfaces.td"
 include "mlir/Interfaces/ControlFlowInterfaces.td"
 
+// FuncOp to contain the backward autodiff graph
 def Autodiff_AutodiffFuncOp : Autodiff_Op<"func", [
   AutomaticAllocationScope, FunctionOpInterface, IsolatedFromAbove
 ]> {
@@ -145,6 +147,7 @@ def Autodiff_AutodiffFuncOp : Autodiff_Op<"func", [
   let hasVerifier = 1;
 }
 
+// Terminator for autodiff FuncOp
 def Autodiff_AutodiffReturnOp : Autodiff_Op<"return", [
   Pure,
   HasParent<"AutodiffFuncOp">,
@@ -163,6 +166,7 @@ def Autodiff_AutodiffReturnOp : Autodiff_Op<"return", [
   let hasVerifier = 1;
 }
 
+// TODO: what is this
 def Autodiff_DummyOp : Autodiff_Op<"dummy", [Pure]> {
   let summary = "Make an operation a dummy to avoid unexpected lowering";
   let arguments = (ins Variadic<AnyType>: $inputs, StrAttr: $opname);

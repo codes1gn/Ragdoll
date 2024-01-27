@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef RAGDOLL_DIALECT
-#define RAGDOLL_DIALECT
+#ifndef AUTODIFF_DIALECT
+#define AUTODIFF_DIALECT
 
 include "mlir/IR/OpBase.td"
 
@@ -34,4 +34,4 @@ def Autodiff_Dialect : Dialect {
 class Autodiff_Op<string mnemonic, list<Trait> traits = []> : 
         Op<Autodiff_Dialect, mnemonic, traits>;
 
-#endif // RAGDOLL_DIALECT
+#endif // AUTODIFF_DIALECT
