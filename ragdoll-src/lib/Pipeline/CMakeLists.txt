@@ -10,6 +10,8 @@ add_mlir_conversion_library(RagdollPipeline
   RagdollIR
   AutodiffIR
   TosaExtIR
+  RagdollOptimisation
+  RagdollConversion
 
   )
 
