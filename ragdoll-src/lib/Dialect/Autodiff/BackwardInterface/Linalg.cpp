@@ -1,6 +1,6 @@
 #include "Linalg.h"
 
-#include "GradientMap.h"
+#include "Dialect/Autodiff/GradientMap.h"
 #include "Utils/Builder.h"
 #include "Utils/Compat.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"

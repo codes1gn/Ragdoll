@@ -10,8 +10,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef RAGDOLL_CONVERSION_PASSES_H_
-#define RAGDOLL_CONVERSION_PASSES_H_
+#ifndef RAGDOLL_AUTODIFF_OPTIMISATION_PASSES_H_
+#define RAGDOLL_AUTODIFF_OPTIMISATION_PASSES_H_
 
 #include "mlir/Dialect/Linalg/Transforms/Transforms.h"
 #include "mlir/Pass/Pass.h"
@@ -19,16 +19,14 @@
 #include "mlir/Support/LLVM.h"
 #include "mlir/Transforms/DialectConversion.h"
 
-// this is the include setting without the need to add extra include directory
-// sourcing from ${PROJECT_SOURCE_DIR}/ragdoll-src/include
-// Advantage: allow for cross-module references
-#include "Dialect/Ragdoll/RagdollDialect.h"
-
 namespace mlir {
-namespace ragdoll {
+namespace autodiff {
 
 // Declare your pass entry
-std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
+std::unique_ptr<Pass> createAutodiffInline();
+std::unique_ptr<Pass> createAutodiffOptimizePass();
+std::unique_ptr<Pass> createAutodiffVjpPass();
+std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass();
 
 //===----------------------------------------------------------------------===//
 // Handle table-gen pass decls and registrations
@@ -38,25 +36,13 @@ std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
 // Declaration
 //===----------------------------------------------------------------------===//
 
-#define GEN_PASS_DECL
-#include "Conversion/Passes.h.inc"
+#define GEN_PASS_DECL_AUTODIFFINLINE
+#define GEN_PASS_DECL_AUTODIFFOPTIMIZE
+#define GEN_PASS_DECL_AUTODIFFVJP
+#define GEN_PASS_DECL_AUTODIFFVJPPUBLICFUNCTIONS
+#include "Optimisation/Passes.h.inc"
 
-//===----------------------------------------------------------------------===//
-// Registration
-//===----------------------------------------------------------------------===//
-//
-#define GEN_PASS_REGISTRATION
-#include "Conversion/Passes.h.inc"
-
-//===----------------------------------------------------------------------===//
-// Classes
-//===----------------------------------------------------------------------===//
-//
-#define GEN_PASS_CLASSES
-#include "Conversion/Passes.h.inc"
-
-} // namespace ragdoll
-
+} // namespace autodiff
 } // namespace mlir
 
-#endif // RAGDOLL_CONVERSION_PASSES_H_
+#endif // RAGDOLL_AUTODIFF_OPTIMISATION_PASSES_H_

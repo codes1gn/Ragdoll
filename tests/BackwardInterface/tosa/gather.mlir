@@ -1,4 +1,4 @@
-// RUN: ragdoll-opt %s --backward --ragdoll-inline | FileCheck %s
+// RUN: ragdoll-opt %s --autodiff --ragdoll-inline | FileCheck %s
 
 func.func @gather(%values : tensor<1x10x1xf32>, %indices : tensor<1x5xi32>) -> tensor<1x5x1xf32> {
   %gathered = "tosa.gather"(%values, %indices) : (tensor<1x10x1xf32>, tensor<1x5xi32>) -> tensor<1x5x1xf32>

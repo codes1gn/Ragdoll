@@ -11,7 +11,10 @@
 #include <mlir/Dialect/Affine/Passes.h>
 #include <mlir/Dialect/Linalg/Passes.h>
 
+#include "Dialect/Autodiff/AutodiffDialect.h"
+#include "Dialect/Autodiff/AutodiffInterface.h"
 #include "Dialect/Ragdoll/RagdollDialect.h"
+#include "Dialect/TosaExt/TosaExtDialect.h"
 #include "Optimisation/Passes.h"
 #include "Pipeline/Pipelines.h"
 
@@ -26,17 +29,54 @@ namespace {
 //===----------------------------------------------------------------------===//
 //
 // helper pass-pipeline to convert linalg -> linalg.generic_op
-void buildRagdollDummyPipeline(mlir::OpPassManager& pm) {
+inline void buildRagdollDummyPipeline(mlir::OpPassManager& pm) {
   pm.addPass(mlir::createCanonicalizerPass());
   pm.addPass(mlir::createCSEPass());
 }
 
-void registerRagdollPipelines() {
+inline void preprocess_pipeline(mlir::OpPassManager& pm) {
+  pm.addPass(mlir::createSymbolDCEPass());
+  pm.addPass(mlir::createInlinerPass());
+  // TODO: should be change to createLowerTosa
+  pm.addPass(mlir::tosaext::createLower());
+  pm.addPass(mlir::createCSEPass());
+  pm.addPass(mlir::createCanonicalizerPass());
+}
+
+inline void postprocess_pipeline(mlir::OpPassManager& pm) {
+  pm.addPass(mlir::createCSEPass());
+  pm.addPass(mlir::createCanonicalizerPass());
+}
+
+inline void buildAutodiffPipeline(mlir::OpPassManager& pm) {
+  auto backward = [](mlir::OpPassManager& pm) {
+    // TODO: move namespace from mlir::autodiff to mlir::ragdoll
+    pm.addPass(mlir::autodiff::createAutodiffVjpPublicFunctionsPass());
+    pm.addPass(mlir::autodiff::createAutodiffVjpPass());
+    pm.addPass(mlir::createInlinerPass());
+  };
+
+  preprocess_pipeline(pm);
+  backward(pm);
+  postprocess_pipeline(pm);
+}
+
+inline void registerRagdollPipelines() {
   mlir::PassPipelineRegistration<>("ragdoll-dummy-pipeline",
                                    "fractal dummy pass pipeline",
                                    buildRagdollDummyPipeline);
 }
 
+inline void registerAutodiffPipelines() {
+  mlir::PassPipelineRegistration<>(
+      "autodiff", "Runs the full backward autodiff transformation pipeline",
+      buildAutodiffPipeline);
+}
+
+//===----------------------------------------------------------------------===//
+// register entry for ragdoll system
+//===----------------------------------------------------------------------===//
+//
 /// Add all the MLIR dialects to the provided registry.
 /// TODO: AirDialect has issue, cannot find getTypeID impl, fix when needed
 inline void registerRagdollDialects(mlir::DialectRegistry& registry) {
@@ -66,9 +106,14 @@ void bootstrapRagdollCompiler(mlir::DialectRegistry& registry) {
   // mlir::registerFractalCodegenPasses();
   // mlir::registerFractalOptimisationPasses();
   // mlir::registerFractalConversionPasses();
+  autodiff::registerAdjointInterface(registry);
+  autodiff::registerBackwardInterface(registry);
+  autodiff::registerBackwardSourceInterface(registry);
 
   // prepare pipelines
   registerRagdollPipelines();
+  // rename to Ragdoll Autodiff
+  registerAutodiffPipelines();
 }
 
 } // namespace ragdoll

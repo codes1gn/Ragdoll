@@ -11,8 +11,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "Conversion/Passes.h"
 #include "Dialect/TosaExt/TosaExtOps.h"
+#include "Optimisation/Passes.h"
 
 #include "mlir/Dialect/Affine/Analysis/AffineAnalysis.h"
 #include "mlir/Dialect/Affine/Analysis/AffineStructures.h"
@@ -35,16 +35,16 @@
 #include <optional>
 
 using namespace mlir;
+using namespace mlir::tosaext;
 
 #define DEBUG_TYPE "tosaext-lowerings"
 
 namespace mlir {
-
 namespace tosaext {
 
 // #define GEN_PASS_DEF_EXTLOWER
 // #define GEN_PASS_DEF_EXTPARAMETERLOWER
-// #include "Conversion/Passes.h.inc"
+// #include "Optimisation/Passes.h.inc"
 
 //===----------------------------------------------------------------------===//
 // Classes
@@ -52,7 +52,7 @@ namespace tosaext {
 //
 #define GEN_PASS_DEF_TOSAEXTLOWER
 #define GEN_PASS_DEF_TOSAEXTPARAMETERLOWER
-#include "Conversion/Passes.h.inc"
+#include "Optimisation/Passes.h.inc"
 
 namespace {
 
@@ -246,7 +246,7 @@ struct TosaExtParameterLower
   }
 };
 
-//
+// TODO: should be move to mlir::ragdoll
 // std::unique_ptr<OperationPass<mlir::func::FuncOp>> createLower()
 std::unique_ptr<Pass> createLower() { return std::make_unique<TosaExtLower>(); }
 std::unique_ptr<Pass> createParameterLower() {

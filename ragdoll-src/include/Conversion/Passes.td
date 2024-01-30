@@ -16,18 +16,15 @@ include "mlir/Pass/PassBase.td"
 // Dummy Passes
 // --------------------------------------------------------------------------
 
-// TODO rename to TosaExtToTosaLowering
-def TosaExtLower : Pass<"ext-lower"> {
-  let summary = "lowering TosaExt dialect to TOSA dialect";
-  let constructor = "mlir::tosaext::createLower()";
-  let dependentDialects = ["mlir::tosa::TosaDialect"];
-}
 
-// TODO rename to MLProgramToTosaExtLowering
-def TosaExtParameterLower : Pass<"tosaext-parameter-lower"> {
-  let summary = "lowering TosaExt parameters to TOSA parameters";
-  let constructor = "mlir::tosaext::createParameterLower()";
-  let dependentDialects = ["mlir::ml_program::MLProgramDialect"];
+def RagdollDummyPass : Pass<"ragdoll-dummy-pass", "mlir::func::FuncOp"> {
+  let summary = "Dummy pass boilerplate";
+  let constructor = "mlir::ragdoll::createRagdollDummyPass()";
+  let options = [
+    Option<"optionName", "option-name", "uint64_t", /*default=*/"512",
+           "Set the option for in KiB (default: 512)">,
+  ];
+  let dependentDialects = ["RagdollDialect"];
 }
 
 

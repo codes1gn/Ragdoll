@@ -1,4 +1,4 @@
-// RUN: nabla-opt %s --backward | FileCheck %s
+// RUN: ragdoll-opt %s --autodiff | FileCheck %s
 
 func.func @avg_pool2d(%input : tensor<1x3x3x512xf32>) -> tensor<1x1x1x512xf32> {
   %result = "tosa.avg_pool2d"(%input) {

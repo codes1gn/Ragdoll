@@ -11,7 +11,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "Optimisation/Passes.h"
+#include "Conversion/Passes.h"
 #include "mlir/Dialect/Affine/Passes.h"
 
 #include "mlir/Dialect/Affine/Analysis/AffineAnalysis.h"

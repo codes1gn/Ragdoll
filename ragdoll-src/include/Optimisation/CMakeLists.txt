@@ -5,4 +5,4 @@ mlir_tablegen(Passes.h.inc -gen-pass-decls -name RagdollOptimisation)
 add_public_tablegen_target(RagdollOptimisationPassesIncGen)
 
 # boilerplate code for generating docs
-# add_mlir_doc(Passes RagdollOptimisationPasses docs/OptimisationPasses/Ragdoll -gen-pass-doc)
+add_mlir_doc(Passes RagdollOptimisationPasses docs/OptimisationPasses/Ragdoll -gen-pass-doc)

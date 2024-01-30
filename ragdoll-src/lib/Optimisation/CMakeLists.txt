@@ -1,5 +1,8 @@
-add_mlir_dialect_library(RagdollOptimisation
-  Ragdoll/RagdollDummyPass.cpp
+add_mlir_conversion_library(RagdollOptimisation
+  TosaExt/TosaExtLowerings.cpp
+  Autodiff/AutodiffOptimise.cpp
+  Autodiff/AutodiffVjp.cpp
+  Autodiff/AutodiffVjpPublicFunctions.cpp
 
   LINK_COMPONENTS
   Core
@@ -10,5 +13,11 @@ add_mlir_dialect_library(RagdollOptimisation
 
   LINK_LIBS PUBLIC
   MLIRIR
-  )
+  TosaExtIR
+  AutodiffIR
+  RagdollUtils
+  NablaBackwardInterface
+  NablaBackwardSourceInterface
+  NablaAdjointInterface
+)
 

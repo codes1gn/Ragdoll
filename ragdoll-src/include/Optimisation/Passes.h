@@ -20,42 +20,24 @@
 #include "mlir/Transforms/DialectConversion.h"
 
 // this is the include setting without the need to add extra include directory
-// sourcing from ${PROJECT_SOURCE_DIR}/ragdoll-src/include
+// sourcing from ${PROJECT_SOURCE_DIR}/tosaext-src/include
 // Advantage: allow for cross-module references
-#include "Dialect/Ragdoll/RagdollDialect.h"
+#include "Optimisation/Autodiff/AutodiffPasses.h"
+#include "Optimisation/TosaExt/TosaExtPasses.h"
+
+#include "Dialect/Autodiff/AutodiffDialect.h"
+#include "Dialect/TosaExt/TosaExtDialect.h"
 
 namespace mlir {
-namespace ragdoll {
 
-// Declare your pass entry
-std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
-
-//===----------------------------------------------------------------------===//
-// Handle table-gen pass decls and registrations
-//===----------------------------------------------------------------------===//
-
-//===----------------------------------------------------------------------===//
-// Declaration
-//===----------------------------------------------------------------------===//
-
-#define GEN_PASS_DECL
-#include "Optimisation/Passes.h.inc"
-
+// TODO move these registraters into mlir::ragdoll
+// TODO move mlir::autodiff into mlir::ragdoll::autodiff namespace
 //===----------------------------------------------------------------------===//
 // Registration
 //===----------------------------------------------------------------------===//
 //
 #define GEN_PASS_REGISTRATION
 #include "Optimisation/Passes.h.inc"
-
-//===----------------------------------------------------------------------===//
-// Classes
-//===----------------------------------------------------------------------===//
-//
-#define GEN_PASS_CLASSES
-#include "Optimisation/Passes.h.inc"
-
-} // namespace ragdoll
 
 } // namespace mlir
 

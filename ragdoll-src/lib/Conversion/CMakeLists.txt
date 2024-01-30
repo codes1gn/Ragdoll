@@ -1,6 +1,5 @@
-add_mlir_dialect_library(RagdollConversion
+add_mlir_conversion_library(RagdollConversion
   Ragdoll/RagdollDummyPass.cpp
-  TosaExt/TosaExtLowerings.cpp
 
   LINK_COMPONENTS
   Core
@@ -11,6 +10,6 @@ add_mlir_dialect_library(RagdollConversion
 
   LINK_LIBS PUBLIC
   MLIRIR
-  TosaExtIR
+  RagdollUtils
   )
 

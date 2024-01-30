@@ -5,6 +5,7 @@
 
 namespace mlir::autodiff {
 
+// TODO: rename to Gradient SymTable
 class GradientMap {
 private:
   DenseMap<Value, Value> map;

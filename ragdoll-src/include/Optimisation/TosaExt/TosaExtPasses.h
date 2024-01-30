@@ -10,8 +10,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef RAGDOLL_CONVERSION_PASSES_H_
-#define RAGDOLL_CONVERSION_PASSES_H_
+#ifndef TOSAEXT_OPTIMISATION_PASSES_H_
+#define TOSAEXT_OPTIMISATION_PASSES_H_
 
 #include "mlir/Dialect/Linalg/Transforms/Transforms.h"
 #include "mlir/Pass/Pass.h"
@@ -19,16 +19,12 @@
 #include "mlir/Support/LLVM.h"
 #include "mlir/Transforms/DialectConversion.h"
 
-// this is the include setting without the need to add extra include directory
-// sourcing from ${PROJECT_SOURCE_DIR}/ragdoll-src/include
-// Advantage: allow for cross-module references
-#include "Dialect/Ragdoll/RagdollDialect.h"
-
 namespace mlir {
-namespace ragdoll {
+namespace tosaext {
 
 // Declare your pass entry
-std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
+std::unique_ptr<Pass> createLower();
+std::unique_ptr<Pass> createParameterLower();
 
 //===----------------------------------------------------------------------===//
 // Handle table-gen pass decls and registrations
@@ -38,25 +34,11 @@ std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
 // Declaration
 //===----------------------------------------------------------------------===//
 
-#define GEN_PASS_DECL
-#include "Conversion/Passes.h.inc"
+#define GEN_PASS_DECL_TOSAEXTLOWER
+#define GEN_PASS_DECL_TOSAEXTPARAMETERLOWER
+#include "Optimisation/Passes.h.inc"
 
-//===----------------------------------------------------------------------===//
-// Registration
-//===----------------------------------------------------------------------===//
-//
-#define GEN_PASS_REGISTRATION
-#include "Conversion/Passes.h.inc"
-
-//===----------------------------------------------------------------------===//
-// Classes
-//===----------------------------------------------------------------------===//
-//
-#define GEN_PASS_CLASSES
-#include "Conversion/Passes.h.inc"
-
-} // namespace ragdoll
-
+} // namespace tosaext
 } // namespace mlir
 
-#endif // RAGDOLL_CONVERSION_PASSES_H_
+#endif // TOSAEXT_OPTIMISATION_PASSES_H_

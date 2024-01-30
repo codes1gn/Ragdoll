@@ -17,7 +17,11 @@ add_mlir_library(NablaBackwardInterface
     Func.cpp
     SCF.cpp
     AutodiffExperimental.cpp
+    GradientMap.cpp
 
     DEPENDS
-    NablaUtils
+    RagdollUtils
+
+    LINK_LIBS PRIVATE
+    RagdollUtils
 )
