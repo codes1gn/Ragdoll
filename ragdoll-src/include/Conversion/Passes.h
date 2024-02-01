@@ -56,7 +56,6 @@ std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
 #include "Conversion/Passes.h.inc"
 
 } // namespace ragdoll
-
 } // namespace mlir
 
 #endif // RAGDOLL_CONVERSION_PASSES_H_

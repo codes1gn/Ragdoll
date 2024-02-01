@@ -15,7 +15,7 @@ cmake -S $RAGDOLL_SOURCE_DIR \
   -DMLIR_DIR=$MLIR_INSTALL_DIR/lib/cmake/mlir/ \
   -DLLVM_DIR=$MLIR_INSTALL_DIR/lib/cmake/llvm/ \
   -DLLVM_EXTERNAL_LIT=$(which lit) \
-  -DCMAKE_BUILD_TYPE=MinSizeRel \
+  -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_INSTALL_PREFIX=$RAGDOLL_BUILD_DIR \
   -DCMAKE_C_COMPILER=gcc \
   -DCMAKE_CXX_COMPILER=g++
@@ -24,4 +24,4 @@ cmake -S $RAGDOLL_SOURCE_DIR \
   # -DCMAKE_CXX_COMPILER=clang++ \
   # -DLLVM_ENABLE_LLD=ON
 
-ninja
+export LLVM_ENABLE_DUMP=1 && ./bin/ragdoll-opt --autodiff $RAGDOLL_SOURCE_DIR/tests/BackwardInterface/arith/select.mlir

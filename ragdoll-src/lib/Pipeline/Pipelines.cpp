@@ -15,6 +15,7 @@
 #include "Dialect/Autodiff/AutodiffInterface.h"
 #include "Dialect/Ragdoll/RagdollDialect.h"
 #include "Dialect/TosaExt/TosaExtDialect.h"
+#include "Conversion/Passes.h"
 #include "Optimisation/Passes.h"
 #include "Pipeline/Pipelines.h"
 
@@ -102,10 +103,10 @@ void bootstrapRagdollCompiler(mlir::DialectRegistry& registry) {
   registerRagdollDialects(registry);
 
   // prepare codegen
-  // mlir::RTI::registerFractalRTIPasses();
-  // mlir::registerFractalCodegenPasses();
-  // mlir::registerFractalOptimisationPasses();
-  // mlir::registerFractalConversionPasses();
+  mlir::registerRagdollOptimisationPasses();
+  mlir::ragdoll::registerRagdollConversionPasses();
+
+  // bootstrap interfaces
   autodiff::registerAdjointInterface(registry);
   autodiff::registerBackwardInterface(registry);
   autodiff::registerBackwardSourceInterface(registry);

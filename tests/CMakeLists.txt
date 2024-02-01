@@ -22,10 +22,3 @@ add_lit_testsuite(
 
 set_target_properties(check-ragdoll PROPERTIES FOLDER "tests")
 
-add_lit_testsuites(
-        STANDALONE_OPT 
-        ${CMAKE_CURRENT_SOURCE_DIR} 
-
-        DEPENDS 
-        ${RAGDOLL_OPT_TEST_DEPENDS}
-        )

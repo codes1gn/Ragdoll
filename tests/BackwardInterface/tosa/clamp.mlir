@@ -1,4 +1,4 @@
-// RUN: ragdoll-opt %s --backward --ragdoll-inline | FileCheck %s
+// RUN: ragdoll-opt %s --autodiff --autodiff-inline | FileCheck %s
 
 !type = tensor<5xf32>
 
@@ -8,6 +8,6 @@ func.func @relu(%input : !type) -> !type {
 }
 
 // CHECK-LABEL: @drelu
-// CHECK: %[[FLAG:.*]] = "tosa.equal"
-// CHECK: %[[DTARGET:.*]] = "tosa.select"
+// CHECK: %[[FLAG:.*]] = tosa.equal
+// CHECK: %[[DTARGET:.*]] = tosa.select %[[FLAG]]
 // CHECK: return %[[DTARGET]]

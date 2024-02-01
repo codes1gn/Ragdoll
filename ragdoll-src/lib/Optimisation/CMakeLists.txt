@@ -1,5 +1,6 @@
 add_mlir_conversion_library(RagdollOptimisation
   TosaExt/TosaExtLowerings.cpp
+  Autodiff/AutodiffInline.cpp
   Autodiff/AutodiffOptimise.cpp
   Autodiff/AutodiffVjp.cpp
   Autodiff/AutodiffVjpPublicFunctions.cpp
