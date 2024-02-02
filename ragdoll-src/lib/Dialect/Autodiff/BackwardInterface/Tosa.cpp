@@ -8,7 +8,10 @@
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/Dialect/Tosa/IR/TosaOps.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
 namespace tosa {
 class AddBackward;
 class SubBackward;
@@ -886,4 +889,7 @@ public:
 };
 
 } // namespace tosa
-} // namespace mlir::autodiff
+
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

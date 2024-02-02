@@ -3,7 +3,10 @@
 #include "Dialect/Autodiff/AutodiffInterface.h"
 #include "mlir/Dialect/SCF/IR/SCF.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
 namespace scf {
 class ForBackward;
 } // namespace scf
@@ -33,4 +36,7 @@ public:
 };
 
 } // namespace scf
-} // namespace mlir::autodiff
+
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

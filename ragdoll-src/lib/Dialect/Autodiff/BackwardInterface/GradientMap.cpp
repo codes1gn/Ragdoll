@@ -8,7 +8,9 @@
 #include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Dialect/Tosa/IR/TosaOps.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
 
 std::optional<Value> GradientMap::operator[](Value value) const {
   auto grad = map.lookup(value);
@@ -84,4 +86,6 @@ void backprop(SmallVector<Operation*> ops, GradientMap& grads,
   }
 }
 
-} // namespace mlir::autodiff
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

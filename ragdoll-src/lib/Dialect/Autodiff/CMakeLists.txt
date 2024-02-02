@@ -19,7 +19,7 @@ add_mlir_dialect_library(AutodiffIR
     MLIRIR
     MLIRInferTypeOpInterface
     RagdollUtils
-    NablaBackwardInterface
-    NablaBackwardSourceInterface
-    NablaAdjointInterface
+    RagdollAutodiffBackwardInterface
+    RagdollAutodiffBackwardSourceInterface
+    RagdollAutodiffAdjointInterface
 )

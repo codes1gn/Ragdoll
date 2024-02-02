@@ -10,8 +10,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef TOSAEXT_OPTIMISATION_PASSES_H_
-#define TOSAEXT_OPTIMISATION_PASSES_H_
+#ifndef RAGDOLL_OPTIMISATION_TOSAEXT_TOSAEXTPASSES_H_
+#define RAGDOLL_OPTIMISATION_TOSAEXT_TOSAEXTPASSES_H_
 
 #include "mlir/Dialect/Linalg/Transforms/Transforms.h"
 #include "mlir/Pass/Pass.h"
@@ -20,6 +20,7 @@
 #include "mlir/Transforms/DialectConversion.h"
 
 namespace mlir {
+namespace ragdoll {
 namespace tosaext {
 
 // Declare your pass entry
@@ -39,6 +40,7 @@ std::unique_ptr<Pass> createParameterLower();
 #include "Optimisation/Passes.h.inc"
 
 } // namespace tosaext
+} // namespace ragdoll 
 } // namespace mlir
 
-#endif // TOSAEXT_OPTIMISATION_PASSES_H_
+#endif // RAGDOLL_OPTIMISATION_TOSAEXT_TOSAEXTPASSES_H_

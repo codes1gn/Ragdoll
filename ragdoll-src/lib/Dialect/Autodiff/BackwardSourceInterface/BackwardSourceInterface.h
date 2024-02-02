@@ -1,12 +1,20 @@
-#ifndef LIB_AUTODIFF_BACKWARDSOURCEINTERFACE_BACKWARDSOURCEINTERFACE_H
-#define LIB_AUTODIFF_BACKWARDSOURCEINTERFACE_BACKWARDSOURCEINTERFACE_H
+#ifndef RAGDOLL_DIALECT_AUTODIFF_BACKWARDSOURCEINTERFACE_BACKWARDSOURCEINTERFACE_H
+#define RAGDOLL_DIALECT_AUTODIFF_BACKWARDSOURCEINTERFACE_BACKWARDSOURCEINTERFACE_H
 
 namespace mlir {
 class DialectRegistry;
+}
 
-namespace autodiff::backward_source {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
+namespace backward_source {
 void registerLinalg(DialectRegistry& registry);
-} // namespace autodiff::backward_source
+} // namespace backward_source
+
+} // namespace autodiff
+} // namespace ragdoll 
 } // namespace mlir
 
-#endif // LIB_AUTODIFF_BACKWARDSOURCEINTERFACE_BACKWARDSOURCEINTERFACE_H
+#endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDSOURCEINTERFACE_BACKWARDSOURCEINTERFACE_H

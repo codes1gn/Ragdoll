@@ -3,7 +3,9 @@
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Arith/Utils/Utils.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
 
 using namespace arith;
 
@@ -141,4 +143,6 @@ public:
   }
 };
 
-} // namespace mlir::autodiff
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

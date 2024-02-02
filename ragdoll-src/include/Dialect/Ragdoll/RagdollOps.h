@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef RAGDOLL_RAGDOLLOPS_H
-#define RAGDOLL_RAGDOLLOPS_H
+#ifndef RAGDOLL_DIALECT_RAGDOLL_RAGDOLLOPS_H
+#define RAGDOLL_DIALECT_RAGDOLL_RAGDOLLOPS_H
 
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/Dialect.h"
@@ -18,4 +18,4 @@
 #define GET_OP_CLASSES
 #include "Dialect/Ragdoll/RagdollOps.h.inc"
 
-#endif // RAGDOLL_RAGDOLLOPS_H
+#endif // RAGDOLL_DIALECT_RAGDOLL_RAGDOLLOPS_H

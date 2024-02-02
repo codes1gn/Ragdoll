@@ -1,9 +1,11 @@
-#ifndef LIB_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H
-#define LIB_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H
+#ifndef RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H
+#define RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H
 
 #include "Dialect/Autodiff/AutodiffOps.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
 
 // TODO: rename to Gradient SymTable
 class GradientMap {
@@ -41,6 +43,8 @@ public:
 void backprop(SmallVector<Operation*> ops, GradientMap& grads,
               OpBuilder& builder);
 
-} // namespace mlir::autodiff
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir
 
-#endif // LIB_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H
+#endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H

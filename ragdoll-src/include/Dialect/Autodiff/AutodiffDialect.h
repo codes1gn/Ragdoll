@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef AUTODIFF_AUTODIFFDIALECT_H
-#define AUTODIFF_AUTODIFFDIALECT_H
+#ifndef RAGDOLL_DIALECT_AUTODIFF_AUTODIFFDIALECT_H
+#define RAGDOLL_DIALECT_AUTODIFF_AUTODIFFDIALECT_H
 
 // clang-format off
 #include "mlir/IR/Dialect.h"
@@ -23,4 +23,4 @@
 
 // clang-format on
 
-#endif // AUTODIFF_AUTODIFFDIALECT_H
+#endif // RAGDOLL_DIALECT_AUTODIFF_AUTODIFFDIALECT_H

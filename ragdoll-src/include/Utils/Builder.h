@@ -1,9 +1,11 @@
-#ifndef UTILS_BUILDER_H
-#define UTILS_BUILDER_H
+#ifndef RAGDOLL_UTILS_BUILDER_H
+#define RAGDOLL_UTILS_BUILDER_H
 
 #include "mlir/Dialect/Arith/IR/Arith.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
 
 using Tensor = TypedValue<TensorType>;
 
@@ -76,6 +78,9 @@ auto select(OpBuilder& builder, Value cond, Value on_true, Value on_false)
     -> Value;
 } // namespace arith
 } // namespace builder
-} // namespace mlir::autodiff
 
-#endif // UTILS_BUILDER_H
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir
+
+#endif // RAGDOLL_UTILS_BUILDER_H

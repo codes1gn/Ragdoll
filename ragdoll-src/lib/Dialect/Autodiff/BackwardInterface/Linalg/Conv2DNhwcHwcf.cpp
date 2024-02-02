@@ -1,6 +1,6 @@
 #include "../Linalg.h"
 
-namespace mlir::autodiff::backward {
+namespace mlir::ragdoll::autodiff::backward {
 
 using Role = linalg::Conv2DNhwcHwcfRole;
 using T = linalg::Conv2DNhwcHwcfOp;

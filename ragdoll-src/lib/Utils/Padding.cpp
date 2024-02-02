@@ -2,7 +2,10 @@
 #include "Utils/Compat.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 
-namespace mlir::autodiff::utils {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+namespace utils {
 
 auto pad4d(Value input, ArrayRef<int64_t> pad, OpBuilder& builder,
            float padValue) -> TypedValue<TensorType> {
@@ -69,4 +72,7 @@ auto unpad4d(Value input, ArrayRef<int64_t> pad, OpBuilder& builder)
           .getResult());
 }
 
-} // namespace mlir::autodiff::utils
+} // namespace utils
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

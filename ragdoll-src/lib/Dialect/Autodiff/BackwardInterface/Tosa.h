@@ -1,10 +1,13 @@
-#ifndef LIB_AUTODIFF_BACKWARDINTERFACE_TOSA_H
-#define LIB_AUTODIFF_BACKWARDINTERFACE_TOSA_H
+#ifndef RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_TOSA_H
+#define RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_TOSA_H
 
 #include "Dialect/Autodiff/AutodiffInterface.h"
 #include "mlir/Dialect/Tosa/IR/TosaOps.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
 void registerTosaBackwardInterface(DialectRegistry& registry);
 
 namespace backward::tosa {
@@ -41,6 +44,9 @@ using FullyConnectedBackward =
     BackwardTemplate<FullyConnectedOp, FullyConnectedRole>;
 
 } // namespace backward::tosa
-} // namespace mlir::autodiff
 
-#endif // LIB_AUTODIFF_BACKWARDINTERFACE_TOSA_H
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir
+
+#endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_TOSA_H

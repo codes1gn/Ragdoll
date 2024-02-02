@@ -2,7 +2,10 @@
 #include "Dialect/Autodiff/AutodiffOps.h"
 #include "mlir/Dialect/Tosa/IR/TosaOps.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
 namespace experimental {
 class DropoutBackward;
 } // namespace experimental
@@ -39,4 +42,7 @@ public:
 };
 
 } // namespace experimental
-} // namespace mlir::autodiff
+
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef TOSAEXT_TOSAEXTDIALECT_H
-#define TOSAEXT_TOSAEXTDIALECT_H
+#ifndef RAGDOLL_DIALECT_TOSAEXT_TOSAEXTDIALECT_H
+#define RAGDOLL_DIALECT_TOSAEXT_TOSAEXTDIALECT_H
 
 // clang-format off
 #include "mlir/IR/Dialect.h"
@@ -23,4 +23,4 @@
 
 // clang-format on
 
-#endif // TOSAEXT_TOSAEXTDIALECT_H
+#endif // RAGDOLL_DIALECT_TOSAEXT_TOSAEXTDIALECT_H

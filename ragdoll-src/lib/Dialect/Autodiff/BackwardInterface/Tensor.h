@@ -1,10 +1,16 @@
-#ifndef LIB_AUTODIFF_BACKWARDINTERFACE_TENSOR_H
-#define LIB_AUTODIFF_BACKWARDINTERFACE_TENSOR_H
+#ifndef RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_TENSOR_H
+#define RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_TENSOR_H
 
 #include "Dialect/Autodiff/AutodiffInterface.h"
 
-namespace mlir::autodiff {
-void registerTensorBackwardInterface(DialectRegistry& registry);
-} // namespace mlir::autodiff
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
 
-#endif // LIB_AUTODIFF_BACKWARDINTERFACE_TENSOR_H
+void registerTensorBackwardInterface(DialectRegistry& registry);
+
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir
+
+#endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_TENSOR_H

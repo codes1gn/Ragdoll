@@ -6,26 +6,30 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef AUTODIFF_AUTODIFFINTERFACES_H
-#define AUTODIFF_AUTODIFFINTERFACES_H
+#ifndef RAGDOLL_DIALECT_AUTODIFF_AUTODIFFINTERFACES_H
+#define RAGDOLL_DIALECT_AUTODIFF_AUTODIFFINTERFACES_H
 
 // clang-format off
 #include "mlir/IR/OpDefinition.h"
 #include "Dialect/Autodiff/AutodiffInterfaces.h.inc"
 // clang-format on
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
 
 void registerAdjointInterface(DialectRegistry& registry);
 void registerBackwardInterface(DialectRegistry& registry);
 void registerBackwardSourceInterface(DialectRegistry& registry);
 
+// TODO: remove this namespace
 namespace backward {
 
 template <typename T>
 concept is_operand_role =
     std::is_enum_v<T> && std::is_unsigned_v<std::underlying_type_t<T>>;
 
+// TODO: rename Role with more intuitve concept
 template <typename T, typename Role>
 requires is_operand_role<Role>
 class BackwardTemplate
@@ -46,6 +50,9 @@ private:
 };
 
 } // namespace backward
-} // namespace mlir::autodiff
 
-#endif // AUTODIFF_AUTODIFFINTERFACES_H
+} // namespace autodiff
+} // namespace ragdoll
+} // namespace mlir
+
+#endif // RAGDOLL_DIALECT_AUTODIFF_AUTODIFFINTERFACES_H

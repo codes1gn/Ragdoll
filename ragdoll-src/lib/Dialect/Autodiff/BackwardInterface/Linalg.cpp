@@ -8,7 +8,10 @@
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include <bits/ranges_algo.h>
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
 namespace backward::linalg {
 class GenericBackward;
 } // namespace backward::linalg
@@ -197,4 +200,7 @@ template auto getMulAddValue<BatchMatmulOp>(BatchMatmulOp, Value, unsigned,
                                             OpBuilder&) -> Value;
 
 } // namespace backward::linalg
-} // namespace mlir::autodiff
+
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

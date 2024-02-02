@@ -3,7 +3,10 @@
 #include "mlir/Dialect/Arith/Utils/Utils.h"
 #include "mlir/Dialect/Math/IR/Math.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
 namespace math {
 class RsqrtBackward;
 class SinBackward;
@@ -79,4 +82,7 @@ public:
 };
 
 } // namespace math
-} // namespace mlir::autodiff
+
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

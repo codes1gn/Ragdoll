@@ -3,7 +3,7 @@
 #include "Utils/Compat.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 
-namespace mlir::autodiff::backward {
+namespace mlir::ragdoll::autodiff::backward {
 
 using T = tosa::FullyConnectedOp;
 using Role = tosa::FullyConnectedRole;

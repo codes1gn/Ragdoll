@@ -13,7 +13,7 @@
 #include "llvm/ADT/TypeSwitch.h"
 
 using namespace mlir;
-using namespace mlir::autodiff;
+using namespace mlir::ragdoll::autodiff;
 
 //===----------------------------------------------------------------------===//
 // Autodiff dialect.

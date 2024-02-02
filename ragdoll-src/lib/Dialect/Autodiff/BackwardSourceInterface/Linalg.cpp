@@ -2,7 +2,11 @@
 #include "Dialect/Autodiff/AutodiffInterface.h"
 #include "mlir/IR/DialectRegistry.h"
 
-namespace mlir::autodiff::backward_source {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
+namespace backward_source {
 
 using mlir::linalg::Conv2DNhwcHwcfOp;
 using mlir::linalg::FillOp;
@@ -49,4 +53,8 @@ void registerLinalg(DialectRegistry& registry) {
   });
 }
 
-} // namespace mlir::autodiff::backward_source
+} // namespace backward_source
+
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

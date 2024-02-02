@@ -14,7 +14,7 @@ include "mlir/Interfaces/InferTypeOpInterface.td"
 
 def TosaExt_Dialect : Dialect {
   let name = "tosaext";
-  let cppNamespace = "::mlir::tosaext";
+  let cppNamespace = "::mlir::ragdoll::tosaext";
 }
 
 class TosaExt_Op<string mnemonic, list<Trait> traits = []> : Op<TosaExt_Dialect, mnemonic, traits>;

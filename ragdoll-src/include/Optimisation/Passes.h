@@ -29,6 +29,7 @@
 #include "Dialect/TosaExt/TosaExtDialect.h"
 
 namespace mlir {
+namespace ragdoll {
 
 // TODO move these registraters into mlir::ragdoll
 // TODO move mlir::autodiff into mlir::ragdoll::autodiff namespace
@@ -39,6 +40,7 @@ namespace mlir {
 #define GEN_PASS_REGISTRATION
 #include "Optimisation/Passes.h.inc"
 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_OPTIMISATION_PASSES_H_

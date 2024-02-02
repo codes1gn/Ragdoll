@@ -24,4 +24,8 @@ cmake -S $RAGDOLL_SOURCE_DIR \
   # -DCMAKE_CXX_COMPILER=clang++ \
   # -DLLVM_ENABLE_LLD=ON
 
-ninja
+# ninja RagdollUtils
+# ninja RagdollAutodiffAdjointInterface
+# ninja RagdollAutodiffBackwardInterface
+# ninja RagdollAutodiffBackwardSourceInterface
+ninja 

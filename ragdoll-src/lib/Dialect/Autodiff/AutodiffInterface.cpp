@@ -16,7 +16,9 @@
 
 #include "Dialect/Autodiff/AutodiffInterfaces.cpp.inc"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
 
 void registerAdjointInterface(DialectRegistry& registry) {
   registerArithAdjointInterface(registry);
@@ -40,4 +42,6 @@ void registerBackwardSourceInterface(DialectRegistry& registry) {
   backward_source::registerLinalg(registry);
 }
 
-} // namespace mlir::autodiff
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

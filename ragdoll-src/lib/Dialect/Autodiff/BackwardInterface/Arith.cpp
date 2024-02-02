@@ -3,8 +3,11 @@
 #include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Arith/Utils/Utils.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
 namespace arith {
+
 class AddFBackward;
 class MulFBackward;
 class SubFBackward;
@@ -168,4 +171,6 @@ public:
 };
 
 } // namespace arith
-} // namespace mlir::autodiff
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

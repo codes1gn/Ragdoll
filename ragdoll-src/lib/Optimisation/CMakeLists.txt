@@ -17,8 +17,8 @@ add_mlir_conversion_library(RagdollOptimisation
   TosaExtIR
   AutodiffIR
   RagdollUtils
-  NablaBackwardInterface
-  NablaBackwardSourceInterface
-  NablaAdjointInterface
+  RagdollAutodiffBackwardInterface
+  RagdollAutodiffBackwardSourceInterface
+  RagdollAutodiffAdjointInterface
 )
 

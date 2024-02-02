@@ -3,7 +3,7 @@
 #include "Utils/Padding.h"
 #include "mlir/Dialect/Utils/StructuredOpsUtils.h"
 
-namespace mlir::autodiff::backward {
+namespace mlir::ragdoll::autodiff::backward {
 
 using T = tosa::MaxPool2dOp;
 using Role = tosa::MaxPool2dRole;

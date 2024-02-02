@@ -4,7 +4,7 @@
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include <numeric>
 
-namespace mlir::autodiff::backward {
+namespace mlir::ragdoll::autodiff::backward {
 
 using T = tosa::AvgPool2dOp;
 using Role = tosa::AvgPool2dRole;

@@ -36,7 +36,7 @@ def VjpStrategyFlags : I32BitEnumAttr<
     VJP_STRATEGY_HEURISTIC
   ]
 > {
-  let cppNamespace = "::mlir::autodiff";
+  let cppNamespace = "::mlir::ragdoll::autodiff";
   let genSpecializedAttr = 0;
   let printBitEnumPrimaryGroups = 1;
 }

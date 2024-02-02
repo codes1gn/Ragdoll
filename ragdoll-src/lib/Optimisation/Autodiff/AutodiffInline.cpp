@@ -35,11 +35,12 @@
 #include <optional>
 
 using namespace mlir;
-using namespace mlir::autodiff;
+using namespace mlir::ragdoll::autodiff;
 
 #define DEBUG_TYPE "autodiff-inline"
 
 namespace mlir {
+namespace ragdoll {
 namespace autodiff {
 
 //===----------------------------------------------------------------------===//
@@ -124,5 +125,5 @@ auto createAutodiffInline() -> std::unique_ptr<Pass> {
 }
 
 } // namespace autodiff
-
+} // namespace ragdoll 
 } // namespace mlir

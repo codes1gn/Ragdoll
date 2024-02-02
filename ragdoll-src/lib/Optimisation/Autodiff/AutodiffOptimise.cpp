@@ -35,11 +35,12 @@
 #include <optional>
 
 using namespace mlir;
-using namespace mlir::autodiff;
+using namespace mlir::ragdoll::autodiff;
 
 #define DEBUG_TYPE "autodiff-optimize"
 
 namespace mlir {
+namespace ragdoll {
 namespace autodiff {
 
 // #define GEN_PASS_DEF_EXTLOWER
@@ -327,5 +328,5 @@ std::unique_ptr<Pass> createAutodiffOptimizePass() {
 }
 
 } // namespace autodiff
-
+} // namespace ragdoll
 } // namespace mlir

@@ -13,7 +13,7 @@
 #include "llvm/ADT/TypeSwitch.h"
 
 using namespace mlir;
-using namespace mlir::tosaext;
+using namespace mlir::ragdoll::tosaext;
 
 //===----------------------------------------------------------------------===//
 // TosaExt dialect.

@@ -2,7 +2,7 @@
 #include "Utils/Builder.h"
 #include "Utils/Compat.h"
 
-namespace mlir::autodiff::backward {
+namespace mlir::ragdoll::autodiff::backward {
 
 using Role = linalg::ElemwiseBinaryRole;
 using mlir::linalg::AddOp, linalg::AddBackward;

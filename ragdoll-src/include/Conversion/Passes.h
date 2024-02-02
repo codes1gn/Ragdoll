@@ -27,12 +27,9 @@
 namespace mlir {
 namespace ragdoll {
 
+namespace foobar {
 // Declare your pass entry
 std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
-
-//===----------------------------------------------------------------------===//
-// Handle table-gen pass decls and registrations
-//===----------------------------------------------------------------------===//
 
 //===----------------------------------------------------------------------===//
 // Declaration
@@ -42,17 +39,24 @@ std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
 #include "Conversion/Passes.h.inc"
 
 //===----------------------------------------------------------------------===//
-// Registration
-//===----------------------------------------------------------------------===//
-//
-#define GEN_PASS_REGISTRATION
-#include "Conversion/Passes.h.inc"
-
-//===----------------------------------------------------------------------===//
 // Classes
 //===----------------------------------------------------------------------===//
 //
 #define GEN_PASS_CLASSES
+#include "Conversion/Passes.h.inc"
+
+} // namespace ragdoll
+
+//===----------------------------------------------------------------------===//
+// Handle table-gen pass decls and registrations
+//===----------------------------------------------------------------------===//
+
+
+//===----------------------------------------------------------------------===//
+// Registration
+//===----------------------------------------------------------------------===//
+//
+#define GEN_PASS_REGISTRATION
 #include "Conversion/Passes.h.inc"
 
 } // namespace ragdoll

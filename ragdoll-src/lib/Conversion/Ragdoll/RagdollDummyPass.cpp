@@ -29,10 +29,13 @@
 #include <optional>
 
 using namespace mlir;
+using namespace mlir::ragdoll::foobar;
 
 #define DEBUG_TYPE "ragdoll-dummy-pass"
 
 namespace mlir {
+namespace ragdoll {
+namespace foobar {
 namespace {
 
 /// =========================================================
@@ -41,7 +44,7 @@ namespace {
 
 /// A pass to perform loop tiling on all suitable loop nests of a Function.
 struct RagdollDummyPattern
-    : public ragdoll::RagdollDummyPassBase<RagdollDummyPattern> {
+    : public RagdollDummyPassBase<RagdollDummyPattern> {
   explicit RagdollDummyPattern() {
     // TODO: add your pattern init code
     // this->data-field-1 = kDefaultTileSize / 1024;
@@ -62,8 +65,10 @@ void RagdollDummyPattern::runOnOperation() {
 
 // bypass the implementation
 std::unique_ptr<OperationPass<mlir::func::FuncOp>>
-ragdoll::createRagdollDummyPass() {
+createRagdollDummyPass() {
   return std::make_unique<RagdollDummyPattern>();
 }
 
+} // namespace foobar
+} // namespace ragdoll
 } // namespace mlir

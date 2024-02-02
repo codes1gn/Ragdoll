@@ -23,6 +23,11 @@ namespace mlir {
 class DialectRegistry;
 } // namespace mlir
 
+
+// impls for pipeline stuffs
+namespace mlir {
+namespace ragdoll {
+
 namespace {
 
 //===----------------------------------------------------------------------===//
@@ -39,7 +44,7 @@ inline void preprocess_pipeline(mlir::OpPassManager& pm) {
   pm.addPass(mlir::createSymbolDCEPass());
   pm.addPass(mlir::createInlinerPass());
   // TODO: should be change to createLowerTosa
-  pm.addPass(mlir::tosaext::createLower());
+  pm.addPass(tosaext::createLower());
   pm.addPass(mlir::createCSEPass());
   pm.addPass(mlir::createCanonicalizerPass());
 }
@@ -52,8 +57,8 @@ inline void postprocess_pipeline(mlir::OpPassManager& pm) {
 inline void buildAutodiffPipeline(mlir::OpPassManager& pm) {
   auto backward = [](mlir::OpPassManager& pm) {
     // TODO: move namespace from mlir::autodiff to mlir::ragdoll
-    pm.addPass(mlir::autodiff::createAutodiffVjpPublicFunctionsPass());
-    pm.addPass(mlir::autodiff::createAutodiffVjpPass());
+    pm.addPass(autodiff::createAutodiffVjpPublicFunctionsPass());
+    pm.addPass(autodiff::createAutodiffVjpPass());
     pm.addPass(mlir::createInlinerPass());
   };
 
@@ -80,9 +85,13 @@ inline void registerAutodiffPipelines() {
 //
 /// Add all the MLIR dialects to the provided registry.
 /// TODO: AirDialect has issue, cannot find getTypeID impl, fix when needed
+/// TODO: rename autodiff to ragdoll::autodiff
+/// TODO: tosaext to ragdoll::tosaext
 inline void registerRagdollDialects(mlir::DialectRegistry& registry) {
   // clang-format off
-  registry.insert<mlir::ragdoll::RagdollDialect>();
+  registry.insert<autodiff::AutodiffDialect>();
+  registry.insert<foobar::RagdollDialect>();
+  registry.insert<tosaext::TosaExtDialect>();
   // clang-format on
 }
 
@@ -94,17 +103,14 @@ inline void registerRagdollDialects(mlir::DialectRegistry& registry) {
 // }
 } // namespace
 
-namespace mlir {
-namespace ragdoll {
-
 void bootstrapRagdollCompiler(mlir::DialectRegistry& registry) {
 
   // register dialect for ChopperRT target
   registerRagdollDialects(registry);
 
-  // prepare codegen
-  mlir::registerRagdollOptimisationPasses();
-  mlir::ragdoll::registerRagdollConversionPasses();
+  // prepare passes
+  registerRagdollOptimisationPasses();
+  registerRagdollConversionPasses();
 
   // bootstrap interfaces
   autodiff::registerAdjointInterface(registry);

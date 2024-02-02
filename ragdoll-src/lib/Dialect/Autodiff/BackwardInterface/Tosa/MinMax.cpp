@@ -2,7 +2,7 @@
 #include "Utils/Builder.h"
 #include <ranges>
 
-namespace mlir::autodiff::backward {
+namespace mlir::ragdoll::autodiff::backward {
 
 namespace tosa {
 

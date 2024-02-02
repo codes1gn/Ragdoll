@@ -20,7 +20,7 @@
 #include "Dialect/Autodiff/AutodiffOps.cpp.inc"
 
 using namespace mlir;
-using namespace mlir::autodiff;
+using namespace mlir::ragdoll::autodiff;
 
 //===----------------------------------------------------------------------===//
 // AdjointOp

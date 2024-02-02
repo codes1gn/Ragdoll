@@ -22,7 +22,7 @@ def Autodiff_Dialect : Dialect {
       TODO: write intro. to autodiff dialect.
   }];
 
-  let cppNamespace = "::mlir::autodiff";
+  let cppNamespace = "::mlir::ragdoll::autodiff";
   // let useDefaultAttributePrinterParser = 1;
 }
 

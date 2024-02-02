@@ -9,7 +9,10 @@
 
 #include <ranges>
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
 namespace format {
 
 NHWC::NHWC(ArrayRef<int64_t> shape) {
@@ -325,4 +328,7 @@ auto select(OpBuilder& builder, Value cond, Value on_true, Value on_false)
 
 } // namespace arith
 } // namespace builder
-} // namespace mlir::autodiff
+
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

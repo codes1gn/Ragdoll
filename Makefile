@@ -1,4 +1,4 @@
-.PHONY: build test format debug
+.PHONY: build test format debug clean
 
 build:
 	./scripts/build_ragdoll.sh
@@ -11,3 +11,6 @@ format:
 
 debug:
 	./scripts/debug.sh
+
+clean:
+	rm -rf build

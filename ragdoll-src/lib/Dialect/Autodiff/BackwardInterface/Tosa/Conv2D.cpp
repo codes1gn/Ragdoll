@@ -2,11 +2,13 @@
 #include "Utils/Builder.h"
 #include "Utils/Compat.h"
 
-namespace mlir::autodiff::backward {
+namespace mlir::ragdoll::autodiff {
 
-using Role = tosa::Conv2DRole;
-using T = tosa::Conv2DOp;
-using B = tosa::Conv2DBackward;
+using Role = backward::tosa::Conv2DRole;
+using T = backward::tosa::Conv2DOp;
+using B = backward::tosa::Conv2DBackward;
+
+namespace backward {
 
 template <>
 template <>
@@ -109,4 +111,5 @@ auto B::fn(Role role) -> Fn {
   }
 }
 
-} // namespace mlir::autodiff::backward
+} // namespace backward
+} // namespace mlir::ragdoll::autodiff

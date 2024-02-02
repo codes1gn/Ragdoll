@@ -4,7 +4,10 @@
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
 namespace tensor {
 class PadBackward;
 class ExpandShapeBackward;
@@ -146,4 +149,7 @@ public:
 };
 
 } // namespace tensor
-} // namespace mlir::autodiff
+
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

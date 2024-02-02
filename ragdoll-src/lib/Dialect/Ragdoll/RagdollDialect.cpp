@@ -10,7 +10,7 @@
 #include "Dialect/Ragdoll/RagdollOps.h"
 
 using namespace mlir;
-using namespace mlir::ragdoll;
+using namespace mlir::ragdoll::foobar;
 
 //===----------------------------------------------------------------------===//
 // Ragdoll dialect.

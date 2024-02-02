@@ -3,7 +3,7 @@
 #include "Utils/Compat.h"
 #include "mlir/Dialect/Arith/Utils/Utils.h"
 
-namespace mlir::autodiff::backward {
+namespace mlir::ragdoll::autodiff::backward {
 
 using Role = linalg::ElemwiseUnaryRole;
 using T = linalg::AbsOp;

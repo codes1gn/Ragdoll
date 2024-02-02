@@ -1,4 +1,4 @@
-add_mlir_library(NablaBackwardInterface
+add_mlir_library(RagdollAutodiffBackwardInterface
     Arith.cpp
     Math.cpp
     Linalg.cpp
@@ -20,6 +20,9 @@ add_mlir_library(NablaBackwardInterface
     GradientMap.cpp
 
     DEPENDS
+    AutodiffEnumsAndAttrsIncGen
+    AutodiffOpsIncGen
+    AutodiffInterfacesIncGen
     RagdollUtils
 
     LINK_LIBS PRIVATE

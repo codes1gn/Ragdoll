@@ -6,11 +6,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef RAGDOLL_RAGDOLLDIALECT_H
-#define RAGDOLL_RAGDOLLDIALECT_H
+#ifndef RAGDOLL_DIALECT_RAGDOLL_RAGDOLLDIALECT_H
+#define RAGDOLL_DIALECT_RAGDOLL_RAGDOLLDIALECT_H
 
 #include "mlir/IR/Dialect.h"
 
 #include "Dialect/Ragdoll/RagdollDialect.h.inc"
 
-#endif // RAGDOLL_RAGDOLLDIALECT_H
+#endif // RAGDOLL_DIALECT_RAGDOLL_RAGDOLLDIALECT_H

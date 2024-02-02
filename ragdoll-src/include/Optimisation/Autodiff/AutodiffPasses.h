@@ -10,8 +10,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef RAGDOLL_AUTODIFF_OPTIMISATION_PASSES_H_
-#define RAGDOLL_AUTODIFF_OPTIMISATION_PASSES_H_
+#ifndef RAGDOLL_OPTIMISATION_AUTODIFF_AUTODIFFPASSES_H_
+#define RAGDOLL_OPTIMISATION_AUTODIFF_AUTODIFFPASSES_H_
 
 #include "mlir/Dialect/Linalg/Transforms/Transforms.h"
 #include "mlir/Pass/Pass.h"
@@ -20,6 +20,7 @@
 #include "mlir/Transforms/DialectConversion.h"
 
 namespace mlir {
+namespace ragdoll {
 namespace autodiff {
 
 // Declare your pass entry
@@ -43,6 +44,7 @@ std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass();
 #include "Optimisation/Passes.h.inc"
 
 } // namespace autodiff
+} // namespace ragdoll 
 } // namespace mlir
 
-#endif // RAGDOLL_AUTODIFF_OPTIMISATION_PASSES_H_
+#endif // RAGDOLL_OPTIMISATION_AUTODIFF_AUTODIFFPASSES_H_

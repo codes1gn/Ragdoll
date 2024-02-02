@@ -38,11 +38,12 @@
 #include <optional>
 
 using namespace mlir;
-using namespace mlir::autodiff;
+using namespace mlir::ragdoll::autodiff;
 
 #define DEBUG_TYPE "autodiff-vjp"
 
 namespace mlir {
+namespace ragdoll {
 namespace autodiff {
 
 //===----------------------------------------------------------------------===//
@@ -610,5 +611,5 @@ std::unique_ptr<Pass> createAutodiffVjpPass() {
 }
 
 } // namespace autodiff
-
+} // namespace ragdoll
 } // namespace mlir

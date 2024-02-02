@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef TOSAEXT_TOSAEXTOPS_H
-#define TOSAEXT_TOSAEXTOPS_H
+#ifndef RAGDOLL_DIALECT_TOSAEXT_TOSAEXTOPS_H
+#define RAGDOLL_DIALECT_TOSAEXT_TOSAEXTOPS_H
 
 #include "mlir/Bytecode/BytecodeOpInterface.h"
 #include "mlir/IR/BuiltinTypes.h"
@@ -22,4 +22,4 @@
 #define GET_OP_CLASSES
 #include "Dialect/TosaExt/TosaExtOps.h.inc"
 
-#endif // TOSAEXT_TOSAEXTOPS_H
+#endif // RAGDOLL_DIALECT_TOSAEXT_TOSAEXTOPS_H

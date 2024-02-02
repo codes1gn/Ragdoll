@@ -2,7 +2,9 @@
 
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
 
 using namespace tensor;
 
@@ -69,4 +71,6 @@ public:
   }
 };
 
-} // namespace mlir::autodiff
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir

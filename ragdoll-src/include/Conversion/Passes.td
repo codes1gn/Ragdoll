@@ -19,7 +19,7 @@ include "mlir/Pass/PassBase.td"
 
 def RagdollDummyPass : Pass<"ragdoll-dummy-pass", "mlir::func::FuncOp"> {
   let summary = "Dummy pass boilerplate";
-  let constructor = "mlir::ragdoll::createRagdollDummyPass()";
+  let constructor = "mlir::ragdoll::foobar::createRagdollDummyPass()";
   let options = [
     Option<"optionName", "option-name", "uint64_t", /*default=*/"512",
            "Set the option for in KiB (default: 512)">,

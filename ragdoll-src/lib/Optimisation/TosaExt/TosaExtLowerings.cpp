@@ -35,11 +35,12 @@
 #include <optional>
 
 using namespace mlir;
-using namespace mlir::tosaext;
+using namespace mlir::ragdoll::tosaext;
 
 #define DEBUG_TYPE "tosaext-lowerings"
 
 namespace mlir {
+namespace ragdoll {
 namespace tosaext {
 
 // #define GEN_PASS_DEF_EXTLOWER
@@ -254,5 +255,5 @@ std::unique_ptr<Pass> createParameterLower() {
 }
 
 } // namespace tosaext
-
+} // namespace ragdoll
 } // namespace mlir

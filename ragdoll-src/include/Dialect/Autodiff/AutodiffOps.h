@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef AUTODIFF_AUTODIFFOPS_H
-#define AUTODIFF_AUTODIFFOPS_H
+#ifndef RAGDOLL_DIALECT_AUTODIFF_AUTODIFFOPS_H
+#define RAGDOLL_DIALECT_AUTODIFF_AUTODIFFOPS_H
 
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/Dialect.h"
@@ -26,4 +26,4 @@
 #define GET_OP_CLASSES
 #include "Dialect/Autodiff/AutodiffOps.h.inc"
 
-#endif // AUTODIFF_AUTODIFFOPS_H
+#endif // RAGDOLL_DIALECT_AUTODIFF_AUTODIFFOPS_H

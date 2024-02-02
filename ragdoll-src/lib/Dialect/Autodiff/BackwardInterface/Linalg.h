@@ -1,10 +1,13 @@
-#ifndef LIB_AUTODIFF_BACKWARDINTERFACE_LINALG_H
-#define LIB_AUTODIFF_BACKWARDINTERFACE_LINALG_H
+#ifndef RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_LINALG_H
+#define RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_LINALG_H
 
 #include "Dialect/Autodiff/AutodiffInterface.h"
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 
-namespace mlir::autodiff {
+namespace mlir {
+namespace ragdoll {
+namespace autodiff {
+
 void registerLinalgBackwardInterface(DialectRegistry& registry);
 namespace backward::linalg {
 
@@ -62,6 +65,9 @@ auto getMulAddValue(T op, Value dtarget, unsigned index, OpBuilder& builder)
 SmallVector<utils::IteratorType> getIterTypes(SmallVector<AffineMap> outMaps);
 
 } // namespace backward::linalg
-} // namespace mlir::autodiff
 
-#endif // LIB_AUTODIFF_BACKWARDINTERFACE_LINALG_H
+} // namespace autodiff
+} // namespace ragdoll 
+} // namespace mlir
+
+#endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_LINALG_H
