@@ -10,8 +10,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef RAGDOLL_OPTIMISATION_PASSES_H_
-#define RAGDOLL_OPTIMISATION_PASSES_H_
+#ifndef RAGDOLL_OPTIMISATION_COMMON_COMMONPASSES_H_
+#define RAGDOLL_OPTIMISATION_COMMON_COMMONPASSES_H_
 
 #include "mlir/Dialect/Linalg/Transforms/Transforms.h"
 #include "mlir/Pass/Pass.h"
@@ -19,27 +19,19 @@
 #include "mlir/Support/LLVM.h"
 #include "mlir/Transforms/DialectConversion.h"
 
-// this is the include setting without the need to add extra include directory
-// sourcing from ${PROJECT_SOURCE_DIR}/tosaext-src/include
-// Advantage: allow for cross-module references
-#include "Optimisation/Autodiff/AutodiffPasses.h"
-#include "Optimisation/Common/CommonPasses.h"
-#include "Optimisation/TosaExt/TosaExtPasses.h"
-
-#include "Dialect/Autodiff/AutodiffDialect.h"
-#include "Dialect/TosaExt/TosaExtDialect.h"
-
 namespace mlir {
 namespace ragdoll {
 
+// Declare your pass entry
+std::unique_ptr<Pass> createMergeMultiResults();
+
 //===----------------------------------------------------------------------===//
-// Registration
+// Declaration
 //===----------------------------------------------------------------------===//
-//
-#define GEN_PASS_REGISTRATION
+#define GEN_PASS_DECL_MERGEMULTIRESULTS
 #include "Optimisation/Passes.h.inc"
 
 } // namespace ragdoll
 } // namespace mlir
 
-#endif // RAGDOLL_OPTIMISATION_PASSES_H_
+#endif // RAGDOLL_OPTIMISATION_COMMON_COMMONPASSES_H_

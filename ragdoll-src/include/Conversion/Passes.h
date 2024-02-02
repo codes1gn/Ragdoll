@@ -27,6 +27,7 @@
 #include "Conversion/NablaToArith/NablaToArith.h"
 #include "Conversion/NablaToFunc/NablaToFunc.h"
 #include "Conversion/NablaToTosa/NablaToTosa.h"
+#include "Conversion/TosaExtToTosa/TosaExtToTosa.h"
 
 #include "Dialect/Autodiff/AutodiffDialect.h"
 #include "Dialect/Ragdoll/RagdollDialect.h"

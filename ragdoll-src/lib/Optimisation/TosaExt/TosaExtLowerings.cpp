@@ -47,110 +47,13 @@ namespace tosaext {
 // Classes
 //===----------------------------------------------------------------------===//
 //
-#define GEN_PASS_DEF_TOSAEXTLOWER
 #define GEN_PASS_DEF_TOSAEXTPARAMETERLOWER
 #include "Optimisation/Passes.h.inc"
 
 namespace {
 
-class NllLossPattern;
-class SoftmaxPattern;
-class CrossEntropyLossPattern;
 class ParameterPattern;
 class ParameterUpdatePattern;
-
-class NllLossPattern : public OpRewritePattern<NllLossOp> {
-  using OpRewritePattern<NllLossOp>::OpRewritePattern;
-
-  auto matchAndRewrite(NllLossOp op, PatternRewriter& rewriter) const
-      -> LogicalResult override {
-    auto loc = op.getLoc();
-
-    auto inputs = op.getInputs();
-    auto target = op.getTarget();
-
-    auto inputs_type = inputs.getType();
-    auto target_type = target.getType();
-    auto elem_type = inputs_type.getElementType();
-
-    SmallVector<int64_t> inputs_shape{inputs_type.getShape()};
-    SmallVector<int64_t> target_shape{target_type.getShape()};
-
-    inputs_shape.emplace_back(1);
-    target_shape.emplace_back(1);
-
-    auto reshaped_inputs =
-        rewriter.create<tosa::ReshapeOp>(loc, inputs, inputs_shape);
-    auto reshaped_target =
-        rewriter.create<tosa::ReshapeOp>(loc, target, target_shape);
-
-    SmallVector<int64_t> gathered_shape{inputs_shape[0], target_shape[1],
-                                        inputs_shape[2]};
-    auto gathered_type = RankedTensorType::get(gathered_shape, elem_type);
-    auto gathered = rewriter.create<tosa::GatherOp>(
-        loc, gathered_type, reshaped_inputs, reshaped_target);
-
-    auto sum = rewriter.create<tosa::ReduceSumOp>(loc, gathered, 0);
-
-    auto cst_value = -1.0F / static_cast<float>(inputs_shape[0]);
-    auto cst_type = RankedTensorType::get({}, elem_type);
-    auto cst_attr = DenseElementsAttr::get(cst_type, cst_value);
-    auto cst = rewriter.create<tosa::ConstOp>(loc, cst_type, cst_attr);
-
-    Value loss = rewriter.create<tosa::MulOp>(loc, sum.getType(), sum, cst, 0);
-    if (loss.getType() != op.getType()) {
-      loss =
-          rewriter.create<tosa::ReshapeOp>(loc, loss, op.getType().getShape());
-    }
-
-    rewriter.replaceOp(op, loss);
-    return success();
-  }
-};
-
-class SoftmaxPattern : public OpRewritePattern<SoftmaxOp> {
-  using OpRewritePattern<SoftmaxOp>::OpRewritePattern;
-
-  auto matchAndRewrite(SoftmaxOp op, PatternRewriter& rewriter) const
-      -> LogicalResult override {
-    auto loc = op.getLoc();
-    auto dim = op.getDim();
-    auto input = op.getInput();
-    auto type = op.getType();
-
-    auto exp = rewriter.create<tosa::ExpOp>(loc, type, input);
-    auto sum = rewriter.create<tosa::ReduceSumOp>(loc, exp, dim);
-
-    auto recip = rewriter.create<tosa::ReciprocalOp>(loc, sum.getType(), sum);
-    auto mul = rewriter.create<tosa::MulOp>(loc, type, exp, recip, 0);
-
-    rewriter.replaceOp(op, mul);
-    return success();
-  }
-};
-
-class CrossEntropyLossPattern : public OpRewritePattern<CrossEntropyLossOp> {
-  using OpRewritePattern<CrossEntropyLossOp>::OpRewritePattern;
-
-  auto matchAndRewrite(CrossEntropyLossOp op, PatternRewriter& rewriter) const
-      -> LogicalResult override {
-    constexpr auto dim = 1;
-
-    auto loc = op.getLoc();
-    auto inputs = op.getInputs();
-    auto target = op.getTarget();
-    auto type = op.getType();
-    auto softmax = rewriter.create<tosaext::SoftmaxOp>(loc, inputs, dim);
-
-    auto softmax_type = softmax.getType();
-    auto log_softmax = rewriter.create<tosa::LogOp>(loc, softmax_type, softmax);
-    auto loss =
-        rewriter.create<tosaext::NllLossOp>(loc, type, log_softmax, target);
-
-    rewriter.replaceOp(op, loss);
-    return success();
-  }
-};
 
 auto process_symbol(Operation* op, PatternRewriter& rewriter, StringRef name,
                     Type type) -> LogicalResult {
@@ -226,14 +129,6 @@ class ParameterUpdatePattern : public OpRewritePattern<ParameterUpdateOp> {
 
 } // namespace
 
-struct TosaExtLower : public impl::TosaExtLowerBase<TosaExtLower> {
-  void runOnOperation() override {
-    RewritePatternSet patterns{&getContext()};
-    patterns.insert<NllLossPattern, SoftmaxPattern, CrossEntropyLossPattern>(
-        &getContext());
-    (void)applyPatternsAndFoldGreedily(getOperation(), std::move(patterns));
-  }
-};
 struct TosaExtParameterLower
     : public impl::TosaExtParameterLowerBase<TosaExtParameterLower> {
   void runOnOperation() override {
@@ -244,8 +139,6 @@ struct TosaExtParameterLower
 };
 
 // TODO: should be move to mlir::ragdoll
-// std::unique_ptr<OperationPass<mlir::func::FuncOp>> createLower()
-std::unique_ptr<Pass> createLower() { return std::make_unique<TosaExtLower>(); }
 std::unique_ptr<Pass> createParameterLower() {
   return std::make_unique<TosaExtParameterLower>();
 }

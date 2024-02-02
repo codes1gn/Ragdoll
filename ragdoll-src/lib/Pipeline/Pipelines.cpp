@@ -43,7 +43,7 @@ inline void preprocess_pipeline(mlir::OpPassManager& pm) {
   pm.addPass(mlir::createSymbolDCEPass());
   pm.addPass(mlir::createInlinerPass());
   // TODO: should be change to createLowerTosa
-  pm.addPass(tosaext::createLower());
+  pm.addPass(tosaext::createTosaExtToTosaPass());
   pm.addPass(mlir::createCSEPass());
   pm.addPass(mlir::createCanonicalizerPass());
 }

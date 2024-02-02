@@ -5,6 +5,7 @@ add_mlir_conversion_library(RagdollConversion
   NablaToArith/NablaToArith.cpp
   NablaToFunc/NablaToFunc.cpp
   NablaToTosa/NablaToTosa.cpp
+  TosaExtToTosa/TosaExtToTosa.cpp
 
   LINK_COMPONENTS
   Core

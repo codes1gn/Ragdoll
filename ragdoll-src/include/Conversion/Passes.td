@@ -62,6 +62,12 @@ def NablaToFunc : Pass<"convert-autodiff-to-func"> {
     let dependentDialects = ["mlir::func::FuncDialect"];
 }
 
+def TosaExtToTosa : Pass<"ragdoll-tosaext-to-tosa"> {
+  let summary = "lowering TosaExt dialect to TOSA dialect";
+  let constructor = "mlir::ragdoll::tosaext::createTosaExtToTosaPass()";
+  let dependentDialects = ["mlir::tosa::TosaDialect"];
+}
+
 
 #endif // RAGDOLL_CONVERSION_PASSES
 

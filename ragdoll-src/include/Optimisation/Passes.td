@@ -16,13 +16,6 @@ include "mlir/Pass/PassBase.td"
 // Dummy Passes
 // --------------------------------------------------------------------------
 
-// TODO rename to TosaExtToTosaLowering
-def TosaExtLower : Pass<"ext-lower"> {
-  let summary = "lowering TosaExt dialect to TOSA dialect";
-  let constructor = "mlir::ragdoll::tosaext::createLower()";
-  let dependentDialects = ["mlir::tosa::TosaDialect"];
-}
-
 // TODO rename to MLProgramToTosaExtLowering
 // TODO rename tosaext to ragdoll
 def TosaExtParameterLower : Pass<"tosaext-parameter-lower"> {
@@ -55,12 +48,12 @@ def AutodiffVjpPublicFunctions : Pass<"vjp-public-functions"> {
   let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect"];
 }
 
-// // TODO: check if used
-// def MultiOutToSingle : Pass<"autodiff-multi-out-to-single"> {
-//   let summary = "Convert multi-output functions to single-output functions";
-//   let constructor = "mlir::ragdoll::autodiff::createMultiOutToSingle()";
-// }
-// 
+// Transforms that merge the multi-output function into single result one
+def MergeMultiResults : Pass<"ragdoll-merge-multiple-results"> {
+  let summary = "Convert multi-output functions to single-output functions";
+  let constructor = "mlir::ragdoll::createMergeMultiResults()";
+}
+
 // // TODO: check if ready
 // def MakeCompatible : Pass<"autodiff-make-compatible"> {
 //   let summary = "Make the IR compatible with IREE runtime";
