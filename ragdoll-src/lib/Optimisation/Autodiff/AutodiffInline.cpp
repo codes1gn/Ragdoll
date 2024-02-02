@@ -125,5 +125,5 @@ auto createAutodiffInline() -> std::unique_ptr<Pass> {
 }
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

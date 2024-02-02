@@ -151,5 +151,5 @@ public:
 } // namespace tensor
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

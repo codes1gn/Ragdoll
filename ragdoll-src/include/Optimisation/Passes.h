@@ -31,8 +31,6 @@
 namespace mlir {
 namespace ragdoll {
 
-// TODO move these registraters into mlir::ragdoll
-// TODO move mlir::autodiff into mlir::ragdoll::autodiff namespace
 //===----------------------------------------------------------------------===//
 // Registration
 //===----------------------------------------------------------------------===//

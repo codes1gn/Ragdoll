@@ -84,5 +84,5 @@ public:
 } // namespace math
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

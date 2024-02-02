@@ -9,7 +9,7 @@ namespace autodiff {
 void registerSCFBackwardInterface(DialectRegistry& registry);
 } // namespace autodiff
 
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // LIB_AUTODIFF_BACKWARDINTERFACE_SCF_H

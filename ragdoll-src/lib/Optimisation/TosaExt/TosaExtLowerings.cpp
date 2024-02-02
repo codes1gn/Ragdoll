@@ -43,10 +43,6 @@ namespace mlir {
 namespace ragdoll {
 namespace tosaext {
 
-// #define GEN_PASS_DEF_EXTLOWER
-// #define GEN_PASS_DEF_EXTPARAMETERLOWER
-// #include "Optimisation/Passes.h.inc"
-
 //===----------------------------------------------------------------------===//
 // Classes
 //===----------------------------------------------------------------------===//

@@ -11,4 +11,4 @@ auto B::fn(Role role) -> Fn {
   return nullptr;
 }
 
-} // namespace mlir::autodiff::backward
+} // namespace mlir::ragdoll::autodiff::backward

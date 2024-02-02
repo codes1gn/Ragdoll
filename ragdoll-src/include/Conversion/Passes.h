@@ -22,35 +22,17 @@
 // this is the include setting without the need to add extra include directory
 // sourcing from ${PROJECT_SOURCE_DIR}/ragdoll-src/include
 // Advantage: allow for cross-module references
+#include "Conversion/LinalgToTosa/LinalgToTosa.h"
+#include "Conversion/LowerTosa/LowerTosa.h"
+#include "Conversion/NablaToArith/NablaToArith.h"
+#include "Conversion/NablaToFunc/NablaToFunc.h"
+#include "Conversion/NablaToTosa/NablaToTosa.h"
+
+#include "Dialect/Autodiff/AutodiffDialect.h"
 #include "Dialect/Ragdoll/RagdollDialect.h"
 
 namespace mlir {
 namespace ragdoll {
-
-namespace foobar {
-// Declare your pass entry
-std::unique_ptr<OperationPass<mlir::func::FuncOp>> createRagdollDummyPass();
-
-//===----------------------------------------------------------------------===//
-// Declaration
-//===----------------------------------------------------------------------===//
-
-#define GEN_PASS_DECL
-#include "Conversion/Passes.h.inc"
-
-//===----------------------------------------------------------------------===//
-// Classes
-//===----------------------------------------------------------------------===//
-//
-#define GEN_PASS_CLASSES
-#include "Conversion/Passes.h.inc"
-
-} // namespace ragdoll
-
-//===----------------------------------------------------------------------===//
-// Handle table-gen pass decls and registrations
-//===----------------------------------------------------------------------===//
-
 
 //===----------------------------------------------------------------------===//
 // Registration

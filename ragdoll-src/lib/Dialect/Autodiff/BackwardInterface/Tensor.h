@@ -10,7 +10,7 @@ namespace autodiff {
 void registerTensorBackwardInterface(DialectRegistry& registry);
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_TENSOR_H

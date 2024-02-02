@@ -67,7 +67,7 @@ SmallVector<utils::IteratorType> getIterTypes(SmallVector<AffineMap> outMaps);
 } // namespace backward::linalg
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_LINALG_H

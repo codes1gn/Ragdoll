@@ -78,5 +78,5 @@ public:
 };
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

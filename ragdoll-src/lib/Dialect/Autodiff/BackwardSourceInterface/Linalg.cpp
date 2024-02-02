@@ -56,5 +56,5 @@ void registerLinalg(DialectRegistry& registry) {
 } // namespace backward_source
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

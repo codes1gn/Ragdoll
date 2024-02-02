@@ -10,7 +10,7 @@ namespace autodiff {
 auto registerAutodiffBackwardInterface(DialectRegistry& registry) -> void;
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_AUTODIFFEXPERIMENTAL_H

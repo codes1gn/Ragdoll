@@ -20,7 +20,7 @@ inline auto type_as_tensor(Type type) -> TensorType {
 
 } // namespace compat
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_UTILS_COMPAT_H

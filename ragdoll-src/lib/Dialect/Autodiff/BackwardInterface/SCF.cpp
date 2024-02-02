@@ -38,5 +38,5 @@ public:
 } // namespace scf
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

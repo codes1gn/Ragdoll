@@ -14,7 +14,7 @@ void registerLinalg(DialectRegistry& registry);
 } // namespace backward_source
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDSOURCEINTERFACE_BACKWARDSOURCEINTERFACE_H

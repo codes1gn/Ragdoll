@@ -172,5 +172,5 @@ public:
 
 } // namespace arith
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

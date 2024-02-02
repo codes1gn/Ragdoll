@@ -87,5 +87,5 @@ void backprop(SmallVector<Operation*> ops, GradientMap& grads,
 }
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

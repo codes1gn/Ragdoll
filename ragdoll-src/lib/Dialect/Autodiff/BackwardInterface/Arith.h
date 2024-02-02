@@ -10,7 +10,7 @@ namespace autodiff {
 void registerArithBackwardInterface(DialectRegistry& registry);
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_ARITH_H

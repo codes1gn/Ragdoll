@@ -50,8 +50,6 @@ namespace autodiff {
 #define GEN_PASS_DEF_AUTODIFFVJPPUBLICFUNCTIONS
 #include "Optimisation/Passes.h.inc"
 
-namespace {} // namespace
-
 class AutodiffVjpPublicFunctions
     : public impl::AutodiffVjpPublicFunctionsBase<AutodiffVjpPublicFunctions> {
   void runOnOperation() override {
@@ -91,7 +89,6 @@ class AutodiffVjpPublicFunctions
   }
 };
 
-// TODO: should be move to mlir::ragdoll
 std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass() {
   return std::make_unique<AutodiffVjpPublicFunctions>();
 }

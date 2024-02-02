@@ -44,7 +44,7 @@ void backprop(SmallVector<Operation*> ops, GradientMap& grads,
               OpBuilder& builder);
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_GRADIENTMAP_H

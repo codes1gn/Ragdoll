@@ -322,7 +322,6 @@ void AutodiffOptimize::enableArithFastMath() {
   });
 }
 
-// TODO: should be move to mlir::ragdoll
 std::unique_ptr<Pass> createAutodiffOptimizePass() {
   return std::make_unique<AutodiffOptimize>();
 }

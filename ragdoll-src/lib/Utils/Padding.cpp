@@ -74,5 +74,5 @@ auto unpad4d(Value input, ArrayRef<int64_t> pad, OpBuilder& builder)
 
 } // namespace utils
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

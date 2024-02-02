@@ -40,7 +40,7 @@ std::unique_ptr<Pass> createParameterLower();
 #include "Optimisation/Passes.h.inc"
 
 } // namespace tosaext
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_OPTIMISATION_TOSAEXT_TOSAEXTPASSES_H_

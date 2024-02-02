@@ -10,7 +10,7 @@ namespace autodiff {
 auto populateAutodiffInlinePatterns(RewritePatternSet& patterns) -> void;
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_UTILS_INLINE_H

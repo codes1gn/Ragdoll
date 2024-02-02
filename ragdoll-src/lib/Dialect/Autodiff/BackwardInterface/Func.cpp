@@ -71,5 +71,5 @@ public:
 } // namespace func
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

@@ -10,7 +10,7 @@ namespace autodiff {
 void registerArithAdjointInterface(DialectRegistry& registry);
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_DIALECT_AUTODIFF_ADJOINTINTERFACE_ARITH_H

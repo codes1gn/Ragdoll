@@ -202,5 +202,5 @@ template auto getMulAddValue<BatchMatmulOp>(BatchMatmulOp, Value, unsigned,
 } // namespace backward::linalg
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

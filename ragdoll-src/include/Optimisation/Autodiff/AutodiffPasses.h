@@ -44,7 +44,7 @@ std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass();
 #include "Optimisation/Passes.h.inc"
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_OPTIMISATION_AUTODIFF_AUTODIFFPASSES_H_

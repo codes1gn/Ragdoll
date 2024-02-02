@@ -11,18 +11,17 @@
 #include <mlir/Dialect/Affine/Passes.h>
 #include <mlir/Dialect/Linalg/Passes.h>
 
+#include "Conversion/Passes.h"
 #include "Dialect/Autodiff/AutodiffDialect.h"
 #include "Dialect/Autodiff/AutodiffInterface.h"
 #include "Dialect/Ragdoll/RagdollDialect.h"
 #include "Dialect/TosaExt/TosaExtDialect.h"
-#include "Conversion/Passes.h"
 #include "Optimisation/Passes.h"
 #include "Pipeline/Pipelines.h"
 
 namespace mlir {
 class DialectRegistry;
 } // namespace mlir
-
 
 // impls for pipeline stuffs
 namespace mlir {

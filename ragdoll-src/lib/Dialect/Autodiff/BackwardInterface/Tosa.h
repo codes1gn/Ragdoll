@@ -46,7 +46,7 @@ using FullyConnectedBackward =
 } // namespace backward::tosa
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_DIALECT_AUTODIFF_BACKWARDINTERFACE_TOSA_H

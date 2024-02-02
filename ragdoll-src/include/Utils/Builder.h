@@ -80,7 +80,7 @@ auto select(OpBuilder& builder, Value cond, Value on_true, Value on_false)
 } // namespace builder
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir
 
 #endif // RAGDOLL_UTILS_BUILDER_H

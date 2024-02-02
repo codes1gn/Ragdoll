@@ -605,7 +605,6 @@ class AutodiffVjp : public impl::AutodiffVjpBase<AutodiffVjp> {
   }
 };
 
-// TODO: should be move to mlir::ragdoll
 std::unique_ptr<Pass> createAutodiffVjpPass() {
   return std::make_unique<AutodiffVjp>();
 }

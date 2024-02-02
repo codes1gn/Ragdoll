@@ -43,5 +43,5 @@ void registerBackwardSourceInterface(DialectRegistry& registry) {
 }
 
 } // namespace autodiff
-} // namespace ragdoll 
+} // namespace ragdoll
 } // namespace mlir

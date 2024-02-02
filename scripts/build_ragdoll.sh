@@ -28,4 +28,6 @@ cmake -S $RAGDOLL_SOURCE_DIR \
 # ninja RagdollAutodiffAdjointInterface
 # ninja RagdollAutodiffBackwardInterface
 # ninja RagdollAutodiffBackwardSourceInterface
+# ninja RagdollConversion
+# ninja RagdollOptimisation
 ninja 

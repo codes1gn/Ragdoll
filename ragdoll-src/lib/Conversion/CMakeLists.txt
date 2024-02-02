@@ -1,5 +1,10 @@
 add_mlir_conversion_library(RagdollConversion
-  Ragdoll/RagdollDummyPass.cpp
+  LinalgToTosa/LinalgToTosa.cpp
+  LinalgToTosa/Raise.cpp
+  LowerTosa/LowerTosa.cpp
+  NablaToArith/NablaToArith.cpp
+  NablaToFunc/NablaToFunc.cpp
+  NablaToTosa/NablaToTosa.cpp
 
   LINK_COMPONENTS
   Core
@@ -11,5 +16,7 @@ add_mlir_conversion_library(RagdollConversion
   LINK_LIBS PUBLIC
   MLIRIR
   RagdollUtils
+  TosaExtIR
+  AutodiffIR
   )
 
