@@ -1,4 +1,4 @@
-# Ragdoll (Reusable Abstraction Language Layer for General-purpose & Domain-Oriented Computing)
+# *Ragdoll* (Reusable Abstraction Language Layer for General-purpose & Domain-Oriented Computing)
 
 The title RAGDOLL encapsulates the project's ambition to serve as a versatile, high-performance toolkit for the research community, offering both general and specialized computing capabilities through its unique language architecture. Specifically:
 
@@ -10,13 +10,15 @@ The title RAGDOLL encapsulates the project's ambition to serve as a versatile, h
 Domain-specific computing focuses on developing computational tools and techniques tailored for specific fields or applications, such as bioinformatics, finance, or image processing. This specialization enables more efficient and effective solutions to complex, domain-specific problems. However, the power of domain-specific computing is significantly enhanced by leveraging generalized techniques. For instance, probabilistic programming allows for flexible modeling of uncertainty, which is a common aspect across many fields. It enables domain experts to build complex statistical models without delving into the intricacies of underlying algorithms. Automatic differentiation, another versatile technique, streamlines the computation of gradients, which are crucial in optimization problems prevalent in various domains, from machine learning to engineering design. Reversible transformations offer efficient memory use in simulations, which is beneficial in fields like physics or chemistry simulations. These general techniques not only provide a robust foundation for building domain-specific tools but also facilitate cross-domain knowledge transfer, enhancing innovation and efficiency in specialized computing tasks. Thus, the synergy between domain-specific focus and general-purpose computational techniques leads to a more powerful and versatile technology landscape.
 
 We hereby present Ragdoll, representing an assembled language layer for Domain-specific Computing with tons of performance optimisations, which builds domain-specific languages atop of generalised computing paradigms, include AutoDiff, ProbProgramming, Automatic Reversible Transformations, and so on. In general, Ragdoll is featured with: 
-* AutoDiff:
-* Probablistic Pogramming: 
-* Automatic Reversible Transformations:
-* Automatic Fusion:
-* Cache Reuse Optimisations:
-* High abstraction level symbolic optimisations:
-* Leverage the kernel generation with IREE system
+
+ - [ ] AutoDiff
+ - [ ] Probablistic Pogramming
+ - [ ] Automatic Reversible Transformations
+ - [ ] Automatic Fusion
+ - [ ] Cache Reuse Optimisations
+ - [ ] High abstraction level symbolic optimisations
+ - [ ] Leverage the kernel generation with IREE system
+
 
 ## How to build from source (with customised settings)
 
