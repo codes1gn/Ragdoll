@@ -1,4 +1,4 @@
-// RUN: ragdoll-opt %s --autodiff --autodiff-inline | FileCheck %s
+// RUN: ragdoll-opt %s --autodiff --ragdoll-autodiff-inline-function-call | FileCheck %s
 
 !type = tensor<5xf32>
 

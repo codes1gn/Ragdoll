@@ -1,8 +1,6 @@
-# RAGDOLL
+# Ragdoll (Reusable Abstraction Language Layer for General-purpose & Domain-Oriented Computing)
 
-RAGDOLL stands for Research Assemble for General-purpose and Domain-Oriented computing Language Layer
-
-This interpretation of RAGDOLL encapsulates the project's ambition to serve as a versatile, high-performance toolkit for the research community, offering both general and specialized computing capabilities through its unique language architecture. Specifically:
+The title RAGDOLL encapsulates the project's ambition to serve as a versatile, high-performance toolkit for the research community, offering both general and specialized computing capabilities through its unique language architecture. Specifically:
 
 * Research: Signifies the project's focus on advanced computing fields such as scientific computing, numerical computing, and other specialized areas, indicating its suitability for cutting-edge research and development.
 * Assemble: Highlights the comprehensive and integrative approach of the project, bringing together various computing paradigms and tools under one umbrella.

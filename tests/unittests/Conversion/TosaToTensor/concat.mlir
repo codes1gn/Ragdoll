@@ -1,5 +1,4 @@
-// RUN: ragdoll-opt %s --lower-tosa | FileCheck %s
-// pass: --lower-tosa
+// RUN: ragdoll-opt %s --ragdoll-convert-tosa-to-tensor | FileCheck %s
 // convert tosa.concat to tensor ops, by combining dimop, InsertSliceOp and addiop
 
 func.func @concat_example(%arg0: tensor<2x3xf32>, %arg1: tensor<2x3xf32>) -> tensor<4x3xf32> {
