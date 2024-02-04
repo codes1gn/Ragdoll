@@ -12,36 +12,34 @@
 
 include "mlir/Pass/PassBase.td"
 
-// --------------------------------------------------------------------------
-// Dummy Passes
-// --------------------------------------------------------------------------
 
-
-// def RagdollDummyPass : Pass<"ragdoll-dummy-pass", "mlir::func::FuncOp"> {
-//   let summary = "Dummy pass boilerplate";
-//   let constructor = "mlir::ragdoll::foobar::createRagdollDummyPass()";
-//   let options = [
-//     Option<"optionName", "option-name", "uint64_t", /*default=*/"512",
-//            "Set the option for in KiB (default: 512)">,
-//   ];
-//   let dependentDialects = ["RagdollDialect"];
-// }
-
-def AutodiffToTosa : Pass<"convert-autodiff-to-tosa"> {
+// ========================================================================
+// FUNCTION: autodiff op to tosa op
+// 1. autodiff.accumulateop to tosa.addop
+// ========================================================================
+def AutodiffToTosa : Pass<"ragdoll-convert-autodiff-to-tosa"> {
     let summary = "Convert Autodiff dialect to Tosa dialect";
 
     let constructor = "mlir::ragdoll::autodiff::createAutodiffToTosa()";
     let dependentDialects = ["mlir::tosa::TosaDialect"];
 }
 
-def AutodiffToArith : Pass<"convert-autodiff-to-arith"> {
+// ========================================================================
+// FUNCTION: autodiff op to arith op
+// 1. autodiff.accumulate-op -> arith.addi/addf-op
+// ========================================================================
+def AutodiffToArith : Pass<"ragdoll-convert-autodiff-to-arith"> {
     let summary = "Convert Autodiff dialect to Arith dialect";
 
     let constructor = "mlir::ragdoll::autodiff::createAutodiffToArith()";
     let dependentDialects = ["mlir::arith::ArithDialect"];
 }
 
-def LinalgToTosa : Pass<"raise-linalg-to-tosa"> {
+// ========================================================================
+// FUNCTION: raise linalg to tosa
+// 1. arith/math.element-op -> tosa.element-op
+// ========================================================================
+def LinalgToTosa : Pass<"ragdoll-raise-linalg-to-tosa"> {
     let summary = "Raise Linalg dialect to Tosa dialect";
 
     let constructor = "mlir::ragdoll::autodiff::createLinalgToTosa()";
@@ -52,26 +50,45 @@ def LinalgToTosa : Pass<"raise-linalg-to-tosa"> {
 // FUNCTION: tosa op to tensor op supplements for autodiff
 // 1. tosa.concat-op -> tensor.insert-slice-op
 // ========================================================================
-def TosaToTensor : Pass<"convert-tosa-to-tensor"> {
+def TosaToTensor : Pass<"ragdoll-convert-tosa-to-tensor"> {
     let summary = "Lower Tosa dialect partially";
 
     let constructor = "mlir::ragdoll::autodiff::createTosaToTensorPass()";
     let dependentDialects = ["mlir::tosa::TosaDialect"];
 }
 
-def AutodiffToFunc : Pass<"convert-autodiff-to-func"> {
+// ========================================================================
+// FUNCTION: autodiff op to func op
+// ========================================================================
+def AutodiffToFunc : Pass<"ragdoll-convert-autodiff-to-func"> {
     let summary = "Convert Autodiff dialect to Func dialect";
 
     let constructor = "mlir::ragdoll::autodiff::createAutodiffToFunc()";
     let dependentDialects = ["mlir::func::FuncDialect"];
 }
 
-def TosaExtToTosa : Pass<"ragdoll-tosaext-to-tosa"> {
+// ========================================================================
+// FUNCTION: lower tosa-ext to tosa
+// 1. softmax
+// 2. nllloss
+// 3. cross-entropy
+// ========================================================================
+def TosaExtToTosa : Pass<"ragdoll-convert-tosaext-to-tosa"> {
   let summary = "lowering TosaExt dialect to TOSA dialect";
   let constructor = "mlir::ragdoll::tosaext::createTosaExtToTosaPass()";
   let dependentDialects = ["mlir::tosa::TosaDialect"];
 }
 
+// ========================================================================
+// FUNCTION: lower tosa-ext to mlprogram
+// 1. parameter -> global load
+// 2. parameter update -> global store
+// ========================================================================
+def TosaExtToMLProgram : Pass<"ragdoll-convert-tosaext-to-mlprogram"> {
+  let summary = "lowering TosaExt parameters to MLProgram parameters";
+  let constructor = "mlir::ragdoll::tosaext::createTosaExtToMLProgramPass()";
+  let dependentDialects = ["mlir::ml_program::MLProgramDialect"];
+}
 
 #endif // RAGDOLL_CONVERSION_PASSES
 

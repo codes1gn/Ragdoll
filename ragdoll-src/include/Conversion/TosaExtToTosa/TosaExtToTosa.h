@@ -26,7 +26,6 @@ namespace tosaext {
 // Declare your pass entry
 // TODO move to conversions
 std::unique_ptr<Pass> createTosaExtToTosaPass();
-std::unique_ptr<Pass> createParameterLower();
 
 //===----------------------------------------------------------------------===//
 // Handle table-gen pass decls and registrations
@@ -37,7 +36,6 @@ std::unique_ptr<Pass> createParameterLower();
 //===----------------------------------------------------------------------===//
 
 #define GEN_PASS_DECL_TOSAEXTTOTOSA
-#define GEN_PASS_DECL_TOSAEXTPARAMETERLOWER
 #include "Optimisation/Passes.h.inc"
 
 } // namespace tosaext

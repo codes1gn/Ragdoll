@@ -25,7 +25,7 @@ namespace tosaext {
 
 // Declare your pass entry
 // TODO move to conversions
-std::unique_ptr<Pass> createParameterLower();
+// std::unique_ptr<Pass> createTosaExtToMLProgramPass();
 
 //===----------------------------------------------------------------------===//
 // Handle table-gen pass decls and registrations
@@ -35,8 +35,8 @@ std::unique_ptr<Pass> createParameterLower();
 // Declaration
 //===----------------------------------------------------------------------===//
 
-#define GEN_PASS_DECL_TOSAEXTPARAMETERLOWER
-#include "Optimisation/Passes.h.inc"
+// #define GEN_PASS_DECL_TOSAEXTTOMLPROGRAM
+// #include "Optimisation/Passes.h.inc"
 
 } // namespace tosaext
 } // namespace ragdoll

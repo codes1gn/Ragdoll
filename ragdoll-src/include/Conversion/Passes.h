@@ -26,6 +26,7 @@
 #include "Conversion/AutodiffToFunc/AutodiffToFunc.h"
 #include "Conversion/AutodiffToTosa/AutodiffToTosa.h"
 #include "Conversion/LinalgToTosa/LinalgToTosa.h"
+#include "Conversion/TosaExtToMLProgram/TosaExtToMLProgram.h"
 #include "Conversion/TosaExtToTosa/TosaExtToTosa.h"
 #include "Conversion/TosaToTensor/TosaToTensor.h"
 

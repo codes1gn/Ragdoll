@@ -4,6 +4,7 @@ add_mlir_conversion_library(RagdollConversion
   AutodiffToArith/AutodiffToArith.cpp
   AutodiffToFunc/AutodiffToFunc.cpp
   AutodiffToTosa/AutodiffToTosa.cpp
+  TosaExtToMLProgram/ParameterReadAndWriteLowerings.cpp
   TosaExtToTosa/TosaExtToTosa.cpp
   TosaToTensor/TosaToTensor.cpp
 

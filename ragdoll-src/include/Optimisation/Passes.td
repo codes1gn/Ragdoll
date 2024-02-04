@@ -16,27 +16,36 @@ include "mlir/Pass/PassBase.td"
 // Dummy Passes
 // --------------------------------------------------------------------------
 
-// TODO rename to MLProgramToTosaExtLowering
-// TODO rename tosaext to ragdoll
-def TosaExtParameterLower : Pass<"tosaext-parameter-lower"> {
-  let summary = "lowering TosaExt parameters to TOSA parameters";
-  let constructor = "mlir::ragdoll::tosaext::createParameterLower()";
-  let dependentDialects = ["mlir::ml_program::MLProgramDialect"];
-}
+// NOTE: moved to conversions
+// def TosaExtToMLProgram : Pass<"ragdoll-tosaext-to-mlprogram"> {
+//   let summary = "lowering TosaExt parameters to MLProgram parameters";
+//   let constructor = "mlir::ragdoll::tosaext::createTosaExtToMLProgramPass()";
+//   let dependentDialects = ["mlir::ml_program::MLProgramDialect"];
+// }
 
+// ========================================================================
+// FUNCTION: symbolic optimisation on autodiff dialect
+// 1. enable fast math
+// 2. remove meaningless symbolic calc: x + 0, x * 1
+// 3. invariant code motion at autodiff level
+// ========================================================================
 def AutodiffOptimise : Pass<"ragdoll-autodiff-optimise"> {
   let summary = "Apply optimisations on `linalg.generic` and some other ops";
   let constructor = "mlir::ragdoll::autodiff::createAutodiffOptimisePass()";
 }
 
-// TODO read it
+// ========================================================================
+// FUNCTION: build vjp func for input-func
+// ========================================================================
 def AutodiffVjp : Pass<"ragdoll-autodiff-vjp"> {
   let summary = "Lower `autodiff.vjp` to mlir core dialects";
   let constructor = "mlir::ragdoll::autodiff::createAutodiffVjpPass()";
   let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect", "mlir::ml_program::MLProgramDialect"];
 }
 
-// TODO read it 
+// ========================================================================
+// FUNCTION: package vjp func to public entry func for export
+// ========================================================================
 def AutodiffVjpPublicFunctions : Pass<"ragdoll-autodiff-vjp-public-functions"> {
   let summary = "Call `autodiff.vjp` for each public function";
   let constructor = "mlir::ragdoll::autodiff::createAutodiffVjpPublicFunctionsPass()";
@@ -46,10 +55,22 @@ def AutodiffVjpPublicFunctions : Pass<"ragdoll-autodiff-vjp-public-functions"> {
   let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect"];
 }
 
-// Transforms that merge the multi-output function into single result one
+// ========================================================================
+// FUNCTION: merge the multi-output function into single result one
+// purpose = make this function canonicalised for autodiff generation
+// ========================================================================
 def MergeMultiResults : Pass<"ragdoll-merge-multiple-results"> {
   let summary = "Convert multi-output functions to single-output functions";
   let constructor = "mlir::ragdoll::createMergeMultiResults()";
+}
+
+// ========================================================================
+// FUNCTION: inline a function call at autodiff level
+// purpose = reduce function call overhead
+// ========================================================================
+def AutodiffInlineFunctionCall : Pass<"ragdoll-autodiff-inline-function-call"> {
+  let summary = "Inline functions";
+  let constructor = "mlir::ragdoll::autodiff::createAutodiffInlineFunctionCall()";
 }
 
 // // TODO: check if ready
@@ -59,12 +80,6 @@ def MergeMultiResults : Pass<"ragdoll-merge-multiple-results"> {
 //   let dependentDialects = ["mlir::scf::SCFDialect"];
 // }
 
-// TODO: see if this name match the willing
-// NOTE: Inline changed into AutodiffInline
-def AutodiffInline : Pass<"autodiff-inline"> {
-  let summary = "Inline functions";
-  let constructor = "mlir::ragdoll::autodiff::createAutodiffInline()";
-}
 
 // def LinalgSpecialize : Pass<"autodiff-linalg-specialize"> {
 //   let summary = "Transform linalg.generic to named ops";

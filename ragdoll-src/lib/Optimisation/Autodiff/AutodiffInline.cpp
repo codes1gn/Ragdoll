@@ -47,7 +47,7 @@ namespace autodiff {
 // Classes
 //===----------------------------------------------------------------------===//
 //
-#define GEN_PASS_DEF_AUTODIFFINLINE
+#define GEN_PASS_DEF_AUTODIFFINLINEFUNCTIONCALL
 #include "Optimisation/Passes.h.inc"
 
 namespace {
@@ -83,7 +83,8 @@ class FuncCallInliner : public OpRewritePattern<func::CallOp> {
 
 } // namespace
 
-class AutodiffInline : public impl::AutodiffInlineBase<AutodiffInline> {
+class AutodiffInlineFunctionCall
+    : public impl::AutodiffInlineFunctionCallBase<AutodiffInlineFunctionCall> {
 public:
   /**
    * @brief 移除未使用的 private 函数
@@ -120,8 +121,8 @@ public:
   }
 };
 
-auto createAutodiffInline() -> std::unique_ptr<Pass> {
-  return std::make_unique<AutodiffInline>();
+auto createAutodiffInlineFunctionCall() -> std::unique_ptr<Pass> {
+  return std::make_unique<AutodiffInlineFunctionCall>();
 }
 
 } // namespace autodiff

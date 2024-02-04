@@ -11,8 +11,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include "Conversion/Passes.h"
 #include "Dialect/TosaExt/TosaExtOps.h"
-#include "Optimisation/Passes.h"
 
 #include "mlir/Dialect/Affine/Analysis/AffineAnalysis.h"
 #include "mlir/Dialect/Affine/Analysis/AffineStructures.h"
@@ -37,7 +37,7 @@
 using namespace mlir;
 using namespace mlir::ragdoll::tosaext;
 
-#define DEBUG_TYPE "tosaext-lowerings"
+#define DEBUG_TYPE "ragdoll-tosaext-to-mlprogram"
 
 namespace mlir {
 namespace ragdoll {
@@ -47,13 +47,13 @@ namespace tosaext {
 // Classes
 //===----------------------------------------------------------------------===//
 //
-#define GEN_PASS_DEF_TOSAEXTPARAMETERLOWER
-#include "Optimisation/Passes.h.inc"
+#define GEN_PASS_DEF_TOSAEXTTOMLPROGRAM
+#include "Conversion/Passes.h.inc"
 
 namespace {
 
-class ParameterPattern;
-class ParameterUpdatePattern;
+class ParameterToGlobalLoad;
+class ParameterUpdateToGlobalStore;
 
 auto process_symbol(Operation* op, PatternRewriter& rewriter, StringRef name,
                     Type type) -> LogicalResult {
@@ -85,7 +85,7 @@ auto process_symbol(Operation* op, PatternRewriter& rewriter, StringRef name,
   return success();
 }
 
-class ParameterPattern : public OpRewritePattern<ParameterOp> {
+class ParameterToGlobalLoad : public OpRewritePattern<ParameterOp> {
   using OpRewritePattern<ParameterOp>::OpRewritePattern;
 
   auto matchAndRewrite(ParameterOp op, PatternRewriter& rewriter) const
@@ -105,7 +105,8 @@ class ParameterPattern : public OpRewritePattern<ParameterOp> {
   }
 };
 
-class ParameterUpdatePattern : public OpRewritePattern<ParameterUpdateOp> {
+class ParameterUpdateToGlobalStore
+    : public OpRewritePattern<ParameterUpdateOp> {
   using OpRewritePattern<ParameterUpdateOp>::OpRewritePattern;
 
   auto matchAndRewrite(ParameterUpdateOp op, PatternRewriter& rewriter) const
@@ -129,18 +130,19 @@ class ParameterUpdatePattern : public OpRewritePattern<ParameterUpdateOp> {
 
 } // namespace
 
-struct TosaExtParameterLower
-    : public impl::TosaExtParameterLowerBase<TosaExtParameterLower> {
+struct TosaExtToMLProgram
+    : public impl::TosaExtToMLProgramBase<TosaExtToMLProgram> {
   void runOnOperation() override {
     RewritePatternSet patterns{&getContext()};
-    patterns.insert<ParameterPattern, ParameterUpdatePattern>(&getContext());
+    patterns.insert<ParameterToGlobalLoad, ParameterUpdateToGlobalStore>(
+        &getContext());
     (void)applyPatternsAndFoldGreedily(getOperation(), std::move(patterns));
   }
 };
 
 // TODO: should be move to mlir::ragdoll
-std::unique_ptr<Pass> createParameterLower() {
-  return std::make_unique<TosaExtParameterLower>();
+std::unique_ptr<Pass> createTosaExtToMLProgramPass() {
+  return std::make_unique<TosaExtToMLProgram>();
 }
 
 } // namespace tosaext

@@ -10,8 +10,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef RAGDOLL_OPTIMISATION_AUTODIFF_AUTODIFFPASSES_H_
-#define RAGDOLL_OPTIMISATION_AUTODIFF_AUTODIFFPASSES_H_
+#ifndef RAGDOLL_CONVERSION_TOSAEXT_TOSAEXTPASSES_H_
+#define RAGDOLL_CONVERSION_TOSAEXT_TOSAEXTPASSES_H_
 
 #include "mlir/Dialect/Linalg/Transforms/Transforms.h"
 #include "mlir/Pass/Pass.h"
@@ -21,13 +21,11 @@
 
 namespace mlir {
 namespace ragdoll {
-namespace autodiff {
+namespace tosaext {
 
 // Declare your pass entry
-std::unique_ptr<Pass> createAutodiffInlineFunctionCall();
-std::unique_ptr<Pass> createAutodiffOptimisePass();
-std::unique_ptr<Pass> createAutodiffVjpPass();
-std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass();
+// TODO move to conversions
+std::unique_ptr<Pass> createTosaExtToMLProgramPass();
 
 //===----------------------------------------------------------------------===//
 // Handle table-gen pass decls and registrations
@@ -37,14 +35,11 @@ std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass();
 // Declaration
 //===----------------------------------------------------------------------===//
 
-#define GEN_PASS_DECL_AUTODIFFINLINEFUNCTIONCALL
-#define GEN_PASS_DECL_AUTODIFFOPTIMISE
-#define GEN_PASS_DECL_AUTODIFFVJP
-#define GEN_PASS_DECL_AUTODIFFVJPPUBLICFUNCTIONS
-#include "Optimisation/Passes.h.inc"
+#define GEN_PASS_DECL_TOSAEXTTOMLPROGRAM
+#include "Conversion/Passes.h.inc"
 
-} // namespace autodiff
+} // namespace tosaext
 } // namespace ragdoll
 } // namespace mlir
 
-#endif // RAGDOLL_OPTIMISATION_AUTODIFF_AUTODIFFPASSES_H_
+#endif // RAGDOLL_CONVERSION_TOSAEXT_TOSAEXTPASSES_H_
