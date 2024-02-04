@@ -37,6 +37,30 @@ def LegaliseToIREECompatibility : Pass<"ragdoll-legalise-to-iree-compatibility">
   let dependentDialects = ["mlir::scf::SCFDialect"];
 }
 
+// --------------------------------------------------------------------------
+// FUNCTION: specialised avgpool does nothing, fold it
+// --------------------------------------------------------------------------
+def FoldAvgPool : Pass<"ragdoll-fold-avgpool"> {
+  let summary = "Convert primal operations to dummy operations";
+  let constructor = "mlir::ragdoll::createFoldAvgPoolPass()";
+  let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect"];
+}
+def UnfoldAvgPool : Pass<"autodiff-unfold-avgpool"> {
+  let summary = "Convert dummy operations to primal operations";
+  let constructor = "mlir::ragdoll::createUnfoldAvgPoolPass()";
+  let dependentDialects = ["mlir::tosa::TosaDialect"];
+}
+
+// --------------------------------------------------------------------------
+// FUNCTION: initialisation
+// --------------------------------------------------------------------------
+def Initialisation : Pass<"ragdoll-initialisation"> {
+  let summary = "Init for calculation";
+  let constructor = "mlir::ragdoll::createInitialisationPass()";
+  let dependentDialects = ["mlir::arith::ArithDialect", "mlir::ml_program::MLProgramDialect"];
+}
+
+
 
 // ==========================================================================
 // Ragdoll::Autodiff Passes
@@ -90,18 +114,6 @@ def AutodiffInlineFunctionCall : Pass<"ragdoll-autodiff-inline-function-call"> {
 //   let constructor = "mlir::ragdoll::autodiff::createLinalgSpecialize()";
 // }
 // 
-// def ToDummy : Pass<"autodiff-to-dummy"> {
-//   let summary = "Convert primal operations to dummy operations";
-//   let constructor = "mlir::ragdoll::autodiff::createToDummy()";
-//   let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect"];
-// }
-// 
-// def FromDummy : Pass<"autodiff-from-dummy"> {
-//   let summary = "Convert dummy operations to primal operations";
-//   let constructor = "mlir::ragdoll::autodiff::createFromDummy()";
-//   let dependentDialects = ["mlir::tosa::TosaDialect"];
-// }
-// 
 // def Fuse : Pass<"autodiff-fuse"> {
 //   let summary = "Fuse operations";
 //   let constructor = "mlir::ragdoll::autodiff::createFuse()";
@@ -111,15 +123,6 @@ def AutodiffInlineFunctionCall : Pass<"ragdoll-autodiff-inline-function-call"> {
 // def RemoveGlobals : Pass<"autodiff-remove-globals"> {
 //   let summary = "Remove `ml_program.global_store` and `ml_program.global_load` operations";
 //   let constructor = "mlir::ragdoll::autodiff::createRemoveGlobals()";
-// }
-// 
-// def TestMakeEmpty : Pass<"autodiff-test-make-empty"> {
-//   let summary = "Replace certain operation with `tensor.empty` for test purpose only";
-//   let constructor = "mlir::ragdoll::autodiff::createTestMakeEmpty()";
-//   let options = [
-//     Option<"operation", "operation", "std::string", "\"\"", "The operation to be replaced">
-//   ];
-//   let dependentDialects = ["mlir::tensor::TensorDialect"];
 // }
 // 
 // def Canonicalize : Pass<"autodiff-canonicalize"> {

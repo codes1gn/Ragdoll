@@ -26,7 +26,7 @@
 using namespace mlir;
 using namespace mlir::ragdoll::autodiff;
 
-#define DEBUG_TYPE "ragdoll-make-compatible"
+#define DEBUG_TYPE "ragdoll-legalise-to-iree-compatibility"
 
 namespace mlir {
 namespace ragdoll {

@@ -7,6 +7,8 @@ add_mlir_conversion_library(RagdollOptimisation
   Autodiff/AutodiffVjpPublicFunctions.cpp
   Common/LegaliseToIREECompatibility.cpp
   Common/MergeMultiResults.cpp
+  Common/FoldAndUnfoldAvgPool.cpp
+  Common/Initialisation.cpp
 
   LINK_COMPONENTS
   Core

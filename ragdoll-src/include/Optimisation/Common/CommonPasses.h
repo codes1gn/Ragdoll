@@ -23,14 +23,20 @@ namespace mlir {
 namespace ragdoll {
 
 // Declare your pass entry
-std::unique_ptr<Pass> createMergeMultiResultsPass();
+std::unique_ptr<Pass> createFoldAvgPoolPass();
+std::unique_ptr<Pass> createInitialisationPass();
 std::unique_ptr<Pass> createLegaliseToIREECompatibilityPass();
+std::unique_ptr<Pass> createMergeMultiResultsPass();
+std::unique_ptr<Pass> createUnfoldAvgPoolPass();
 
 //===----------------------------------------------------------------------===//
 // Declaration
 //===----------------------------------------------------------------------===//
-#define GEN_PASS_DECL_MERGEMULTIRESULTS
+#define GEN_PASS_DECL_FOLDAVGPOOL
+#define GEN_PASS_DECL_INITIALISATION
 #define GEN_PASS_DECL_LEGALISETOIREECOMPATIBILITY
+#define GEN_PASS_DECL_MERGEMULTIRESULTS
+#define GEN_PASS_DECL_UNFOLDAVGPOOL
 #include "Optimisation/Passes.h.inc"
 
 } // namespace ragdoll
