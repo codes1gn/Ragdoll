@@ -12,40 +12,60 @@
 
 include "mlir/Pass/PassBase.td"
 
-// --------------------------------------------------------------------------
-// Dummy Passes
-// --------------------------------------------------------------------------
 
-// NOTE: moved to conversions
-// def TosaExtToMLProgram : Pass<"ragdoll-tosaext-to-mlprogram"> {
-//   let summary = "lowering TosaExt parameters to MLProgram parameters";
-//   let constructor = "mlir::ragdoll::tosaext::createTosaExtToMLProgramPass()";
-//   let dependentDialects = ["mlir::ml_program::MLProgramDialect"];
-// }
+// ==========================================================================
+// Ragdoll Passes
+// ==========================================================================
 
-// ========================================================================
+// --------------------------------------------------------------------------
+// FUNCTION: merge the multi-output function into single result one
+// purpose = make this function canonicalised for autodiff generation
+// --------------------------------------------------------------------------
+def MergeMultiResults : Pass<"ragdoll-merge-multiple-results"> {
+  let summary = "Convert multi-output functions to single-output functions";
+  let constructor = "mlir::ragdoll::createMergeMultiResultsPass()";
+}
+
+// --------------------------------------------------------------------------
+// FUNCTION: make ops all compatible for feeding into iree compiler
+// 1. tensor.insert not support by iree, use tensor.insert-slice instead
+// 2. add acc_type to tosa.avg_pool2d
+// --------------------------------------------------------------------------
+def LegaliseToIREECompatibility : Pass<"ragdoll-legalise-to-iree-compatibility"> {
+  let summary = "Make the IR compatible with IREE runtime";
+  let constructor = "mlir::ragdoll::createLegaliseToIREECompatibilityPass()";
+  let dependentDialects = ["mlir::scf::SCFDialect"];
+}
+
+
+// ==========================================================================
+// Ragdoll::Autodiff Passes
+// ==========================================================================
+
+
+// --------------------------------------------------------------------------
 // FUNCTION: symbolic optimisation on autodiff dialect
 // 1. enable fast math
 // 2. remove meaningless symbolic calc: x + 0, x * 1
 // 3. invariant code motion at autodiff level
-// ========================================================================
+// --------------------------------------------------------------------------
 def AutodiffOptimise : Pass<"ragdoll-autodiff-optimise"> {
   let summary = "Apply optimisations on `linalg.generic` and some other ops";
   let constructor = "mlir::ragdoll::autodiff::createAutodiffOptimisePass()";
 }
 
-// ========================================================================
+// --------------------------------------------------------------------------
 // FUNCTION: build vjp func for input-func
-// ========================================================================
+// --------------------------------------------------------------------------
 def AutodiffVjp : Pass<"ragdoll-autodiff-vjp"> {
   let summary = "Lower `autodiff.vjp` to mlir core dialects";
   let constructor = "mlir::ragdoll::autodiff::createAutodiffVjpPass()";
   let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect", "mlir::ml_program::MLProgramDialect"];
 }
 
-// ========================================================================
+// --------------------------------------------------------------------------
 // FUNCTION: package vjp func to public entry func for export
-// ========================================================================
+// --------------------------------------------------------------------------
 def AutodiffVjpPublicFunctions : Pass<"ragdoll-autodiff-vjp-public-functions"> {
   let summary = "Call `autodiff.vjp` for each public function";
   let constructor = "mlir::ragdoll::autodiff::createAutodiffVjpPublicFunctionsPass()";
@@ -55,30 +75,14 @@ def AutodiffVjpPublicFunctions : Pass<"ragdoll-autodiff-vjp-public-functions"> {
   let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect"];
 }
 
-// ========================================================================
-// FUNCTION: merge the multi-output function into single result one
-// purpose = make this function canonicalised for autodiff generation
-// ========================================================================
-def MergeMultiResults : Pass<"ragdoll-merge-multiple-results"> {
-  let summary = "Convert multi-output functions to single-output functions";
-  let constructor = "mlir::ragdoll::createMergeMultiResults()";
-}
-
-// ========================================================================
+// --------------------------------------------------------------------------
 // FUNCTION: inline a function call at autodiff level
 // purpose = reduce function call overhead
-// ========================================================================
+// --------------------------------------------------------------------------
 def AutodiffInlineFunctionCall : Pass<"ragdoll-autodiff-inline-function-call"> {
   let summary = "Inline functions";
   let constructor = "mlir::ragdoll::autodiff::createAutodiffInlineFunctionCall()";
 }
-
-// // TODO: check if ready
-// def MakeCompatible : Pass<"autodiff-make-compatible"> {
-//   let summary = "Make the IR compatible with IREE runtime";
-//   let constructor = "mlir::ragdoll::autodiff::createMakeCompatible()";
-//   let dependentDialects = ["mlir::scf::SCFDialect"];
-// }
 
 
 // def LinalgSpecialize : Pass<"autodiff-linalg-specialize"> {

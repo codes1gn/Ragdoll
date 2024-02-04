@@ -5,6 +5,7 @@ add_mlir_conversion_library(RagdollOptimisation
   Autodiff/AutodiffOptimise.cpp
   Autodiff/AutodiffVjp.cpp
   Autodiff/AutodiffVjpPublicFunctions.cpp
+  Common/LegaliseToIREECompatibility.cpp
   Common/MergeMultiResults.cpp
 
   LINK_COMPONENTS

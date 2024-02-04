@@ -23,12 +23,14 @@ namespace mlir {
 namespace ragdoll {
 
 // Declare your pass entry
-std::unique_ptr<Pass> createMergeMultiResults();
+std::unique_ptr<Pass> createMergeMultiResultsPass();
+std::unique_ptr<Pass> createLegaliseToIREECompatibilityPass();
 
 //===----------------------------------------------------------------------===//
 // Declaration
 //===----------------------------------------------------------------------===//
 #define GEN_PASS_DECL_MERGEMULTIRESULTS
+#define GEN_PASS_DECL_LEGALISETOIREECOMPATIBILITY
 #include "Optimisation/Passes.h.inc"
 
 } // namespace ragdoll

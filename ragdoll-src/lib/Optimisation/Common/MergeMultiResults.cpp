@@ -101,7 +101,7 @@ public:
   }
 };
 
-std::unique_ptr<Pass> createMergeMultiResults() {
+std::unique_ptr<Pass> createMergeMultiResultsPass() {
   return std::make_unique<MergeMultiResults>();
 }
 
