@@ -37,7 +37,8 @@
 using namespace mlir;
 using namespace mlir::ragdoll::autodiff;
 
-#define DEBUG_TYPE "autodiff-vjp-public-function"
+// TODO: what does it mean
+#define DEBUG_TYPE "ragdoll-autodiff-vjp-public-function"
 
 namespace mlir {
 namespace ragdoll {

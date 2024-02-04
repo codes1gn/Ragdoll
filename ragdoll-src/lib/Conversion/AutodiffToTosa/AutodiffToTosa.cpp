@@ -1,4 +1,4 @@
-#include "Conversion/NablaToTosa/NablaToTosa.h"
+#include "Conversion/AutodiffToTosa/AutodiffToTosa.h"
 #include "../Utils.h"
 
 #include "Dialect/Autodiff/AutodiffDialect.h"
@@ -7,12 +7,12 @@
 
 namespace mlir::ragdoll::autodiff {
 
-#define GEN_PASS_DEF_NABLATOTOSA
+#define GEN_PASS_DEF_AUTODIFFTOTOSA
 #include "Conversion/Passes.h.inc"
 
 class AccumulateToTosaAdd;
 
-class NablaToTosa : public impl::NablaToTosaBase<NablaToTosa> {
+class AutodiffToTosa : public impl::AutodiffToTosaBase<AutodiffToTosa> {
   void runOnOperation() override {
     RewritePatternSet patterns{&getContext()};
     patterns.insert<AccumulateToTosaAdd>(&getContext());
@@ -20,8 +20,8 @@ class NablaToTosa : public impl::NablaToTosaBase<NablaToTosa> {
   }
 };
 
-std::unique_ptr<Pass> createNablaToTosa() {
-  return std::make_unique<NablaToTosa>();
+std::unique_ptr<Pass> createAutodiffToTosa() {
+  return std::make_unique<AutodiffToTosa>();
 }
 
 class AccumulateToTosaAdd : public OpRewritePattern<AccumulateOp> {

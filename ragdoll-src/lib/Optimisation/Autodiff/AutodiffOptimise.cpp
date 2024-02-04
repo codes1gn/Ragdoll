@@ -37,7 +37,7 @@
 using namespace mlir;
 using namespace mlir::ragdoll::autodiff;
 
-#define DEBUG_TYPE "autodiff-optimize"
+#define DEBUG_TYPE "ragdoll-autodiff-optimise"
 
 namespace mlir {
 namespace ragdoll {
@@ -51,7 +51,7 @@ namespace autodiff {
 // Classes
 //===----------------------------------------------------------------------===//
 //
-#define GEN_PASS_DEF_AUTODIFFOPTIMIZE
+#define GEN_PASS_DEF_AUTODIFFOPTIMISE
 #include "Optimisation/Passes.h.inc"
 
 namespace {
@@ -277,7 +277,7 @@ class LICM : public OpRewritePattern<GenericOp> {
 
 } // namespace
 
-class AutodiffOptimize : public impl::AutodiffOptimizeBase<AutodiffOptimize> {
+class AutodiffOptimise : public impl::AutodiffOptimiseBase<AutodiffOptimise> {
   /**
    * @brief 启用 arith 的 fastmath
    *
@@ -305,7 +305,7 @@ class AutodiffOptimize : public impl::AutodiffOptimizeBase<AutodiffOptimize> {
   }
 };
 
-void AutodiffOptimize::enableArithFastMath() {
+void AutodiffOptimise::enableArithFastMath() {
   using namespace arith;
 
   OpBuilder builder{&getContext()};
@@ -322,8 +322,8 @@ void AutodiffOptimize::enableArithFastMath() {
   });
 }
 
-std::unique_ptr<Pass> createAutodiffOptimizePass() {
-  return std::make_unique<AutodiffOptimize>();
+std::unique_ptr<Pass> createAutodiffOptimisePass() {
+  return std::make_unique<AutodiffOptimise>();
 }
 
 } // namespace autodiff

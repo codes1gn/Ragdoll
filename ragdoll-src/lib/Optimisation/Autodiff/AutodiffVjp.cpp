@@ -40,7 +40,7 @@
 using namespace mlir;
 using namespace mlir::ragdoll::autodiff;
 
-#define DEBUG_TYPE "autodiff-vjp"
+#define DEBUG_TYPE "ragdoll-autodiff-vjp"
 
 namespace mlir {
 namespace ragdoll {

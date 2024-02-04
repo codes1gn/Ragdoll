@@ -25,7 +25,7 @@ namespace autodiff {
 
 // Declare your pass entry
 std::unique_ptr<Pass> createAutodiffInline();
-std::unique_ptr<Pass> createAutodiffOptimizePass();
+std::unique_ptr<Pass> createAutodiffOptimisePass();
 std::unique_ptr<Pass> createAutodiffVjpPass();
 std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass();
 
@@ -38,7 +38,7 @@ std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass();
 //===----------------------------------------------------------------------===//
 
 #define GEN_PASS_DECL_AUTODIFFINLINE
-#define GEN_PASS_DECL_AUTODIFFOPTIMIZE
+#define GEN_PASS_DECL_AUTODIFFOPTIMISE
 #define GEN_PASS_DECL_AUTODIFFVJP
 #define GEN_PASS_DECL_AUTODIFFVJPPUBLICFUNCTIONS
 #include "Optimisation/Passes.h.inc"

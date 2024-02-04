@@ -1,11 +1,11 @@
 add_mlir_conversion_library(RagdollConversion
   LinalgToTosa/LinalgToTosa.cpp
   LinalgToTosa/Raise.cpp
-  LowerTosa/LowerTosa.cpp
-  NablaToArith/NablaToArith.cpp
-  NablaToFunc/NablaToFunc.cpp
-  NablaToTosa/NablaToTosa.cpp
+  AutodiffToArith/AutodiffToArith.cpp
+  AutodiffToFunc/AutodiffToFunc.cpp
+  AutodiffToTosa/AutodiffToTosa.cpp
   TosaExtToTosa/TosaExtToTosa.cpp
+  TosaToTensor/TosaToTensor.cpp
 
   LINK_COMPONENTS
   Core

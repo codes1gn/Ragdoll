@@ -22,12 +22,12 @@
 // this is the include setting without the need to add extra include directory
 // sourcing from ${PROJECT_SOURCE_DIR}/ragdoll-src/include
 // Advantage: allow for cross-module references
+#include "Conversion/AutodiffToArith/AutodiffToArith.h"
+#include "Conversion/AutodiffToFunc/AutodiffToFunc.h"
+#include "Conversion/AutodiffToTosa/AutodiffToTosa.h"
 #include "Conversion/LinalgToTosa/LinalgToTosa.h"
-#include "Conversion/LowerTosa/LowerTosa.h"
-#include "Conversion/NablaToArith/NablaToArith.h"
-#include "Conversion/NablaToFunc/NablaToFunc.h"
-#include "Conversion/NablaToTosa/NablaToTosa.h"
 #include "Conversion/TosaExtToTosa/TosaExtToTosa.h"
+#include "Conversion/TosaToTensor/TosaToTensor.h"
 
 #include "Dialect/Autodiff/AutodiffDialect.h"
 #include "Dialect/Ragdoll/RagdollDialect.h"

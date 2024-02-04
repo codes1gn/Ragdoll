@@ -53,7 +53,8 @@ using func::CallOp;
 using func::FuncOp;
 using func::ReturnOp;
 
-class MergeMultiResults : public impl::MergeMultiResultsBase<MergeMultiResults> {
+class MergeMultiResults
+    : public impl::MergeMultiResultsBase<MergeMultiResults> {
 public:
   void runOnOperation() override {
     OpBuilder builder{&getContext()};

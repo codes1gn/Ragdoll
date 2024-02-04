@@ -27,17 +27,17 @@ include "mlir/Pass/PassBase.td"
 //   let dependentDialects = ["RagdollDialect"];
 // }
 
-def NablaToTosa : Pass<"convert-autodiff-to-tosa"> {
-    let summary = "Convert Nabla dialect to Tosa dialect";
+def AutodiffToTosa : Pass<"convert-autodiff-to-tosa"> {
+    let summary = "Convert Autodiff dialect to Tosa dialect";
 
-    let constructor = "mlir::ragdoll::autodiff::createNablaToTosa()";
+    let constructor = "mlir::ragdoll::autodiff::createAutodiffToTosa()";
     let dependentDialects = ["mlir::tosa::TosaDialect"];
 }
 
-def NablaToArith : Pass<"convert-autodiff-to-arith"> {
-    let summary = "Convert Nabla dialect to Arith dialect";
+def AutodiffToArith : Pass<"convert-autodiff-to-arith"> {
+    let summary = "Convert Autodiff dialect to Arith dialect";
 
-    let constructor = "mlir::ragdoll::autodiff::createNablaToArith()";
+    let constructor = "mlir::ragdoll::autodiff::createAutodiffToArith()";
     let dependentDialects = ["mlir::arith::ArithDialect"];
 }
 
@@ -48,17 +48,21 @@ def LinalgToTosa : Pass<"raise-linalg-to-tosa"> {
     let dependentDialects = ["mlir::tosa::TosaDialect", "mlir::linalg::LinalgDialect"];
 }
 
-def LowerTosa : Pass<"lower-tosa"> {
+// ========================================================================
+// FUNCTION: tosa op to tensor op supplements for autodiff
+// 1. tosa.concat-op -> tensor.insert-slice-op
+// ========================================================================
+def TosaToTensor : Pass<"convert-tosa-to-tensor"> {
     let summary = "Lower Tosa dialect partially";
 
-    let constructor = "mlir::ragdoll::autodiff::createLowerTosa()";
+    let constructor = "mlir::ragdoll::autodiff::createTosaToTensorPass()";
     let dependentDialects = ["mlir::tosa::TosaDialect"];
 }
 
-def NablaToFunc : Pass<"convert-autodiff-to-func"> {
-    let summary = "Convert Nabla dialect to Func dialect";
+def AutodiffToFunc : Pass<"convert-autodiff-to-func"> {
+    let summary = "Convert Autodiff dialect to Func dialect";
 
-    let constructor = "mlir::ragdoll::autodiff::createNablaToFunc()";
+    let constructor = "mlir::ragdoll::autodiff::createAutodiffToFunc()";
     let dependentDialects = ["mlir::func::FuncDialect"];
 }
 

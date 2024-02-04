@@ -1,4 +1,4 @@
-#include "Conversion/NablaToArith/NablaToArith.h"
+#include "Conversion/AutodiffToArith/AutodiffToArith.h"
 
 #include "../Utils.h"
 #include "Dialect/Autodiff/AutodiffDialect.h"
@@ -8,13 +8,13 @@
 
 namespace mlir::ragdoll::autodiff {
 
-#define GEN_PASS_DEF_NABLATOARITH
+#define GEN_PASS_DEF_AUTODIFFTOARITH
 #include "Conversion/Passes.h.inc"
 
 class AccumulateToArithAddF;
 class AccumulateToArithAddI;
 
-class NablaToArith : public impl::NablaToArithBase<NablaToArith> {
+class AutodiffToArith : public impl::AutodiffToArithBase<AutodiffToArith> {
   void runOnOperation() override {
     RewritePatternSet patterns{&getContext()};
     patterns.insert<AccumulateToArithAddF, AccumulateToArithAddI>(
@@ -23,8 +23,8 @@ class NablaToArith : public impl::NablaToArithBase<NablaToArith> {
   }
 };
 
-std::unique_ptr<Pass> createNablaToArith() {
-  return std::make_unique<NablaToArith>();
+std::unique_ptr<Pass> createAutodiffToArith() {
+  return std::make_unique<AutodiffToArith>();
 }
 
 class AccumulateToArithAddF : public OpRewritePattern<AccumulateOp> {

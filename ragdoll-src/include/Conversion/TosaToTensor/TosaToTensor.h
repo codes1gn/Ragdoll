@@ -7,10 +7,10 @@
 
 namespace mlir::ragdoll::autodiff {
 
-#define GEN_PASS_DECL_LOWERTOSA
+#define GEN_PASS_DECL_TOSATOTENSOR
 #include "Conversion/Passes.h.inc"
 
-std::unique_ptr<Pass> createLowerTosa();
+std::unique_ptr<Pass> createTosaToTensorPass();
 
 } // namespace mlir::ragdoll::autodiff
 

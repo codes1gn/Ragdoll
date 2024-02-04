@@ -24,22 +24,20 @@ def TosaExtParameterLower : Pass<"tosaext-parameter-lower"> {
   let dependentDialects = ["mlir::ml_program::MLProgramDialect"];
 }
 
-// TODO autodiff to ragdoll
-// rename AutodiffOptimize to AutodiffOptimize
-def AutodiffOptimize : Pass<"optimize"> {
-  let summary = "Apply optimizations on `linalg.generic` and some other ops";
-  let constructor = "mlir::ragdoll::autodiff::createAutodiffOptimizePass()";
+def AutodiffOptimise : Pass<"ragdoll-autodiff-optimise"> {
+  let summary = "Apply optimisations on `linalg.generic` and some other ops";
+  let constructor = "mlir::ragdoll::autodiff::createAutodiffOptimisePass()";
 }
 
-// TODO rename AutodiffVjp to AutodiffNjp
-def AutodiffVjp : Pass<"vjp"> {
+// TODO read it
+def AutodiffVjp : Pass<"ragdoll-autodiff-vjp"> {
   let summary = "Lower `autodiff.vjp` to mlir core dialects";
   let constructor = "mlir::ragdoll::autodiff::createAutodiffVjpPass()";
   let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect", "mlir::ml_program::MLProgramDialect"];
 }
 
-// TODO rename AutodiffVjpPublic to AutodiffVjpPublic
-def AutodiffVjpPublicFunctions : Pass<"vjp-public-functions"> {
+// TODO read it 
+def AutodiffVjpPublicFunctions : Pass<"ragdoll-autodiff-vjp-public-functions"> {
   let summary = "Call `autodiff.vjp` for each public function";
   let constructor = "mlir::ragdoll::autodiff::createAutodiffVjpPublicFunctionsPass()";
   let options = [

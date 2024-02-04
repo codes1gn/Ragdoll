@@ -11,8 +11,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "Dialect/TosaExt/TosaExtOps.h"
 #include "Conversion/Passes.h"
+#include "Dialect/TosaExt/TosaExtOps.h"
 
 #include "mlir/Dialect/Affine/Analysis/AffineAnalysis.h"
 #include "mlir/Dialect/Affine/Analysis/AffineStructures.h"
@@ -164,7 +164,9 @@ struct TosaExtToTosa : public impl::TosaExtToTosaBase<TosaExtToTosa> {
 
 // TODO: should be move to mlir::ragdoll
 // std::unique_ptr<OperationPass<mlir::func::FuncOp>> createLower()
-std::unique_ptr<Pass> createTosaExtToTosaPass() { return std::make_unique<TosaExtToTosa>(); }
+std::unique_ptr<Pass> createTosaExtToTosaPass() {
+  return std::make_unique<TosaExtToTosa>();
+}
 
 } // namespace tosaext
 } // namespace ragdoll

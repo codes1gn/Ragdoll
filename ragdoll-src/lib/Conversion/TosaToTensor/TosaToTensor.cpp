@@ -1,4 +1,4 @@
-#include "Conversion/LowerTosa/LowerTosa.h"
+#include "Conversion/TosaToTensor/TosaToTensor.h"
 
 #include "mlir/Conversion/TosaToLinalg/TosaToLinalg.h"
 #include "mlir/Dialect/Arith/IR/Arith.h"
@@ -8,13 +8,13 @@
 
 namespace mlir::ragdoll::autodiff {
 
-#define GEN_PASS_DEF_LOWERTOSA
+#define GEN_PASS_DEF_TOSATOTENSOR
 #include "Conversion/Passes.h.inc"
 
 struct ConcatConverter;
 class ConcatToTensor;
 
-class LowerTosa : public impl::LowerTosaBase<LowerTosa> {
+class TosaToTensor : public impl::TosaToTensorBase<TosaToTensor> {
   void runOnOperation() override {
     RewritePatternSet patterns{&getContext()};
     patterns.insert<ConcatToTensor>(&getContext());
@@ -22,8 +22,8 @@ class LowerTosa : public impl::LowerTosaBase<LowerTosa> {
   }
 };
 
-std::unique_ptr<Pass> createLowerTosa() {
-  return std::make_unique<LowerTosa>();
+std::unique_ptr<Pass> createTosaToTensorPass() {
+  return std::make_unique<TosaToTensor>();
 }
 
 class ConcatToTensor : public OpRewritePattern<tosa::ConcatOp> {

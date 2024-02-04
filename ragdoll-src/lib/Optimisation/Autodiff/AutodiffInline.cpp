@@ -37,7 +37,7 @@
 using namespace mlir;
 using namespace mlir::ragdoll::autodiff;
 
-#define DEBUG_TYPE "autodiff-inline"
+#define DEBUG_TYPE "ragdoll-autodiff-inline"
 
 namespace mlir {
 namespace ragdoll {

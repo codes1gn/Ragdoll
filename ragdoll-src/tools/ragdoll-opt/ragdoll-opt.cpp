@@ -33,5 +33,5 @@ int main(int argc, char** argv) {
   mlir::ragdoll::bootstrapRagdollCompiler(registry);
 
   return mlir::asMainReturnCode(
-      mlir::MlirOptMain(argc, argv, "Ragdoll optimizer driver\n", registry));
+      mlir::MlirOptMain(argc, argv, "Ragdoll optimiser driver\n", registry));
 }
