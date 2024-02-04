@@ -1,4 +1,4 @@
-// RUN: ragdoll-opt %s --autodiff | FileCheck %s
+// RUN: ragdoll-opt %s --ragdoll-autodiff | FileCheck %s
 
 func.func @max_pool2d(%input : tensor<1x112x112x64xf32>) -> tensor<1x56x56x64xf32> {
   // CHECK: dmax_pool2d

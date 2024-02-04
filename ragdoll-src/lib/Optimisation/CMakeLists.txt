@@ -9,6 +9,7 @@ add_mlir_conversion_library(RagdollOptimisation
   Common/MergeMultiResults.cpp
   Common/FoldAndUnfoldAvgPool.cpp
   Common/Initialisation.cpp
+  Common/RemoveGlobals.cpp
 
   LINK_COMPONENTS
   Core

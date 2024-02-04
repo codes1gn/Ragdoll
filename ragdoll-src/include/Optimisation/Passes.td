@@ -45,7 +45,7 @@ def FoldAvgPool : Pass<"ragdoll-fold-avgpool"> {
   let constructor = "mlir::ragdoll::createFoldAvgPoolPass()";
   let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect"];
 }
-def UnfoldAvgPool : Pass<"autodiff-unfold-avgpool"> {
+def UnfoldAvgPool : Pass<"ragdoll-unfold-avgpool"> {
   let summary = "Convert dummy operations to primal operations";
   let constructor = "mlir::ragdoll::createUnfoldAvgPoolPass()";
   let dependentDialects = ["mlir::tosa::TosaDialect"];
@@ -60,6 +60,14 @@ def Initialisation : Pass<"ragdoll-initialisation"> {
   let dependentDialects = ["mlir::arith::ArithDialect", "mlir::ml_program::MLProgramDialect"];
 }
 
+ 
+// --------------------------------------------------------------------------
+// FUNCTION: initialisation
+// --------------------------------------------------------------------------
+def RemoveGlobals : Pass<"ragdoll-remove-globals"> {
+  let summary = "Remove `ml_program.global_store` and `ml_program.global_load` operations";
+  let constructor = "mlir::ragdoll::createRemoveGlobalsPass()";
+}
 
 
 // ==========================================================================
@@ -118,11 +126,6 @@ def AutodiffInlineFunctionCall : Pass<"ragdoll-autodiff-inline-function-call"> {
 //   let summary = "Fuse operations";
 //   let constructor = "mlir::ragdoll::autodiff::createFuse()";
 //   let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect", "mlir::linalg::LinalgDialect", "mlir::arith::ArithDialect"];
-// }
-// 
-// def RemoveGlobals : Pass<"autodiff-remove-globals"> {
-//   let summary = "Remove `ml_program.global_store` and `ml_program.global_load` operations";
-//   let constructor = "mlir::ragdoll::autodiff::createRemoveGlobals()";
 // }
 // 
 // def Canonicalize : Pass<"autodiff-canonicalize"> {
