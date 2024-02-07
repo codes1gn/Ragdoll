@@ -1,4 +1,4 @@
-.PHONY: build test format debug clean
+.PHONY: build test format debug clean jupyter jupyter-stop
 
 build:
 	./scripts/build_ragdoll.sh
@@ -14,3 +14,10 @@ debug:
 
 clean:
 	rm -rf build
+
+jupyter:
+	./scripts/serving_notebook.sh
+
+jupyter-stop:
+	./scripts/clean_notebook_servers.sh
+
