@@ -1,5 +1,6 @@
 *.log
 build/
+codegen_tools_build/
 .clangd/
 .cache/
 .vscode/

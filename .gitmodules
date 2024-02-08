@@ -1,0 +1,12 @@
+[submodule "third_party/ragdoll-llvm-project-fast-mirror"]
+	path = third_party/ragdoll-llvm-project-fast-mirror
+	url = git@git.enflame.cn:heng.shi/ragdoll-llvm-projects.git
+[submodule "third_party/ragdoll-codegen-fast-mirror"]
+	path = third_party/ragdoll-codegen-fast-mirror
+	url = git@git.enflame.cn:heng.shi/ragdoll-codegen.git
+[submodule "third_party/ragdoll-codegen"]
+	path = third_party/ragdoll-codegen
+	url = git@github.com:codes1gn/ragdoll-codegen.git
+[submodule "third_party/ragdoll-llvm-project"]
+	path = third_party/ragdoll-llvm-project
+	url = git@github.com:codes1gn/ragdoll-llvm-project.git

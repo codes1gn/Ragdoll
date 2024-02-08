@@ -4,7 +4,7 @@
 
 SCRIPT_DIR=`dirname $0`
 RAGDOLL_SOURCE_DIR=`realpath $SCRIPT_DIR"/.."`
-MLIR_INSTALL_DIR="/usr/lib/llvm-18"
+MLIR_INSTALL_DIR=$RAGDOLL_SOURCE_DIR"/codegen_tools_build/"
 RAGDOLL_BUILD_DIR=$RAGDOLL_SOURCE_DIR"/build"
 
 mkdir -p $RAGDOLL_BUILD_DIR

@@ -1,4 +1,7 @@
-.PHONY: build test format debug clean jupyter jupyter-stop
+.PHONY: bootstrap build test format debug clean clean-backend jupyter jupyter-stop
+
+bootstrap:
+	./scripts/bootstrap_ragdoll_codegen.sh
 
 build:
 	./scripts/build_ragdoll.sh
@@ -14,6 +17,9 @@ debug:
 
 clean:
 	rm -rf build
+
+clean-backend:
+	rm -rf codegen_tools_build
 
 jupyter:
 	./scripts/serving_notebook.sh
