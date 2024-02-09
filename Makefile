@@ -1,10 +1,16 @@
 .PHONY: bootstrap build test format debug clean clean-backend jupyter jupyter-stop
 
 bootstrap:
-	./scripts/bootstrap_ragdoll_codegen.sh
+	./scripts/bootstrap_ragdoll_codegen.sh \
+		./scripts/byo_llvm.sh build_llvm && \
+		./scripts/byo_llvm.sh build_mlir && \
+		./scripts/byo_llvm.sh build_iree
 
 build:
 	./scripts/build_ragdoll.sh
+
+# bootstrap-bundled:
+# 	./scripts/bootstrap_ragdoll_codegen.sh
 
 test:
 	cd build && ninja check-ragdoll
