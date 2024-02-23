@@ -13,8 +13,8 @@ cd $RAGDOLL_BUILD_DIR
 
 cmake -S $RAGDOLL_SOURCE_DIR \
   -G Ninja \
-  -DMLIR_DIR=$CODEGEN_INSTALL_DIR/mlir/lib/cmake/mlir/ \
-  -DLLVM_DIR=$CODEGEN_INSTALL_DIR/llvm/lib/cmake/llvm/ \
+  -DMLIR_DIR=$CODEGEN_BUILD_DIR/mlir/lib/cmake/mlir/ \
+  -DLLVM_DIR=$CODEGEN_BUILD_DIR/llvm/lib/cmake/llvm/ \
   -DCMAKE_BUILD_TYPE=MinSizeRel \
   -DCMAKE_INSTALL_PREFIX=$RAGDOLL_BUILD_DIR \
   -DCMAKE_C_COMPILER=gcc \

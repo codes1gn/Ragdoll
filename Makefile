@@ -1,7 +1,7 @@
 .PHONY: bootstrap build test format debug clean clean-backend jupyter jupyter-stop
 
 bootstrap:
-	./scripts/bootstrap_ragdoll_codegen.sh \
+	./scripts/bootstrap_ragdoll_codegen.sh && \
 		./scripts/byo_llvm.sh build_llvm && \
 		./scripts/byo_llvm.sh build_mlir && \
 		./scripts/byo_llvm.sh build_iree
@@ -25,7 +25,7 @@ clean:
 	rm -rf build
 
 clean-backend:
-	rm -rf codegen_tools_build
+	rm -rf codegen_tools_build && rm -rf codegen_tools_install
 
 jupyter:
 	./scripts/serving_notebook.sh

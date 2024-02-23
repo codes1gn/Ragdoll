@@ -74,29 +74,44 @@ fi
 
 set -euo pipefail
 
-print_toolchain_config() {
+print_iree_toolchain_config() {
   if $has_ccache; then
     echo -n "-DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache "
   fi
   if $has_clang; then
     echo "-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
   fi
+  if $has_lld; then
+    cmake_options="${cmake_options} -DLLVM_ENABLE_LLD=ON"
+  fi
+}
+
+print_toolchain_config() {
+  if $has_ccache; then
+    echo -n "-DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache "
+  fi
+  if $has_clang; then
+    echo "-DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++"
+    # echo "-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
+  fi
+  # if $has_lld; then
+  #   cmake_options="${cmake_options} -DLLVM_ENABLE_LLD=ON"
+  # fi
 }
 
 do_build_llvm() {
   echo "*********************** BUILDING LLVM *********************************"
   main_build_dir="${IREE_BYOLLVM_BUILD_DIR}/llvm"
   main_install_dir="${IREE_BYOLLVM_INSTALL_DIR}/llvm"
-  targets_to_build="${LLVM_TARGETS_TO_BUILD:-X86}"
+  targets_to_build="${LLVM_TARGETS_TO_BUILD:-X86;NVPTX}"
 
   cmake_options="-DLLVM_TARGETS_TO_BUILD='${targets_to_build}'"
   cmake_options="${cmake_options} -DCMAKE_BUILD_TYPE=Release"
+  # cmake_options="${cmake_options} -DMAKE_ENABLE_ASSERTIONS=ON"
+  # cmake_options="${cmake_options} -DCMAKE_BUILD_TYPE=RelWithDebInfo"
   cmake_options="${cmake_options} -C $ORIGINAL_TD/llvm_config.cmake"
   cmake_options="${cmake_options} -DCMAKE_INSTALL_PREFIX=${main_install_dir}"
   cmake_options="${cmake_options} $(print_toolchain_config)"
-  if $has_lld; then
-    cmake_options="${cmake_options} -DLLVM_ENABLE_LLD=ON"
-  fi
 
   echo "Source Directory: ${LLVM_SOURCE_DIR}"
   echo "Build Directory: ${main_build_dir}"
@@ -117,20 +132,26 @@ do_build_mlir() {
   cmake_options="-DLLVM_DIR='${main_install_dir}/lib/cmake/llvm'"
   cmake_options="${cmake_options} -DPython3_EXECUTABLE='$(which $python3_command)'"
   cmake_options="${cmake_options} -DMLIR_ENABLE_BINDINGS_PYTHON=ON"
+  cmake_options="${cmake_options} -DCMAKE_BUILD_TYPE=Release"
+  # cmake_options="${cmake_options} -DMAKE_ENABLE_ASSERTIONS=ON"
+  # cmake_options="${cmake_options} -DCMAKE_BUILD_TYPE=RelWithDebInfo"
   cmake_options="${cmake_options} -DCMAKE_INSTALL_PREFIX=${mlir_install_dir}"
+  cmake_options="${cmake_options} -DLLVM_TARGETS_TO_BUILD='Native;NVPTX'"
+  cmake_options="${cmake_options} -DMLIR_ENABLE_CUDA_RUNNER=ON"
+  cmake_options="${cmake_options} -DMLIR_ENABLE_CUDA_CONVERSIONS=ON"
+  cmake_options="${cmake_options} -DMLIR_GPU_TO_CUBIN_PASS_ENABLE=ON"
   cmake_options="${cmake_options} -C $ORIGINAL_TD/mlir_config.cmake"
   cmake_options="${cmake_options} $(print_toolchain_config)"
-  if $has_lld; then
-    cmake_options="${cmake_options} -DLLVM_ENABLE_LLD=ON"
-  fi
+  # TODO: use ld for mlir build not, avoid toolchain issue on my machine
+  # if $has_lld; then
+  #   cmake_options="${cmake_options} -DLLVM_ENABLE_LLD=ON"
+  # fi
 
   echo "Source Directory: ${LLVM_SOURCE_DIR}"
   echo "Build Directory: ${mlir_build_dir}"
   echo "CMake Options: ${cmake_options}"
   cmake -GNinja -S "${LLVM_SOURCE_DIR}/mlir" -B "${mlir_build_dir}" \
     $cmake_options
-  cmake --build "${mlir_build_dir}" \
-    --target install
   cmake --build "${mlir_build_dir}" \
     --target install-mlirdevelopment-distribution
 }
@@ -176,14 +197,18 @@ do_build_iree() {
   # failures, but that's a test-only issue.
   cmake_options="${cmake_options} -DIREE_TARGET_BACKEND_DEFAULTS=OFF"
   cmake_options="${cmake_options} -DIREE_TARGET_BACKEND_LLVM_CPU=ON"
+  cmake_options="${cmake_options} -DIREE_TARGET_BACKEND_CUDA=ON"
+  cmake_options="${cmake_options} -DIREE_INPUT_STABLEHLO=ON"
+  cmake_options="${cmake_options} -DIREE_INPUT_TOSA=ON"
+  cmake_options="${cmake_options} -DIREE_INPUT_TORCH=ON"
   cmake_options="${cmake_options} -DIREE_HAL_DRIVER_DEFAULTS=OFF"
+  cmake_options="${cmake_options} -DIREE_HAL_DRIVER_CUDA=ON"
   cmake_options="${cmake_options} -DIREE_HAL_DRIVER_LOCAL_SYNC=ON"
   cmake_options="${cmake_options} -DIREE_HAL_DRIVER_LOCAL_TASK=ON"
   cmake_options="${cmake_options} -DCMAKE_BUILD_TYPE=Release"
+  # cmake_options="${cmake_options} -DIREE_ENABLE_ASSERTIONS=ON"
+  # cmake_options="${cmake_options} -DCMAKE_BUILD_TYPE=RelWithDebInfo"
   cmake_options="${cmake_options} $(print_toolchain_config)"
-  if $has_lld; then
-    cmake_options="${cmake_options} -DIREE_ENABLE_LLD=ON"
-  fi
 
   echo "Source Directory: ${REPO_ROOT}"
   echo "Build Directory: ${iree_build_dir}"
