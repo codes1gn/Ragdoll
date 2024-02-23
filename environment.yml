@@ -1,0 +1,23 @@
+name: ragdoll-main
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.9
+  - tensorflow-gpu=2.4.1
+  - pytorch==2.0.0
+  - torchvision==0.15.0
+  - torchaudio==2.0.0
+  - pytorch-cuda=11.8
+  - pybind11==2.10.4
+  - libcublas-dev==11.8
+  - pandas==1.4.4
+  - seaborn==0.12.2
+  - python3-yaml==6.0.1
+  - numpy==1.19.5
+  - jupyterlab==4.0.11
+  - nanobind==1.9.2
+  - matplotlib==3.6.2
+
