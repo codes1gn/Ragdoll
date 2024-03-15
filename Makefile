@@ -1,4 +1,4 @@
-.PHONY: bootstrap build test format debug clean clean-backend jupyter jupyter-stop
+.PHONY: bootstrap build test format debug clean clean-backend jupyter jupyter-stop install
 
 bootstrap:
 	./scripts/bootstrap_ragdoll_codegen.sh && \
@@ -8,6 +8,11 @@ bootstrap:
 
 build:
 	./scripts/build_ragdoll.sh
+	poetry build
+
+install:
+	./scripts/build_ragdoll.sh
+	poetry install
 
 # bootstrap-bundled:
 # 	./scripts/bootstrap_ragdoll_codegen.sh

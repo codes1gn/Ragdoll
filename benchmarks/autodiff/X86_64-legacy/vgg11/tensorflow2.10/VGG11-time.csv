@@ -1,0 +1,10 @@
+,time,pass,item
+0,57.94582346454263,Forward,TensorFlow
+0,329.8374484013766,Backward,TensorFlow
+0,387.78327186591923,Full,TensorFlow
+0,55.152797158807516,Forward,Nabla
+0,76.78922650404274,Backward,Nabla
+0,131.94202366285026,Full,Nabla
+0,71.79372587241232,Forward,Nabla Optim
+0,18.877289099618793,Backward,Nabla Optim
+0,90.67101497203112,Full,Nabla Optim

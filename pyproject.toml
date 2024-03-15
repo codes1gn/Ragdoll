@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "ragdoll"
+version = "0.1.0"
+description = "Reusable Abstraction Language Layer for General-purpose & Domain-Oriented Computing"
+authors = ["Albert Shi <heng.shi@sjtu.edu.cn>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+# We put zero deps here since we want all deps are explictly handled by conda
+# this improves the reproducibility
+#
+# [tool.poetry.dev-dependencies]
+# pytest = "^6.2.5"
+
+[[tool.poetry.packages]] 
+include = "ragdoll"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+build-cpp = "build:main"
