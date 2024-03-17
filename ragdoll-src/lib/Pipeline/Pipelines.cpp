@@ -74,7 +74,8 @@ inline void registerRagdollPipelines() {
 
 inline void registerAutodiffPipelines() {
   mlir::PassPipelineRegistration<>(
-      "ragdoll-autodiff", "Runs the full backward autodiff transformation pipeline",
+      "ragdoll-autodiff",
+      "Runs the full backward autodiff transformation pipeline",
       buildAutodiffPipeline);
 }
 

@@ -1,0 +1,10 @@
+,time,pass,item
+0,16.054538460448384,Forward,Torch Dynamo
+0,65.27684179134667,Backward,Torch Dynamo
+0,81.33138025179505,Full,Torch Dynamo
+0,17.34610321931541,Forward,Nabla
+0,20.488277189433575,Backward,Nabla
+0,37.834380408748984,Full,Nabla
+0,19.392362097278237,Forward,Nabla Optim
+0,2.399299331009388,Backward,Nabla Optim
+0,21.791661428287625,Full,Nabla Optim

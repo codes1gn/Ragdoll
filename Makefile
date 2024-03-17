@@ -1,4 +1,4 @@
-.PHONY: bootstrap build test format debug clean clean-backend jupyter jupyter-stop install
+.PHONY: bootstrap build test format debug clean clean-backend jupyter jupyter-stop install gpu-restart
 
 bootstrap:
 	./scripts/bootstrap_ragdoll_codegen.sh && \
@@ -21,7 +21,8 @@ test:
 	cd build && ninja check-ragdoll
 
 format:
-	./scripts/format_code.sh
+	./scripts/format_code.sh &&\
+		black ./ragdoll/
 
 debug:
 	./scripts/debug.sh
@@ -38,3 +39,5 @@ jupyter:
 jupyter-stop:
 	./scripts/clean_notebook_servers.sh
 
+gpu-restart:
+	rmmod nvidia_uvm nvidia_drm nvidia_modeset nvidia && modprobe nvidia

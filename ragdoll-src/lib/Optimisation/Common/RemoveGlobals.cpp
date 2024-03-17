@@ -15,8 +15,8 @@
 #include "Optimisation/Autodiff/AutodiffPasses.h"
 #include "Utils/Compat.h"
 
-#include "mlir/Dialect/MLProgram/IR/MLProgram.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
+#include "mlir/Dialect/MLProgram/IR/MLProgram.h"
 #include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"

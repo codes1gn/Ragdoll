@@ -6,6 +6,7 @@ codegen_tools_install/
 .cache/
 .vscode/
 .idea/
+*ragdoll/*__pycache__*
 cmake-build-debug/
 cmake-build-release/
 
