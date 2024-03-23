@@ -329,6 +329,63 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
    * @param vjp
    * @param rewriter
    */
+  // auto heuristic(func::FuncOp forward, func::FuncOp vjp,
+  //                PatternRewriter& rewriter) const -> void {
+  //   auto module = forward->getParentOfType<ModuleOp>();
+  //   auto& fBlock = *forward.getBody().begin();
+  //   auto& vBlock = *vjp.getBody().begin();
+  //
+  //   // 保存函数参数
+  //   for (auto [fArg, vArg] :
+  //        llvm::zip(forward.getArguments(), vjp.getArguments())) {
+  //     createCheckpoint(fArg, vArg, module, rewriter);
+  //   }
+  //
+  //   // 修改函数签名
+  //   for (auto i = 0U; i < forward.getNumArguments(); ++i) {
+  //     vjp.eraseArgument(0);
+  //   }
+  //
+  //   /**
+  //    * @brief 判断某个 operation 是否值得缓存
+  //    *
+  //    */
+  //   // TODO(ccy): 重构为优先级
+  //   static auto isWorthyStoring = [](Operation* op) -> bool {
+  //     // 不缓存常量
+  //     if (isa<tosa::ConstOp>(op)) {
+  //       return false;
+  //     }
+  //
+  //     // 不缓存变形
+  //     // if (isa<tosa::ReshapeOp>(op) || isa<tosa::TransposeOp>(op) ||
+  //     //     isa<tosa::ConcatOp>(op)) {
+  //     //   return false;
+  //     // }
+  //
+  //     // 不缓存 elemwise unary
+  //     // if (isa<tosa::ClampOp>(op) || isa<tosa::RsqrtOp>(op)) {
+  //     //   return false;
+  //     // }
+  //
+  //     // TODO(ccy): elemwise binary 与 shape 相关
+  //     return true;
+  //   };
+  //
+  //   // 保存前向 op
+  //   for (auto [fOp, vOp] : llvm::zip(fBlock, vBlock)) {
+  //     if (isa<func::ReturnOp>(fOp)) {
+  //       continue;
+  //     }
+  //
+  //     if (isWorthyStoring(&fOp)) {
+  //       for (auto [fRes, vRes] :
+  //            llvm::zip(fOp.getResults(), vOp.getResults())) {
+  //         createCheckpoint(fRes, vRes, module, rewriter);
+  //       }
+  //     }
+  //   }
+  // }
   auto heuristic(func::FuncOp forward, func::FuncOp vjp,
                  PatternRewriter& rewriter) const -> void {
     auto module = forward->getParentOfType<ModuleOp>();
@@ -357,11 +414,11 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
         return false;
       }
 
-      // 不缓存变形
-      // if (isa<tosa::ReshapeOp>(op) || isa<tosa::TransposeOp>(op) ||
-      //     isa<tosa::ConcatOp>(op)) {
-      //   return false;
-      // }
+      // 不缓存变形 new
+      if (isa<tosa::ReshapeOp>(op) || isa<tosa::TransposeOp>(op) ||
+          isa<tosa::ConcatOp>(op)) {
+        return false;
+      }
 
       // 不缓存 elemwise unary
       // if (isa<tosa::ClampOp>(op) || isa<tosa::RsqrtOp>(op)) {
@@ -553,6 +610,8 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
 class AutodiffVjp : public impl::AutodiffVjpBase<AutodiffVjp> {
   void runOnOperation() override {
     OpBuilder builder{&getContext()};
+
+    // TODO: temp impl to remove unworked transpose
 
     getOperation()->walk([&](func::FuncOp func) {
       if (!func->hasAttr("autodiff_vjp")) {

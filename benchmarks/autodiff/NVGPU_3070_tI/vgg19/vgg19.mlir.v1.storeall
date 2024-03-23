@@ -1,0 +1,358 @@
+#map = affine_map<(d0, d1, d2, d3, d4, d5) -> (d0, d1 * 2 + d4, d2 * 2 + d5, d3)>
+#map1 = affine_map<(d0, d1, d2, d3, d4, d5) -> (d4, d5)>
+#map2 = affine_map<(d0, d1, d2, d3, d4, d5) -> (d0, d1, d2, d3)>
+module attributes {torch.debug_module_name = "VGG"} {
+  ml_program.global private mutable @global64(dense<1.000000e+00> : tensor<1x4096xf32>) : tensor<1x4096xf32>
+  ml_program.global private mutable @global63(dense<1.000000e+00> : tensor<1x4096xf32>) : tensor<1x4096xf32>
+  ml_program.global private mutable @global59(dense<1.000000e+00> : tensor<1x4096xf32>) : tensor<1x4096xf32>
+  ml_program.global private mutable @global58(dense<1.000000e+00> : tensor<1x4096xf32>) : tensor<1x4096xf32>
+  ml_program.global private mutable @global54(dense<1.000000e+00> : tensor<1x7x7x512xf32>) : tensor<1x7x7x512xf32>
+  ml_program.global private mutable @global53(dense<1.000000e+00> : tensor<1x14x14x512xf32>) : tensor<1x14x14x512xf32>
+  ml_program.global private mutable @global52(dense<1.000000e+00> : tensor<1x14x14x512xf32>) : tensor<1x14x14x512xf32>
+  ml_program.global private mutable @global51(dense<1.000000e+00> : tensor<1x14x14x512xf32>) : tensor<1x14x14x512xf32>
+  ml_program.global private mutable @global50(dense<1.000000e+00> : tensor<1x14x14x512xf32>) : tensor<1x14x14x512xf32>
+  ml_program.global private mutable @global49(dense<1.000000e+00> : tensor<1x14x14x512xf32>) : tensor<1x14x14x512xf32>
+  ml_program.global private mutable @global48(dense<1.000000e+00> : tensor<1x14x14x512xf32>) : tensor<1x14x14x512xf32>
+  ml_program.global private mutable @global47(dense<1.000000e+00> : tensor<1x14x14x512xf32>) : tensor<1x14x14x512xf32>
+  ml_program.global private mutable @global46(dense<1.000000e+00> : tensor<1x14x14x512xf32>) : tensor<1x14x14x512xf32>
+  ml_program.global private mutable @global45(dense<1.000000e+00> : tensor<1x14x14x512xf32>) : tensor<1x14x14x512xf32>
+  ml_program.global private mutable @global44(dense<1.000000e+00> : tensor<1x28x28x512xf32>) : tensor<1x28x28x512xf32>
+  ml_program.global private mutable @global43(dense<1.000000e+00> : tensor<1x28x28x512xf32>) : tensor<1x28x28x512xf32>
+  ml_program.global private mutable @global42(dense<1.000000e+00> : tensor<1x28x28x512xf32>) : tensor<1x28x28x512xf32>
+  ml_program.global private mutable @global41(dense<1.000000e+00> : tensor<1x28x28x512xf32>) : tensor<1x28x28x512xf32>
+  ml_program.global private mutable @global40(dense<1.000000e+00> : tensor<1x28x28x512xf32>) : tensor<1x28x28x512xf32>
+  ml_program.global private mutable @global39(dense<1.000000e+00> : tensor<1x28x28x512xf32>) : tensor<1x28x28x512xf32>
+  ml_program.global private mutable @global38(dense<1.000000e+00> : tensor<1x28x28x512xf32>) : tensor<1x28x28x512xf32>
+  ml_program.global private mutable @global37(dense<1.000000e+00> : tensor<1x28x28x512xf32>) : tensor<1x28x28x512xf32>
+  ml_program.global private mutable @global36(dense<1.000000e+00> : tensor<1x28x28x256xf32>) : tensor<1x28x28x256xf32>
+  ml_program.global private mutable @global35(dense<1.000000e+00> : tensor<1x56x56x256xf32>) : tensor<1x56x56x256xf32>
+  ml_program.global private mutable @global34(dense<1.000000e+00> : tensor<1x56x56x256xf32>) : tensor<1x56x56x256xf32>
+  ml_program.global private mutable @global33(dense<1.000000e+00> : tensor<1x56x56x256xf32>) : tensor<1x56x56x256xf32>
+  ml_program.global private mutable @global32(dense<1.000000e+00> : tensor<1x56x56x256xf32>) : tensor<1x56x56x256xf32>
+  ml_program.global private mutable @global31(dense<1.000000e+00> : tensor<1x56x56x256xf32>) : tensor<1x56x56x256xf32>
+  ml_program.global private mutable @global30(dense<1.000000e+00> : tensor<1x56x56x256xf32>) : tensor<1x56x56x256xf32>
+  ml_program.global private mutable @global29(dense<1.000000e+00> : tensor<1x56x56x256xf32>) : tensor<1x56x56x256xf32>
+  ml_program.global private mutable @global28(dense<1.000000e+00> : tensor<1x56x56x256xf32>) : tensor<1x56x56x256xf32>
+  ml_program.global private mutable @global27(dense<1.000000e+00> : tensor<1x56x56x128xf32>) : tensor<1x56x56x128xf32>
+  ml_program.global private mutable @global26(dense<1.000000e+00> : tensor<1x112x112x128xf32>) : tensor<1x112x112x128xf32>
+  ml_program.global private mutable @global25(dense<1.000000e+00> : tensor<1x112x112x128xf32>) : tensor<1x112x112x128xf32>
+  ml_program.global private mutable @global24(dense<1.000000e+00> : tensor<1x112x112x128xf32>) : tensor<1x112x112x128xf32>
+  ml_program.global private mutable @global23(dense<1.000000e+00> : tensor<1x112x112x128xf32>) : tensor<1x112x112x128xf32>
+  ml_program.global private mutable @global22(dense<1.000000e+00> : tensor<1x112x112x64xf32>) : tensor<1x112x112x64xf32>
+  ml_program.global private mutable @global21(dense<1.000000e+00> : tensor<1x224x224x64xf32>) : tensor<1x224x224x64xf32>
+  ml_program.global private mutable @global20(dense<1.000000e+00> : tensor<1x224x224x64xf32>) : tensor<1x224x224x64xf32>
+  ml_program.global private mutable @global19(dense<1.000000e+00> : tensor<1x224x224x64xf32>) : tensor<1x224x224x64xf32>
+  ml_program.global private mutable @global18(dense<1.000000e+00> : tensor<1x224x224x64xf32>) : tensor<1x224x224x64xf32>
+  ml_program.global private mutable @global17(dense<1.000000e+00> : tensor<64x3x3x3xf32>) : tensor<64x3x3x3xf32>
+  ml_program.global private mutable @global16(dense<1.000000e+00> : tensor<64x3x3x64xf32>) : tensor<64x3x3x64xf32>
+  ml_program.global private mutable @global15(dense<1.000000e+00> : tensor<128x3x3x64xf32>) : tensor<128x3x3x64xf32>
+  ml_program.global private mutable @global14(dense<1.000000e+00> : tensor<128x3x3x128xf32>) : tensor<128x3x3x128xf32>
+  ml_program.global private mutable @global13(dense<1.000000e+00> : tensor<256x3x3x128xf32>) : tensor<256x3x3x128xf32>
+  ml_program.global private mutable @global12(dense<1.000000e+00> : tensor<256x3x3x256xf32>) : tensor<256x3x3x256xf32>
+  ml_program.global private mutable @global11(dense<1.000000e+00> : tensor<512x3x3x256xf32>) : tensor<512x3x3x256xf32>
+  ml_program.global private mutable @global10(dense<1.000000e+00> : tensor<512x3x3x512xf32>) : tensor<512x3x3x512xf32>
+  ml_program.global private mutable @global9(dense<1.000000e+00> : tensor<1x25088x4096xf32>) : tensor<1x25088x4096xf32>
+  ml_program.global private mutable @global7(dense<1.000000e+00> : tensor<1x4096x4096xf32>) : tensor<1x4096x4096xf32>
+  ml_program.global private mutable @global6(dense<1.000000e+00> : tensor<1x4096x1000xf32>) : tensor<1x4096x1000xf32>
+  func.func @forward(%arg0: tensor<1x224x224x3xf32>) -> tensor<1x1000xf32> {
+    %0 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<64x3x3x3xf32>}> : () -> tensor<64x3x3x3xf32>
+    %1 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<64x3x3x64xf32>}> : () -> tensor<64x3x3x64xf32>
+    %2 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<128x3x3x64xf32>}> : () -> tensor<128x3x3x64xf32>
+    %3 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<128x3x3x128xf32>}> : () -> tensor<128x3x3x128xf32>
+    %4 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<256x3x3x128xf32>}> : () -> tensor<256x3x3x128xf32>
+    %5 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<256x3x3x256xf32>}> : () -> tensor<256x3x3x256xf32>
+    %6 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<512x3x3x256xf32>}> : () -> tensor<512x3x3x256xf32>
+    %7 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<512x3x3x512xf32>}> : () -> tensor<512x3x3x512xf32>
+    %8 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<1x25088x4096xf32>}> : () -> tensor<1x25088x4096xf32>
+    %9 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<1x4096xf32>}> : () -> tensor<1x4096xf32>
+    %10 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<1x4096x4096xf32>}> : () -> tensor<1x4096x4096xf32>
+    %11 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<1x4096x1000xf32>}> : () -> tensor<1x4096x1000xf32>
+    %12 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<1x1000xf32>}> : () -> tensor<1x1000xf32>
+    %13 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<64xf32>}> : () -> tensor<64xf32>
+    %14 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<128xf32>}> : () -> tensor<128xf32>
+    %15 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<256xf32>}> : () -> tensor<256xf32>
+    %16 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<512xf32>}> : () -> tensor<512xf32>
+    ml_program.global_store @global6 = %11 : tensor<1x4096x1000xf32>
+    ml_program.global_store @global7 = %10 : tensor<1x4096x4096xf32>
+    ml_program.global_store @global9 = %8 : tensor<1x25088x4096xf32>
+    ml_program.global_store @global10 = %7 : tensor<512x3x3x512xf32>
+    ml_program.global_store @global11 = %6 : tensor<512x3x3x256xf32>
+    ml_program.global_store @global12 = %5 : tensor<256x3x3x256xf32>
+    ml_program.global_store @global13 = %4 : tensor<256x3x3x128xf32>
+    ml_program.global_store @global14 = %3 : tensor<128x3x3x128xf32>
+    ml_program.global_store @global15 = %2 : tensor<128x3x3x64xf32>
+    ml_program.global_store @global16 = %1 : tensor<64x3x3x64xf32>
+    ml_program.global_store @global17 = %0 : tensor<64x3x3x3xf32>
+    %17 = tosa.conv2d %arg0, %0, %13 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x224x224x3xf32>, tensor<64x3x3x3xf32>, tensor<64xf32>) -> tensor<1x224x224x64xf32>
+    ml_program.global_store @global18 = %17 : tensor<1x224x224x64xf32>
+    %18 = tosa.clamp %17 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x224x224x64xf32>) -> tensor<1x224x224x64xf32>
+    ml_program.global_store @global19 = %18 : tensor<1x224x224x64xf32>
+    %19 = tosa.conv2d %18, %1, %13 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x224x224x64xf32>, tensor<64x3x3x64xf32>, tensor<64xf32>) -> tensor<1x224x224x64xf32>
+    ml_program.global_store @global20 = %19 : tensor<1x224x224x64xf32>
+    %20 = tosa.clamp %19 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x224x224x64xf32>) -> tensor<1x224x224x64xf32>
+    ml_program.global_store @global21 = %20 : tensor<1x224x224x64xf32>
+    %21 = tosa.max_pool2d %20 {kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x224x224x64xf32>) -> tensor<1x112x112x64xf32>
+    ml_program.global_store @global22 = %21 : tensor<1x112x112x64xf32>
+    %22 = tosa.conv2d %21, %2, %14 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x112x112x64xf32>, tensor<128x3x3x64xf32>, tensor<128xf32>) -> tensor<1x112x112x128xf32>
+    ml_program.global_store @global23 = %22 : tensor<1x112x112x128xf32>
+    %23 = tosa.clamp %22 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x112x112x128xf32>) -> tensor<1x112x112x128xf32>
+    ml_program.global_store @global24 = %23 : tensor<1x112x112x128xf32>
+    %24 = tosa.conv2d %23, %3, %14 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x112x112x128xf32>, tensor<128x3x3x128xf32>, tensor<128xf32>) -> tensor<1x112x112x128xf32>
+    ml_program.global_store @global25 = %24 : tensor<1x112x112x128xf32>
+    %25 = tosa.clamp %24 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x112x112x128xf32>) -> tensor<1x112x112x128xf32>
+    ml_program.global_store @global26 = %25 : tensor<1x112x112x128xf32>
+    %26 = tosa.max_pool2d %25 {kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x112x112x128xf32>) -> tensor<1x56x56x128xf32>
+    ml_program.global_store @global27 = %26 : tensor<1x56x56x128xf32>
+    %27 = tosa.conv2d %26, %4, %15 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x56x56x128xf32>, tensor<256x3x3x128xf32>, tensor<256xf32>) -> tensor<1x56x56x256xf32>
+    ml_program.global_store @global28 = %27 : tensor<1x56x56x256xf32>
+    %28 = tosa.clamp %27 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x56x56x256xf32>) -> tensor<1x56x56x256xf32>
+    ml_program.global_store @global29 = %28 : tensor<1x56x56x256xf32>
+    %29 = tosa.conv2d %28, %5, %15 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x56x56x256xf32>, tensor<256x3x3x256xf32>, tensor<256xf32>) -> tensor<1x56x56x256xf32>
+    ml_program.global_store @global30 = %29 : tensor<1x56x56x256xf32>
+    %30 = tosa.clamp %29 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x56x56x256xf32>) -> tensor<1x56x56x256xf32>
+    ml_program.global_store @global31 = %30 : tensor<1x56x56x256xf32>
+    %31 = tosa.conv2d %30, %5, %15 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x56x56x256xf32>, tensor<256x3x3x256xf32>, tensor<256xf32>) -> tensor<1x56x56x256xf32>
+    ml_program.global_store @global32 = %31 : tensor<1x56x56x256xf32>
+    %32 = tosa.clamp %31 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x56x56x256xf32>) -> tensor<1x56x56x256xf32>
+    ml_program.global_store @global33 = %32 : tensor<1x56x56x256xf32>
+    %33 = tosa.conv2d %32, %5, %15 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x56x56x256xf32>, tensor<256x3x3x256xf32>, tensor<256xf32>) -> tensor<1x56x56x256xf32>
+    ml_program.global_store @global34 = %33 : tensor<1x56x56x256xf32>
+    %34 = tosa.clamp %33 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x56x56x256xf32>) -> tensor<1x56x56x256xf32>
+    ml_program.global_store @global35 = %34 : tensor<1x56x56x256xf32>
+    %35 = tosa.max_pool2d %34 {kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x56x56x256xf32>) -> tensor<1x28x28x256xf32>
+    ml_program.global_store @global36 = %35 : tensor<1x28x28x256xf32>
+    %36 = tosa.conv2d %35, %6, %16 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x28x28x256xf32>, tensor<512x3x3x256xf32>, tensor<512xf32>) -> tensor<1x28x28x512xf32>
+    ml_program.global_store @global37 = %36 : tensor<1x28x28x512xf32>
+    %37 = tosa.clamp %36 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x28x28x512xf32>) -> tensor<1x28x28x512xf32>
+    ml_program.global_store @global38 = %37 : tensor<1x28x28x512xf32>
+    %38 = tosa.conv2d %37, %7, %16 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x28x28x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x28x28x512xf32>
+    ml_program.global_store @global39 = %38 : tensor<1x28x28x512xf32>
+    %39 = tosa.clamp %38 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x28x28x512xf32>) -> tensor<1x28x28x512xf32>
+    ml_program.global_store @global40 = %39 : tensor<1x28x28x512xf32>
+    %40 = tosa.conv2d %39, %7, %16 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x28x28x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x28x28x512xf32>
+    ml_program.global_store @global41 = %40 : tensor<1x28x28x512xf32>
+    %41 = tosa.clamp %40 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x28x28x512xf32>) -> tensor<1x28x28x512xf32>
+    ml_program.global_store @global42 = %41 : tensor<1x28x28x512xf32>
+    %42 = tosa.conv2d %41, %7, %16 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x28x28x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x28x28x512xf32>
+    ml_program.global_store @global43 = %42 : tensor<1x28x28x512xf32>
+    %43 = tosa.clamp %42 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x28x28x512xf32>) -> tensor<1x28x28x512xf32>
+    ml_program.global_store @global44 = %43 : tensor<1x28x28x512xf32>
+    %44 = tosa.max_pool2d %43 {kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x28x28x512xf32>) -> tensor<1x14x14x512xf32>
+    ml_program.global_store @global45 = %44 : tensor<1x14x14x512xf32>
+    %45 = tosa.conv2d %44, %7, %16 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x14x14x512xf32>
+    ml_program.global_store @global46 = %45 : tensor<1x14x14x512xf32>
+    %46 = tosa.clamp %45 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x14x14x512xf32>) -> tensor<1x14x14x512xf32>
+    ml_program.global_store @global47 = %46 : tensor<1x14x14x512xf32>
+    %47 = tosa.conv2d %46, %7, %16 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x14x14x512xf32>
+    ml_program.global_store @global48 = %47 : tensor<1x14x14x512xf32>
+    %48 = tosa.clamp %47 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x14x14x512xf32>) -> tensor<1x14x14x512xf32>
+    ml_program.global_store @global49 = %48 : tensor<1x14x14x512xf32>
+    %49 = tosa.conv2d %48, %7, %16 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x14x14x512xf32>
+    ml_program.global_store @global50 = %49 : tensor<1x14x14x512xf32>
+    %50 = tosa.clamp %49 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x14x14x512xf32>) -> tensor<1x14x14x512xf32>
+    ml_program.global_store @global51 = %50 : tensor<1x14x14x512xf32>
+    %51 = tosa.conv2d %50, %7, %16 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x14x14x512xf32>
+    ml_program.global_store @global52 = %51 : tensor<1x14x14x512xf32>
+    %52 = tosa.clamp %51 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x14x14x512xf32>) -> tensor<1x14x14x512xf32>
+    ml_program.global_store @global53 = %52 : tensor<1x14x14x512xf32>
+    %53 = tosa.max_pool2d %52 {kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x14x14x512xf32>) -> tensor<1x7x7x512xf32>
+    ml_program.global_store @global54 = %53 : tensor<1x7x7x512xf32>
+    %54 = tosa.reshape %53 {new_shape = array<i64: 1, 1, 25088>} : (tensor<1x7x7x512xf32>) -> tensor<1x1x25088xf32>
+    %55 = tosa.matmul %54, %8 : (tensor<1x1x25088xf32>, tensor<1x25088x4096xf32>) -> tensor<1x1x4096xf32>
+    %56 = tosa.reshape %55 {new_shape = array<i64: 1, 4096>} : (tensor<1x1x4096xf32>) -> tensor<1x4096xf32>
+    %57 = tosa.add %56, %9 : (tensor<1x4096xf32>, tensor<1x4096xf32>) -> tensor<1x4096xf32>
+    ml_program.global_store @global58 = %57 : tensor<1x4096xf32>
+    %58 = tosa.clamp %57 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x4096xf32>) -> tensor<1x4096xf32>
+    ml_program.global_store @global59 = %58 : tensor<1x4096xf32>
+    %59 = tosa.reshape %58 {new_shape = array<i64: 1, 1, 4096>} : (tensor<1x4096xf32>) -> tensor<1x1x4096xf32>
+    %60 = tosa.matmul %59, %10 : (tensor<1x1x4096xf32>, tensor<1x4096x4096xf32>) -> tensor<1x1x4096xf32>
+    %61 = tosa.reshape %60 {new_shape = array<i64: 1, 4096>} : (tensor<1x1x4096xf32>) -> tensor<1x4096xf32>
+    %62 = tosa.add %61, %9 : (tensor<1x4096xf32>, tensor<1x4096xf32>) -> tensor<1x4096xf32>
+    ml_program.global_store @global63 = %62 : tensor<1x4096xf32>
+    %63 = tosa.clamp %62 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x4096xf32>) -> tensor<1x4096xf32>
+    ml_program.global_store @global64 = %63 : tensor<1x4096xf32>
+    %64 = tosa.reshape %63 {new_shape = array<i64: 1, 1, 4096>} : (tensor<1x4096xf32>) -> tensor<1x1x4096xf32>
+    %65 = tosa.matmul %64, %11 : (tensor<1x1x4096xf32>, tensor<1x4096x1000xf32>) -> tensor<1x1x1000xf32>
+    %66 = tosa.reshape %65 {new_shape = array<i64: 1, 1000>} : (tensor<1x1x1000xf32>) -> tensor<1x1000xf32>
+    %67 = tosa.add %66, %12 : (tensor<1x1000xf32>, tensor<1x1000xf32>) -> tensor<1x1000xf32>
+    return %67 : tensor<1x1000xf32>
+  }
+  func.func @dforward(%arg0: tensor<1x1000xf32>) -> tensor<1x224x224x3xf32> {
+    %cst = arith.constant dense<0.000000e+00> : tensor<3xf32>
+    %cst_0 = arith.constant dense<0.000000e+00> : tensor<1x224x224x64xf32>
+    %cst_1 = arith.constant dense<0.000000e+00> : tensor<64xf32>
+    %cst_2 = arith.constant dense<0.000000e+00> : tensor<1x112x112x128xf32>
+    %cst_3 = arith.constant dense<0.000000e+00> : tensor<128xf32>
+    %cst_4 = arith.constant dense<0.000000e+00> : tensor<1x56x56x256xf32>
+    %cst_5 = arith.constant dense<0.000000e+00> : tensor<256xf32>
+    %cst_6 = arith.constant dense<0.000000e+00> : tensor<1x28x28x512xf32>
+    %cst_7 = arith.constant dense<0.000000e+00> : tensor<512xf32>
+    %cst_8 = arith.constant dense<0.000000e+00> : tensor<2x2xf32>
+    %cst_9 = arith.constant dense<0.000000e+00> : tensor<1x14x14x512xf32>
+    %0 = "tosa.const"() <{value = dense<[3, 1, 2, 0]> : tensor<4xi64>}> : () -> tensor<4xi64>
+    %cst_10 = arith.constant 0.000000e+00 : f32
+    %1 = "tosa.const"() <{value = dense<0.000000e+00> : tensor<f32>}> : () -> tensor<f32>
+    %2 = "tosa.const"() <{value = dense<[0, 2, 1]> : tensor<3xi32>}> : () -> tensor<3xi32>
+    %global6 = ml_program.global_load @global6 : tensor<1x4096x1000xf32>
+    %global7 = ml_program.global_load @global7 : tensor<1x4096x4096xf32>
+    %global9 = ml_program.global_load @global9 : tensor<1x25088x4096xf32>
+    %global10 = ml_program.global_load @global10 : tensor<512x3x3x512xf32>
+    %global11 = ml_program.global_load @global11 : tensor<512x3x3x256xf32>
+    %global12 = ml_program.global_load @global12 : tensor<256x3x3x256xf32>
+    %global13 = ml_program.global_load @global13 : tensor<256x3x3x128xf32>
+    %global14 = ml_program.global_load @global14 : tensor<128x3x3x128xf32>
+    %global15 = ml_program.global_load @global15 : tensor<128x3x3x64xf32>
+    %global16 = ml_program.global_load @global16 : tensor<64x3x3x64xf32>
+    %global17 = ml_program.global_load @global17 : tensor<64x3x3x3xf32>
+    %global18 = ml_program.global_load @global18 : tensor<1x224x224x64xf32>
+    %global19 = ml_program.global_load @global19 : tensor<1x224x224x64xf32>
+    %global20 = ml_program.global_load @global20 : tensor<1x224x224x64xf32>
+    %global21 = ml_program.global_load @global21 : tensor<1x224x224x64xf32>
+    %global22 = ml_program.global_load @global22 : tensor<1x112x112x64xf32>
+    %global23 = ml_program.global_load @global23 : tensor<1x112x112x128xf32>
+    %global24 = ml_program.global_load @global24 : tensor<1x112x112x128xf32>
+    %global25 = ml_program.global_load @global25 : tensor<1x112x112x128xf32>
+    %global26 = ml_program.global_load @global26 : tensor<1x112x112x128xf32>
+    %global27 = ml_program.global_load @global27 : tensor<1x56x56x128xf32>
+    %global28 = ml_program.global_load @global28 : tensor<1x56x56x256xf32>
+    %global29 = ml_program.global_load @global29 : tensor<1x56x56x256xf32>
+    %global30 = ml_program.global_load @global30 : tensor<1x56x56x256xf32>
+    %global31 = ml_program.global_load @global31 : tensor<1x56x56x256xf32>
+    %global32 = ml_program.global_load @global32 : tensor<1x56x56x256xf32>
+    %global33 = ml_program.global_load @global33 : tensor<1x56x56x256xf32>
+    %global34 = ml_program.global_load @global34 : tensor<1x56x56x256xf32>
+    %global35 = ml_program.global_load @global35 : tensor<1x56x56x256xf32>
+    %global36 = ml_program.global_load @global36 : tensor<1x28x28x256xf32>
+    %global37 = ml_program.global_load @global37 : tensor<1x28x28x512xf32>
+    %global38 = ml_program.global_load @global38 : tensor<1x28x28x512xf32>
+    %global39 = ml_program.global_load @global39 : tensor<1x28x28x512xf32>
+    %global40 = ml_program.global_load @global40 : tensor<1x28x28x512xf32>
+    %global41 = ml_program.global_load @global41 : tensor<1x28x28x512xf32>
+    %global42 = ml_program.global_load @global42 : tensor<1x28x28x512xf32>
+    %global43 = ml_program.global_load @global43 : tensor<1x28x28x512xf32>
+    %global44 = ml_program.global_load @global44 : tensor<1x28x28x512xf32>
+    %global45 = ml_program.global_load @global45 : tensor<1x14x14x512xf32>
+    %global46 = ml_program.global_load @global46 : tensor<1x14x14x512xf32>
+    %global47 = ml_program.global_load @global47 : tensor<1x14x14x512xf32>
+    %global48 = ml_program.global_load @global48 : tensor<1x14x14x512xf32>
+    %global49 = ml_program.global_load @global49 : tensor<1x14x14x512xf32>
+    %global50 = ml_program.global_load @global50 : tensor<1x14x14x512xf32>
+    %global51 = ml_program.global_load @global51 : tensor<1x14x14x512xf32>
+    %global52 = ml_program.global_load @global52 : tensor<1x14x14x512xf32>
+    %global53 = ml_program.global_load @global53 : tensor<1x14x14x512xf32>
+    %global54 = ml_program.global_load @global54 : tensor<1x7x7x512xf32>
+    %global58 = ml_program.global_load @global58 : tensor<1x4096xf32>
+    %global59 = ml_program.global_load @global59 : tensor<1x4096xf32>
+    %global63 = ml_program.global_load @global63 : tensor<1x4096xf32>
+    %global64 = ml_program.global_load @global64 : tensor<1x4096xf32>
+    %3 = tosa.reshape %arg0 {new_shape = array<i64: 1, 1, 1000>} : (tensor<1x1000xf32>) -> tensor<1x1x1000xf32>
+    %4 = tosa.transpose %global6, %2 : (tensor<1x4096x1000xf32>, tensor<3xi32>) -> tensor<1x1000x4096xf32>
+    %5 = tosa.matmul %3, %4 : (tensor<1x1x1000xf32>, tensor<1x1000x4096xf32>) -> tensor<1x1x4096xf32>
+    %6 = tosa.reshape %5 {new_shape = array<i64: 1, 4096>} : (tensor<1x1x4096xf32>) -> tensor<1x4096xf32>
+    %7 = tosa.equal %global63, %global64 : (tensor<1x4096xf32>, tensor<1x4096xf32>) -> tensor<1x4096xi1>
+    %8 = tosa.select %7, %6, %1 : (tensor<1x4096xi1>, tensor<1x4096xf32>, tensor<f32>) -> tensor<1x4096xf32>
+    %9 = tosa.reshape %8 {new_shape = array<i64: 1, 1, 4096>} : (tensor<1x4096xf32>) -> tensor<1x1x4096xf32>
+    %10 = tosa.transpose %global7, %2 : (tensor<1x4096x4096xf32>, tensor<3xi32>) -> tensor<1x4096x4096xf32>
+    %11 = tosa.matmul %9, %10 : (tensor<1x1x4096xf32>, tensor<1x4096x4096xf32>) -> tensor<1x1x4096xf32>
+    %12 = tosa.reshape %11 {new_shape = array<i64: 1, 4096>} : (tensor<1x1x4096xf32>) -> tensor<1x4096xf32>
+    %13 = tosa.equal %global58, %global59 : (tensor<1x4096xf32>, tensor<1x4096xf32>) -> tensor<1x4096xi1>
+    %14 = tosa.select %13, %12, %1 : (tensor<1x4096xi1>, tensor<1x4096xf32>, tensor<f32>) -> tensor<1x4096xf32>
+    %15 = tosa.reshape %14 {new_shape = array<i64: 1, 1, 4096>} : (tensor<1x4096xf32>) -> tensor<1x1x4096xf32>
+    %16 = tosa.transpose %global9, %2 : (tensor<1x25088x4096xf32>, tensor<3xi32>) -> tensor<1x4096x25088xf32>
+    %17 = tosa.matmul %15, %16 : (tensor<1x1x4096xf32>, tensor<1x4096x25088xf32>) -> tensor<1x1x25088xf32>
+    %18 = tosa.reshape %17 {new_shape = array<i64: 1, 7, 7, 512>} : (tensor<1x1x25088xf32>) -> tensor<1x7x7x512xf32>
+    %19 = linalg.generic {indexing_maps = [#map, #map1, #map2, #map2, #map], iterator_types = ["parallel", "reduction", "reduction", "parallel", "reduction", "reduction"]} ins(%global53, %cst_8, %global54, %18 : tensor<1x14x14x512xf32>, tensor<2x2xf32>, tensor<1x7x7x512xf32>, tensor<1x7x7x512xf32>) outs(%cst_9 : tensor<1x14x14x512xf32>) {
+    ^bb0(%in: f32, %in_11: f32, %in_12: f32, %in_13: f32, %out: f32):
+      %80 = arith.cmpf oge, %in, %in_12 : f32
+      %81 = arith.select %80, %in_13, %cst_10 : f32
+      %82 = arith.addf %out, %81 : f32
+      linalg.yield %82 : f32
+    } -> tensor<1x14x14x512xf32>
+    %20 = tosa.equal %global52, %global53 : (tensor<1x14x14x512xf32>, tensor<1x14x14x512xf32>) -> tensor<1x14x14x512xi1>
+    %21 = tosa.select %20, %19, %1 : (tensor<1x14x14x512xi1>, tensor<1x14x14x512xf32>, tensor<f32>) -> tensor<1x14x14x512xf32>
+    %22 = tosa.transpose %global10, %0 : (tensor<512x3x3x512xf32>, tensor<4xi64>) -> tensor<512x3x3x512xf32>
+    %23 = tosa.transpose_conv2d %21, %22, %cst_7 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 14, 14, 512>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x14x14x512xf32>
+    %24 = tosa.equal %global50, %global51 : (tensor<1x14x14x512xf32>, tensor<1x14x14x512xf32>) -> tensor<1x14x14x512xi1>
+    %25 = tosa.select %24, %23, %1 : (tensor<1x14x14x512xi1>, tensor<1x14x14x512xf32>, tensor<f32>) -> tensor<1x14x14x512xf32>
+    %26 = tosa.transpose_conv2d %25, %22, %cst_7 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 14, 14, 512>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x14x14x512xf32>
+    %27 = tosa.equal %global48, %global49 : (tensor<1x14x14x512xf32>, tensor<1x14x14x512xf32>) -> tensor<1x14x14x512xi1>
+    %28 = tosa.select %27, %26, %1 : (tensor<1x14x14x512xi1>, tensor<1x14x14x512xf32>, tensor<f32>) -> tensor<1x14x14x512xf32>
+    %29 = tosa.transpose_conv2d %28, %22, %cst_7 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 14, 14, 512>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x14x14x512xf32>
+    %30 = tosa.equal %global46, %global47 : (tensor<1x14x14x512xf32>, tensor<1x14x14x512xf32>) -> tensor<1x14x14x512xi1>
+    %31 = tosa.select %30, %29, %1 : (tensor<1x14x14x512xi1>, tensor<1x14x14x512xf32>, tensor<f32>) -> tensor<1x14x14x512xf32>
+    %32 = tosa.transpose_conv2d %31, %22, %cst_7 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 14, 14, 512>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x14x14x512xf32>
+    %33 = linalg.generic {indexing_maps = [#map, #map1, #map2, #map2, #map], iterator_types = ["parallel", "reduction", "reduction", "parallel", "reduction", "reduction"]} ins(%global44, %cst_8, %global45, %32 : tensor<1x28x28x512xf32>, tensor<2x2xf32>, tensor<1x14x14x512xf32>, tensor<1x14x14x512xf32>) outs(%cst_6 : tensor<1x28x28x512xf32>) {
+    ^bb0(%in: f32, %in_11: f32, %in_12: f32, %in_13: f32, %out: f32):
+      %80 = arith.cmpf oge, %in, %in_12 : f32
+      %81 = arith.select %80, %in_13, %cst_10 : f32
+      %82 = arith.addf %out, %81 : f32
+      linalg.yield %82 : f32
+    } -> tensor<1x28x28x512xf32>
+    %34 = tosa.equal %global43, %global44 : (tensor<1x28x28x512xf32>, tensor<1x28x28x512xf32>) -> tensor<1x28x28x512xi1>
+    %35 = tosa.select %34, %33, %1 : (tensor<1x28x28x512xi1>, tensor<1x28x28x512xf32>, tensor<f32>) -> tensor<1x28x28x512xf32>
+    %36 = tosa.transpose_conv2d %35, %22, %cst_7 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 28, 28, 512>, stride = array<i64: 1, 1>} : (tensor<1x28x28x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x28x28x512xf32>
+    %37 = tosa.equal %global41, %global42 : (tensor<1x28x28x512xf32>, tensor<1x28x28x512xf32>) -> tensor<1x28x28x512xi1>
+    %38 = tosa.select %37, %36, %1 : (tensor<1x28x28x512xi1>, tensor<1x28x28x512xf32>, tensor<f32>) -> tensor<1x28x28x512xf32>
+    %39 = tosa.transpose_conv2d %38, %22, %cst_7 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 28, 28, 512>, stride = array<i64: 1, 1>} : (tensor<1x28x28x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x28x28x512xf32>
+    %40 = tosa.equal %global39, %global40 : (tensor<1x28x28x512xf32>, tensor<1x28x28x512xf32>) -> tensor<1x28x28x512xi1>
+    %41 = tosa.select %40, %39, %1 : (tensor<1x28x28x512xi1>, tensor<1x28x28x512xf32>, tensor<f32>) -> tensor<1x28x28x512xf32>
+    %42 = tosa.transpose_conv2d %41, %22, %cst_7 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 28, 28, 512>, stride = array<i64: 1, 1>} : (tensor<1x28x28x512xf32>, tensor<512x3x3x512xf32>, tensor<512xf32>) -> tensor<1x28x28x512xf32>
+    %43 = tosa.equal %global37, %global38 : (tensor<1x28x28x512xf32>, tensor<1x28x28x512xf32>) -> tensor<1x28x28x512xi1>
+    %44 = tosa.select %43, %42, %1 : (tensor<1x28x28x512xi1>, tensor<1x28x28x512xf32>, tensor<f32>) -> tensor<1x28x28x512xf32>
+    %45 = tosa.transpose %global11, %0 : (tensor<512x3x3x256xf32>, tensor<4xi64>) -> tensor<256x3x3x512xf32>
+    %46 = tosa.transpose_conv2d %44, %45, %cst_5 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 28, 28, 256>, stride = array<i64: 1, 1>} : (tensor<1x28x28x512xf32>, tensor<256x3x3x512xf32>, tensor<256xf32>) -> tensor<1x28x28x256xf32>
+    %47 = linalg.generic {indexing_maps = [#map, #map1, #map2, #map2, #map], iterator_types = ["parallel", "reduction", "reduction", "parallel", "reduction", "reduction"]} ins(%global35, %cst_8, %global36, %46 : tensor<1x56x56x256xf32>, tensor<2x2xf32>, tensor<1x28x28x256xf32>, tensor<1x28x28x256xf32>) outs(%cst_4 : tensor<1x56x56x256xf32>) {
+    ^bb0(%in: f32, %in_11: f32, %in_12: f32, %in_13: f32, %out: f32):
+      %80 = arith.cmpf oge, %in, %in_12 : f32
+      %81 = arith.select %80, %in_13, %cst_10 : f32
+      %82 = arith.addf %out, %81 : f32
+      linalg.yield %82 : f32
+    } -> tensor<1x56x56x256xf32>
+    %48 = tosa.equal %global34, %global35 : (tensor<1x56x56x256xf32>, tensor<1x56x56x256xf32>) -> tensor<1x56x56x256xi1>
+    %49 = tosa.select %48, %47, %1 : (tensor<1x56x56x256xi1>, tensor<1x56x56x256xf32>, tensor<f32>) -> tensor<1x56x56x256xf32>
+    %50 = tosa.transpose %global12, %0 : (tensor<256x3x3x256xf32>, tensor<4xi64>) -> tensor<256x3x3x256xf32>
+    %51 = tosa.transpose_conv2d %49, %50, %cst_5 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 56, 56, 256>, stride = array<i64: 1, 1>} : (tensor<1x56x56x256xf32>, tensor<256x3x3x256xf32>, tensor<256xf32>) -> tensor<1x56x56x256xf32>
+    %52 = tosa.equal %global32, %global33 : (tensor<1x56x56x256xf32>, tensor<1x56x56x256xf32>) -> tensor<1x56x56x256xi1>
+    %53 = tosa.select %52, %51, %1 : (tensor<1x56x56x256xi1>, tensor<1x56x56x256xf32>, tensor<f32>) -> tensor<1x56x56x256xf32>
+    %54 = tosa.transpose_conv2d %53, %50, %cst_5 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 56, 56, 256>, stride = array<i64: 1, 1>} : (tensor<1x56x56x256xf32>, tensor<256x3x3x256xf32>, tensor<256xf32>) -> tensor<1x56x56x256xf32>
+    %55 = tosa.equal %global30, %global31 : (tensor<1x56x56x256xf32>, tensor<1x56x56x256xf32>) -> tensor<1x56x56x256xi1>
+    %56 = tosa.select %55, %54, %1 : (tensor<1x56x56x256xi1>, tensor<1x56x56x256xf32>, tensor<f32>) -> tensor<1x56x56x256xf32>
+    %57 = tosa.transpose_conv2d %56, %50, %cst_5 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 56, 56, 256>, stride = array<i64: 1, 1>} : (tensor<1x56x56x256xf32>, tensor<256x3x3x256xf32>, tensor<256xf32>) -> tensor<1x56x56x256xf32>
+    %58 = tosa.equal %global28, %global29 : (tensor<1x56x56x256xf32>, tensor<1x56x56x256xf32>) -> tensor<1x56x56x256xi1>
+    %59 = tosa.select %58, %57, %1 : (tensor<1x56x56x256xi1>, tensor<1x56x56x256xf32>, tensor<f32>) -> tensor<1x56x56x256xf32>
+    %60 = tosa.transpose %global13, %0 : (tensor<256x3x3x128xf32>, tensor<4xi64>) -> tensor<128x3x3x256xf32>
+    %61 = tosa.transpose_conv2d %59, %60, %cst_3 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 56, 56, 128>, stride = array<i64: 1, 1>} : (tensor<1x56x56x256xf32>, tensor<128x3x3x256xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
+    %62 = linalg.generic {indexing_maps = [#map, #map1, #map2, #map2, #map], iterator_types = ["parallel", "reduction", "reduction", "parallel", "reduction", "reduction"]} ins(%global26, %cst_8, %global27, %61 : tensor<1x112x112x128xf32>, tensor<2x2xf32>, tensor<1x56x56x128xf32>, tensor<1x56x56x128xf32>) outs(%cst_2 : tensor<1x112x112x128xf32>) {
+    ^bb0(%in: f32, %in_11: f32, %in_12: f32, %in_13: f32, %out: f32):
+      %80 = arith.cmpf oge, %in, %in_12 : f32
+      %81 = arith.select %80, %in_13, %cst_10 : f32
+      %82 = arith.addf %out, %81 : f32
+      linalg.yield %82 : f32
+    } -> tensor<1x112x112x128xf32>
+    %63 = tosa.equal %global25, %global26 : (tensor<1x112x112x128xf32>, tensor<1x112x112x128xf32>) -> tensor<1x112x112x128xi1>
+    %64 = tosa.select %63, %62, %1 : (tensor<1x112x112x128xi1>, tensor<1x112x112x128xf32>, tensor<f32>) -> tensor<1x112x112x128xf32>
+    %65 = tosa.transpose %global14, %0 : (tensor<128x3x3x128xf32>, tensor<4xi64>) -> tensor<128x3x3x128xf32>
+    %66 = tosa.transpose_conv2d %64, %65, %cst_3 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 112, 112, 128>, stride = array<i64: 1, 1>} : (tensor<1x112x112x128xf32>, tensor<128x3x3x128xf32>, tensor<128xf32>) -> tensor<1x112x112x128xf32>
+    %67 = tosa.equal %global23, %global24 : (tensor<1x112x112x128xf32>, tensor<1x112x112x128xf32>) -> tensor<1x112x112x128xi1>
+    %68 = tosa.select %67, %66, %1 : (tensor<1x112x112x128xi1>, tensor<1x112x112x128xf32>, tensor<f32>) -> tensor<1x112x112x128xf32>
+    %69 = tosa.transpose %global15, %0 : (tensor<128x3x3x64xf32>, tensor<4xi64>) -> tensor<64x3x3x128xf32>
+    %70 = tosa.transpose_conv2d %68, %69, %cst_1 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 112, 112, 64>, stride = array<i64: 1, 1>} : (tensor<1x112x112x128xf32>, tensor<64x3x3x128xf32>, tensor<64xf32>) -> tensor<1x112x112x64xf32>
+    %71 = linalg.generic {indexing_maps = [#map, #map1, #map2, #map2, #map], iterator_types = ["parallel", "reduction", "reduction", "parallel", "reduction", "reduction"]} ins(%global21, %cst_8, %global22, %70 : tensor<1x224x224x64xf32>, tensor<2x2xf32>, tensor<1x112x112x64xf32>, tensor<1x112x112x64xf32>) outs(%cst_0 : tensor<1x224x224x64xf32>) {
+    ^bb0(%in: f32, %in_11: f32, %in_12: f32, %in_13: f32, %out: f32):
+      %80 = arith.cmpf oge, %in, %in_12 : f32
+      %81 = arith.select %80, %in_13, %cst_10 : f32
+      %82 = arith.addf %out, %81 : f32
+      linalg.yield %82 : f32
+    } -> tensor<1x224x224x64xf32>
+    %72 = tosa.equal %global20, %global21 : (tensor<1x224x224x64xf32>, tensor<1x224x224x64xf32>) -> tensor<1x224x224x64xi1>
+    %73 = tosa.select %72, %71, %1 : (tensor<1x224x224x64xi1>, tensor<1x224x224x64xf32>, tensor<f32>) -> tensor<1x224x224x64xf32>
+    %74 = tosa.transpose %global16, %0 : (tensor<64x3x3x64xf32>, tensor<4xi64>) -> tensor<64x3x3x64xf32>
+    %75 = tosa.transpose_conv2d %73, %74, %cst_1 {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 224, 224, 64>, stride = array<i64: 1, 1>} : (tensor<1x224x224x64xf32>, tensor<64x3x3x64xf32>, tensor<64xf32>) -> tensor<1x224x224x64xf32>
+    %76 = tosa.equal %global18, %global19 : (tensor<1x224x224x64xf32>, tensor<1x224x224x64xf32>) -> tensor<1x224x224x64xi1>
+    %77 = tosa.select %76, %75, %1 : (tensor<1x224x224x64xi1>, tensor<1x224x224x64xf32>, tensor<f32>) -> tensor<1x224x224x64xf32>
+    %78 = tosa.transpose %global17, %0 : (tensor<64x3x3x3xf32>, tensor<4xi64>) -> tensor<3x3x3x64xf32>
+    %79 = tosa.transpose_conv2d %77, %78, %cst {out_pad = array<i64: -1, -1, -1, -1>, out_shape = array<i64: 1, 224, 224, 3>, stride = array<i64: 1, 1>} : (tensor<1x224x224x64xf32>, tensor<3x3x3x64xf32>, tensor<3xf32>) -> tensor<1x224x224x3xf32>
+    return %79 : tensor<1x224x224x3xf32>
+  }
+}
+

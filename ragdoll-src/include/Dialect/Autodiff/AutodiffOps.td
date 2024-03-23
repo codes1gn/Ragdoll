@@ -80,7 +80,7 @@ def Autodiff_VjpOp : Autodiff_Op<"vjp", [Pure]> {
   let arguments = (ins
     FlatSymbolRefAttr: $func,
     Variadic<AnyType>: $inputs,
-    DefaultValuedAttr<Autodiff_VjpStrategyAttr, "VjpStrategyFlags::recompute">: $strategy
+    DefaultValuedAttr<Autodiff_VjpStrategyAttr, "VjpStrategyFlags::invalid">: $strategy
   );
 
   let results = (outs

@@ -15,6 +15,7 @@ def VJP_STRATEGY_RECOMPUTE : I32BitEnumAttrCaseBit<"recompute", 0>;
 def VJP_STRATEGY_STORE : I32BitEnumAttrCaseBit<"storeall", 1>;
 def VJP_STRATEGY_CHECKPOINT : I32BitEnumAttrCaseBit<"checkpoint", 2>;
 def VJP_STRATEGY_HEURISTIC : I32BitEnumAttrCaseBit<"heuristic", 3>;
+def VJP_STRATEGY_INVALID : I32BitEnumAttrCaseBit<"invalid", 4>;
 
 // TODO clear unused code
 // Grammar candy for list of EnumAttrCases, in []
@@ -33,7 +34,8 @@ def VjpStrategyFlags : I32BitEnumAttr<
     VJP_STRATEGY_RECOMPUTE,
     VJP_STRATEGY_STORE,
     VJP_STRATEGY_CHECKPOINT,
-    VJP_STRATEGY_HEURISTIC
+    VJP_STRATEGY_HEURISTIC,
+    VJP_STRATEGY_INVALID
   ]
 > {
   let cppNamespace = "::mlir::ragdoll::autodiff";

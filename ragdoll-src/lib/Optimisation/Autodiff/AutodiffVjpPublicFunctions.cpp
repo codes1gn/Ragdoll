@@ -54,14 +54,20 @@ namespace autodiff {
 class AutodiffVjpPublicFunctions
     : public impl::AutodiffVjpPublicFunctionsBase<AutodiffVjpPublicFunctions> {
   void runOnOperation() override {
-    auto strategy = StringSwitch<VjpStrategyFlags>(this->strategy)
-                        .Case("storeall", VjpStrategyFlags::storeall)
-                        .Case("checkpoint", VjpStrategyFlags::checkpoint)
-                        .Case("heuristic", VjpStrategyFlags::heuristic)
-                        .Default(VjpStrategyFlags::recompute);
-
     OpBuilder builder{&getContext()};
     OpBuilder::InsertionGuard guard{builder};
+
+    // auto strategy = VjpStrategyFlags::invalid;
+    // if (strcmp(this->strategy.c_str(),"storeall")==0) {
+    //   strategy = VjpStrategyFlags::storeall;
+    //   llvm::errs() << "hello";
+    // }
+    auto strategy = llvm::StringSwitch<VjpStrategyFlags>(this->strategy)
+                        .Case("storeall", VjpStrategyFlags::storeall)
+                        .Case("recompute", VjpStrategyFlags::recompute)
+                        .Case("checkpoint", VjpStrategyFlags::checkpoint)
+                        .Case("heuristic", VjpStrategyFlags::heuristic)
+                        .Default(VjpStrategyFlags::invalid);
 
     getOperation()->walk([&](func::FuncOp func) {
       if (func.getVisibility() != SymbolTable::Visibility::Public) {

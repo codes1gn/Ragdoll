@@ -209,16 +209,16 @@ module {
     %118 = "tosa.sub"(%117, %110) : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
     %119 = "tosa.add"(%110, %109) : (tensor<1x64x1x1xf32>, tensor<f32>) -> tensor<1x64x1x1xf32>
     %120 = "tosa.rsqrt"(%119) : (tensor<1x64x1x1xf32>) -> tensor<1x64x1x1xf32>
-    %121 = "tosa.mul"(%118, %120) {shift = 0 : i32} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
-    %122 = "tosa.mul"(%121, %110) {shift = 0 : i32} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
+    %121 = "tosa.mul"(%118, %120) {shift = 0 : i8} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
+    %122 = "tosa.mul"(%121, %110) {shift = 0 : i8} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
     %123 = "tosa.add"(%122, %110) : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
     %124 = "tosa.clamp"(%123) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x64x112x112xf32>) -> tensor<1x64x112x112xf32>
     %125 = "tosa.transpose"(%124, %113) : (tensor<1x64x112x112xf32>, tensor<4xi64>) -> tensor<1x112x112x64xf32>
     %126 = "tosa.max_pool2d"(%125) {kernel = array<i64: 3, 3>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 2, 2>} : (tensor<1x112x112x64xf32>) -> tensor<1x56x56x64xf32>
     %127 = "tosa.transpose"(%126, %111) : (tensor<1x56x56x64xf32>, tensor<4xi64>) -> tensor<1x64x56x56xf32>
     %128 = "tosa.sub"(%127, %110) : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
-    %129 = "tosa.mul"(%128, %120) {shift = 0 : i32} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
-    %130 = "tosa.mul"(%129, %110) {shift = 0 : i32} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
+    %129 = "tosa.mul"(%128, %120) {shift = 0 : i8} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
+    %130 = "tosa.mul"(%129, %110) {shift = 0 : i8} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
     %131 = "tosa.add"(%130, %110) : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
     %132 = "tosa.clamp"(%131) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x64x56x56xf32>) -> tensor<1x64x56x56xf32>
     %133 = "tosa.transpose"(%132, %113) : (tensor<1x64x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x64xf32>
@@ -227,8 +227,8 @@ module {
     %136 = "tosa.sub"(%135, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %137 = "tosa.add"(%106, %109) : (tensor<1x128x1x1xf32>, tensor<f32>) -> tensor<1x128x1x1xf32>
     %138 = "tosa.rsqrt"(%137) : (tensor<1x128x1x1xf32>) -> tensor<1x128x1x1xf32>
-    %139 = "tosa.mul"(%136, %138) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %140 = "tosa.mul"(%139, %106) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %139 = "tosa.mul"(%136, %138) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %140 = "tosa.mul"(%139, %106) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %141 = "tosa.add"(%140, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %142 = "tosa.clamp"(%141) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %143 = "tosa.transpose"(%142, %113) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -239,16 +239,16 @@ module {
     %146 = "tosa.sub"(%inserted_slice_81, %103) : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
     %147 = "tosa.add"(%103, %109) : (tensor<1x96x1x1xf32>, tensor<f32>) -> tensor<1x96x1x1xf32>
     %148 = "tosa.rsqrt"(%147) : (tensor<1x96x1x1xf32>) -> tensor<1x96x1x1xf32>
-    %149 = "tosa.mul"(%146, %148) {shift = 0 : i32} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
-    %150 = "tosa.mul"(%149, %103) {shift = 0 : i32} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
+    %149 = "tosa.mul"(%146, %148) {shift = 0 : i8} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
+    %150 = "tosa.mul"(%149, %103) {shift = 0 : i8} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
     %151 = "tosa.add"(%150, %103) : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
     %152 = "tosa.clamp"(%151) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x96x56x56xf32>) -> tensor<1x96x56x56xf32>
     %153 = "tosa.transpose"(%152, %113) : (tensor<1x96x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x96xf32>
     %154 = "tosa.conv2d"(%153, %102, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x96xf32>, tensor<128x1x1x96xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %155 = "tosa.transpose"(%154, %111) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %156 = "tosa.sub"(%155, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %157 = "tosa.mul"(%156, %138) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %158 = "tosa.mul"(%157, %106) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %157 = "tosa.mul"(%156, %138) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %158 = "tosa.mul"(%157, %106) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %159 = "tosa.add"(%158, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %160 = "tosa.clamp"(%159) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %161 = "tosa.transpose"(%160, %113) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -258,16 +258,16 @@ module {
     %inserted_slice_83 = tensor.insert_slice %145 into %inserted_slice_82[0, 64, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x32x56x56xf32> into tensor<1x128x56x56xf32>
     %inserted_slice_84 = tensor.insert_slice %163 into %inserted_slice_83[0, 96, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x32x56x56xf32> into tensor<1x128x56x56xf32>
     %164 = "tosa.sub"(%inserted_slice_84, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %165 = "tosa.mul"(%164, %138) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %166 = "tosa.mul"(%165, %106) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %165 = "tosa.mul"(%164, %138) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %166 = "tosa.mul"(%165, %106) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %167 = "tosa.add"(%166, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %168 = "tosa.clamp"(%167) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %169 = "tosa.transpose"(%168, %113) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
     %170 = "tosa.conv2d"(%169, %101, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x128xf32>, tensor<128x1x1x128xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %171 = "tosa.transpose"(%170, %111) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %172 = "tosa.sub"(%171, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %173 = "tosa.mul"(%172, %138) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %174 = "tosa.mul"(%173, %106) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %173 = "tosa.mul"(%172, %138) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %174 = "tosa.mul"(%173, %106) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %175 = "tosa.add"(%174, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %176 = "tosa.clamp"(%175) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %177 = "tosa.transpose"(%176, %113) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -280,16 +280,16 @@ module {
     %180 = "tosa.sub"(%inserted_slice_88, %100) : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
     %181 = "tosa.add"(%100, %109) : (tensor<1x160x1x1xf32>, tensor<f32>) -> tensor<1x160x1x1xf32>
     %182 = "tosa.rsqrt"(%181) : (tensor<1x160x1x1xf32>) -> tensor<1x160x1x1xf32>
-    %183 = "tosa.mul"(%180, %182) {shift = 0 : i32} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
-    %184 = "tosa.mul"(%183, %100) {shift = 0 : i32} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
+    %183 = "tosa.mul"(%180, %182) {shift = 0 : i8} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
+    %184 = "tosa.mul"(%183, %100) {shift = 0 : i8} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
     %185 = "tosa.add"(%184, %100) : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
     %186 = "tosa.clamp"(%185) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x160x56x56xf32>) -> tensor<1x160x56x56xf32>
     %187 = "tosa.transpose"(%186, %113) : (tensor<1x160x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x160xf32>
     %188 = "tosa.conv2d"(%187, %99, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x160xf32>, tensor<128x1x1x160xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %189 = "tosa.transpose"(%188, %111) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %190 = "tosa.sub"(%189, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %191 = "tosa.mul"(%190, %138) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %192 = "tosa.mul"(%191, %106) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %191 = "tosa.mul"(%190, %138) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %192 = "tosa.mul"(%191, %106) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %193 = "tosa.add"(%192, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %194 = "tosa.clamp"(%193) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %195 = "tosa.transpose"(%194, %113) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -303,16 +303,16 @@ module {
     %198 = "tosa.sub"(%inserted_slice_93, %98) : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
     %199 = "tosa.add"(%98, %109) : (tensor<1x192x1x1xf32>, tensor<f32>) -> tensor<1x192x1x1xf32>
     %200 = "tosa.rsqrt"(%199) : (tensor<1x192x1x1xf32>) -> tensor<1x192x1x1xf32>
-    %201 = "tosa.mul"(%198, %200) {shift = 0 : i32} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
-    %202 = "tosa.mul"(%201, %98) {shift = 0 : i32} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
+    %201 = "tosa.mul"(%198, %200) {shift = 0 : i8} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
+    %202 = "tosa.mul"(%201, %98) {shift = 0 : i8} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
     %203 = "tosa.add"(%202, %98) : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
     %204 = "tosa.clamp"(%203) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x192x56x56xf32>) -> tensor<1x192x56x56xf32>
     %205 = "tosa.transpose"(%204, %113) : (tensor<1x192x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x192xf32>
     %206 = "tosa.conv2d"(%205, %97, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x192xf32>, tensor<128x1x1x192xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %207 = "tosa.transpose"(%206, %111) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %208 = "tosa.sub"(%207, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %209 = "tosa.mul"(%208, %138) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %210 = "tosa.mul"(%209, %106) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %209 = "tosa.mul"(%208, %138) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %210 = "tosa.mul"(%209, %106) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %211 = "tosa.add"(%210, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %212 = "tosa.clamp"(%211) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %213 = "tosa.transpose"(%212, %113) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -327,16 +327,16 @@ module {
     %216 = "tosa.sub"(%inserted_slice_99, %96) : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
     %217 = "tosa.add"(%96, %109) : (tensor<1x224x1x1xf32>, tensor<f32>) -> tensor<1x224x1x1xf32>
     %218 = "tosa.rsqrt"(%217) : (tensor<1x224x1x1xf32>) -> tensor<1x224x1x1xf32>
-    %219 = "tosa.mul"(%216, %218) {shift = 0 : i32} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
-    %220 = "tosa.mul"(%219, %96) {shift = 0 : i32} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
+    %219 = "tosa.mul"(%216, %218) {shift = 0 : i8} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
+    %220 = "tosa.mul"(%219, %96) {shift = 0 : i8} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
     %221 = "tosa.add"(%220, %96) : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
     %222 = "tosa.clamp"(%221) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x224x56x56xf32>) -> tensor<1x224x56x56xf32>
     %223 = "tosa.transpose"(%222, %113) : (tensor<1x224x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x224xf32>
     %224 = "tosa.conv2d"(%223, %95, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x224xf32>, tensor<128x1x1x224xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %225 = "tosa.transpose"(%224, %111) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %226 = "tosa.sub"(%225, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %227 = "tosa.mul"(%226, %138) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %228 = "tosa.mul"(%227, %106) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %227 = "tosa.mul"(%226, %138) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %228 = "tosa.mul"(%227, %106) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %229 = "tosa.add"(%228, %106) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %230 = "tosa.clamp"(%229) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %231 = "tosa.transpose"(%230, %113) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -352,8 +352,8 @@ module {
     %234 = "tosa.sub"(%inserted_slice_106, %94) : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
     %235 = "tosa.add"(%94, %109) : (tensor<1x256x1x1xf32>, tensor<f32>) -> tensor<1x256x1x1xf32>
     %236 = "tosa.rsqrt"(%235) : (tensor<1x256x1x1xf32>) -> tensor<1x256x1x1xf32>
-    %237 = "tosa.mul"(%234, %236) {shift = 0 : i32} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
-    %238 = "tosa.mul"(%237, %94) {shift = 0 : i32} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
+    %237 = "tosa.mul"(%234, %236) {shift = 0 : i8} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
+    %238 = "tosa.mul"(%237, %94) {shift = 0 : i8} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
     %239 = "tosa.add"(%238, %94) : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
     %240 = "tosa.clamp"(%239) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x256x56x56xf32>) -> tensor<1x256x56x56xf32>
     %241 = "tosa.transpose"(%240, %113) : (tensor<1x256x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x256xf32>
@@ -361,16 +361,16 @@ module {
     %243 = "tosa.avg_pool2d"(%242) {acc_type = f32, kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x56x56x128xf32>) -> tensor<1x28x28x128xf32>
     %244 = "tosa.transpose"(%243, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %245 = "tosa.sub"(%244, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %246 = "tosa.mul"(%245, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %247 = "tosa.mul"(%246, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %246 = "tosa.mul"(%245, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %247 = "tosa.mul"(%246, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %248 = "tosa.add"(%247, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %249 = "tosa.clamp"(%248) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %250 = "tosa.transpose"(%249, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %251 = "tosa.conv2d"(%250, %101, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<128x1x1x128xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %252 = "tosa.transpose"(%251, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %253 = "tosa.sub"(%252, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %254 = "tosa.mul"(%253, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %255 = "tosa.mul"(%254, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %254 = "tosa.mul"(%253, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %255 = "tosa.mul"(%254, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %256 = "tosa.add"(%255, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %257 = "tosa.clamp"(%256) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %258 = "tosa.transpose"(%257, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -379,16 +379,16 @@ module {
     %inserted_slice_107 = tensor.insert_slice %244 into %cst_5[0, 0, 0, 0] [1, 128, 28, 28] [1, 1, 1, 1] : tensor<1x128x28x28xf32> into tensor<1x160x28x28xf32>
     %inserted_slice_108 = tensor.insert_slice %260 into %inserted_slice_107[0, 128, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x160x28x28xf32>
     %261 = "tosa.sub"(%inserted_slice_108, %100) : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
-    %262 = "tosa.mul"(%261, %182) {shift = 0 : i32} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
-    %263 = "tosa.mul"(%262, %100) {shift = 0 : i32} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
+    %262 = "tosa.mul"(%261, %182) {shift = 0 : i8} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
+    %263 = "tosa.mul"(%262, %100) {shift = 0 : i8} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
     %264 = "tosa.add"(%263, %100) : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
     %265 = "tosa.clamp"(%264) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x160x28x28xf32>) -> tensor<1x160x28x28xf32>
     %266 = "tosa.transpose"(%265, %113) : (tensor<1x160x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x160xf32>
     %267 = "tosa.conv2d"(%266, %99, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x160xf32>, tensor<128x1x1x160xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %268 = "tosa.transpose"(%267, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %269 = "tosa.sub"(%268, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %270 = "tosa.mul"(%269, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %271 = "tosa.mul"(%270, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %270 = "tosa.mul"(%269, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %271 = "tosa.mul"(%270, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %272 = "tosa.add"(%271, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %273 = "tosa.clamp"(%272) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %274 = "tosa.transpose"(%273, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -398,16 +398,16 @@ module {
     %inserted_slice_110 = tensor.insert_slice %260 into %inserted_slice_109[0, 128, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x192x28x28xf32>
     %inserted_slice_111 = tensor.insert_slice %276 into %inserted_slice_110[0, 160, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x192x28x28xf32>
     %277 = "tosa.sub"(%inserted_slice_111, %98) : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
-    %278 = "tosa.mul"(%277, %200) {shift = 0 : i32} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
-    %279 = "tosa.mul"(%278, %98) {shift = 0 : i32} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
+    %278 = "tosa.mul"(%277, %200) {shift = 0 : i8} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
+    %279 = "tosa.mul"(%278, %98) {shift = 0 : i8} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
     %280 = "tosa.add"(%279, %98) : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
     %281 = "tosa.clamp"(%280) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x192x28x28xf32>) -> tensor<1x192x28x28xf32>
     %282 = "tosa.transpose"(%281, %113) : (tensor<1x192x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x192xf32>
     %283 = "tosa.conv2d"(%282, %97, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x192xf32>, tensor<128x1x1x192xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %284 = "tosa.transpose"(%283, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %285 = "tosa.sub"(%284, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %286 = "tosa.mul"(%285, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %287 = "tosa.mul"(%286, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %286 = "tosa.mul"(%285, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %287 = "tosa.mul"(%286, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %288 = "tosa.add"(%287, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %289 = "tosa.clamp"(%288) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %290 = "tosa.transpose"(%289, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -418,16 +418,16 @@ module {
     %inserted_slice_114 = tensor.insert_slice %276 into %inserted_slice_113[0, 160, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x224x28x28xf32>
     %inserted_slice_115 = tensor.insert_slice %292 into %inserted_slice_114[0, 192, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x224x28x28xf32>
     %293 = "tosa.sub"(%inserted_slice_115, %96) : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
-    %294 = "tosa.mul"(%293, %218) {shift = 0 : i32} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
-    %295 = "tosa.mul"(%294, %96) {shift = 0 : i32} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
+    %294 = "tosa.mul"(%293, %218) {shift = 0 : i8} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
+    %295 = "tosa.mul"(%294, %96) {shift = 0 : i8} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
     %296 = "tosa.add"(%295, %96) : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
     %297 = "tosa.clamp"(%296) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x224x28x28xf32>) -> tensor<1x224x28x28xf32>
     %298 = "tosa.transpose"(%297, %113) : (tensor<1x224x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x224xf32>
     %299 = "tosa.conv2d"(%298, %95, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x224xf32>, tensor<128x1x1x224xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %300 = "tosa.transpose"(%299, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %301 = "tosa.sub"(%300, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %302 = "tosa.mul"(%301, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %303 = "tosa.mul"(%302, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %302 = "tosa.mul"(%301, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %303 = "tosa.mul"(%302, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %304 = "tosa.add"(%303, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %305 = "tosa.clamp"(%304) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %306 = "tosa.transpose"(%305, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -439,16 +439,16 @@ module {
     %inserted_slice_119 = tensor.insert_slice %292 into %inserted_slice_118[0, 192, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x256x28x28xf32>
     %inserted_slice_120 = tensor.insert_slice %308 into %inserted_slice_119[0, 224, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x256x28x28xf32>
     %309 = "tosa.sub"(%inserted_slice_120, %94) : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
-    %310 = "tosa.mul"(%309, %236) {shift = 0 : i32} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
-    %311 = "tosa.mul"(%310, %94) {shift = 0 : i32} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
+    %310 = "tosa.mul"(%309, %236) {shift = 0 : i8} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
+    %311 = "tosa.mul"(%310, %94) {shift = 0 : i8} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
     %312 = "tosa.add"(%311, %94) : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
     %313 = "tosa.clamp"(%312) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x256x28x28xf32>) -> tensor<1x256x28x28xf32>
     %314 = "tosa.transpose"(%313, %113) : (tensor<1x256x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x256xf32>
     %315 = "tosa.conv2d"(%314, %93, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x256xf32>, tensor<128x1x1x256xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %316 = "tosa.transpose"(%315, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %317 = "tosa.sub"(%316, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %318 = "tosa.mul"(%317, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %319 = "tosa.mul"(%318, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %318 = "tosa.mul"(%317, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %319 = "tosa.mul"(%318, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %320 = "tosa.add"(%319, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %321 = "tosa.clamp"(%320) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %322 = "tosa.transpose"(%321, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -463,16 +463,16 @@ module {
     %325 = "tosa.sub"(%inserted_slice_126, %92) : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
     %326 = "tosa.add"(%92, %109) : (tensor<1x288x1x1xf32>, tensor<f32>) -> tensor<1x288x1x1xf32>
     %327 = "tosa.rsqrt"(%326) : (tensor<1x288x1x1xf32>) -> tensor<1x288x1x1xf32>
-    %328 = "tosa.mul"(%325, %327) {shift = 0 : i32} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
-    %329 = "tosa.mul"(%328, %92) {shift = 0 : i32} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
+    %328 = "tosa.mul"(%325, %327) {shift = 0 : i8} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
+    %329 = "tosa.mul"(%328, %92) {shift = 0 : i8} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
     %330 = "tosa.add"(%329, %92) : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
     %331 = "tosa.clamp"(%330) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x288x28x28xf32>) -> tensor<1x288x28x28xf32>
     %332 = "tosa.transpose"(%331, %113) : (tensor<1x288x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x288xf32>
     %333 = "tosa.conv2d"(%332, %91, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x288xf32>, tensor<128x1x1x288xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %334 = "tosa.transpose"(%333, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %335 = "tosa.sub"(%334, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %336 = "tosa.mul"(%335, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %337 = "tosa.mul"(%336, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %336 = "tosa.mul"(%335, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %337 = "tosa.mul"(%336, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %338 = "tosa.add"(%337, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %339 = "tosa.clamp"(%338) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %340 = "tosa.transpose"(%339, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -488,16 +488,16 @@ module {
     %343 = "tosa.sub"(%inserted_slice_133, %90) : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
     %344 = "tosa.add"(%90, %109) : (tensor<1x320x1x1xf32>, tensor<f32>) -> tensor<1x320x1x1xf32>
     %345 = "tosa.rsqrt"(%344) : (tensor<1x320x1x1xf32>) -> tensor<1x320x1x1xf32>
-    %346 = "tosa.mul"(%343, %345) {shift = 0 : i32} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
-    %347 = "tosa.mul"(%346, %90) {shift = 0 : i32} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
+    %346 = "tosa.mul"(%343, %345) {shift = 0 : i8} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
+    %347 = "tosa.mul"(%346, %90) {shift = 0 : i8} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
     %348 = "tosa.add"(%347, %90) : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
     %349 = "tosa.clamp"(%348) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x320x28x28xf32>) -> tensor<1x320x28x28xf32>
     %350 = "tosa.transpose"(%349, %113) : (tensor<1x320x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x320xf32>
     %351 = "tosa.conv2d"(%350, %89, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x320xf32>, tensor<128x1x1x320xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %352 = "tosa.transpose"(%351, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %353 = "tosa.sub"(%352, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %354 = "tosa.mul"(%353, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %355 = "tosa.mul"(%354, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %354 = "tosa.mul"(%353, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %355 = "tosa.mul"(%354, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %356 = "tosa.add"(%355, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %357 = "tosa.clamp"(%356) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %358 = "tosa.transpose"(%357, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -514,16 +514,16 @@ module {
     %361 = "tosa.sub"(%inserted_slice_141, %88) : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
     %362 = "tosa.add"(%88, %109) : (tensor<1x352x1x1xf32>, tensor<f32>) -> tensor<1x352x1x1xf32>
     %363 = "tosa.rsqrt"(%362) : (tensor<1x352x1x1xf32>) -> tensor<1x352x1x1xf32>
-    %364 = "tosa.mul"(%361, %363) {shift = 0 : i32} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
-    %365 = "tosa.mul"(%364, %88) {shift = 0 : i32} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
+    %364 = "tosa.mul"(%361, %363) {shift = 0 : i8} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
+    %365 = "tosa.mul"(%364, %88) {shift = 0 : i8} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
     %366 = "tosa.add"(%365, %88) : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
     %367 = "tosa.clamp"(%366) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x352x28x28xf32>) -> tensor<1x352x28x28xf32>
     %368 = "tosa.transpose"(%367, %113) : (tensor<1x352x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x352xf32>
     %369 = "tosa.conv2d"(%368, %87, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x352xf32>, tensor<128x1x1x352xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %370 = "tosa.transpose"(%369, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %371 = "tosa.sub"(%370, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %372 = "tosa.mul"(%371, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %373 = "tosa.mul"(%372, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %372 = "tosa.mul"(%371, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %373 = "tosa.mul"(%372, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %374 = "tosa.add"(%373, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %375 = "tosa.clamp"(%374) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %376 = "tosa.transpose"(%375, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -541,16 +541,16 @@ module {
     %379 = "tosa.sub"(%inserted_slice_150, %86) : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
     %380 = "tosa.add"(%86, %109) : (tensor<1x384x1x1xf32>, tensor<f32>) -> tensor<1x384x1x1xf32>
     %381 = "tosa.rsqrt"(%380) : (tensor<1x384x1x1xf32>) -> tensor<1x384x1x1xf32>
-    %382 = "tosa.mul"(%379, %381) {shift = 0 : i32} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
-    %383 = "tosa.mul"(%382, %86) {shift = 0 : i32} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
+    %382 = "tosa.mul"(%379, %381) {shift = 0 : i8} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
+    %383 = "tosa.mul"(%382, %86) {shift = 0 : i8} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
     %384 = "tosa.add"(%383, %86) : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
     %385 = "tosa.clamp"(%384) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x384x28x28xf32>) -> tensor<1x384x28x28xf32>
     %386 = "tosa.transpose"(%385, %113) : (tensor<1x384x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x384xf32>
     %387 = "tosa.conv2d"(%386, %85, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x384xf32>, tensor<128x1x1x384xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %388 = "tosa.transpose"(%387, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %389 = "tosa.sub"(%388, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %390 = "tosa.mul"(%389, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %391 = "tosa.mul"(%390, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %390 = "tosa.mul"(%389, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %391 = "tosa.mul"(%390, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %392 = "tosa.add"(%391, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %393 = "tosa.clamp"(%392) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %394 = "tosa.transpose"(%393, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -569,16 +569,16 @@ module {
     %397 = "tosa.sub"(%inserted_slice_160, %84) : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
     %398 = "tosa.add"(%84, %109) : (tensor<1x416x1x1xf32>, tensor<f32>) -> tensor<1x416x1x1xf32>
     %399 = "tosa.rsqrt"(%398) : (tensor<1x416x1x1xf32>) -> tensor<1x416x1x1xf32>
-    %400 = "tosa.mul"(%397, %399) {shift = 0 : i32} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
-    %401 = "tosa.mul"(%400, %84) {shift = 0 : i32} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
+    %400 = "tosa.mul"(%397, %399) {shift = 0 : i8} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
+    %401 = "tosa.mul"(%400, %84) {shift = 0 : i8} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
     %402 = "tosa.add"(%401, %84) : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
     %403 = "tosa.clamp"(%402) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x416x28x28xf32>) -> tensor<1x416x28x28xf32>
     %404 = "tosa.transpose"(%403, %113) : (tensor<1x416x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x416xf32>
     %405 = "tosa.conv2d"(%404, %83, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x416xf32>, tensor<128x1x1x416xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %406 = "tosa.transpose"(%405, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %407 = "tosa.sub"(%406, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %408 = "tosa.mul"(%407, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %409 = "tosa.mul"(%408, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %408 = "tosa.mul"(%407, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %409 = "tosa.mul"(%408, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %410 = "tosa.add"(%409, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %411 = "tosa.clamp"(%410) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %412 = "tosa.transpose"(%411, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -598,16 +598,16 @@ module {
     %415 = "tosa.sub"(%inserted_slice_171, %82) : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
     %416 = "tosa.add"(%82, %109) : (tensor<1x448x1x1xf32>, tensor<f32>) -> tensor<1x448x1x1xf32>
     %417 = "tosa.rsqrt"(%416) : (tensor<1x448x1x1xf32>) -> tensor<1x448x1x1xf32>
-    %418 = "tosa.mul"(%415, %417) {shift = 0 : i32} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
-    %419 = "tosa.mul"(%418, %82) {shift = 0 : i32} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
+    %418 = "tosa.mul"(%415, %417) {shift = 0 : i8} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
+    %419 = "tosa.mul"(%418, %82) {shift = 0 : i8} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
     %420 = "tosa.add"(%419, %82) : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
     %421 = "tosa.clamp"(%420) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x448x28x28xf32>) -> tensor<1x448x28x28xf32>
     %422 = "tosa.transpose"(%421, %113) : (tensor<1x448x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x448xf32>
     %423 = "tosa.conv2d"(%422, %81, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x448xf32>, tensor<128x1x1x448xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %424 = "tosa.transpose"(%423, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %425 = "tosa.sub"(%424, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %426 = "tosa.mul"(%425, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %427 = "tosa.mul"(%426, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %426 = "tosa.mul"(%425, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %427 = "tosa.mul"(%426, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %428 = "tosa.add"(%427, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %429 = "tosa.clamp"(%428) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %430 = "tosa.transpose"(%429, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -628,16 +628,16 @@ module {
     %433 = "tosa.sub"(%inserted_slice_183, %80) : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
     %434 = "tosa.add"(%80, %109) : (tensor<1x480x1x1xf32>, tensor<f32>) -> tensor<1x480x1x1xf32>
     %435 = "tosa.rsqrt"(%434) : (tensor<1x480x1x1xf32>) -> tensor<1x480x1x1xf32>
-    %436 = "tosa.mul"(%433, %435) {shift = 0 : i32} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
-    %437 = "tosa.mul"(%436, %80) {shift = 0 : i32} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
+    %436 = "tosa.mul"(%433, %435) {shift = 0 : i8} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
+    %437 = "tosa.mul"(%436, %80) {shift = 0 : i8} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
     %438 = "tosa.add"(%437, %80) : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
     %439 = "tosa.clamp"(%438) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x480x28x28xf32>) -> tensor<1x480x28x28xf32>
     %440 = "tosa.transpose"(%439, %113) : (tensor<1x480x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x480xf32>
     %441 = "tosa.conv2d"(%440, %79, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x480xf32>, tensor<128x1x1x480xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %442 = "tosa.transpose"(%441, %111) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %443 = "tosa.sub"(%442, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %444 = "tosa.mul"(%443, %138) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %445 = "tosa.mul"(%444, %106) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %444 = "tosa.mul"(%443, %138) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %445 = "tosa.mul"(%444, %106) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %446 = "tosa.add"(%445, %106) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %447 = "tosa.clamp"(%446) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %448 = "tosa.transpose"(%447, %113) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -659,8 +659,8 @@ module {
     %451 = "tosa.sub"(%inserted_slice_196, %78) : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
     %452 = "tosa.add"(%78, %109) : (tensor<1x512x1x1xf32>, tensor<f32>) -> tensor<1x512x1x1xf32>
     %453 = "tosa.rsqrt"(%452) : (tensor<1x512x1x1xf32>) -> tensor<1x512x1x1xf32>
-    %454 = "tosa.mul"(%451, %453) {shift = 0 : i32} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
-    %455 = "tosa.mul"(%454, %78) {shift = 0 : i32} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
+    %454 = "tosa.mul"(%451, %453) {shift = 0 : i8} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
+    %455 = "tosa.mul"(%454, %78) {shift = 0 : i8} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
     %456 = "tosa.add"(%455, %78) : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
     %457 = "tosa.clamp"(%456) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x512x28x28xf32>) -> tensor<1x512x28x28xf32>
     %458 = "tosa.transpose"(%457, %113) : (tensor<1x512x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x512xf32>
@@ -668,16 +668,16 @@ module {
     %460 = "tosa.avg_pool2d"(%459) {acc_type = f32, kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x28x28x256xf32>) -> tensor<1x14x14x256xf32>
     %461 = "tosa.transpose"(%460, %111) : (tensor<1x14x14x256xf32>, tensor<4xi64>) -> tensor<1x256x14x14xf32>
     %462 = "tosa.sub"(%461, %94) : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
-    %463 = "tosa.mul"(%462, %236) {shift = 0 : i32} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
-    %464 = "tosa.mul"(%463, %94) {shift = 0 : i32} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
+    %463 = "tosa.mul"(%462, %236) {shift = 0 : i8} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
+    %464 = "tosa.mul"(%463, %94) {shift = 0 : i8} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
     %465 = "tosa.add"(%464, %94) : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
     %466 = "tosa.clamp"(%465) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x256x14x14xf32>) -> tensor<1x256x14x14xf32>
     %467 = "tosa.transpose"(%466, %113) : (tensor<1x256x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x256xf32>
     %468 = "tosa.conv2d"(%467, %93, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x256xf32>, tensor<128x1x1x256xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %469 = "tosa.transpose"(%468, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %470 = "tosa.sub"(%469, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %471 = "tosa.mul"(%470, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %472 = "tosa.mul"(%471, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %471 = "tosa.mul"(%470, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %472 = "tosa.mul"(%471, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %473 = "tosa.add"(%472, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %474 = "tosa.clamp"(%473) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %475 = "tosa.transpose"(%474, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -686,16 +686,16 @@ module {
     %inserted_slice_197 = tensor.insert_slice %461 into %cst_17[0, 0, 0, 0] [1, 256, 14, 14] [1, 1, 1, 1] : tensor<1x256x14x14xf32> into tensor<1x288x14x14xf32>
     %inserted_slice_198 = tensor.insert_slice %477 into %inserted_slice_197[0, 256, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x288x14x14xf32>
     %478 = "tosa.sub"(%inserted_slice_198, %92) : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
-    %479 = "tosa.mul"(%478, %327) {shift = 0 : i32} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
-    %480 = "tosa.mul"(%479, %92) {shift = 0 : i32} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
+    %479 = "tosa.mul"(%478, %327) {shift = 0 : i8} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
+    %480 = "tosa.mul"(%479, %92) {shift = 0 : i8} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
     %481 = "tosa.add"(%480, %92) : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
     %482 = "tosa.clamp"(%481) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x288x14x14xf32>) -> tensor<1x288x14x14xf32>
     %483 = "tosa.transpose"(%482, %113) : (tensor<1x288x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x288xf32>
     %484 = "tosa.conv2d"(%483, %91, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x288xf32>, tensor<128x1x1x288xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %485 = "tosa.transpose"(%484, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %486 = "tosa.sub"(%485, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %487 = "tosa.mul"(%486, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %488 = "tosa.mul"(%487, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %487 = "tosa.mul"(%486, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %488 = "tosa.mul"(%487, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %489 = "tosa.add"(%488, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %490 = "tosa.clamp"(%489) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %491 = "tosa.transpose"(%490, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -705,16 +705,16 @@ module {
     %inserted_slice_200 = tensor.insert_slice %477 into %inserted_slice_199[0, 256, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x320x14x14xf32>
     %inserted_slice_201 = tensor.insert_slice %493 into %inserted_slice_200[0, 288, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x320x14x14xf32>
     %494 = "tosa.sub"(%inserted_slice_201, %90) : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
-    %495 = "tosa.mul"(%494, %345) {shift = 0 : i32} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
-    %496 = "tosa.mul"(%495, %90) {shift = 0 : i32} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
+    %495 = "tosa.mul"(%494, %345) {shift = 0 : i8} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
+    %496 = "tosa.mul"(%495, %90) {shift = 0 : i8} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
     %497 = "tosa.add"(%496, %90) : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
     %498 = "tosa.clamp"(%497) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x320x14x14xf32>) -> tensor<1x320x14x14xf32>
     %499 = "tosa.transpose"(%498, %113) : (tensor<1x320x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x320xf32>
     %500 = "tosa.conv2d"(%499, %89, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x320xf32>, tensor<128x1x1x320xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %501 = "tosa.transpose"(%500, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %502 = "tosa.sub"(%501, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %503 = "tosa.mul"(%502, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %504 = "tosa.mul"(%503, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %503 = "tosa.mul"(%502, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %504 = "tosa.mul"(%503, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %505 = "tosa.add"(%504, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %506 = "tosa.clamp"(%505) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %507 = "tosa.transpose"(%506, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -725,16 +725,16 @@ module {
     %inserted_slice_204 = tensor.insert_slice %493 into %inserted_slice_203[0, 288, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x352x14x14xf32>
     %inserted_slice_205 = tensor.insert_slice %509 into %inserted_slice_204[0, 320, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x352x14x14xf32>
     %510 = "tosa.sub"(%inserted_slice_205, %88) : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
-    %511 = "tosa.mul"(%510, %363) {shift = 0 : i32} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
-    %512 = "tosa.mul"(%511, %88) {shift = 0 : i32} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
+    %511 = "tosa.mul"(%510, %363) {shift = 0 : i8} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
+    %512 = "tosa.mul"(%511, %88) {shift = 0 : i8} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
     %513 = "tosa.add"(%512, %88) : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
     %514 = "tosa.clamp"(%513) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x352x14x14xf32>) -> tensor<1x352x14x14xf32>
     %515 = "tosa.transpose"(%514, %113) : (tensor<1x352x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x352xf32>
     %516 = "tosa.conv2d"(%515, %87, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x352xf32>, tensor<128x1x1x352xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %517 = "tosa.transpose"(%516, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %518 = "tosa.sub"(%517, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %519 = "tosa.mul"(%518, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %520 = "tosa.mul"(%519, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %519 = "tosa.mul"(%518, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %520 = "tosa.mul"(%519, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %521 = "tosa.add"(%520, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %522 = "tosa.clamp"(%521) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %523 = "tosa.transpose"(%522, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -746,16 +746,16 @@ module {
     %inserted_slice_209 = tensor.insert_slice %509 into %inserted_slice_208[0, 320, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x384x14x14xf32>
     %inserted_slice_210 = tensor.insert_slice %525 into %inserted_slice_209[0, 352, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x384x14x14xf32>
     %526 = "tosa.sub"(%inserted_slice_210, %86) : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
-    %527 = "tosa.mul"(%526, %381) {shift = 0 : i32} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
-    %528 = "tosa.mul"(%527, %86) {shift = 0 : i32} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
+    %527 = "tosa.mul"(%526, %381) {shift = 0 : i8} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
+    %528 = "tosa.mul"(%527, %86) {shift = 0 : i8} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
     %529 = "tosa.add"(%528, %86) : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
     %530 = "tosa.clamp"(%529) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x384x14x14xf32>) -> tensor<1x384x14x14xf32>
     %531 = "tosa.transpose"(%530, %113) : (tensor<1x384x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x384xf32>
     %532 = "tosa.conv2d"(%531, %85, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x384xf32>, tensor<128x1x1x384xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %533 = "tosa.transpose"(%532, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %534 = "tosa.sub"(%533, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %535 = "tosa.mul"(%534, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %536 = "tosa.mul"(%535, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %535 = "tosa.mul"(%534, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %536 = "tosa.mul"(%535, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %537 = "tosa.add"(%536, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %538 = "tosa.clamp"(%537) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %539 = "tosa.transpose"(%538, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -768,16 +768,16 @@ module {
     %inserted_slice_215 = tensor.insert_slice %525 into %inserted_slice_214[0, 352, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x416x14x14xf32>
     %inserted_slice_216 = tensor.insert_slice %541 into %inserted_slice_215[0, 384, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x416x14x14xf32>
     %542 = "tosa.sub"(%inserted_slice_216, %84) : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
-    %543 = "tosa.mul"(%542, %399) {shift = 0 : i32} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
-    %544 = "tosa.mul"(%543, %84) {shift = 0 : i32} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
+    %543 = "tosa.mul"(%542, %399) {shift = 0 : i8} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
+    %544 = "tosa.mul"(%543, %84) {shift = 0 : i8} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
     %545 = "tosa.add"(%544, %84) : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
     %546 = "tosa.clamp"(%545) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x416x14x14xf32>) -> tensor<1x416x14x14xf32>
     %547 = "tosa.transpose"(%546, %113) : (tensor<1x416x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x416xf32>
     %548 = "tosa.conv2d"(%547, %83, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x416xf32>, tensor<128x1x1x416xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %549 = "tosa.transpose"(%548, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %550 = "tosa.sub"(%549, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %551 = "tosa.mul"(%550, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %552 = "tosa.mul"(%551, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %551 = "tosa.mul"(%550, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %552 = "tosa.mul"(%551, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %553 = "tosa.add"(%552, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %554 = "tosa.clamp"(%553) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %555 = "tosa.transpose"(%554, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -791,16 +791,16 @@ module {
     %inserted_slice_222 = tensor.insert_slice %541 into %inserted_slice_221[0, 384, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x448x14x14xf32>
     %inserted_slice_223 = tensor.insert_slice %557 into %inserted_slice_222[0, 416, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x448x14x14xf32>
     %558 = "tosa.sub"(%inserted_slice_223, %82) : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
-    %559 = "tosa.mul"(%558, %417) {shift = 0 : i32} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
-    %560 = "tosa.mul"(%559, %82) {shift = 0 : i32} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
+    %559 = "tosa.mul"(%558, %417) {shift = 0 : i8} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
+    %560 = "tosa.mul"(%559, %82) {shift = 0 : i8} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
     %561 = "tosa.add"(%560, %82) : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
     %562 = "tosa.clamp"(%561) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x448x14x14xf32>) -> tensor<1x448x14x14xf32>
     %563 = "tosa.transpose"(%562, %113) : (tensor<1x448x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x448xf32>
     %564 = "tosa.conv2d"(%563, %81, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x448xf32>, tensor<128x1x1x448xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %565 = "tosa.transpose"(%564, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %566 = "tosa.sub"(%565, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %567 = "tosa.mul"(%566, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %568 = "tosa.mul"(%567, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %567 = "tosa.mul"(%566, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %568 = "tosa.mul"(%567, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %569 = "tosa.add"(%568, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %570 = "tosa.clamp"(%569) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %571 = "tosa.transpose"(%570, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -815,16 +815,16 @@ module {
     %inserted_slice_230 = tensor.insert_slice %557 into %inserted_slice_229[0, 416, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x480x14x14xf32>
     %inserted_slice_231 = tensor.insert_slice %573 into %inserted_slice_230[0, 448, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x480x14x14xf32>
     %574 = "tosa.sub"(%inserted_slice_231, %80) : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
-    %575 = "tosa.mul"(%574, %435) {shift = 0 : i32} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
-    %576 = "tosa.mul"(%575, %80) {shift = 0 : i32} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
+    %575 = "tosa.mul"(%574, %435) {shift = 0 : i8} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
+    %576 = "tosa.mul"(%575, %80) {shift = 0 : i8} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
     %577 = "tosa.add"(%576, %80) : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
     %578 = "tosa.clamp"(%577) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x480x14x14xf32>) -> tensor<1x480x14x14xf32>
     %579 = "tosa.transpose"(%578, %113) : (tensor<1x480x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x480xf32>
     %580 = "tosa.conv2d"(%579, %79, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x480xf32>, tensor<128x1x1x480xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %581 = "tosa.transpose"(%580, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %582 = "tosa.sub"(%581, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %583 = "tosa.mul"(%582, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %584 = "tosa.mul"(%583, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %583 = "tosa.mul"(%582, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %584 = "tosa.mul"(%583, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %585 = "tosa.add"(%584, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %586 = "tosa.clamp"(%585) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %587 = "tosa.transpose"(%586, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -840,16 +840,16 @@ module {
     %inserted_slice_239 = tensor.insert_slice %573 into %inserted_slice_238[0, 448, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x512x14x14xf32>
     %inserted_slice_240 = tensor.insert_slice %589 into %inserted_slice_239[0, 480, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x512x14x14xf32>
     %590 = "tosa.sub"(%inserted_slice_240, %78) : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
-    %591 = "tosa.mul"(%590, %453) {shift = 0 : i32} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
-    %592 = "tosa.mul"(%591, %78) {shift = 0 : i32} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
+    %591 = "tosa.mul"(%590, %453) {shift = 0 : i8} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
+    %592 = "tosa.mul"(%591, %78) {shift = 0 : i8} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
     %593 = "tosa.add"(%592, %78) : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
     %594 = "tosa.clamp"(%593) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x512x14x14xf32>) -> tensor<1x512x14x14xf32>
     %595 = "tosa.transpose"(%594, %113) : (tensor<1x512x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x512xf32>
     %596 = "tosa.conv2d"(%595, %75, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<128x1x1x512xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %597 = "tosa.transpose"(%596, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %598 = "tosa.sub"(%597, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %599 = "tosa.mul"(%598, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %600 = "tosa.mul"(%599, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %599 = "tosa.mul"(%598, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %600 = "tosa.mul"(%599, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %601 = "tosa.add"(%600, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %602 = "tosa.clamp"(%601) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %603 = "tosa.transpose"(%602, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -868,16 +868,16 @@ module {
     %606 = "tosa.sub"(%inserted_slice_250, %74) : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
     %607 = "tosa.add"(%74, %109) : (tensor<1x544x1x1xf32>, tensor<f32>) -> tensor<1x544x1x1xf32>
     %608 = "tosa.rsqrt"(%607) : (tensor<1x544x1x1xf32>) -> tensor<1x544x1x1xf32>
-    %609 = "tosa.mul"(%606, %608) {shift = 0 : i32} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
-    %610 = "tosa.mul"(%609, %74) {shift = 0 : i32} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
+    %609 = "tosa.mul"(%606, %608) {shift = 0 : i8} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
+    %610 = "tosa.mul"(%609, %74) {shift = 0 : i8} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
     %611 = "tosa.add"(%610, %74) : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
     %612 = "tosa.clamp"(%611) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x544x14x14xf32>) -> tensor<1x544x14x14xf32>
     %613 = "tosa.transpose"(%612, %113) : (tensor<1x544x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x544xf32>
     %614 = "tosa.conv2d"(%613, %73, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x544xf32>, tensor<128x1x1x544xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %615 = "tosa.transpose"(%614, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %616 = "tosa.sub"(%615, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %617 = "tosa.mul"(%616, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %618 = "tosa.mul"(%617, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %617 = "tosa.mul"(%616, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %618 = "tosa.mul"(%617, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %619 = "tosa.add"(%618, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %620 = "tosa.clamp"(%619) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %621 = "tosa.transpose"(%620, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -897,16 +897,16 @@ module {
     %624 = "tosa.sub"(%inserted_slice_261, %72) : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
     %625 = "tosa.add"(%72, %109) : (tensor<1x576x1x1xf32>, tensor<f32>) -> tensor<1x576x1x1xf32>
     %626 = "tosa.rsqrt"(%625) : (tensor<1x576x1x1xf32>) -> tensor<1x576x1x1xf32>
-    %627 = "tosa.mul"(%624, %626) {shift = 0 : i32} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
-    %628 = "tosa.mul"(%627, %72) {shift = 0 : i32} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
+    %627 = "tosa.mul"(%624, %626) {shift = 0 : i8} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
+    %628 = "tosa.mul"(%627, %72) {shift = 0 : i8} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
     %629 = "tosa.add"(%628, %72) : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
     %630 = "tosa.clamp"(%629) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x576x14x14xf32>) -> tensor<1x576x14x14xf32>
     %631 = "tosa.transpose"(%630, %113) : (tensor<1x576x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x576xf32>
     %632 = "tosa.conv2d"(%631, %71, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x576xf32>, tensor<128x1x1x576xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %633 = "tosa.transpose"(%632, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %634 = "tosa.sub"(%633, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %635 = "tosa.mul"(%634, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %636 = "tosa.mul"(%635, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %635 = "tosa.mul"(%634, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %636 = "tosa.mul"(%635, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %637 = "tosa.add"(%636, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %638 = "tosa.clamp"(%637) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %639 = "tosa.transpose"(%638, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -927,16 +927,16 @@ module {
     %642 = "tosa.sub"(%inserted_slice_273, %70) : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
     %643 = "tosa.add"(%70, %109) : (tensor<1x608x1x1xf32>, tensor<f32>) -> tensor<1x608x1x1xf32>
     %644 = "tosa.rsqrt"(%643) : (tensor<1x608x1x1xf32>) -> tensor<1x608x1x1xf32>
-    %645 = "tosa.mul"(%642, %644) {shift = 0 : i32} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
-    %646 = "tosa.mul"(%645, %70) {shift = 0 : i32} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
+    %645 = "tosa.mul"(%642, %644) {shift = 0 : i8} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
+    %646 = "tosa.mul"(%645, %70) {shift = 0 : i8} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
     %647 = "tosa.add"(%646, %70) : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
     %648 = "tosa.clamp"(%647) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x608x14x14xf32>) -> tensor<1x608x14x14xf32>
     %649 = "tosa.transpose"(%648, %113) : (tensor<1x608x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x608xf32>
     %650 = "tosa.conv2d"(%649, %69, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x608xf32>, tensor<128x1x1x608xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %651 = "tosa.transpose"(%650, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %652 = "tosa.sub"(%651, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %653 = "tosa.mul"(%652, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %654 = "tosa.mul"(%653, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %653 = "tosa.mul"(%652, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %654 = "tosa.mul"(%653, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %655 = "tosa.add"(%654, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %656 = "tosa.clamp"(%655) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %657 = "tosa.transpose"(%656, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -958,16 +958,16 @@ module {
     %660 = "tosa.sub"(%inserted_slice_286, %68) : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
     %661 = "tosa.add"(%68, %109) : (tensor<1x640x1x1xf32>, tensor<f32>) -> tensor<1x640x1x1xf32>
     %662 = "tosa.rsqrt"(%661) : (tensor<1x640x1x1xf32>) -> tensor<1x640x1x1xf32>
-    %663 = "tosa.mul"(%660, %662) {shift = 0 : i32} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
-    %664 = "tosa.mul"(%663, %68) {shift = 0 : i32} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
+    %663 = "tosa.mul"(%660, %662) {shift = 0 : i8} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
+    %664 = "tosa.mul"(%663, %68) {shift = 0 : i8} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
     %665 = "tosa.add"(%664, %68) : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
     %666 = "tosa.clamp"(%665) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x640x14x14xf32>) -> tensor<1x640x14x14xf32>
     %667 = "tosa.transpose"(%666, %113) : (tensor<1x640x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x640xf32>
     %668 = "tosa.conv2d"(%667, %67, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x640xf32>, tensor<128x1x1x640xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %669 = "tosa.transpose"(%668, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %670 = "tosa.sub"(%669, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %671 = "tosa.mul"(%670, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %672 = "tosa.mul"(%671, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %671 = "tosa.mul"(%670, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %672 = "tosa.mul"(%671, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %673 = "tosa.add"(%672, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %674 = "tosa.clamp"(%673) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %675 = "tosa.transpose"(%674, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -990,16 +990,16 @@ module {
     %678 = "tosa.sub"(%inserted_slice_300, %66) : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
     %679 = "tosa.add"(%66, %109) : (tensor<1x672x1x1xf32>, tensor<f32>) -> tensor<1x672x1x1xf32>
     %680 = "tosa.rsqrt"(%679) : (tensor<1x672x1x1xf32>) -> tensor<1x672x1x1xf32>
-    %681 = "tosa.mul"(%678, %680) {shift = 0 : i32} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
-    %682 = "tosa.mul"(%681, %66) {shift = 0 : i32} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
+    %681 = "tosa.mul"(%678, %680) {shift = 0 : i8} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
+    %682 = "tosa.mul"(%681, %66) {shift = 0 : i8} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
     %683 = "tosa.add"(%682, %66) : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
     %684 = "tosa.clamp"(%683) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x672x14x14xf32>) -> tensor<1x672x14x14xf32>
     %685 = "tosa.transpose"(%684, %113) : (tensor<1x672x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x672xf32>
     %686 = "tosa.conv2d"(%685, %65, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x672xf32>, tensor<128x1x1x672xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %687 = "tosa.transpose"(%686, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %688 = "tosa.sub"(%687, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %689 = "tosa.mul"(%688, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %690 = "tosa.mul"(%689, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %689 = "tosa.mul"(%688, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %690 = "tosa.mul"(%689, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %691 = "tosa.add"(%690, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %692 = "tosa.clamp"(%691) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %693 = "tosa.transpose"(%692, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1023,16 +1023,16 @@ module {
     %696 = "tosa.sub"(%inserted_slice_315, %64) : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
     %697 = "tosa.add"(%64, %109) : (tensor<1x704x1x1xf32>, tensor<f32>) -> tensor<1x704x1x1xf32>
     %698 = "tosa.rsqrt"(%697) : (tensor<1x704x1x1xf32>) -> tensor<1x704x1x1xf32>
-    %699 = "tosa.mul"(%696, %698) {shift = 0 : i32} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
-    %700 = "tosa.mul"(%699, %64) {shift = 0 : i32} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
+    %699 = "tosa.mul"(%696, %698) {shift = 0 : i8} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
+    %700 = "tosa.mul"(%699, %64) {shift = 0 : i8} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
     %701 = "tosa.add"(%700, %64) : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
     %702 = "tosa.clamp"(%701) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x704x14x14xf32>) -> tensor<1x704x14x14xf32>
     %703 = "tosa.transpose"(%702, %113) : (tensor<1x704x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x704xf32>
     %704 = "tosa.conv2d"(%703, %63, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x704xf32>, tensor<128x1x1x704xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %705 = "tosa.transpose"(%704, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %706 = "tosa.sub"(%705, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %707 = "tosa.mul"(%706, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %708 = "tosa.mul"(%707, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %707 = "tosa.mul"(%706, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %708 = "tosa.mul"(%707, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %709 = "tosa.add"(%708, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %710 = "tosa.clamp"(%709) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %711 = "tosa.transpose"(%710, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1057,16 +1057,16 @@ module {
     %714 = "tosa.sub"(%inserted_slice_331, %62) : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
     %715 = "tosa.add"(%62, %109) : (tensor<1x736x1x1xf32>, tensor<f32>) -> tensor<1x736x1x1xf32>
     %716 = "tosa.rsqrt"(%715) : (tensor<1x736x1x1xf32>) -> tensor<1x736x1x1xf32>
-    %717 = "tosa.mul"(%714, %716) {shift = 0 : i32} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
-    %718 = "tosa.mul"(%717, %62) {shift = 0 : i32} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
+    %717 = "tosa.mul"(%714, %716) {shift = 0 : i8} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
+    %718 = "tosa.mul"(%717, %62) {shift = 0 : i8} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
     %719 = "tosa.add"(%718, %62) : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
     %720 = "tosa.clamp"(%719) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x736x14x14xf32>) -> tensor<1x736x14x14xf32>
     %721 = "tosa.transpose"(%720, %113) : (tensor<1x736x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x736xf32>
     %722 = "tosa.conv2d"(%721, %61, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x736xf32>, tensor<128x1x1x736xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %723 = "tosa.transpose"(%722, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %724 = "tosa.sub"(%723, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %725 = "tosa.mul"(%724, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %726 = "tosa.mul"(%725, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %725 = "tosa.mul"(%724, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %726 = "tosa.mul"(%725, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %727 = "tosa.add"(%726, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %728 = "tosa.clamp"(%727) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %729 = "tosa.transpose"(%728, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1092,16 +1092,16 @@ module {
     %732 = "tosa.sub"(%inserted_slice_348, %60) : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
     %733 = "tosa.add"(%60, %109) : (tensor<1x768x1x1xf32>, tensor<f32>) -> tensor<1x768x1x1xf32>
     %734 = "tosa.rsqrt"(%733) : (tensor<1x768x1x1xf32>) -> tensor<1x768x1x1xf32>
-    %735 = "tosa.mul"(%732, %734) {shift = 0 : i32} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
-    %736 = "tosa.mul"(%735, %60) {shift = 0 : i32} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
+    %735 = "tosa.mul"(%732, %734) {shift = 0 : i8} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
+    %736 = "tosa.mul"(%735, %60) {shift = 0 : i8} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
     %737 = "tosa.add"(%736, %60) : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
     %738 = "tosa.clamp"(%737) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x768x14x14xf32>) -> tensor<1x768x14x14xf32>
     %739 = "tosa.transpose"(%738, %113) : (tensor<1x768x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x768xf32>
     %740 = "tosa.conv2d"(%739, %59, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x768xf32>, tensor<128x1x1x768xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %741 = "tosa.transpose"(%740, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %742 = "tosa.sub"(%741, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %743 = "tosa.mul"(%742, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %744 = "tosa.mul"(%743, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %743 = "tosa.mul"(%742, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %744 = "tosa.mul"(%743, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %745 = "tosa.add"(%744, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %746 = "tosa.clamp"(%745) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %747 = "tosa.transpose"(%746, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1128,16 +1128,16 @@ module {
     %750 = "tosa.sub"(%inserted_slice_366, %58) : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
     %751 = "tosa.add"(%58, %109) : (tensor<1x800x1x1xf32>, tensor<f32>) -> tensor<1x800x1x1xf32>
     %752 = "tosa.rsqrt"(%751) : (tensor<1x800x1x1xf32>) -> tensor<1x800x1x1xf32>
-    %753 = "tosa.mul"(%750, %752) {shift = 0 : i32} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
-    %754 = "tosa.mul"(%753, %58) {shift = 0 : i32} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
+    %753 = "tosa.mul"(%750, %752) {shift = 0 : i8} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
+    %754 = "tosa.mul"(%753, %58) {shift = 0 : i8} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
     %755 = "tosa.add"(%754, %58) : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
     %756 = "tosa.clamp"(%755) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x800x14x14xf32>) -> tensor<1x800x14x14xf32>
     %757 = "tosa.transpose"(%756, %113) : (tensor<1x800x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x800xf32>
     %758 = "tosa.conv2d"(%757, %57, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x800xf32>, tensor<128x1x1x800xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %759 = "tosa.transpose"(%758, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %760 = "tosa.sub"(%759, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %761 = "tosa.mul"(%760, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %762 = "tosa.mul"(%761, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %761 = "tosa.mul"(%760, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %762 = "tosa.mul"(%761, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %763 = "tosa.add"(%762, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %764 = "tosa.clamp"(%763) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %765 = "tosa.transpose"(%764, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1165,16 +1165,16 @@ module {
     %768 = "tosa.sub"(%inserted_slice_385, %56) : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
     %769 = "tosa.add"(%56, %109) : (tensor<1x832x1x1xf32>, tensor<f32>) -> tensor<1x832x1x1xf32>
     %770 = "tosa.rsqrt"(%769) : (tensor<1x832x1x1xf32>) -> tensor<1x832x1x1xf32>
-    %771 = "tosa.mul"(%768, %770) {shift = 0 : i32} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
-    %772 = "tosa.mul"(%771, %56) {shift = 0 : i32} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
+    %771 = "tosa.mul"(%768, %770) {shift = 0 : i8} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
+    %772 = "tosa.mul"(%771, %56) {shift = 0 : i8} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
     %773 = "tosa.add"(%772, %56) : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
     %774 = "tosa.clamp"(%773) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x832x14x14xf32>) -> tensor<1x832x14x14xf32>
     %775 = "tosa.transpose"(%774, %113) : (tensor<1x832x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x832xf32>
     %776 = "tosa.conv2d"(%775, %55, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x832xf32>, tensor<128x1x1x832xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %777 = "tosa.transpose"(%776, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %778 = "tosa.sub"(%777, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %779 = "tosa.mul"(%778, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %780 = "tosa.mul"(%779, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %779 = "tosa.mul"(%778, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %780 = "tosa.mul"(%779, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %781 = "tosa.add"(%780, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %782 = "tosa.clamp"(%781) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %783 = "tosa.transpose"(%782, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1203,16 +1203,16 @@ module {
     %786 = "tosa.sub"(%inserted_slice_405, %54) : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
     %787 = "tosa.add"(%54, %109) : (tensor<1x864x1x1xf32>, tensor<f32>) -> tensor<1x864x1x1xf32>
     %788 = "tosa.rsqrt"(%787) : (tensor<1x864x1x1xf32>) -> tensor<1x864x1x1xf32>
-    %789 = "tosa.mul"(%786, %788) {shift = 0 : i32} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
-    %790 = "tosa.mul"(%789, %54) {shift = 0 : i32} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
+    %789 = "tosa.mul"(%786, %788) {shift = 0 : i8} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
+    %790 = "tosa.mul"(%789, %54) {shift = 0 : i8} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
     %791 = "tosa.add"(%790, %54) : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
     %792 = "tosa.clamp"(%791) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x864x14x14xf32>) -> tensor<1x864x14x14xf32>
     %793 = "tosa.transpose"(%792, %113) : (tensor<1x864x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x864xf32>
     %794 = "tosa.conv2d"(%793, %53, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x864xf32>, tensor<128x1x1x864xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %795 = "tosa.transpose"(%794, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %796 = "tosa.sub"(%795, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %797 = "tosa.mul"(%796, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %798 = "tosa.mul"(%797, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %797 = "tosa.mul"(%796, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %798 = "tosa.mul"(%797, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %799 = "tosa.add"(%798, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %800 = "tosa.clamp"(%799) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %801 = "tosa.transpose"(%800, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1242,16 +1242,16 @@ module {
     %804 = "tosa.sub"(%inserted_slice_426, %52) : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
     %805 = "tosa.add"(%52, %109) : (tensor<1x896x1x1xf32>, tensor<f32>) -> tensor<1x896x1x1xf32>
     %806 = "tosa.rsqrt"(%805) : (tensor<1x896x1x1xf32>) -> tensor<1x896x1x1xf32>
-    %807 = "tosa.mul"(%804, %806) {shift = 0 : i32} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
-    %808 = "tosa.mul"(%807, %52) {shift = 0 : i32} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
+    %807 = "tosa.mul"(%804, %806) {shift = 0 : i8} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
+    %808 = "tosa.mul"(%807, %52) {shift = 0 : i8} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
     %809 = "tosa.add"(%808, %52) : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
     %810 = "tosa.clamp"(%809) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x896x14x14xf32>) -> tensor<1x896x14x14xf32>
     %811 = "tosa.transpose"(%810, %113) : (tensor<1x896x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x896xf32>
     %812 = "tosa.conv2d"(%811, %51, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x896xf32>, tensor<128x1x1x896xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %813 = "tosa.transpose"(%812, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %814 = "tosa.sub"(%813, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %815 = "tosa.mul"(%814, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %816 = "tosa.mul"(%815, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %815 = "tosa.mul"(%814, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %816 = "tosa.mul"(%815, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %817 = "tosa.add"(%816, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %818 = "tosa.clamp"(%817) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %819 = "tosa.transpose"(%818, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1282,16 +1282,16 @@ module {
     %822 = "tosa.sub"(%inserted_slice_448, %50) : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
     %823 = "tosa.add"(%50, %109) : (tensor<1x928x1x1xf32>, tensor<f32>) -> tensor<1x928x1x1xf32>
     %824 = "tosa.rsqrt"(%823) : (tensor<1x928x1x1xf32>) -> tensor<1x928x1x1xf32>
-    %825 = "tosa.mul"(%822, %824) {shift = 0 : i32} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
-    %826 = "tosa.mul"(%825, %50) {shift = 0 : i32} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
+    %825 = "tosa.mul"(%822, %824) {shift = 0 : i8} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
+    %826 = "tosa.mul"(%825, %50) {shift = 0 : i8} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
     %827 = "tosa.add"(%826, %50) : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
     %828 = "tosa.clamp"(%827) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x928x14x14xf32>) -> tensor<1x928x14x14xf32>
     %829 = "tosa.transpose"(%828, %113) : (tensor<1x928x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x928xf32>
     %830 = "tosa.conv2d"(%829, %49, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x928xf32>, tensor<128x1x1x928xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %831 = "tosa.transpose"(%830, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %832 = "tosa.sub"(%831, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %833 = "tosa.mul"(%832, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %834 = "tosa.mul"(%833, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %833 = "tosa.mul"(%832, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %834 = "tosa.mul"(%833, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %835 = "tosa.add"(%834, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %836 = "tosa.clamp"(%835) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %837 = "tosa.transpose"(%836, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1323,16 +1323,16 @@ module {
     %840 = "tosa.sub"(%inserted_slice_471, %48) : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
     %841 = "tosa.add"(%48, %109) : (tensor<1x960x1x1xf32>, tensor<f32>) -> tensor<1x960x1x1xf32>
     %842 = "tosa.rsqrt"(%841) : (tensor<1x960x1x1xf32>) -> tensor<1x960x1x1xf32>
-    %843 = "tosa.mul"(%840, %842) {shift = 0 : i32} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
-    %844 = "tosa.mul"(%843, %48) {shift = 0 : i32} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
+    %843 = "tosa.mul"(%840, %842) {shift = 0 : i8} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
+    %844 = "tosa.mul"(%843, %48) {shift = 0 : i8} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
     %845 = "tosa.add"(%844, %48) : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
     %846 = "tosa.clamp"(%845) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x960x14x14xf32>) -> tensor<1x960x14x14xf32>
     %847 = "tosa.transpose"(%846, %113) : (tensor<1x960x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x960xf32>
     %848 = "tosa.conv2d"(%847, %47, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x960xf32>, tensor<128x1x1x960xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %849 = "tosa.transpose"(%848, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %850 = "tosa.sub"(%849, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %851 = "tosa.mul"(%850, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %852 = "tosa.mul"(%851, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %851 = "tosa.mul"(%850, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %852 = "tosa.mul"(%851, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %853 = "tosa.add"(%852, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %854 = "tosa.clamp"(%853) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %855 = "tosa.transpose"(%854, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1365,16 +1365,16 @@ module {
     %858 = "tosa.sub"(%inserted_slice_495, %46) : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
     %859 = "tosa.add"(%46, %109) : (tensor<1x992x1x1xf32>, tensor<f32>) -> tensor<1x992x1x1xf32>
     %860 = "tosa.rsqrt"(%859) : (tensor<1x992x1x1xf32>) -> tensor<1x992x1x1xf32>
-    %861 = "tosa.mul"(%858, %860) {shift = 0 : i32} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
-    %862 = "tosa.mul"(%861, %46) {shift = 0 : i32} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
+    %861 = "tosa.mul"(%858, %860) {shift = 0 : i8} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
+    %862 = "tosa.mul"(%861, %46) {shift = 0 : i8} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
     %863 = "tosa.add"(%862, %46) : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
     %864 = "tosa.clamp"(%863) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x992x14x14xf32>) -> tensor<1x992x14x14xf32>
     %865 = "tosa.transpose"(%864, %113) : (tensor<1x992x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x992xf32>
     %866 = "tosa.conv2d"(%865, %45, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x992xf32>, tensor<128x1x1x992xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %867 = "tosa.transpose"(%866, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %868 = "tosa.sub"(%867, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %869 = "tosa.mul"(%868, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %870 = "tosa.mul"(%869, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %869 = "tosa.mul"(%868, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %870 = "tosa.mul"(%869, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %871 = "tosa.add"(%870, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %872 = "tosa.clamp"(%871) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %873 = "tosa.transpose"(%872, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1408,16 +1408,16 @@ module {
     %876 = "tosa.sub"(%inserted_slice_520, %44) : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
     %877 = "tosa.add"(%44, %109) : (tensor<1x1024x1x1xf32>, tensor<f32>) -> tensor<1x1024x1x1xf32>
     %878 = "tosa.rsqrt"(%877) : (tensor<1x1024x1x1xf32>) -> tensor<1x1024x1x1xf32>
-    %879 = "tosa.mul"(%876, %878) {shift = 0 : i32} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
-    %880 = "tosa.mul"(%879, %44) {shift = 0 : i32} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
+    %879 = "tosa.mul"(%876, %878) {shift = 0 : i8} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
+    %880 = "tosa.mul"(%879, %44) {shift = 0 : i8} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
     %881 = "tosa.add"(%880, %44) : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
     %882 = "tosa.clamp"(%881) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1024x14x14xf32>) -> tensor<1x1024x14x14xf32>
     %883 = "tosa.transpose"(%882, %113) : (tensor<1x1024x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1024xf32>
     %884 = "tosa.conv2d"(%883, %43, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1024xf32>, tensor<128x1x1x1024xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %885 = "tosa.transpose"(%884, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %886 = "tosa.sub"(%885, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %887 = "tosa.mul"(%886, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %888 = "tosa.mul"(%887, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %887 = "tosa.mul"(%886, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %888 = "tosa.mul"(%887, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %889 = "tosa.add"(%888, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %890 = "tosa.clamp"(%889) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %891 = "tosa.transpose"(%890, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1452,16 +1452,16 @@ module {
     %894 = "tosa.sub"(%inserted_slice_546, %42) : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
     %895 = "tosa.add"(%42, %109) : (tensor<1x1056x1x1xf32>, tensor<f32>) -> tensor<1x1056x1x1xf32>
     %896 = "tosa.rsqrt"(%895) : (tensor<1x1056x1x1xf32>) -> tensor<1x1056x1x1xf32>
-    %897 = "tosa.mul"(%894, %896) {shift = 0 : i32} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
-    %898 = "tosa.mul"(%897, %42) {shift = 0 : i32} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
+    %897 = "tosa.mul"(%894, %896) {shift = 0 : i8} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
+    %898 = "tosa.mul"(%897, %42) {shift = 0 : i8} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
     %899 = "tosa.add"(%898, %42) : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
     %900 = "tosa.clamp"(%899) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1056x14x14xf32>) -> tensor<1x1056x14x14xf32>
     %901 = "tosa.transpose"(%900, %113) : (tensor<1x1056x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1056xf32>
     %902 = "tosa.conv2d"(%901, %41, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1056xf32>, tensor<128x1x1x1056xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %903 = "tosa.transpose"(%902, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %904 = "tosa.sub"(%903, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %905 = "tosa.mul"(%904, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %906 = "tosa.mul"(%905, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %905 = "tosa.mul"(%904, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %906 = "tosa.mul"(%905, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %907 = "tosa.add"(%906, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %908 = "tosa.clamp"(%907) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %909 = "tosa.transpose"(%908, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1497,16 +1497,16 @@ module {
     %912 = "tosa.sub"(%inserted_slice_573, %40) : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
     %913 = "tosa.add"(%40, %109) : (tensor<1x1088x1x1xf32>, tensor<f32>) -> tensor<1x1088x1x1xf32>
     %914 = "tosa.rsqrt"(%913) : (tensor<1x1088x1x1xf32>) -> tensor<1x1088x1x1xf32>
-    %915 = "tosa.mul"(%912, %914) {shift = 0 : i32} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
-    %916 = "tosa.mul"(%915, %40) {shift = 0 : i32} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
+    %915 = "tosa.mul"(%912, %914) {shift = 0 : i8} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
+    %916 = "tosa.mul"(%915, %40) {shift = 0 : i8} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
     %917 = "tosa.add"(%916, %40) : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
     %918 = "tosa.clamp"(%917) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1088x14x14xf32>) -> tensor<1x1088x14x14xf32>
     %919 = "tosa.transpose"(%918, %113) : (tensor<1x1088x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1088xf32>
     %920 = "tosa.conv2d"(%919, %39, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1088xf32>, tensor<128x1x1x1088xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %921 = "tosa.transpose"(%920, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %922 = "tosa.sub"(%921, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %923 = "tosa.mul"(%922, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %924 = "tosa.mul"(%923, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %923 = "tosa.mul"(%922, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %924 = "tosa.mul"(%923, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %925 = "tosa.add"(%924, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %926 = "tosa.clamp"(%925) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %927 = "tosa.transpose"(%926, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1543,16 +1543,16 @@ module {
     %930 = "tosa.sub"(%inserted_slice_601, %38) : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
     %931 = "tosa.add"(%38, %109) : (tensor<1x1120x1x1xf32>, tensor<f32>) -> tensor<1x1120x1x1xf32>
     %932 = "tosa.rsqrt"(%931) : (tensor<1x1120x1x1xf32>) -> tensor<1x1120x1x1xf32>
-    %933 = "tosa.mul"(%930, %932) {shift = 0 : i32} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
-    %934 = "tosa.mul"(%933, %38) {shift = 0 : i32} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
+    %933 = "tosa.mul"(%930, %932) {shift = 0 : i8} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
+    %934 = "tosa.mul"(%933, %38) {shift = 0 : i8} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
     %935 = "tosa.add"(%934, %38) : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
     %936 = "tosa.clamp"(%935) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1120x14x14xf32>) -> tensor<1x1120x14x14xf32>
     %937 = "tosa.transpose"(%936, %113) : (tensor<1x1120x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1120xf32>
     %938 = "tosa.conv2d"(%937, %37, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1120xf32>, tensor<128x1x1x1120xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %939 = "tosa.transpose"(%938, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %940 = "tosa.sub"(%939, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %941 = "tosa.mul"(%940, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %942 = "tosa.mul"(%941, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %941 = "tosa.mul"(%940, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %942 = "tosa.mul"(%941, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %943 = "tosa.add"(%942, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %944 = "tosa.clamp"(%943) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %945 = "tosa.transpose"(%944, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1590,16 +1590,16 @@ module {
     %948 = "tosa.sub"(%inserted_slice_630, %36) : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
     %949 = "tosa.add"(%36, %109) : (tensor<1x1152x1x1xf32>, tensor<f32>) -> tensor<1x1152x1x1xf32>
     %950 = "tosa.rsqrt"(%949) : (tensor<1x1152x1x1xf32>) -> tensor<1x1152x1x1xf32>
-    %951 = "tosa.mul"(%948, %950) {shift = 0 : i32} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
-    %952 = "tosa.mul"(%951, %36) {shift = 0 : i32} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
+    %951 = "tosa.mul"(%948, %950) {shift = 0 : i8} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
+    %952 = "tosa.mul"(%951, %36) {shift = 0 : i8} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
     %953 = "tosa.add"(%952, %36) : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
     %954 = "tosa.clamp"(%953) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1152x14x14xf32>) -> tensor<1x1152x14x14xf32>
     %955 = "tosa.transpose"(%954, %113) : (tensor<1x1152x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1152xf32>
     %956 = "tosa.conv2d"(%955, %35, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1152xf32>, tensor<128x1x1x1152xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %957 = "tosa.transpose"(%956, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %958 = "tosa.sub"(%957, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %959 = "tosa.mul"(%958, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %960 = "tosa.mul"(%959, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %959 = "tosa.mul"(%958, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %960 = "tosa.mul"(%959, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %961 = "tosa.add"(%960, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %962 = "tosa.clamp"(%961) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %963 = "tosa.transpose"(%962, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1638,16 +1638,16 @@ module {
     %966 = "tosa.sub"(%inserted_slice_660, %34) : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
     %967 = "tosa.add"(%34, %109) : (tensor<1x1184x1x1xf32>, tensor<f32>) -> tensor<1x1184x1x1xf32>
     %968 = "tosa.rsqrt"(%967) : (tensor<1x1184x1x1xf32>) -> tensor<1x1184x1x1xf32>
-    %969 = "tosa.mul"(%966, %968) {shift = 0 : i32} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
-    %970 = "tosa.mul"(%969, %34) {shift = 0 : i32} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
+    %969 = "tosa.mul"(%966, %968) {shift = 0 : i8} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
+    %970 = "tosa.mul"(%969, %34) {shift = 0 : i8} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
     %971 = "tosa.add"(%970, %34) : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
     %972 = "tosa.clamp"(%971) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1184x14x14xf32>) -> tensor<1x1184x14x14xf32>
     %973 = "tosa.transpose"(%972, %113) : (tensor<1x1184x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1184xf32>
     %974 = "tosa.conv2d"(%973, %33, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1184xf32>, tensor<128x1x1x1184xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %975 = "tosa.transpose"(%974, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %976 = "tosa.sub"(%975, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %977 = "tosa.mul"(%976, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %978 = "tosa.mul"(%977, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %977 = "tosa.mul"(%976, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %978 = "tosa.mul"(%977, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %979 = "tosa.add"(%978, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %980 = "tosa.clamp"(%979) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %981 = "tosa.transpose"(%980, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1687,16 +1687,16 @@ module {
     %984 = "tosa.sub"(%inserted_slice_691, %32) : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
     %985 = "tosa.add"(%32, %109) : (tensor<1x1216x1x1xf32>, tensor<f32>) -> tensor<1x1216x1x1xf32>
     %986 = "tosa.rsqrt"(%985) : (tensor<1x1216x1x1xf32>) -> tensor<1x1216x1x1xf32>
-    %987 = "tosa.mul"(%984, %986) {shift = 0 : i32} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
-    %988 = "tosa.mul"(%987, %32) {shift = 0 : i32} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
+    %987 = "tosa.mul"(%984, %986) {shift = 0 : i8} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
+    %988 = "tosa.mul"(%987, %32) {shift = 0 : i8} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
     %989 = "tosa.add"(%988, %32) : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
     %990 = "tosa.clamp"(%989) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1216x14x14xf32>) -> tensor<1x1216x14x14xf32>
     %991 = "tosa.transpose"(%990, %113) : (tensor<1x1216x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1216xf32>
     %992 = "tosa.conv2d"(%991, %31, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1216xf32>, tensor<128x1x1x1216xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %993 = "tosa.transpose"(%992, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %994 = "tosa.sub"(%993, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %995 = "tosa.mul"(%994, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %996 = "tosa.mul"(%995, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %995 = "tosa.mul"(%994, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %996 = "tosa.mul"(%995, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %997 = "tosa.add"(%996, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %998 = "tosa.clamp"(%997) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %999 = "tosa.transpose"(%998, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1737,16 +1737,16 @@ module {
     %1002 = "tosa.sub"(%inserted_slice_723, %30) : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
     %1003 = "tosa.add"(%30, %109) : (tensor<1x1248x1x1xf32>, tensor<f32>) -> tensor<1x1248x1x1xf32>
     %1004 = "tosa.rsqrt"(%1003) : (tensor<1x1248x1x1xf32>) -> tensor<1x1248x1x1xf32>
-    %1005 = "tosa.mul"(%1002, %1004) {shift = 0 : i32} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
-    %1006 = "tosa.mul"(%1005, %30) {shift = 0 : i32} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
+    %1005 = "tosa.mul"(%1002, %1004) {shift = 0 : i8} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
+    %1006 = "tosa.mul"(%1005, %30) {shift = 0 : i8} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
     %1007 = "tosa.add"(%1006, %30) : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
     %1008 = "tosa.clamp"(%1007) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1248x14x14xf32>) -> tensor<1x1248x14x14xf32>
     %1009 = "tosa.transpose"(%1008, %113) : (tensor<1x1248x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1248xf32>
     %1010 = "tosa.conv2d"(%1009, %29, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1248xf32>, tensor<128x1x1x1248xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %1011 = "tosa.transpose"(%1010, %111) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %1012 = "tosa.sub"(%1011, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1013 = "tosa.mul"(%1012, %138) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1014 = "tosa.mul"(%1013, %106) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1013 = "tosa.mul"(%1012, %138) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1014 = "tosa.mul"(%1013, %106) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1015 = "tosa.add"(%1014, %106) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1016 = "tosa.clamp"(%1015) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %1017 = "tosa.transpose"(%1016, %113) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -1788,8 +1788,8 @@ module {
     %1020 = "tosa.sub"(%inserted_slice_756, %28) : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
     %1021 = "tosa.add"(%28, %109) : (tensor<1x1280x1x1xf32>, tensor<f32>) -> tensor<1x1280x1x1xf32>
     %1022 = "tosa.rsqrt"(%1021) : (tensor<1x1280x1x1xf32>) -> tensor<1x1280x1x1xf32>
-    %1023 = "tosa.mul"(%1020, %1022) {shift = 0 : i32} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
-    %1024 = "tosa.mul"(%1023, %28) {shift = 0 : i32} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
+    %1023 = "tosa.mul"(%1020, %1022) {shift = 0 : i8} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
+    %1024 = "tosa.mul"(%1023, %28) {shift = 0 : i8} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
     %1025 = "tosa.add"(%1024, %28) : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
     %1026 = "tosa.clamp"(%1025) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1280x14x14xf32>) -> tensor<1x1280x14x14xf32>
     %1027 = "tosa.transpose"(%1026, %113) : (tensor<1x1280x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1280xf32>
@@ -1797,16 +1797,16 @@ module {
     %1029 = "tosa.avg_pool2d"(%1028) {acc_type = f32, kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x14x14x640xf32>) -> tensor<1x7x7x640xf32>
     %1030 = "tosa.transpose"(%1029, %111) : (tensor<1x7x7x640xf32>, tensor<4xi64>) -> tensor<1x640x7x7xf32>
     %1031 = "tosa.sub"(%1030, %68) : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
-    %1032 = "tosa.mul"(%1031, %662) {shift = 0 : i32} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
-    %1033 = "tosa.mul"(%1032, %68) {shift = 0 : i32} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
+    %1032 = "tosa.mul"(%1031, %662) {shift = 0 : i8} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
+    %1033 = "tosa.mul"(%1032, %68) {shift = 0 : i8} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
     %1034 = "tosa.add"(%1033, %68) : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
     %1035 = "tosa.clamp"(%1034) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x640x7x7xf32>) -> tensor<1x640x7x7xf32>
     %1036 = "tosa.transpose"(%1035, %113) : (tensor<1x640x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x640xf32>
     %1037 = "tosa.conv2d"(%1036, %67, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x640xf32>, tensor<128x1x1x640xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1038 = "tosa.transpose"(%1037, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1039 = "tosa.sub"(%1038, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1040 = "tosa.mul"(%1039, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1041 = "tosa.mul"(%1040, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1040 = "tosa.mul"(%1039, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1041 = "tosa.mul"(%1040, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1042 = "tosa.add"(%1041, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1043 = "tosa.clamp"(%1042) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1044 = "tosa.transpose"(%1043, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -1815,16 +1815,16 @@ module {
     %inserted_slice_757 = tensor.insert_slice %1030 into %cst_49[0, 0, 0, 0] [1, 640, 7, 7] [1, 1, 1, 1] : tensor<1x640x7x7xf32> into tensor<1x672x7x7xf32>
     %inserted_slice_758 = tensor.insert_slice %1046 into %inserted_slice_757[0, 640, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x672x7x7xf32>
     %1047 = "tosa.sub"(%inserted_slice_758, %66) : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
-    %1048 = "tosa.mul"(%1047, %680) {shift = 0 : i32} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
-    %1049 = "tosa.mul"(%1048, %66) {shift = 0 : i32} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
+    %1048 = "tosa.mul"(%1047, %680) {shift = 0 : i8} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
+    %1049 = "tosa.mul"(%1048, %66) {shift = 0 : i8} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
     %1050 = "tosa.add"(%1049, %66) : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
     %1051 = "tosa.clamp"(%1050) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x672x7x7xf32>) -> tensor<1x672x7x7xf32>
     %1052 = "tosa.transpose"(%1051, %113) : (tensor<1x672x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x672xf32>
     %1053 = "tosa.conv2d"(%1052, %65, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x672xf32>, tensor<128x1x1x672xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1054 = "tosa.transpose"(%1053, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1055 = "tosa.sub"(%1054, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1056 = "tosa.mul"(%1055, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1057 = "tosa.mul"(%1056, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1056 = "tosa.mul"(%1055, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1057 = "tosa.mul"(%1056, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1058 = "tosa.add"(%1057, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1059 = "tosa.clamp"(%1058) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1060 = "tosa.transpose"(%1059, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -1834,16 +1834,16 @@ module {
     %inserted_slice_760 = tensor.insert_slice %1046 into %inserted_slice_759[0, 640, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x704x7x7xf32>
     %inserted_slice_761 = tensor.insert_slice %1062 into %inserted_slice_760[0, 672, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x704x7x7xf32>
     %1063 = "tosa.sub"(%inserted_slice_761, %64) : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
-    %1064 = "tosa.mul"(%1063, %698) {shift = 0 : i32} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
-    %1065 = "tosa.mul"(%1064, %64) {shift = 0 : i32} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
+    %1064 = "tosa.mul"(%1063, %698) {shift = 0 : i8} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
+    %1065 = "tosa.mul"(%1064, %64) {shift = 0 : i8} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
     %1066 = "tosa.add"(%1065, %64) : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
     %1067 = "tosa.clamp"(%1066) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x704x7x7xf32>) -> tensor<1x704x7x7xf32>
     %1068 = "tosa.transpose"(%1067, %113) : (tensor<1x704x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x704xf32>
     %1069 = "tosa.conv2d"(%1068, %63, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x704xf32>, tensor<128x1x1x704xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1070 = "tosa.transpose"(%1069, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1071 = "tosa.sub"(%1070, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1072 = "tosa.mul"(%1071, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1073 = "tosa.mul"(%1072, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1072 = "tosa.mul"(%1071, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1073 = "tosa.mul"(%1072, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1074 = "tosa.add"(%1073, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1075 = "tosa.clamp"(%1074) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1076 = "tosa.transpose"(%1075, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -1854,16 +1854,16 @@ module {
     %inserted_slice_764 = tensor.insert_slice %1062 into %inserted_slice_763[0, 672, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x736x7x7xf32>
     %inserted_slice_765 = tensor.insert_slice %1078 into %inserted_slice_764[0, 704, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x736x7x7xf32>
     %1079 = "tosa.sub"(%inserted_slice_765, %62) : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
-    %1080 = "tosa.mul"(%1079, %716) {shift = 0 : i32} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
-    %1081 = "tosa.mul"(%1080, %62) {shift = 0 : i32} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
+    %1080 = "tosa.mul"(%1079, %716) {shift = 0 : i8} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
+    %1081 = "tosa.mul"(%1080, %62) {shift = 0 : i8} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
     %1082 = "tosa.add"(%1081, %62) : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
     %1083 = "tosa.clamp"(%1082) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x736x7x7xf32>) -> tensor<1x736x7x7xf32>
     %1084 = "tosa.transpose"(%1083, %113) : (tensor<1x736x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x736xf32>
     %1085 = "tosa.conv2d"(%1084, %61, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x736xf32>, tensor<128x1x1x736xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1086 = "tosa.transpose"(%1085, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1087 = "tosa.sub"(%1086, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1088 = "tosa.mul"(%1087, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1089 = "tosa.mul"(%1088, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1088 = "tosa.mul"(%1087, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1089 = "tosa.mul"(%1088, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1090 = "tosa.add"(%1089, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1091 = "tosa.clamp"(%1090) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1092 = "tosa.transpose"(%1091, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -1875,16 +1875,16 @@ module {
     %inserted_slice_769 = tensor.insert_slice %1078 into %inserted_slice_768[0, 704, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x768x7x7xf32>
     %inserted_slice_770 = tensor.insert_slice %1094 into %inserted_slice_769[0, 736, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x768x7x7xf32>
     %1095 = "tosa.sub"(%inserted_slice_770, %60) : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
-    %1096 = "tosa.mul"(%1095, %734) {shift = 0 : i32} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
-    %1097 = "tosa.mul"(%1096, %60) {shift = 0 : i32} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
+    %1096 = "tosa.mul"(%1095, %734) {shift = 0 : i8} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
+    %1097 = "tosa.mul"(%1096, %60) {shift = 0 : i8} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
     %1098 = "tosa.add"(%1097, %60) : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
     %1099 = "tosa.clamp"(%1098) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x768x7x7xf32>) -> tensor<1x768x7x7xf32>
     %1100 = "tosa.transpose"(%1099, %113) : (tensor<1x768x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x768xf32>
     %1101 = "tosa.conv2d"(%1100, %59, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x768xf32>, tensor<128x1x1x768xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1102 = "tosa.transpose"(%1101, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1103 = "tosa.sub"(%1102, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1104 = "tosa.mul"(%1103, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1105 = "tosa.mul"(%1104, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1104 = "tosa.mul"(%1103, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1105 = "tosa.mul"(%1104, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1106 = "tosa.add"(%1105, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1107 = "tosa.clamp"(%1106) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1108 = "tosa.transpose"(%1107, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -1897,16 +1897,16 @@ module {
     %inserted_slice_775 = tensor.insert_slice %1094 into %inserted_slice_774[0, 736, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x800x7x7xf32>
     %inserted_slice_776 = tensor.insert_slice %1110 into %inserted_slice_775[0, 768, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x800x7x7xf32>
     %1111 = "tosa.sub"(%inserted_slice_776, %58) : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
-    %1112 = "tosa.mul"(%1111, %752) {shift = 0 : i32} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
-    %1113 = "tosa.mul"(%1112, %58) {shift = 0 : i32} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
+    %1112 = "tosa.mul"(%1111, %752) {shift = 0 : i8} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
+    %1113 = "tosa.mul"(%1112, %58) {shift = 0 : i8} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
     %1114 = "tosa.add"(%1113, %58) : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
     %1115 = "tosa.clamp"(%1114) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x800x7x7xf32>) -> tensor<1x800x7x7xf32>
     %1116 = "tosa.transpose"(%1115, %113) : (tensor<1x800x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x800xf32>
     %1117 = "tosa.conv2d"(%1116, %57, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x800xf32>, tensor<128x1x1x800xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1118 = "tosa.transpose"(%1117, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1119 = "tosa.sub"(%1118, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1120 = "tosa.mul"(%1119, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1121 = "tosa.mul"(%1120, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1120 = "tosa.mul"(%1119, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1121 = "tosa.mul"(%1120, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1122 = "tosa.add"(%1121, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1123 = "tosa.clamp"(%1122) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1124 = "tosa.transpose"(%1123, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -1920,16 +1920,16 @@ module {
     %inserted_slice_782 = tensor.insert_slice %1110 into %inserted_slice_781[0, 768, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x832x7x7xf32>
     %inserted_slice_783 = tensor.insert_slice %1126 into %inserted_slice_782[0, 800, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x832x7x7xf32>
     %1127 = "tosa.sub"(%inserted_slice_783, %56) : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
-    %1128 = "tosa.mul"(%1127, %770) {shift = 0 : i32} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
-    %1129 = "tosa.mul"(%1128, %56) {shift = 0 : i32} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
+    %1128 = "tosa.mul"(%1127, %770) {shift = 0 : i8} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
+    %1129 = "tosa.mul"(%1128, %56) {shift = 0 : i8} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
     %1130 = "tosa.add"(%1129, %56) : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
     %1131 = "tosa.clamp"(%1130) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x832x7x7xf32>) -> tensor<1x832x7x7xf32>
     %1132 = "tosa.transpose"(%1131, %113) : (tensor<1x832x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x832xf32>
     %1133 = "tosa.conv2d"(%1132, %55, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x832xf32>, tensor<128x1x1x832xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1134 = "tosa.transpose"(%1133, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1135 = "tosa.sub"(%1134, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1136 = "tosa.mul"(%1135, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1137 = "tosa.mul"(%1136, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1136 = "tosa.mul"(%1135, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1137 = "tosa.mul"(%1136, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1138 = "tosa.add"(%1137, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1139 = "tosa.clamp"(%1138) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1140 = "tosa.transpose"(%1139, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -1944,16 +1944,16 @@ module {
     %inserted_slice_790 = tensor.insert_slice %1126 into %inserted_slice_789[0, 800, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x864x7x7xf32>
     %inserted_slice_791 = tensor.insert_slice %1142 into %inserted_slice_790[0, 832, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x864x7x7xf32>
     %1143 = "tosa.sub"(%inserted_slice_791, %54) : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
-    %1144 = "tosa.mul"(%1143, %788) {shift = 0 : i32} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
-    %1145 = "tosa.mul"(%1144, %54) {shift = 0 : i32} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
+    %1144 = "tosa.mul"(%1143, %788) {shift = 0 : i8} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
+    %1145 = "tosa.mul"(%1144, %54) {shift = 0 : i8} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
     %1146 = "tosa.add"(%1145, %54) : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
     %1147 = "tosa.clamp"(%1146) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x864x7x7xf32>) -> tensor<1x864x7x7xf32>
     %1148 = "tosa.transpose"(%1147, %113) : (tensor<1x864x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x864xf32>
     %1149 = "tosa.conv2d"(%1148, %53, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x864xf32>, tensor<128x1x1x864xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1150 = "tosa.transpose"(%1149, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1151 = "tosa.sub"(%1150, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1152 = "tosa.mul"(%1151, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1153 = "tosa.mul"(%1152, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1152 = "tosa.mul"(%1151, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1153 = "tosa.mul"(%1152, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1154 = "tosa.add"(%1153, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1155 = "tosa.clamp"(%1154) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1156 = "tosa.transpose"(%1155, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -1969,16 +1969,16 @@ module {
     %inserted_slice_799 = tensor.insert_slice %1142 into %inserted_slice_798[0, 832, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x896x7x7xf32>
     %inserted_slice_800 = tensor.insert_slice %1158 into %inserted_slice_799[0, 864, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x896x7x7xf32>
     %1159 = "tosa.sub"(%inserted_slice_800, %52) : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
-    %1160 = "tosa.mul"(%1159, %806) {shift = 0 : i32} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
-    %1161 = "tosa.mul"(%1160, %52) {shift = 0 : i32} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
+    %1160 = "tosa.mul"(%1159, %806) {shift = 0 : i8} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
+    %1161 = "tosa.mul"(%1160, %52) {shift = 0 : i8} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
     %1162 = "tosa.add"(%1161, %52) : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
     %1163 = "tosa.clamp"(%1162) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x896x7x7xf32>) -> tensor<1x896x7x7xf32>
     %1164 = "tosa.transpose"(%1163, %113) : (tensor<1x896x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x896xf32>
     %1165 = "tosa.conv2d"(%1164, %51, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x896xf32>, tensor<128x1x1x896xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1166 = "tosa.transpose"(%1165, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1167 = "tosa.sub"(%1166, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1168 = "tosa.mul"(%1167, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1169 = "tosa.mul"(%1168, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1168 = "tosa.mul"(%1167, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1169 = "tosa.mul"(%1168, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1170 = "tosa.add"(%1169, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1171 = "tosa.clamp"(%1170) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1172 = "tosa.transpose"(%1171, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -1995,16 +1995,16 @@ module {
     %inserted_slice_809 = tensor.insert_slice %1158 into %inserted_slice_808[0, 864, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x928x7x7xf32>
     %inserted_slice_810 = tensor.insert_slice %1174 into %inserted_slice_809[0, 896, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x928x7x7xf32>
     %1175 = "tosa.sub"(%inserted_slice_810, %50) : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
-    %1176 = "tosa.mul"(%1175, %824) {shift = 0 : i32} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
-    %1177 = "tosa.mul"(%1176, %50) {shift = 0 : i32} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
+    %1176 = "tosa.mul"(%1175, %824) {shift = 0 : i8} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
+    %1177 = "tosa.mul"(%1176, %50) {shift = 0 : i8} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
     %1178 = "tosa.add"(%1177, %50) : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
     %1179 = "tosa.clamp"(%1178) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x928x7x7xf32>) -> tensor<1x928x7x7xf32>
     %1180 = "tosa.transpose"(%1179, %113) : (tensor<1x928x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x928xf32>
     %1181 = "tosa.conv2d"(%1180, %49, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x928xf32>, tensor<128x1x1x928xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1182 = "tosa.transpose"(%1181, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1183 = "tosa.sub"(%1182, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1184 = "tosa.mul"(%1183, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1185 = "tosa.mul"(%1184, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1184 = "tosa.mul"(%1183, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1185 = "tosa.mul"(%1184, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1186 = "tosa.add"(%1185, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1187 = "tosa.clamp"(%1186) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1188 = "tosa.transpose"(%1187, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2022,16 +2022,16 @@ module {
     %inserted_slice_820 = tensor.insert_slice %1174 into %inserted_slice_819[0, 896, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x960x7x7xf32>
     %inserted_slice_821 = tensor.insert_slice %1190 into %inserted_slice_820[0, 928, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x960x7x7xf32>
     %1191 = "tosa.sub"(%inserted_slice_821, %48) : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
-    %1192 = "tosa.mul"(%1191, %842) {shift = 0 : i32} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
-    %1193 = "tosa.mul"(%1192, %48) {shift = 0 : i32} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
+    %1192 = "tosa.mul"(%1191, %842) {shift = 0 : i8} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
+    %1193 = "tosa.mul"(%1192, %48) {shift = 0 : i8} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
     %1194 = "tosa.add"(%1193, %48) : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
     %1195 = "tosa.clamp"(%1194) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x960x7x7xf32>) -> tensor<1x960x7x7xf32>
     %1196 = "tosa.transpose"(%1195, %113) : (tensor<1x960x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x960xf32>
     %1197 = "tosa.conv2d"(%1196, %47, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x960xf32>, tensor<128x1x1x960xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1198 = "tosa.transpose"(%1197, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1199 = "tosa.sub"(%1198, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1200 = "tosa.mul"(%1199, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1201 = "tosa.mul"(%1200, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1200 = "tosa.mul"(%1199, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1201 = "tosa.mul"(%1200, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1202 = "tosa.add"(%1201, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1203 = "tosa.clamp"(%1202) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1204 = "tosa.transpose"(%1203, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2050,16 +2050,16 @@ module {
     %inserted_slice_832 = tensor.insert_slice %1190 into %inserted_slice_831[0, 928, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x992x7x7xf32>
     %inserted_slice_833 = tensor.insert_slice %1206 into %inserted_slice_832[0, 960, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x992x7x7xf32>
     %1207 = "tosa.sub"(%inserted_slice_833, %46) : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
-    %1208 = "tosa.mul"(%1207, %860) {shift = 0 : i32} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
-    %1209 = "tosa.mul"(%1208, %46) {shift = 0 : i32} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
+    %1208 = "tosa.mul"(%1207, %860) {shift = 0 : i8} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
+    %1209 = "tosa.mul"(%1208, %46) {shift = 0 : i8} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
     %1210 = "tosa.add"(%1209, %46) : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
     %1211 = "tosa.clamp"(%1210) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x992x7x7xf32>) -> tensor<1x992x7x7xf32>
     %1212 = "tosa.transpose"(%1211, %113) : (tensor<1x992x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x992xf32>
     %1213 = "tosa.conv2d"(%1212, %45, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x992xf32>, tensor<128x1x1x992xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1214 = "tosa.transpose"(%1213, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1215 = "tosa.sub"(%1214, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1216 = "tosa.mul"(%1215, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1217 = "tosa.mul"(%1216, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1216 = "tosa.mul"(%1215, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1217 = "tosa.mul"(%1216, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1218 = "tosa.add"(%1217, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1219 = "tosa.clamp"(%1218) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1220 = "tosa.transpose"(%1219, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2079,16 +2079,16 @@ module {
     %inserted_slice_845 = tensor.insert_slice %1206 into %inserted_slice_844[0, 960, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1024x7x7xf32>
     %inserted_slice_846 = tensor.insert_slice %1222 into %inserted_slice_845[0, 992, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1024x7x7xf32>
     %1223 = "tosa.sub"(%inserted_slice_846, %44) : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
-    %1224 = "tosa.mul"(%1223, %878) {shift = 0 : i32} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
-    %1225 = "tosa.mul"(%1224, %44) {shift = 0 : i32} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
+    %1224 = "tosa.mul"(%1223, %878) {shift = 0 : i8} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
+    %1225 = "tosa.mul"(%1224, %44) {shift = 0 : i8} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
     %1226 = "tosa.add"(%1225, %44) : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
     %1227 = "tosa.clamp"(%1226) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1024x7x7xf32>) -> tensor<1x1024x7x7xf32>
     %1228 = "tosa.transpose"(%1227, %113) : (tensor<1x1024x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1024xf32>
     %1229 = "tosa.conv2d"(%1228, %43, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1024xf32>, tensor<128x1x1x1024xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1230 = "tosa.transpose"(%1229, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1231 = "tosa.sub"(%1230, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1232 = "tosa.mul"(%1231, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1233 = "tosa.mul"(%1232, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1232 = "tosa.mul"(%1231, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1233 = "tosa.mul"(%1232, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1234 = "tosa.add"(%1233, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1235 = "tosa.clamp"(%1234) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1236 = "tosa.transpose"(%1235, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2109,16 +2109,16 @@ module {
     %inserted_slice_859 = tensor.insert_slice %1222 into %inserted_slice_858[0, 992, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1056x7x7xf32>
     %inserted_slice_860 = tensor.insert_slice %1238 into %inserted_slice_859[0, 1024, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1056x7x7xf32>
     %1239 = "tosa.sub"(%inserted_slice_860, %42) : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
-    %1240 = "tosa.mul"(%1239, %896) {shift = 0 : i32} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
-    %1241 = "tosa.mul"(%1240, %42) {shift = 0 : i32} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
+    %1240 = "tosa.mul"(%1239, %896) {shift = 0 : i8} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
+    %1241 = "tosa.mul"(%1240, %42) {shift = 0 : i8} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
     %1242 = "tosa.add"(%1241, %42) : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
     %1243 = "tosa.clamp"(%1242) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1056x7x7xf32>) -> tensor<1x1056x7x7xf32>
     %1244 = "tosa.transpose"(%1243, %113) : (tensor<1x1056x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1056xf32>
     %1245 = "tosa.conv2d"(%1244, %41, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1056xf32>, tensor<128x1x1x1056xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1246 = "tosa.transpose"(%1245, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1247 = "tosa.sub"(%1246, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1248 = "tosa.mul"(%1247, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1249 = "tosa.mul"(%1248, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1248 = "tosa.mul"(%1247, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1249 = "tosa.mul"(%1248, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1250 = "tosa.add"(%1249, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1251 = "tosa.clamp"(%1250) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1252 = "tosa.transpose"(%1251, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2140,16 +2140,16 @@ module {
     %inserted_slice_874 = tensor.insert_slice %1238 into %inserted_slice_873[0, 1024, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1088x7x7xf32>
     %inserted_slice_875 = tensor.insert_slice %1254 into %inserted_slice_874[0, 1056, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1088x7x7xf32>
     %1255 = "tosa.sub"(%inserted_slice_875, %40) : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
-    %1256 = "tosa.mul"(%1255, %914) {shift = 0 : i32} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
-    %1257 = "tosa.mul"(%1256, %40) {shift = 0 : i32} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
+    %1256 = "tosa.mul"(%1255, %914) {shift = 0 : i8} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
+    %1257 = "tosa.mul"(%1256, %40) {shift = 0 : i8} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
     %1258 = "tosa.add"(%1257, %40) : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
     %1259 = "tosa.clamp"(%1258) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1088x7x7xf32>) -> tensor<1x1088x7x7xf32>
     %1260 = "tosa.transpose"(%1259, %113) : (tensor<1x1088x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1088xf32>
     %1261 = "tosa.conv2d"(%1260, %39, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1088xf32>, tensor<128x1x1x1088xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1262 = "tosa.transpose"(%1261, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1263 = "tosa.sub"(%1262, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1264 = "tosa.mul"(%1263, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1265 = "tosa.mul"(%1264, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1264 = "tosa.mul"(%1263, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1265 = "tosa.mul"(%1264, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1266 = "tosa.add"(%1265, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1267 = "tosa.clamp"(%1266) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1268 = "tosa.transpose"(%1267, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2172,16 +2172,16 @@ module {
     %inserted_slice_890 = tensor.insert_slice %1254 into %inserted_slice_889[0, 1056, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1120x7x7xf32>
     %inserted_slice_891 = tensor.insert_slice %1270 into %inserted_slice_890[0, 1088, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1120x7x7xf32>
     %1271 = "tosa.sub"(%inserted_slice_891, %38) : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
-    %1272 = "tosa.mul"(%1271, %932) {shift = 0 : i32} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
-    %1273 = "tosa.mul"(%1272, %38) {shift = 0 : i32} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
+    %1272 = "tosa.mul"(%1271, %932) {shift = 0 : i8} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
+    %1273 = "tosa.mul"(%1272, %38) {shift = 0 : i8} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
     %1274 = "tosa.add"(%1273, %38) : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
     %1275 = "tosa.clamp"(%1274) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1120x7x7xf32>) -> tensor<1x1120x7x7xf32>
     %1276 = "tosa.transpose"(%1275, %113) : (tensor<1x1120x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1120xf32>
     %1277 = "tosa.conv2d"(%1276, %37, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1120xf32>, tensor<128x1x1x1120xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1278 = "tosa.transpose"(%1277, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1279 = "tosa.sub"(%1278, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1280 = "tosa.mul"(%1279, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1281 = "tosa.mul"(%1280, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1280 = "tosa.mul"(%1279, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1281 = "tosa.mul"(%1280, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1282 = "tosa.add"(%1281, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1283 = "tosa.clamp"(%1282) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1284 = "tosa.transpose"(%1283, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2205,16 +2205,16 @@ module {
     %inserted_slice_907 = tensor.insert_slice %1270 into %inserted_slice_906[0, 1088, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1152x7x7xf32>
     %inserted_slice_908 = tensor.insert_slice %1286 into %inserted_slice_907[0, 1120, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1152x7x7xf32>
     %1287 = "tosa.sub"(%inserted_slice_908, %36) : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
-    %1288 = "tosa.mul"(%1287, %950) {shift = 0 : i32} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
-    %1289 = "tosa.mul"(%1288, %36) {shift = 0 : i32} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
+    %1288 = "tosa.mul"(%1287, %950) {shift = 0 : i8} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
+    %1289 = "tosa.mul"(%1288, %36) {shift = 0 : i8} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
     %1290 = "tosa.add"(%1289, %36) : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
     %1291 = "tosa.clamp"(%1290) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1152x7x7xf32>) -> tensor<1x1152x7x7xf32>
     %1292 = "tosa.transpose"(%1291, %113) : (tensor<1x1152x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1152xf32>
     %1293 = "tosa.conv2d"(%1292, %35, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1152xf32>, tensor<128x1x1x1152xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1294 = "tosa.transpose"(%1293, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1295 = "tosa.sub"(%1294, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1296 = "tosa.mul"(%1295, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1297 = "tosa.mul"(%1296, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1296 = "tosa.mul"(%1295, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1297 = "tosa.mul"(%1296, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1298 = "tosa.add"(%1297, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1299 = "tosa.clamp"(%1298) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1300 = "tosa.transpose"(%1299, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2239,16 +2239,16 @@ module {
     %inserted_slice_925 = tensor.insert_slice %1286 into %inserted_slice_924[0, 1120, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1184x7x7xf32>
     %inserted_slice_926 = tensor.insert_slice %1302 into %inserted_slice_925[0, 1152, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1184x7x7xf32>
     %1303 = "tosa.sub"(%inserted_slice_926, %34) : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
-    %1304 = "tosa.mul"(%1303, %968) {shift = 0 : i32} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
-    %1305 = "tosa.mul"(%1304, %34) {shift = 0 : i32} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
+    %1304 = "tosa.mul"(%1303, %968) {shift = 0 : i8} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
+    %1305 = "tosa.mul"(%1304, %34) {shift = 0 : i8} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
     %1306 = "tosa.add"(%1305, %34) : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
     %1307 = "tosa.clamp"(%1306) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1184x7x7xf32>) -> tensor<1x1184x7x7xf32>
     %1308 = "tosa.transpose"(%1307, %113) : (tensor<1x1184x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1184xf32>
     %1309 = "tosa.conv2d"(%1308, %33, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1184xf32>, tensor<128x1x1x1184xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1310 = "tosa.transpose"(%1309, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1311 = "tosa.sub"(%1310, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1312 = "tosa.mul"(%1311, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1313 = "tosa.mul"(%1312, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1312 = "tosa.mul"(%1311, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1313 = "tosa.mul"(%1312, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1314 = "tosa.add"(%1313, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1315 = "tosa.clamp"(%1314) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1316 = "tosa.transpose"(%1315, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2274,16 +2274,16 @@ module {
     %inserted_slice_944 = tensor.insert_slice %1302 into %inserted_slice_943[0, 1152, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1216x7x7xf32>
     %inserted_slice_945 = tensor.insert_slice %1318 into %inserted_slice_944[0, 1184, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1216x7x7xf32>
     %1319 = "tosa.sub"(%inserted_slice_945, %32) : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
-    %1320 = "tosa.mul"(%1319, %986) {shift = 0 : i32} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
-    %1321 = "tosa.mul"(%1320, %32) {shift = 0 : i32} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
+    %1320 = "tosa.mul"(%1319, %986) {shift = 0 : i8} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
+    %1321 = "tosa.mul"(%1320, %32) {shift = 0 : i8} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
     %1322 = "tosa.add"(%1321, %32) : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
     %1323 = "tosa.clamp"(%1322) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1216x7x7xf32>) -> tensor<1x1216x7x7xf32>
     %1324 = "tosa.transpose"(%1323, %113) : (tensor<1x1216x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1216xf32>
     %1325 = "tosa.conv2d"(%1324, %31, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1216xf32>, tensor<128x1x1x1216xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1326 = "tosa.transpose"(%1325, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1327 = "tosa.sub"(%1326, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1328 = "tosa.mul"(%1327, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1329 = "tosa.mul"(%1328, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1328 = "tosa.mul"(%1327, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1329 = "tosa.mul"(%1328, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1330 = "tosa.add"(%1329, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1331 = "tosa.clamp"(%1330) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1332 = "tosa.transpose"(%1331, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2310,16 +2310,16 @@ module {
     %inserted_slice_964 = tensor.insert_slice %1318 into %inserted_slice_963[0, 1184, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1248x7x7xf32>
     %inserted_slice_965 = tensor.insert_slice %1334 into %inserted_slice_964[0, 1216, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1248x7x7xf32>
     %1335 = "tosa.sub"(%inserted_slice_965, %30) : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
-    %1336 = "tosa.mul"(%1335, %1004) {shift = 0 : i32} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
-    %1337 = "tosa.mul"(%1336, %30) {shift = 0 : i32} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
+    %1336 = "tosa.mul"(%1335, %1004) {shift = 0 : i8} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
+    %1337 = "tosa.mul"(%1336, %30) {shift = 0 : i8} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
     %1338 = "tosa.add"(%1337, %30) : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
     %1339 = "tosa.clamp"(%1338) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1248x7x7xf32>) -> tensor<1x1248x7x7xf32>
     %1340 = "tosa.transpose"(%1339, %113) : (tensor<1x1248x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1248xf32>
     %1341 = "tosa.conv2d"(%1340, %29, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1248xf32>, tensor<128x1x1x1248xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1342 = "tosa.transpose"(%1341, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1343 = "tosa.sub"(%1342, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1344 = "tosa.mul"(%1343, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1345 = "tosa.mul"(%1344, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1344 = "tosa.mul"(%1343, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1345 = "tosa.mul"(%1344, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1346 = "tosa.add"(%1345, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1347 = "tosa.clamp"(%1346) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1348 = "tosa.transpose"(%1347, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2347,16 +2347,16 @@ module {
     %inserted_slice_985 = tensor.insert_slice %1334 into %inserted_slice_984[0, 1216, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1280x7x7xf32>
     %inserted_slice_986 = tensor.insert_slice %1350 into %inserted_slice_985[0, 1248, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1280x7x7xf32>
     %1351 = "tosa.sub"(%inserted_slice_986, %28) : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
-    %1352 = "tosa.mul"(%1351, %1022) {shift = 0 : i32} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
-    %1353 = "tosa.mul"(%1352, %28) {shift = 0 : i32} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
+    %1352 = "tosa.mul"(%1351, %1022) {shift = 0 : i8} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
+    %1353 = "tosa.mul"(%1352, %28) {shift = 0 : i8} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
     %1354 = "tosa.add"(%1353, %28) : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
     %1355 = "tosa.clamp"(%1354) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1280x7x7xf32>) -> tensor<1x1280x7x7xf32>
     %1356 = "tosa.transpose"(%1355, %113) : (tensor<1x1280x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1280xf32>
     %1357 = "tosa.conv2d"(%1356, %25, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1280xf32>, tensor<128x1x1x1280xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1358 = "tosa.transpose"(%1357, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1359 = "tosa.sub"(%1358, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1360 = "tosa.mul"(%1359, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1361 = "tosa.mul"(%1360, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1360 = "tosa.mul"(%1359, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1361 = "tosa.mul"(%1360, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1362 = "tosa.add"(%1361, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1363 = "tosa.clamp"(%1362) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1364 = "tosa.transpose"(%1363, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2387,16 +2387,16 @@ module {
     %1367 = "tosa.sub"(%inserted_slice_1008, %24) : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
     %1368 = "tosa.add"(%24, %109) : (tensor<1x1312x1x1xf32>, tensor<f32>) -> tensor<1x1312x1x1xf32>
     %1369 = "tosa.rsqrt"(%1368) : (tensor<1x1312x1x1xf32>) -> tensor<1x1312x1x1xf32>
-    %1370 = "tosa.mul"(%1367, %1369) {shift = 0 : i32} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
-    %1371 = "tosa.mul"(%1370, %24) {shift = 0 : i32} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
+    %1370 = "tosa.mul"(%1367, %1369) {shift = 0 : i8} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
+    %1371 = "tosa.mul"(%1370, %24) {shift = 0 : i8} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
     %1372 = "tosa.add"(%1371, %24) : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
     %1373 = "tosa.clamp"(%1372) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1312x7x7xf32>) -> tensor<1x1312x7x7xf32>
     %1374 = "tosa.transpose"(%1373, %113) : (tensor<1x1312x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1312xf32>
     %1375 = "tosa.conv2d"(%1374, %23, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1312xf32>, tensor<128x1x1x1312xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1376 = "tosa.transpose"(%1375, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1377 = "tosa.sub"(%1376, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1378 = "tosa.mul"(%1377, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1379 = "tosa.mul"(%1378, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1378 = "tosa.mul"(%1377, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1379 = "tosa.mul"(%1378, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1380 = "tosa.add"(%1379, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1381 = "tosa.clamp"(%1380) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1382 = "tosa.transpose"(%1381, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2428,16 +2428,16 @@ module {
     %1385 = "tosa.sub"(%inserted_slice_1031, %22) : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
     %1386 = "tosa.add"(%22, %109) : (tensor<1x1344x1x1xf32>, tensor<f32>) -> tensor<1x1344x1x1xf32>
     %1387 = "tosa.rsqrt"(%1386) : (tensor<1x1344x1x1xf32>) -> tensor<1x1344x1x1xf32>
-    %1388 = "tosa.mul"(%1385, %1387) {shift = 0 : i32} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
-    %1389 = "tosa.mul"(%1388, %22) {shift = 0 : i32} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
+    %1388 = "tosa.mul"(%1385, %1387) {shift = 0 : i8} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
+    %1389 = "tosa.mul"(%1388, %22) {shift = 0 : i8} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
     %1390 = "tosa.add"(%1389, %22) : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
     %1391 = "tosa.clamp"(%1390) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1344x7x7xf32>) -> tensor<1x1344x7x7xf32>
     %1392 = "tosa.transpose"(%1391, %113) : (tensor<1x1344x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1344xf32>
     %1393 = "tosa.conv2d"(%1392, %21, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1344xf32>, tensor<128x1x1x1344xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1394 = "tosa.transpose"(%1393, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1395 = "tosa.sub"(%1394, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1396 = "tosa.mul"(%1395, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1397 = "tosa.mul"(%1396, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1396 = "tosa.mul"(%1395, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1397 = "tosa.mul"(%1396, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1398 = "tosa.add"(%1397, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1399 = "tosa.clamp"(%1398) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1400 = "tosa.transpose"(%1399, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2470,16 +2470,16 @@ module {
     %1403 = "tosa.sub"(%inserted_slice_1055, %20) : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
     %1404 = "tosa.add"(%20, %109) : (tensor<1x1376x1x1xf32>, tensor<f32>) -> tensor<1x1376x1x1xf32>
     %1405 = "tosa.rsqrt"(%1404) : (tensor<1x1376x1x1xf32>) -> tensor<1x1376x1x1xf32>
-    %1406 = "tosa.mul"(%1403, %1405) {shift = 0 : i32} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
-    %1407 = "tosa.mul"(%1406, %20) {shift = 0 : i32} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
+    %1406 = "tosa.mul"(%1403, %1405) {shift = 0 : i8} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
+    %1407 = "tosa.mul"(%1406, %20) {shift = 0 : i8} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
     %1408 = "tosa.add"(%1407, %20) : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
     %1409 = "tosa.clamp"(%1408) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1376x7x7xf32>) -> tensor<1x1376x7x7xf32>
     %1410 = "tosa.transpose"(%1409, %113) : (tensor<1x1376x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1376xf32>
     %1411 = "tosa.conv2d"(%1410, %19, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1376xf32>, tensor<128x1x1x1376xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1412 = "tosa.transpose"(%1411, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1413 = "tosa.sub"(%1412, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1414 = "tosa.mul"(%1413, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1415 = "tosa.mul"(%1414, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1414 = "tosa.mul"(%1413, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1415 = "tosa.mul"(%1414, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1416 = "tosa.add"(%1415, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1417 = "tosa.clamp"(%1416) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1418 = "tosa.transpose"(%1417, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2513,16 +2513,16 @@ module {
     %1421 = "tosa.sub"(%inserted_slice_1080, %18) : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
     %1422 = "tosa.add"(%18, %109) : (tensor<1x1408x1x1xf32>, tensor<f32>) -> tensor<1x1408x1x1xf32>
     %1423 = "tosa.rsqrt"(%1422) : (tensor<1x1408x1x1xf32>) -> tensor<1x1408x1x1xf32>
-    %1424 = "tosa.mul"(%1421, %1423) {shift = 0 : i32} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
-    %1425 = "tosa.mul"(%1424, %18) {shift = 0 : i32} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
+    %1424 = "tosa.mul"(%1421, %1423) {shift = 0 : i8} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
+    %1425 = "tosa.mul"(%1424, %18) {shift = 0 : i8} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
     %1426 = "tosa.add"(%1425, %18) : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
     %1427 = "tosa.clamp"(%1426) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1408x7x7xf32>) -> tensor<1x1408x7x7xf32>
     %1428 = "tosa.transpose"(%1427, %113) : (tensor<1x1408x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1408xf32>
     %1429 = "tosa.conv2d"(%1428, %17, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1408xf32>, tensor<128x1x1x1408xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1430 = "tosa.transpose"(%1429, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1431 = "tosa.sub"(%1430, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1432 = "tosa.mul"(%1431, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1433 = "tosa.mul"(%1432, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1432 = "tosa.mul"(%1431, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1433 = "tosa.mul"(%1432, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1434 = "tosa.add"(%1433, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1435 = "tosa.clamp"(%1434) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1436 = "tosa.transpose"(%1435, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2557,16 +2557,16 @@ module {
     %1439 = "tosa.sub"(%inserted_slice_1106, %16) : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
     %1440 = "tosa.add"(%16, %109) : (tensor<1x1440x1x1xf32>, tensor<f32>) -> tensor<1x1440x1x1xf32>
     %1441 = "tosa.rsqrt"(%1440) : (tensor<1x1440x1x1xf32>) -> tensor<1x1440x1x1xf32>
-    %1442 = "tosa.mul"(%1439, %1441) {shift = 0 : i32} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
-    %1443 = "tosa.mul"(%1442, %16) {shift = 0 : i32} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
+    %1442 = "tosa.mul"(%1439, %1441) {shift = 0 : i8} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
+    %1443 = "tosa.mul"(%1442, %16) {shift = 0 : i8} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
     %1444 = "tosa.add"(%1443, %16) : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
     %1445 = "tosa.clamp"(%1444) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1440x7x7xf32>) -> tensor<1x1440x7x7xf32>
     %1446 = "tosa.transpose"(%1445, %113) : (tensor<1x1440x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1440xf32>
     %1447 = "tosa.conv2d"(%1446, %15, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1440xf32>, tensor<128x1x1x1440xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1448 = "tosa.transpose"(%1447, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1449 = "tosa.sub"(%1448, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1450 = "tosa.mul"(%1449, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1451 = "tosa.mul"(%1450, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1450 = "tosa.mul"(%1449, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1451 = "tosa.mul"(%1450, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1452 = "tosa.add"(%1451, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1453 = "tosa.clamp"(%1452) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1454 = "tosa.transpose"(%1453, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2602,16 +2602,16 @@ module {
     %1457 = "tosa.sub"(%inserted_slice_1133, %14) : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
     %1458 = "tosa.add"(%14, %109) : (tensor<1x1472x1x1xf32>, tensor<f32>) -> tensor<1x1472x1x1xf32>
     %1459 = "tosa.rsqrt"(%1458) : (tensor<1x1472x1x1xf32>) -> tensor<1x1472x1x1xf32>
-    %1460 = "tosa.mul"(%1457, %1459) {shift = 0 : i32} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
-    %1461 = "tosa.mul"(%1460, %14) {shift = 0 : i32} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
+    %1460 = "tosa.mul"(%1457, %1459) {shift = 0 : i8} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
+    %1461 = "tosa.mul"(%1460, %14) {shift = 0 : i8} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
     %1462 = "tosa.add"(%1461, %14) : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
     %1463 = "tosa.clamp"(%1462) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1472x7x7xf32>) -> tensor<1x1472x7x7xf32>
     %1464 = "tosa.transpose"(%1463, %113) : (tensor<1x1472x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1472xf32>
     %1465 = "tosa.conv2d"(%1464, %13, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1472xf32>, tensor<128x1x1x1472xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1466 = "tosa.transpose"(%1465, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1467 = "tosa.sub"(%1466, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1468 = "tosa.mul"(%1467, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1469 = "tosa.mul"(%1468, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1468 = "tosa.mul"(%1467, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1469 = "tosa.mul"(%1468, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1470 = "tosa.add"(%1469, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1471 = "tosa.clamp"(%1470) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1472 = "tosa.transpose"(%1471, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2648,16 +2648,16 @@ module {
     %1475 = "tosa.sub"(%inserted_slice_1161, %12) : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
     %1476 = "tosa.add"(%12, %109) : (tensor<1x1504x1x1xf32>, tensor<f32>) -> tensor<1x1504x1x1xf32>
     %1477 = "tosa.rsqrt"(%1476) : (tensor<1x1504x1x1xf32>) -> tensor<1x1504x1x1xf32>
-    %1478 = "tosa.mul"(%1475, %1477) {shift = 0 : i32} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
-    %1479 = "tosa.mul"(%1478, %12) {shift = 0 : i32} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
+    %1478 = "tosa.mul"(%1475, %1477) {shift = 0 : i8} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
+    %1479 = "tosa.mul"(%1478, %12) {shift = 0 : i8} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
     %1480 = "tosa.add"(%1479, %12) : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
     %1481 = "tosa.clamp"(%1480) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1504x7x7xf32>) -> tensor<1x1504x7x7xf32>
     %1482 = "tosa.transpose"(%1481, %113) : (tensor<1x1504x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1504xf32>
     %1483 = "tosa.conv2d"(%1482, %11, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1504xf32>, tensor<128x1x1x1504xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1484 = "tosa.transpose"(%1483, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1485 = "tosa.sub"(%1484, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1486 = "tosa.mul"(%1485, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1487 = "tosa.mul"(%1486, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1486 = "tosa.mul"(%1485, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1487 = "tosa.mul"(%1486, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1488 = "tosa.add"(%1487, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1489 = "tosa.clamp"(%1488) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1490 = "tosa.transpose"(%1489, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2695,16 +2695,16 @@ module {
     %1493 = "tosa.sub"(%inserted_slice_1190, %10) : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
     %1494 = "tosa.add"(%10, %109) : (tensor<1x1536x1x1xf32>, tensor<f32>) -> tensor<1x1536x1x1xf32>
     %1495 = "tosa.rsqrt"(%1494) : (tensor<1x1536x1x1xf32>) -> tensor<1x1536x1x1xf32>
-    %1496 = "tosa.mul"(%1493, %1495) {shift = 0 : i32} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
-    %1497 = "tosa.mul"(%1496, %10) {shift = 0 : i32} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
+    %1496 = "tosa.mul"(%1493, %1495) {shift = 0 : i8} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
+    %1497 = "tosa.mul"(%1496, %10) {shift = 0 : i8} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
     %1498 = "tosa.add"(%1497, %10) : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
     %1499 = "tosa.clamp"(%1498) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1536x7x7xf32>) -> tensor<1x1536x7x7xf32>
     %1500 = "tosa.transpose"(%1499, %113) : (tensor<1x1536x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1536xf32>
     %1501 = "tosa.conv2d"(%1500, %9, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1536xf32>, tensor<128x1x1x1536xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1502 = "tosa.transpose"(%1501, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1503 = "tosa.sub"(%1502, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1504 = "tosa.mul"(%1503, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1505 = "tosa.mul"(%1504, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1504 = "tosa.mul"(%1503, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1505 = "tosa.mul"(%1504, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1506 = "tosa.add"(%1505, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1507 = "tosa.clamp"(%1506) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1508 = "tosa.transpose"(%1507, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2743,16 +2743,16 @@ module {
     %1511 = "tosa.sub"(%inserted_slice_1220, %8) : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
     %1512 = "tosa.add"(%8, %109) : (tensor<1x1568x1x1xf32>, tensor<f32>) -> tensor<1x1568x1x1xf32>
     %1513 = "tosa.rsqrt"(%1512) : (tensor<1x1568x1x1xf32>) -> tensor<1x1568x1x1xf32>
-    %1514 = "tosa.mul"(%1511, %1513) {shift = 0 : i32} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
-    %1515 = "tosa.mul"(%1514, %8) {shift = 0 : i32} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
+    %1514 = "tosa.mul"(%1511, %1513) {shift = 0 : i8} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
+    %1515 = "tosa.mul"(%1514, %8) {shift = 0 : i8} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
     %1516 = "tosa.add"(%1515, %8) : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
     %1517 = "tosa.clamp"(%1516) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1568x7x7xf32>) -> tensor<1x1568x7x7xf32>
     %1518 = "tosa.transpose"(%1517, %113) : (tensor<1x1568x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1568xf32>
     %1519 = "tosa.conv2d"(%1518, %7, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1568xf32>, tensor<128x1x1x1568xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1520 = "tosa.transpose"(%1519, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1521 = "tosa.sub"(%1520, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1522 = "tosa.mul"(%1521, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1523 = "tosa.mul"(%1522, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1522 = "tosa.mul"(%1521, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1523 = "tosa.mul"(%1522, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1524 = "tosa.add"(%1523, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1525 = "tosa.clamp"(%1524) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1526 = "tosa.transpose"(%1525, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2792,16 +2792,16 @@ module {
     %1529 = "tosa.sub"(%inserted_slice_1251, %6) : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
     %1530 = "tosa.add"(%6, %109) : (tensor<1x1600x1x1xf32>, tensor<f32>) -> tensor<1x1600x1x1xf32>
     %1531 = "tosa.rsqrt"(%1530) : (tensor<1x1600x1x1xf32>) -> tensor<1x1600x1x1xf32>
-    %1532 = "tosa.mul"(%1529, %1531) {shift = 0 : i32} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
-    %1533 = "tosa.mul"(%1532, %6) {shift = 0 : i32} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
+    %1532 = "tosa.mul"(%1529, %1531) {shift = 0 : i8} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
+    %1533 = "tosa.mul"(%1532, %6) {shift = 0 : i8} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
     %1534 = "tosa.add"(%1533, %6) : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
     %1535 = "tosa.clamp"(%1534) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1600x7x7xf32>) -> tensor<1x1600x7x7xf32>
     %1536 = "tosa.transpose"(%1535, %113) : (tensor<1x1600x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1600xf32>
     %1537 = "tosa.conv2d"(%1536, %5, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1600xf32>, tensor<128x1x1x1600xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1538 = "tosa.transpose"(%1537, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1539 = "tosa.sub"(%1538, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1540 = "tosa.mul"(%1539, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1541 = "tosa.mul"(%1540, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1540 = "tosa.mul"(%1539, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1541 = "tosa.mul"(%1540, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1542 = "tosa.add"(%1541, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1543 = "tosa.clamp"(%1542) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1544 = "tosa.transpose"(%1543, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2842,16 +2842,16 @@ module {
     %1547 = "tosa.sub"(%inserted_slice_1283, %4) : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
     %1548 = "tosa.add"(%4, %109) : (tensor<1x1632x1x1xf32>, tensor<f32>) -> tensor<1x1632x1x1xf32>
     %1549 = "tosa.rsqrt"(%1548) : (tensor<1x1632x1x1xf32>) -> tensor<1x1632x1x1xf32>
-    %1550 = "tosa.mul"(%1547, %1549) {shift = 0 : i32} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
-    %1551 = "tosa.mul"(%1550, %4) {shift = 0 : i32} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
+    %1550 = "tosa.mul"(%1547, %1549) {shift = 0 : i8} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
+    %1551 = "tosa.mul"(%1550, %4) {shift = 0 : i8} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
     %1552 = "tosa.add"(%1551, %4) : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
     %1553 = "tosa.clamp"(%1552) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1632x7x7xf32>) -> tensor<1x1632x7x7xf32>
     %1554 = "tosa.transpose"(%1553, %113) : (tensor<1x1632x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1632xf32>
     %1555 = "tosa.conv2d"(%1554, %3, %107) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1632xf32>, tensor<128x1x1x1632xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1556 = "tosa.transpose"(%1555, %111) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1557 = "tosa.sub"(%1556, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1558 = "tosa.mul"(%1557, %138) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1559 = "tosa.mul"(%1558, %106) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1558 = "tosa.mul"(%1557, %138) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1559 = "tosa.mul"(%1558, %106) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1560 = "tosa.add"(%1559, %106) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1561 = "tosa.clamp"(%1560) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1562 = "tosa.transpose"(%1561, %113) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -2893,8 +2893,8 @@ module {
     %1565 = "tosa.sub"(%inserted_slice_1316, %2) : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
     %1566 = "tosa.add"(%2, %109) : (tensor<1x1664x1x1xf32>, tensor<f32>) -> tensor<1x1664x1x1xf32>
     %1567 = "tosa.rsqrt"(%1566) : (tensor<1x1664x1x1xf32>) -> tensor<1x1664x1x1xf32>
-    %1568 = "tosa.mul"(%1565, %1567) {shift = 0 : i32} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
-    %1569 = "tosa.mul"(%1568, %2) {shift = 0 : i32} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
+    %1568 = "tosa.mul"(%1565, %1567) {shift = 0 : i8} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
+    %1569 = "tosa.mul"(%1568, %2) {shift = 0 : i8} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
     %1570 = "tosa.add"(%1569, %2) : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
     %1571 = "tosa.clamp"(%1570) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1664x7x7xf32>) -> tensor<1x1664x7x7xf32>
     %1572 = "tosa.transpose"(%1571, %113) : (tensor<1x1664x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1664xf32>
@@ -3226,16 +3226,16 @@ module {
     %172 = "tosa.sub"(%171, %107) : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
     %173 = "tosa.add"(%107, %106) : (tensor<1x64x1x1xf32>, tensor<f32>) -> tensor<1x64x1x1xf32>
     %174 = "tosa.rsqrt"(%173) : (tensor<1x64x1x1xf32>) -> tensor<1x64x1x1xf32>
-    %175 = "tosa.mul"(%172, %174) {shift = 0 : i32} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
-    %176 = "tosa.mul"(%175, %107) {shift = 0 : i32} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
+    %175 = "tosa.mul"(%172, %174) {shift = 0 : i8} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
+    %176 = "tosa.mul"(%175, %107) {shift = 0 : i8} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
     %177 = "tosa.add"(%176, %107) : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
     %178 = "tosa.clamp"(%177) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x64x112x112xf32>) -> tensor<1x64x112x112xf32>
     %179 = "tosa.transpose"(%178, %111) : (tensor<1x64x112x112xf32>, tensor<4xi64>) -> tensor<1x112x112x64xf32>
     %180 = "tosa.max_pool2d"(%179) {kernel = array<i64: 3, 3>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 2, 2>} : (tensor<1x112x112x64xf32>) -> tensor<1x56x56x64xf32>
     %181 = "tosa.transpose"(%180, %112) : (tensor<1x56x56x64xf32>, tensor<4xi64>) -> tensor<1x64x56x56xf32>
     %182 = "tosa.sub"(%181, %107) : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
-    %183 = "tosa.mul"(%182, %174) {shift = 0 : i32} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
-    %184 = "tosa.mul"(%183, %107) {shift = 0 : i32} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
+    %183 = "tosa.mul"(%182, %174) {shift = 0 : i8} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
+    %184 = "tosa.mul"(%183, %107) {shift = 0 : i8} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
     %185 = "tosa.add"(%184, %107) : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
     %186 = "tosa.clamp"(%185) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x64x56x56xf32>) -> tensor<1x64x56x56xf32>
     %187 = "tosa.transpose"(%186, %111) : (tensor<1x64x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x64xf32>
@@ -3244,8 +3244,8 @@ module {
     %190 = "tosa.sub"(%189, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %191 = "tosa.add"(%103, %106) : (tensor<1x128x1x1xf32>, tensor<f32>) -> tensor<1x128x1x1xf32>
     %192 = "tosa.rsqrt"(%191) : (tensor<1x128x1x1xf32>) -> tensor<1x128x1x1xf32>
-    %193 = "tosa.mul"(%190, %192) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %194 = "tosa.mul"(%193, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %193 = "tosa.mul"(%190, %192) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %194 = "tosa.mul"(%193, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %195 = "tosa.add"(%194, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %196 = "tosa.clamp"(%195) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %197 = "tosa.transpose"(%196, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -3256,16 +3256,16 @@ module {
     %200 = "tosa.sub"(%inserted_slice_144, %100) : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
     %201 = "tosa.add"(%100, %106) : (tensor<1x96x1x1xf32>, tensor<f32>) -> tensor<1x96x1x1xf32>
     %202 = "tosa.rsqrt"(%201) : (tensor<1x96x1x1xf32>) -> tensor<1x96x1x1xf32>
-    %203 = "tosa.mul"(%200, %202) {shift = 0 : i32} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
-    %204 = "tosa.mul"(%203, %100) {shift = 0 : i32} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
+    %203 = "tosa.mul"(%200, %202) {shift = 0 : i8} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
+    %204 = "tosa.mul"(%203, %100) {shift = 0 : i8} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
     %205 = "tosa.add"(%204, %100) : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
     %206 = "tosa.clamp"(%205) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x96x56x56xf32>) -> tensor<1x96x56x56xf32>
     %207 = "tosa.transpose"(%206, %111) : (tensor<1x96x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x96xf32>
     %208 = "tosa.conv2d"(%207, %99, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x96xf32>, tensor<128x1x1x96xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %209 = "tosa.transpose"(%208, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %210 = "tosa.sub"(%209, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %211 = "tosa.mul"(%210, %192) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %212 = "tosa.mul"(%211, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %211 = "tosa.mul"(%210, %192) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %212 = "tosa.mul"(%211, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %213 = "tosa.add"(%212, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %214 = "tosa.clamp"(%213) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %215 = "tosa.transpose"(%214, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -3275,16 +3275,16 @@ module {
     %inserted_slice_146 = tensor.insert_slice %199 into %inserted_slice_145[0, 64, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x32x56x56xf32> into tensor<1x128x56x56xf32>
     %inserted_slice_147 = tensor.insert_slice %217 into %inserted_slice_146[0, 96, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x32x56x56xf32> into tensor<1x128x56x56xf32>
     %218 = "tosa.sub"(%inserted_slice_147, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %219 = "tosa.mul"(%218, %192) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %220 = "tosa.mul"(%219, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %219 = "tosa.mul"(%218, %192) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %220 = "tosa.mul"(%219, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %221 = "tosa.add"(%220, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %222 = "tosa.clamp"(%221) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %223 = "tosa.transpose"(%222, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
     %224 = "tosa.conv2d"(%223, %164, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x128xf32>, tensor<128x1x1x128xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %225 = "tosa.transpose"(%224, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %226 = "tosa.sub"(%225, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %227 = "tosa.mul"(%226, %192) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %228 = "tosa.mul"(%227, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %227 = "tosa.mul"(%226, %192) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %228 = "tosa.mul"(%227, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %229 = "tosa.add"(%228, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %230 = "tosa.clamp"(%229) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %231 = "tosa.transpose"(%230, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -3297,16 +3297,16 @@ module {
     %234 = "tosa.sub"(%inserted_slice_151, %98) : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
     %235 = "tosa.add"(%98, %106) : (tensor<1x160x1x1xf32>, tensor<f32>) -> tensor<1x160x1x1xf32>
     %236 = "tosa.rsqrt"(%235) : (tensor<1x160x1x1xf32>) -> tensor<1x160x1x1xf32>
-    %237 = "tosa.mul"(%234, %236) {shift = 0 : i32} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
-    %238 = "tosa.mul"(%237, %98) {shift = 0 : i32} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
+    %237 = "tosa.mul"(%234, %236) {shift = 0 : i8} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
+    %238 = "tosa.mul"(%237, %98) {shift = 0 : i8} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
     %239 = "tosa.add"(%238, %98) : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
     %240 = "tosa.clamp"(%239) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x160x56x56xf32>) -> tensor<1x160x56x56xf32>
     %241 = "tosa.transpose"(%240, %111) : (tensor<1x160x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x160xf32>
     %242 = "tosa.conv2d"(%241, %97, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x160xf32>, tensor<128x1x1x160xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %243 = "tosa.transpose"(%242, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %244 = "tosa.sub"(%243, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %245 = "tosa.mul"(%244, %192) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %246 = "tosa.mul"(%245, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %245 = "tosa.mul"(%244, %192) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %246 = "tosa.mul"(%245, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %247 = "tosa.add"(%246, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %248 = "tosa.clamp"(%247) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %249 = "tosa.transpose"(%248, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -3320,16 +3320,16 @@ module {
     %252 = "tosa.sub"(%inserted_slice_156, %96) : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
     %253 = "tosa.add"(%96, %106) : (tensor<1x192x1x1xf32>, tensor<f32>) -> tensor<1x192x1x1xf32>
     %254 = "tosa.rsqrt"(%253) : (tensor<1x192x1x1xf32>) -> tensor<1x192x1x1xf32>
-    %255 = "tosa.mul"(%252, %254) {shift = 0 : i32} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
-    %256 = "tosa.mul"(%255, %96) {shift = 0 : i32} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
+    %255 = "tosa.mul"(%252, %254) {shift = 0 : i8} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
+    %256 = "tosa.mul"(%255, %96) {shift = 0 : i8} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
     %257 = "tosa.add"(%256, %96) : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
     %258 = "tosa.clamp"(%257) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x192x56x56xf32>) -> tensor<1x192x56x56xf32>
     %259 = "tosa.transpose"(%258, %111) : (tensor<1x192x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x192xf32>
     %260 = "tosa.conv2d"(%259, %95, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x192xf32>, tensor<128x1x1x192xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %261 = "tosa.transpose"(%260, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %262 = "tosa.sub"(%261, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %263 = "tosa.mul"(%262, %192) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %264 = "tosa.mul"(%263, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %263 = "tosa.mul"(%262, %192) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %264 = "tosa.mul"(%263, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %265 = "tosa.add"(%264, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %266 = "tosa.clamp"(%265) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %267 = "tosa.transpose"(%266, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -3344,16 +3344,16 @@ module {
     %270 = "tosa.sub"(%inserted_slice_162, %94) : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
     %271 = "tosa.add"(%94, %106) : (tensor<1x224x1x1xf32>, tensor<f32>) -> tensor<1x224x1x1xf32>
     %272 = "tosa.rsqrt"(%271) : (tensor<1x224x1x1xf32>) -> tensor<1x224x1x1xf32>
-    %273 = "tosa.mul"(%270, %272) {shift = 0 : i32} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
-    %274 = "tosa.mul"(%273, %94) {shift = 0 : i32} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
+    %273 = "tosa.mul"(%270, %272) {shift = 0 : i8} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
+    %274 = "tosa.mul"(%273, %94) {shift = 0 : i8} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
     %275 = "tosa.add"(%274, %94) : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
     %276 = "tosa.clamp"(%275) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x224x56x56xf32>) -> tensor<1x224x56x56xf32>
     %277 = "tosa.transpose"(%276, %111) : (tensor<1x224x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x224xf32>
     %278 = "tosa.conv2d"(%277, %93, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x56x56x224xf32>, tensor<128x1x1x224xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %279 = "tosa.transpose"(%278, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %280 = "tosa.sub"(%279, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %281 = "tosa.mul"(%280, %192) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %282 = "tosa.mul"(%281, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %281 = "tosa.mul"(%280, %192) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %282 = "tosa.mul"(%281, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %283 = "tosa.add"(%282, %103) : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
     %284 = "tosa.clamp"(%283) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %285 = "tosa.transpose"(%284, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
@@ -3369,8 +3369,8 @@ module {
     %288 = "tosa.sub"(%inserted_slice_169, %92) : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
     %289 = "tosa.add"(%92, %106) : (tensor<1x256x1x1xf32>, tensor<f32>) -> tensor<1x256x1x1xf32>
     %290 = "tosa.rsqrt"(%289) : (tensor<1x256x1x1xf32>) -> tensor<1x256x1x1xf32>
-    %291 = "tosa.mul"(%288, %290) {shift = 0 : i32} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
-    %292 = "tosa.mul"(%291, %92) {shift = 0 : i32} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
+    %291 = "tosa.mul"(%288, %290) {shift = 0 : i8} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
+    %292 = "tosa.mul"(%291, %92) {shift = 0 : i8} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
     %293 = "tosa.add"(%292, %92) : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
     %294 = "tosa.clamp"(%293) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x256x56x56xf32>) -> tensor<1x256x56x56xf32>
     %295 = "tosa.transpose"(%294, %111) : (tensor<1x256x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x256xf32>
@@ -3378,16 +3378,16 @@ module {
     %297 = "tosa.avg_pool2d"(%296) {acc_type = f32, kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x56x56x128xf32>) -> tensor<1x28x28x128xf32>
     %298 = "tosa.transpose"(%297, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %299 = "tosa.sub"(%298, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %300 = "tosa.mul"(%299, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %301 = "tosa.mul"(%300, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %300 = "tosa.mul"(%299, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %301 = "tosa.mul"(%300, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %302 = "tosa.add"(%301, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %303 = "tosa.clamp"(%302) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %304 = "tosa.transpose"(%303, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %305 = "tosa.conv2d"(%304, %164, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<128x1x1x128xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %306 = "tosa.transpose"(%305, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %307 = "tosa.sub"(%306, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %308 = "tosa.mul"(%307, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %309 = "tosa.mul"(%308, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %308 = "tosa.mul"(%307, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %309 = "tosa.mul"(%308, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %310 = "tosa.add"(%309, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %311 = "tosa.clamp"(%310) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %312 = "tosa.transpose"(%311, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3396,16 +3396,16 @@ module {
     %inserted_slice_170 = tensor.insert_slice %298 into %cst_5[0, 0, 0, 0] [1, 128, 28, 28] [1, 1, 1, 1] : tensor<1x128x28x28xf32> into tensor<1x160x28x28xf32>
     %inserted_slice_171 = tensor.insert_slice %314 into %inserted_slice_170[0, 128, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x160x28x28xf32>
     %315 = "tosa.sub"(%inserted_slice_171, %98) : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
-    %316 = "tosa.mul"(%315, %236) {shift = 0 : i32} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
-    %317 = "tosa.mul"(%316, %98) {shift = 0 : i32} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
+    %316 = "tosa.mul"(%315, %236) {shift = 0 : i8} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
+    %317 = "tosa.mul"(%316, %98) {shift = 0 : i8} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
     %318 = "tosa.add"(%317, %98) : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
     %319 = "tosa.clamp"(%318) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x160x28x28xf32>) -> tensor<1x160x28x28xf32>
     %320 = "tosa.transpose"(%319, %111) : (tensor<1x160x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x160xf32>
     %321 = "tosa.conv2d"(%320, %97, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x160xf32>, tensor<128x1x1x160xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %322 = "tosa.transpose"(%321, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %323 = "tosa.sub"(%322, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %324 = "tosa.mul"(%323, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %325 = "tosa.mul"(%324, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %324 = "tosa.mul"(%323, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %325 = "tosa.mul"(%324, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %326 = "tosa.add"(%325, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %327 = "tosa.clamp"(%326) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %328 = "tosa.transpose"(%327, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3415,16 +3415,16 @@ module {
     %inserted_slice_173 = tensor.insert_slice %314 into %inserted_slice_172[0, 128, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x192x28x28xf32>
     %inserted_slice_174 = tensor.insert_slice %330 into %inserted_slice_173[0, 160, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x192x28x28xf32>
     %331 = "tosa.sub"(%inserted_slice_174, %96) : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
-    %332 = "tosa.mul"(%331, %254) {shift = 0 : i32} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
-    %333 = "tosa.mul"(%332, %96) {shift = 0 : i32} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
+    %332 = "tosa.mul"(%331, %254) {shift = 0 : i8} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
+    %333 = "tosa.mul"(%332, %96) {shift = 0 : i8} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
     %334 = "tosa.add"(%333, %96) : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
     %335 = "tosa.clamp"(%334) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x192x28x28xf32>) -> tensor<1x192x28x28xf32>
     %336 = "tosa.transpose"(%335, %111) : (tensor<1x192x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x192xf32>
     %337 = "tosa.conv2d"(%336, %95, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x192xf32>, tensor<128x1x1x192xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %338 = "tosa.transpose"(%337, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %339 = "tosa.sub"(%338, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %340 = "tosa.mul"(%339, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %341 = "tosa.mul"(%340, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %340 = "tosa.mul"(%339, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %341 = "tosa.mul"(%340, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %342 = "tosa.add"(%341, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %343 = "tosa.clamp"(%342) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %344 = "tosa.transpose"(%343, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3435,16 +3435,16 @@ module {
     %inserted_slice_177 = tensor.insert_slice %330 into %inserted_slice_176[0, 160, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x224x28x28xf32>
     %inserted_slice_178 = tensor.insert_slice %346 into %inserted_slice_177[0, 192, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x224x28x28xf32>
     %347 = "tosa.sub"(%inserted_slice_178, %94) : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
-    %348 = "tosa.mul"(%347, %272) {shift = 0 : i32} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
-    %349 = "tosa.mul"(%348, %94) {shift = 0 : i32} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
+    %348 = "tosa.mul"(%347, %272) {shift = 0 : i8} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
+    %349 = "tosa.mul"(%348, %94) {shift = 0 : i8} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
     %350 = "tosa.add"(%349, %94) : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
     %351 = "tosa.clamp"(%350) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x224x28x28xf32>) -> tensor<1x224x28x28xf32>
     %352 = "tosa.transpose"(%351, %111) : (tensor<1x224x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x224xf32>
     %353 = "tosa.conv2d"(%352, %93, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x224xf32>, tensor<128x1x1x224xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %354 = "tosa.transpose"(%353, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %355 = "tosa.sub"(%354, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %356 = "tosa.mul"(%355, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %357 = "tosa.mul"(%356, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %356 = "tosa.mul"(%355, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %357 = "tosa.mul"(%356, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %358 = "tosa.add"(%357, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %359 = "tosa.clamp"(%358) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %360 = "tosa.transpose"(%359, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3456,16 +3456,16 @@ module {
     %inserted_slice_182 = tensor.insert_slice %346 into %inserted_slice_181[0, 192, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x256x28x28xf32>
     %inserted_slice_183 = tensor.insert_slice %362 into %inserted_slice_182[0, 224, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x32x28x28xf32> into tensor<1x256x28x28xf32>
     %363 = "tosa.sub"(%inserted_slice_183, %92) : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
-    %364 = "tosa.mul"(%363, %290) {shift = 0 : i32} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
-    %365 = "tosa.mul"(%364, %92) {shift = 0 : i32} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
+    %364 = "tosa.mul"(%363, %290) {shift = 0 : i8} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
+    %365 = "tosa.mul"(%364, %92) {shift = 0 : i8} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
     %366 = "tosa.add"(%365, %92) : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
     %367 = "tosa.clamp"(%366) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x256x28x28xf32>) -> tensor<1x256x28x28xf32>
     %368 = "tosa.transpose"(%367, %111) : (tensor<1x256x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x256xf32>
     %369 = "tosa.conv2d"(%368, %91, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x256xf32>, tensor<128x1x1x256xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %370 = "tosa.transpose"(%369, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %371 = "tosa.sub"(%370, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %372 = "tosa.mul"(%371, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %373 = "tosa.mul"(%372, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %372 = "tosa.mul"(%371, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %373 = "tosa.mul"(%372, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %374 = "tosa.add"(%373, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %375 = "tosa.clamp"(%374) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %376 = "tosa.transpose"(%375, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3480,16 +3480,16 @@ module {
     %379 = "tosa.sub"(%inserted_slice_189, %90) : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
     %380 = "tosa.add"(%90, %106) : (tensor<1x288x1x1xf32>, tensor<f32>) -> tensor<1x288x1x1xf32>
     %381 = "tosa.rsqrt"(%380) : (tensor<1x288x1x1xf32>) -> tensor<1x288x1x1xf32>
-    %382 = "tosa.mul"(%379, %381) {shift = 0 : i32} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
-    %383 = "tosa.mul"(%382, %90) {shift = 0 : i32} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
+    %382 = "tosa.mul"(%379, %381) {shift = 0 : i8} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
+    %383 = "tosa.mul"(%382, %90) {shift = 0 : i8} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
     %384 = "tosa.add"(%383, %90) : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
     %385 = "tosa.clamp"(%384) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x288x28x28xf32>) -> tensor<1x288x28x28xf32>
     %386 = "tosa.transpose"(%385, %111) : (tensor<1x288x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x288xf32>
     %387 = "tosa.conv2d"(%386, %89, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x288xf32>, tensor<128x1x1x288xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %388 = "tosa.transpose"(%387, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %389 = "tosa.sub"(%388, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %390 = "tosa.mul"(%389, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %391 = "tosa.mul"(%390, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %390 = "tosa.mul"(%389, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %391 = "tosa.mul"(%390, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %392 = "tosa.add"(%391, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %393 = "tosa.clamp"(%392) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %394 = "tosa.transpose"(%393, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3505,16 +3505,16 @@ module {
     %397 = "tosa.sub"(%inserted_slice_196, %88) : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
     %398 = "tosa.add"(%88, %106) : (tensor<1x320x1x1xf32>, tensor<f32>) -> tensor<1x320x1x1xf32>
     %399 = "tosa.rsqrt"(%398) : (tensor<1x320x1x1xf32>) -> tensor<1x320x1x1xf32>
-    %400 = "tosa.mul"(%397, %399) {shift = 0 : i32} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
-    %401 = "tosa.mul"(%400, %88) {shift = 0 : i32} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
+    %400 = "tosa.mul"(%397, %399) {shift = 0 : i8} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
+    %401 = "tosa.mul"(%400, %88) {shift = 0 : i8} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
     %402 = "tosa.add"(%401, %88) : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
     %403 = "tosa.clamp"(%402) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x320x28x28xf32>) -> tensor<1x320x28x28xf32>
     %404 = "tosa.transpose"(%403, %111) : (tensor<1x320x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x320xf32>
     %405 = "tosa.conv2d"(%404, %87, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x320xf32>, tensor<128x1x1x320xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %406 = "tosa.transpose"(%405, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %407 = "tosa.sub"(%406, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %408 = "tosa.mul"(%407, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %409 = "tosa.mul"(%408, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %408 = "tosa.mul"(%407, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %409 = "tosa.mul"(%408, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %410 = "tosa.add"(%409, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %411 = "tosa.clamp"(%410) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %412 = "tosa.transpose"(%411, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3531,16 +3531,16 @@ module {
     %415 = "tosa.sub"(%inserted_slice_204, %86) : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
     %416 = "tosa.add"(%86, %106) : (tensor<1x352x1x1xf32>, tensor<f32>) -> tensor<1x352x1x1xf32>
     %417 = "tosa.rsqrt"(%416) : (tensor<1x352x1x1xf32>) -> tensor<1x352x1x1xf32>
-    %418 = "tosa.mul"(%415, %417) {shift = 0 : i32} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
-    %419 = "tosa.mul"(%418, %86) {shift = 0 : i32} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
+    %418 = "tosa.mul"(%415, %417) {shift = 0 : i8} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
+    %419 = "tosa.mul"(%418, %86) {shift = 0 : i8} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
     %420 = "tosa.add"(%419, %86) : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
     %421 = "tosa.clamp"(%420) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x352x28x28xf32>) -> tensor<1x352x28x28xf32>
     %422 = "tosa.transpose"(%421, %111) : (tensor<1x352x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x352xf32>
     %423 = "tosa.conv2d"(%422, %85, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x352xf32>, tensor<128x1x1x352xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %424 = "tosa.transpose"(%423, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %425 = "tosa.sub"(%424, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %426 = "tosa.mul"(%425, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %427 = "tosa.mul"(%426, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %426 = "tosa.mul"(%425, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %427 = "tosa.mul"(%426, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %428 = "tosa.add"(%427, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %429 = "tosa.clamp"(%428) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %430 = "tosa.transpose"(%429, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3558,16 +3558,16 @@ module {
     %433 = "tosa.sub"(%inserted_slice_213, %84) : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
     %434 = "tosa.add"(%84, %106) : (tensor<1x384x1x1xf32>, tensor<f32>) -> tensor<1x384x1x1xf32>
     %435 = "tosa.rsqrt"(%434) : (tensor<1x384x1x1xf32>) -> tensor<1x384x1x1xf32>
-    %436 = "tosa.mul"(%433, %435) {shift = 0 : i32} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
-    %437 = "tosa.mul"(%436, %84) {shift = 0 : i32} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
+    %436 = "tosa.mul"(%433, %435) {shift = 0 : i8} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
+    %437 = "tosa.mul"(%436, %84) {shift = 0 : i8} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
     %438 = "tosa.add"(%437, %84) : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
     %439 = "tosa.clamp"(%438) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x384x28x28xf32>) -> tensor<1x384x28x28xf32>
     %440 = "tosa.transpose"(%439, %111) : (tensor<1x384x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x384xf32>
     %441 = "tosa.conv2d"(%440, %83, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x384xf32>, tensor<128x1x1x384xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %442 = "tosa.transpose"(%441, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %443 = "tosa.sub"(%442, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %444 = "tosa.mul"(%443, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %445 = "tosa.mul"(%444, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %444 = "tosa.mul"(%443, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %445 = "tosa.mul"(%444, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %446 = "tosa.add"(%445, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %447 = "tosa.clamp"(%446) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %448 = "tosa.transpose"(%447, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3586,16 +3586,16 @@ module {
     %451 = "tosa.sub"(%inserted_slice_223, %82) : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
     %452 = "tosa.add"(%82, %106) : (tensor<1x416x1x1xf32>, tensor<f32>) -> tensor<1x416x1x1xf32>
     %453 = "tosa.rsqrt"(%452) : (tensor<1x416x1x1xf32>) -> tensor<1x416x1x1xf32>
-    %454 = "tosa.mul"(%451, %453) {shift = 0 : i32} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
-    %455 = "tosa.mul"(%454, %82) {shift = 0 : i32} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
+    %454 = "tosa.mul"(%451, %453) {shift = 0 : i8} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
+    %455 = "tosa.mul"(%454, %82) {shift = 0 : i8} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
     %456 = "tosa.add"(%455, %82) : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
     %457 = "tosa.clamp"(%456) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x416x28x28xf32>) -> tensor<1x416x28x28xf32>
     %458 = "tosa.transpose"(%457, %111) : (tensor<1x416x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x416xf32>
     %459 = "tosa.conv2d"(%458, %81, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x416xf32>, tensor<128x1x1x416xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %460 = "tosa.transpose"(%459, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %461 = "tosa.sub"(%460, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %462 = "tosa.mul"(%461, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %463 = "tosa.mul"(%462, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %462 = "tosa.mul"(%461, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %463 = "tosa.mul"(%462, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %464 = "tosa.add"(%463, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %465 = "tosa.clamp"(%464) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %466 = "tosa.transpose"(%465, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3615,16 +3615,16 @@ module {
     %469 = "tosa.sub"(%inserted_slice_234, %80) : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
     %470 = "tosa.add"(%80, %106) : (tensor<1x448x1x1xf32>, tensor<f32>) -> tensor<1x448x1x1xf32>
     %471 = "tosa.rsqrt"(%470) : (tensor<1x448x1x1xf32>) -> tensor<1x448x1x1xf32>
-    %472 = "tosa.mul"(%469, %471) {shift = 0 : i32} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
-    %473 = "tosa.mul"(%472, %80) {shift = 0 : i32} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
+    %472 = "tosa.mul"(%469, %471) {shift = 0 : i8} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
+    %473 = "tosa.mul"(%472, %80) {shift = 0 : i8} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
     %474 = "tosa.add"(%473, %80) : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
     %475 = "tosa.clamp"(%474) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x448x28x28xf32>) -> tensor<1x448x28x28xf32>
     %476 = "tosa.transpose"(%475, %111) : (tensor<1x448x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x448xf32>
     %477 = "tosa.conv2d"(%476, %79, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x448xf32>, tensor<128x1x1x448xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %478 = "tosa.transpose"(%477, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %479 = "tosa.sub"(%478, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %480 = "tosa.mul"(%479, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %481 = "tosa.mul"(%480, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %480 = "tosa.mul"(%479, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %481 = "tosa.mul"(%480, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %482 = "tosa.add"(%481, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %483 = "tosa.clamp"(%482) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %484 = "tosa.transpose"(%483, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3645,16 +3645,16 @@ module {
     %487 = "tosa.sub"(%inserted_slice_246, %78) : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
     %488 = "tosa.add"(%78, %106) : (tensor<1x480x1x1xf32>, tensor<f32>) -> tensor<1x480x1x1xf32>
     %489 = "tosa.rsqrt"(%488) : (tensor<1x480x1x1xf32>) -> tensor<1x480x1x1xf32>
-    %490 = "tosa.mul"(%487, %489) {shift = 0 : i32} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
-    %491 = "tosa.mul"(%490, %78) {shift = 0 : i32} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
+    %490 = "tosa.mul"(%487, %489) {shift = 0 : i8} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
+    %491 = "tosa.mul"(%490, %78) {shift = 0 : i8} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
     %492 = "tosa.add"(%491, %78) : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
     %493 = "tosa.clamp"(%492) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x480x28x28xf32>) -> tensor<1x480x28x28xf32>
     %494 = "tosa.transpose"(%493, %111) : (tensor<1x480x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x480xf32>
     %495 = "tosa.conv2d"(%494, %77, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x28x28x480xf32>, tensor<128x1x1x480xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %496 = "tosa.transpose"(%495, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %497 = "tosa.sub"(%496, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %498 = "tosa.mul"(%497, %192) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %499 = "tosa.mul"(%498, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %498 = "tosa.mul"(%497, %192) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %499 = "tosa.mul"(%498, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %500 = "tosa.add"(%499, %103) : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
     %501 = "tosa.clamp"(%500) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %502 = "tosa.transpose"(%501, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
@@ -3676,8 +3676,8 @@ module {
     %505 = "tosa.sub"(%inserted_slice_259, %76) : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
     %506 = "tosa.add"(%76, %106) : (tensor<1x512x1x1xf32>, tensor<f32>) -> tensor<1x512x1x1xf32>
     %507 = "tosa.rsqrt"(%506) : (tensor<1x512x1x1xf32>) -> tensor<1x512x1x1xf32>
-    %508 = "tosa.mul"(%505, %507) {shift = 0 : i32} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
-    %509 = "tosa.mul"(%508, %76) {shift = 0 : i32} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
+    %508 = "tosa.mul"(%505, %507) {shift = 0 : i8} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
+    %509 = "tosa.mul"(%508, %76) {shift = 0 : i8} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
     %510 = "tosa.add"(%509, %76) : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
     %511 = "tosa.clamp"(%510) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x512x28x28xf32>) -> tensor<1x512x28x28xf32>
     %512 = "tosa.transpose"(%511, %111) : (tensor<1x512x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x512xf32>
@@ -3685,16 +3685,16 @@ module {
     %514 = "tosa.avg_pool2d"(%513) {acc_type = f32, kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x28x28x256xf32>) -> tensor<1x14x14x256xf32>
     %515 = "tosa.transpose"(%514, %112) : (tensor<1x14x14x256xf32>, tensor<4xi64>) -> tensor<1x256x14x14xf32>
     %516 = "tosa.sub"(%515, %92) : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
-    %517 = "tosa.mul"(%516, %290) {shift = 0 : i32} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
-    %518 = "tosa.mul"(%517, %92) {shift = 0 : i32} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
+    %517 = "tosa.mul"(%516, %290) {shift = 0 : i8} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
+    %518 = "tosa.mul"(%517, %92) {shift = 0 : i8} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
     %519 = "tosa.add"(%518, %92) : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
     %520 = "tosa.clamp"(%519) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x256x14x14xf32>) -> tensor<1x256x14x14xf32>
     %521 = "tosa.transpose"(%520, %111) : (tensor<1x256x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x256xf32>
     %522 = "tosa.conv2d"(%521, %91, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x256xf32>, tensor<128x1x1x256xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %523 = "tosa.transpose"(%522, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %524 = "tosa.sub"(%523, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %525 = "tosa.mul"(%524, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %526 = "tosa.mul"(%525, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %525 = "tosa.mul"(%524, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %526 = "tosa.mul"(%525, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %527 = "tosa.add"(%526, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %528 = "tosa.clamp"(%527) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %529 = "tosa.transpose"(%528, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3703,16 +3703,16 @@ module {
     %inserted_slice_260 = tensor.insert_slice %515 into %cst_17[0, 0, 0, 0] [1, 256, 14, 14] [1, 1, 1, 1] : tensor<1x256x14x14xf32> into tensor<1x288x14x14xf32>
     %inserted_slice_261 = tensor.insert_slice %531 into %inserted_slice_260[0, 256, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x288x14x14xf32>
     %532 = "tosa.sub"(%inserted_slice_261, %90) : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
-    %533 = "tosa.mul"(%532, %381) {shift = 0 : i32} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
-    %534 = "tosa.mul"(%533, %90) {shift = 0 : i32} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
+    %533 = "tosa.mul"(%532, %381) {shift = 0 : i8} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
+    %534 = "tosa.mul"(%533, %90) {shift = 0 : i8} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
     %535 = "tosa.add"(%534, %90) : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
     %536 = "tosa.clamp"(%535) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x288x14x14xf32>) -> tensor<1x288x14x14xf32>
     %537 = "tosa.transpose"(%536, %111) : (tensor<1x288x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x288xf32>
     %538 = "tosa.conv2d"(%537, %89, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x288xf32>, tensor<128x1x1x288xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %539 = "tosa.transpose"(%538, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %540 = "tosa.sub"(%539, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %541 = "tosa.mul"(%540, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %542 = "tosa.mul"(%541, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %541 = "tosa.mul"(%540, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %542 = "tosa.mul"(%541, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %543 = "tosa.add"(%542, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %544 = "tosa.clamp"(%543) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %545 = "tosa.transpose"(%544, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3722,16 +3722,16 @@ module {
     %inserted_slice_263 = tensor.insert_slice %531 into %inserted_slice_262[0, 256, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x320x14x14xf32>
     %inserted_slice_264 = tensor.insert_slice %547 into %inserted_slice_263[0, 288, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x320x14x14xf32>
     %548 = "tosa.sub"(%inserted_slice_264, %88) : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
-    %549 = "tosa.mul"(%548, %399) {shift = 0 : i32} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
-    %550 = "tosa.mul"(%549, %88) {shift = 0 : i32} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
+    %549 = "tosa.mul"(%548, %399) {shift = 0 : i8} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
+    %550 = "tosa.mul"(%549, %88) {shift = 0 : i8} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
     %551 = "tosa.add"(%550, %88) : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
     %552 = "tosa.clamp"(%551) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x320x14x14xf32>) -> tensor<1x320x14x14xf32>
     %553 = "tosa.transpose"(%552, %111) : (tensor<1x320x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x320xf32>
     %554 = "tosa.conv2d"(%553, %87, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x320xf32>, tensor<128x1x1x320xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %555 = "tosa.transpose"(%554, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %556 = "tosa.sub"(%555, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %557 = "tosa.mul"(%556, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %558 = "tosa.mul"(%557, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %557 = "tosa.mul"(%556, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %558 = "tosa.mul"(%557, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %559 = "tosa.add"(%558, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %560 = "tosa.clamp"(%559) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %561 = "tosa.transpose"(%560, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3742,16 +3742,16 @@ module {
     %inserted_slice_267 = tensor.insert_slice %547 into %inserted_slice_266[0, 288, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x352x14x14xf32>
     %inserted_slice_268 = tensor.insert_slice %563 into %inserted_slice_267[0, 320, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x352x14x14xf32>
     %564 = "tosa.sub"(%inserted_slice_268, %86) : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
-    %565 = "tosa.mul"(%564, %417) {shift = 0 : i32} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
-    %566 = "tosa.mul"(%565, %86) {shift = 0 : i32} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
+    %565 = "tosa.mul"(%564, %417) {shift = 0 : i8} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
+    %566 = "tosa.mul"(%565, %86) {shift = 0 : i8} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
     %567 = "tosa.add"(%566, %86) : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
     %568 = "tosa.clamp"(%567) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x352x14x14xf32>) -> tensor<1x352x14x14xf32>
     %569 = "tosa.transpose"(%568, %111) : (tensor<1x352x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x352xf32>
     %570 = "tosa.conv2d"(%569, %85, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x352xf32>, tensor<128x1x1x352xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %571 = "tosa.transpose"(%570, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %572 = "tosa.sub"(%571, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %573 = "tosa.mul"(%572, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %574 = "tosa.mul"(%573, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %573 = "tosa.mul"(%572, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %574 = "tosa.mul"(%573, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %575 = "tosa.add"(%574, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %576 = "tosa.clamp"(%575) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %577 = "tosa.transpose"(%576, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3763,16 +3763,16 @@ module {
     %inserted_slice_272 = tensor.insert_slice %563 into %inserted_slice_271[0, 320, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x384x14x14xf32>
     %inserted_slice_273 = tensor.insert_slice %579 into %inserted_slice_272[0, 352, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x384x14x14xf32>
     %580 = "tosa.sub"(%inserted_slice_273, %84) : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
-    %581 = "tosa.mul"(%580, %435) {shift = 0 : i32} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
-    %582 = "tosa.mul"(%581, %84) {shift = 0 : i32} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
+    %581 = "tosa.mul"(%580, %435) {shift = 0 : i8} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
+    %582 = "tosa.mul"(%581, %84) {shift = 0 : i8} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
     %583 = "tosa.add"(%582, %84) : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
     %584 = "tosa.clamp"(%583) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x384x14x14xf32>) -> tensor<1x384x14x14xf32>
     %585 = "tosa.transpose"(%584, %111) : (tensor<1x384x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x384xf32>
     %586 = "tosa.conv2d"(%585, %83, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x384xf32>, tensor<128x1x1x384xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %587 = "tosa.transpose"(%586, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %588 = "tosa.sub"(%587, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %589 = "tosa.mul"(%588, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %590 = "tosa.mul"(%589, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %589 = "tosa.mul"(%588, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %590 = "tosa.mul"(%589, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %591 = "tosa.add"(%590, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %592 = "tosa.clamp"(%591) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %593 = "tosa.transpose"(%592, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3785,16 +3785,16 @@ module {
     %inserted_slice_278 = tensor.insert_slice %579 into %inserted_slice_277[0, 352, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x416x14x14xf32>
     %inserted_slice_279 = tensor.insert_slice %595 into %inserted_slice_278[0, 384, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x416x14x14xf32>
     %596 = "tosa.sub"(%inserted_slice_279, %82) : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
-    %597 = "tosa.mul"(%596, %453) {shift = 0 : i32} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
-    %598 = "tosa.mul"(%597, %82) {shift = 0 : i32} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
+    %597 = "tosa.mul"(%596, %453) {shift = 0 : i8} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
+    %598 = "tosa.mul"(%597, %82) {shift = 0 : i8} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
     %599 = "tosa.add"(%598, %82) : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
     %600 = "tosa.clamp"(%599) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x416x14x14xf32>) -> tensor<1x416x14x14xf32>
     %601 = "tosa.transpose"(%600, %111) : (tensor<1x416x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x416xf32>
     %602 = "tosa.conv2d"(%601, %81, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x416xf32>, tensor<128x1x1x416xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %603 = "tosa.transpose"(%602, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %604 = "tosa.sub"(%603, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %605 = "tosa.mul"(%604, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %606 = "tosa.mul"(%605, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %605 = "tosa.mul"(%604, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %606 = "tosa.mul"(%605, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %607 = "tosa.add"(%606, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %608 = "tosa.clamp"(%607) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %609 = "tosa.transpose"(%608, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3808,16 +3808,16 @@ module {
     %inserted_slice_285 = tensor.insert_slice %595 into %inserted_slice_284[0, 384, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x448x14x14xf32>
     %inserted_slice_286 = tensor.insert_slice %611 into %inserted_slice_285[0, 416, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x448x14x14xf32>
     %612 = "tosa.sub"(%inserted_slice_286, %80) : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
-    %613 = "tosa.mul"(%612, %471) {shift = 0 : i32} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
-    %614 = "tosa.mul"(%613, %80) {shift = 0 : i32} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
+    %613 = "tosa.mul"(%612, %471) {shift = 0 : i8} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
+    %614 = "tosa.mul"(%613, %80) {shift = 0 : i8} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
     %615 = "tosa.add"(%614, %80) : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
     %616 = "tosa.clamp"(%615) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x448x14x14xf32>) -> tensor<1x448x14x14xf32>
     %617 = "tosa.transpose"(%616, %111) : (tensor<1x448x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x448xf32>
     %618 = "tosa.conv2d"(%617, %79, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x448xf32>, tensor<128x1x1x448xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %619 = "tosa.transpose"(%618, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %620 = "tosa.sub"(%619, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %621 = "tosa.mul"(%620, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %622 = "tosa.mul"(%621, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %621 = "tosa.mul"(%620, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %622 = "tosa.mul"(%621, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %623 = "tosa.add"(%622, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %624 = "tosa.clamp"(%623) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %625 = "tosa.transpose"(%624, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3832,16 +3832,16 @@ module {
     %inserted_slice_293 = tensor.insert_slice %611 into %inserted_slice_292[0, 416, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x480x14x14xf32>
     %inserted_slice_294 = tensor.insert_slice %627 into %inserted_slice_293[0, 448, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x480x14x14xf32>
     %628 = "tosa.sub"(%inserted_slice_294, %78) : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
-    %629 = "tosa.mul"(%628, %489) {shift = 0 : i32} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
-    %630 = "tosa.mul"(%629, %78) {shift = 0 : i32} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
+    %629 = "tosa.mul"(%628, %489) {shift = 0 : i8} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
+    %630 = "tosa.mul"(%629, %78) {shift = 0 : i8} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
     %631 = "tosa.add"(%630, %78) : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
     %632 = "tosa.clamp"(%631) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x480x14x14xf32>) -> tensor<1x480x14x14xf32>
     %633 = "tosa.transpose"(%632, %111) : (tensor<1x480x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x480xf32>
     %634 = "tosa.conv2d"(%633, %77, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x480xf32>, tensor<128x1x1x480xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %635 = "tosa.transpose"(%634, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %636 = "tosa.sub"(%635, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %637 = "tosa.mul"(%636, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %638 = "tosa.mul"(%637, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %637 = "tosa.mul"(%636, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %638 = "tosa.mul"(%637, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %639 = "tosa.add"(%638, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %640 = "tosa.clamp"(%639) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %641 = "tosa.transpose"(%640, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3857,16 +3857,16 @@ module {
     %inserted_slice_302 = tensor.insert_slice %627 into %inserted_slice_301[0, 448, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x512x14x14xf32>
     %inserted_slice_303 = tensor.insert_slice %643 into %inserted_slice_302[0, 480, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x32x14x14xf32> into tensor<1x512x14x14xf32>
     %644 = "tosa.sub"(%inserted_slice_303, %76) : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
-    %645 = "tosa.mul"(%644, %507) {shift = 0 : i32} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
-    %646 = "tosa.mul"(%645, %76) {shift = 0 : i32} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
+    %645 = "tosa.mul"(%644, %507) {shift = 0 : i8} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
+    %646 = "tosa.mul"(%645, %76) {shift = 0 : i8} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
     %647 = "tosa.add"(%646, %76) : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
     %648 = "tosa.clamp"(%647) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x512x14x14xf32>) -> tensor<1x512x14x14xf32>
     %649 = "tosa.transpose"(%648, %111) : (tensor<1x512x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x512xf32>
     %650 = "tosa.conv2d"(%649, %73, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x512xf32>, tensor<128x1x1x512xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %651 = "tosa.transpose"(%650, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %652 = "tosa.sub"(%651, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %653 = "tosa.mul"(%652, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %654 = "tosa.mul"(%653, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %653 = "tosa.mul"(%652, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %654 = "tosa.mul"(%653, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %655 = "tosa.add"(%654, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %656 = "tosa.clamp"(%655) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %657 = "tosa.transpose"(%656, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3885,16 +3885,16 @@ module {
     %660 = "tosa.sub"(%inserted_slice_313, %72) : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
     %661 = "tosa.add"(%72, %106) : (tensor<1x544x1x1xf32>, tensor<f32>) -> tensor<1x544x1x1xf32>
     %662 = "tosa.rsqrt"(%661) : (tensor<1x544x1x1xf32>) -> tensor<1x544x1x1xf32>
-    %663 = "tosa.mul"(%660, %662) {shift = 0 : i32} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
-    %664 = "tosa.mul"(%663, %72) {shift = 0 : i32} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
+    %663 = "tosa.mul"(%660, %662) {shift = 0 : i8} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
+    %664 = "tosa.mul"(%663, %72) {shift = 0 : i8} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
     %665 = "tosa.add"(%664, %72) : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
     %666 = "tosa.clamp"(%665) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x544x14x14xf32>) -> tensor<1x544x14x14xf32>
     %667 = "tosa.transpose"(%666, %111) : (tensor<1x544x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x544xf32>
     %668 = "tosa.conv2d"(%667, %71, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x544xf32>, tensor<128x1x1x544xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %669 = "tosa.transpose"(%668, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %670 = "tosa.sub"(%669, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %671 = "tosa.mul"(%670, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %672 = "tosa.mul"(%671, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %671 = "tosa.mul"(%670, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %672 = "tosa.mul"(%671, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %673 = "tosa.add"(%672, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %674 = "tosa.clamp"(%673) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %675 = "tosa.transpose"(%674, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3914,16 +3914,16 @@ module {
     %678 = "tosa.sub"(%inserted_slice_324, %70) : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
     %679 = "tosa.add"(%70, %106) : (tensor<1x576x1x1xf32>, tensor<f32>) -> tensor<1x576x1x1xf32>
     %680 = "tosa.rsqrt"(%679) : (tensor<1x576x1x1xf32>) -> tensor<1x576x1x1xf32>
-    %681 = "tosa.mul"(%678, %680) {shift = 0 : i32} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
-    %682 = "tosa.mul"(%681, %70) {shift = 0 : i32} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
+    %681 = "tosa.mul"(%678, %680) {shift = 0 : i8} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
+    %682 = "tosa.mul"(%681, %70) {shift = 0 : i8} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
     %683 = "tosa.add"(%682, %70) : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
     %684 = "tosa.clamp"(%683) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x576x14x14xf32>) -> tensor<1x576x14x14xf32>
     %685 = "tosa.transpose"(%684, %111) : (tensor<1x576x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x576xf32>
     %686 = "tosa.conv2d"(%685, %69, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x576xf32>, tensor<128x1x1x576xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %687 = "tosa.transpose"(%686, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %688 = "tosa.sub"(%687, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %689 = "tosa.mul"(%688, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %690 = "tosa.mul"(%689, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %689 = "tosa.mul"(%688, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %690 = "tosa.mul"(%689, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %691 = "tosa.add"(%690, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %692 = "tosa.clamp"(%691) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %693 = "tosa.transpose"(%692, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3944,16 +3944,16 @@ module {
     %696 = "tosa.sub"(%inserted_slice_336, %68) : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
     %697 = "tosa.add"(%68, %106) : (tensor<1x608x1x1xf32>, tensor<f32>) -> tensor<1x608x1x1xf32>
     %698 = "tosa.rsqrt"(%697) : (tensor<1x608x1x1xf32>) -> tensor<1x608x1x1xf32>
-    %699 = "tosa.mul"(%696, %698) {shift = 0 : i32} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
-    %700 = "tosa.mul"(%699, %68) {shift = 0 : i32} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
+    %699 = "tosa.mul"(%696, %698) {shift = 0 : i8} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
+    %700 = "tosa.mul"(%699, %68) {shift = 0 : i8} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
     %701 = "tosa.add"(%700, %68) : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
     %702 = "tosa.clamp"(%701) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x608x14x14xf32>) -> tensor<1x608x14x14xf32>
     %703 = "tosa.transpose"(%702, %111) : (tensor<1x608x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x608xf32>
     %704 = "tosa.conv2d"(%703, %67, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x608xf32>, tensor<128x1x1x608xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %705 = "tosa.transpose"(%704, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %706 = "tosa.sub"(%705, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %707 = "tosa.mul"(%706, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %708 = "tosa.mul"(%707, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %707 = "tosa.mul"(%706, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %708 = "tosa.mul"(%707, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %709 = "tosa.add"(%708, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %710 = "tosa.clamp"(%709) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %711 = "tosa.transpose"(%710, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -3975,16 +3975,16 @@ module {
     %714 = "tosa.sub"(%inserted_slice_349, %66) : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
     %715 = "tosa.add"(%66, %106) : (tensor<1x640x1x1xf32>, tensor<f32>) -> tensor<1x640x1x1xf32>
     %716 = "tosa.rsqrt"(%715) : (tensor<1x640x1x1xf32>) -> tensor<1x640x1x1xf32>
-    %717 = "tosa.mul"(%714, %716) {shift = 0 : i32} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
-    %718 = "tosa.mul"(%717, %66) {shift = 0 : i32} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
+    %717 = "tosa.mul"(%714, %716) {shift = 0 : i8} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
+    %718 = "tosa.mul"(%717, %66) {shift = 0 : i8} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
     %719 = "tosa.add"(%718, %66) : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
     %720 = "tosa.clamp"(%719) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x640x14x14xf32>) -> tensor<1x640x14x14xf32>
     %721 = "tosa.transpose"(%720, %111) : (tensor<1x640x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x640xf32>
     %722 = "tosa.conv2d"(%721, %65, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x640xf32>, tensor<128x1x1x640xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %723 = "tosa.transpose"(%722, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %724 = "tosa.sub"(%723, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %725 = "tosa.mul"(%724, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %726 = "tosa.mul"(%725, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %725 = "tosa.mul"(%724, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %726 = "tosa.mul"(%725, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %727 = "tosa.add"(%726, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %728 = "tosa.clamp"(%727) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %729 = "tosa.transpose"(%728, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4007,16 +4007,16 @@ module {
     %732 = "tosa.sub"(%inserted_slice_363, %64) : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
     %733 = "tosa.add"(%64, %106) : (tensor<1x672x1x1xf32>, tensor<f32>) -> tensor<1x672x1x1xf32>
     %734 = "tosa.rsqrt"(%733) : (tensor<1x672x1x1xf32>) -> tensor<1x672x1x1xf32>
-    %735 = "tosa.mul"(%732, %734) {shift = 0 : i32} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
-    %736 = "tosa.mul"(%735, %64) {shift = 0 : i32} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
+    %735 = "tosa.mul"(%732, %734) {shift = 0 : i8} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
+    %736 = "tosa.mul"(%735, %64) {shift = 0 : i8} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
     %737 = "tosa.add"(%736, %64) : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
     %738 = "tosa.clamp"(%737) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x672x14x14xf32>) -> tensor<1x672x14x14xf32>
     %739 = "tosa.transpose"(%738, %111) : (tensor<1x672x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x672xf32>
     %740 = "tosa.conv2d"(%739, %63, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x672xf32>, tensor<128x1x1x672xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %741 = "tosa.transpose"(%740, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %742 = "tosa.sub"(%741, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %743 = "tosa.mul"(%742, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %744 = "tosa.mul"(%743, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %743 = "tosa.mul"(%742, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %744 = "tosa.mul"(%743, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %745 = "tosa.add"(%744, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %746 = "tosa.clamp"(%745) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %747 = "tosa.transpose"(%746, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4040,16 +4040,16 @@ module {
     %750 = "tosa.sub"(%inserted_slice_378, %62) : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
     %751 = "tosa.add"(%62, %106) : (tensor<1x704x1x1xf32>, tensor<f32>) -> tensor<1x704x1x1xf32>
     %752 = "tosa.rsqrt"(%751) : (tensor<1x704x1x1xf32>) -> tensor<1x704x1x1xf32>
-    %753 = "tosa.mul"(%750, %752) {shift = 0 : i32} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
-    %754 = "tosa.mul"(%753, %62) {shift = 0 : i32} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
+    %753 = "tosa.mul"(%750, %752) {shift = 0 : i8} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
+    %754 = "tosa.mul"(%753, %62) {shift = 0 : i8} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
     %755 = "tosa.add"(%754, %62) : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
     %756 = "tosa.clamp"(%755) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x704x14x14xf32>) -> tensor<1x704x14x14xf32>
     %757 = "tosa.transpose"(%756, %111) : (tensor<1x704x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x704xf32>
     %758 = "tosa.conv2d"(%757, %61, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x704xf32>, tensor<128x1x1x704xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %759 = "tosa.transpose"(%758, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %760 = "tosa.sub"(%759, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %761 = "tosa.mul"(%760, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %762 = "tosa.mul"(%761, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %761 = "tosa.mul"(%760, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %762 = "tosa.mul"(%761, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %763 = "tosa.add"(%762, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %764 = "tosa.clamp"(%763) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %765 = "tosa.transpose"(%764, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4074,16 +4074,16 @@ module {
     %768 = "tosa.sub"(%inserted_slice_394, %60) : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
     %769 = "tosa.add"(%60, %106) : (tensor<1x736x1x1xf32>, tensor<f32>) -> tensor<1x736x1x1xf32>
     %770 = "tosa.rsqrt"(%769) : (tensor<1x736x1x1xf32>) -> tensor<1x736x1x1xf32>
-    %771 = "tosa.mul"(%768, %770) {shift = 0 : i32} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
-    %772 = "tosa.mul"(%771, %60) {shift = 0 : i32} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
+    %771 = "tosa.mul"(%768, %770) {shift = 0 : i8} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
+    %772 = "tosa.mul"(%771, %60) {shift = 0 : i8} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
     %773 = "tosa.add"(%772, %60) : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
     %774 = "tosa.clamp"(%773) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x736x14x14xf32>) -> tensor<1x736x14x14xf32>
     %775 = "tosa.transpose"(%774, %111) : (tensor<1x736x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x736xf32>
     %776 = "tosa.conv2d"(%775, %59, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x736xf32>, tensor<128x1x1x736xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %777 = "tosa.transpose"(%776, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %778 = "tosa.sub"(%777, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %779 = "tosa.mul"(%778, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %780 = "tosa.mul"(%779, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %779 = "tosa.mul"(%778, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %780 = "tosa.mul"(%779, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %781 = "tosa.add"(%780, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %782 = "tosa.clamp"(%781) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %783 = "tosa.transpose"(%782, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4109,16 +4109,16 @@ module {
     %786 = "tosa.sub"(%inserted_slice_411, %58) : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
     %787 = "tosa.add"(%58, %106) : (tensor<1x768x1x1xf32>, tensor<f32>) -> tensor<1x768x1x1xf32>
     %788 = "tosa.rsqrt"(%787) : (tensor<1x768x1x1xf32>) -> tensor<1x768x1x1xf32>
-    %789 = "tosa.mul"(%786, %788) {shift = 0 : i32} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
-    %790 = "tosa.mul"(%789, %58) {shift = 0 : i32} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
+    %789 = "tosa.mul"(%786, %788) {shift = 0 : i8} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
+    %790 = "tosa.mul"(%789, %58) {shift = 0 : i8} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
     %791 = "tosa.add"(%790, %58) : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
     %792 = "tosa.clamp"(%791) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x768x14x14xf32>) -> tensor<1x768x14x14xf32>
     %793 = "tosa.transpose"(%792, %111) : (tensor<1x768x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x768xf32>
     %794 = "tosa.conv2d"(%793, %57, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x768xf32>, tensor<128x1x1x768xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %795 = "tosa.transpose"(%794, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %796 = "tosa.sub"(%795, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %797 = "tosa.mul"(%796, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %798 = "tosa.mul"(%797, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %797 = "tosa.mul"(%796, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %798 = "tosa.mul"(%797, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %799 = "tosa.add"(%798, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %800 = "tosa.clamp"(%799) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %801 = "tosa.transpose"(%800, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4145,16 +4145,16 @@ module {
     %804 = "tosa.sub"(%inserted_slice_429, %56) : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
     %805 = "tosa.add"(%56, %106) : (tensor<1x800x1x1xf32>, tensor<f32>) -> tensor<1x800x1x1xf32>
     %806 = "tosa.rsqrt"(%805) : (tensor<1x800x1x1xf32>) -> tensor<1x800x1x1xf32>
-    %807 = "tosa.mul"(%804, %806) {shift = 0 : i32} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
-    %808 = "tosa.mul"(%807, %56) {shift = 0 : i32} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
+    %807 = "tosa.mul"(%804, %806) {shift = 0 : i8} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
+    %808 = "tosa.mul"(%807, %56) {shift = 0 : i8} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
     %809 = "tosa.add"(%808, %56) : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
     %810 = "tosa.clamp"(%809) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x800x14x14xf32>) -> tensor<1x800x14x14xf32>
     %811 = "tosa.transpose"(%810, %111) : (tensor<1x800x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x800xf32>
     %812 = "tosa.conv2d"(%811, %55, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x800xf32>, tensor<128x1x1x800xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %813 = "tosa.transpose"(%812, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %814 = "tosa.sub"(%813, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %815 = "tosa.mul"(%814, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %816 = "tosa.mul"(%815, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %815 = "tosa.mul"(%814, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %816 = "tosa.mul"(%815, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %817 = "tosa.add"(%816, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %818 = "tosa.clamp"(%817) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %819 = "tosa.transpose"(%818, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4182,16 +4182,16 @@ module {
     %822 = "tosa.sub"(%inserted_slice_448, %54) : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
     %823 = "tosa.add"(%54, %106) : (tensor<1x832x1x1xf32>, tensor<f32>) -> tensor<1x832x1x1xf32>
     %824 = "tosa.rsqrt"(%823) : (tensor<1x832x1x1xf32>) -> tensor<1x832x1x1xf32>
-    %825 = "tosa.mul"(%822, %824) {shift = 0 : i32} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
-    %826 = "tosa.mul"(%825, %54) {shift = 0 : i32} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
+    %825 = "tosa.mul"(%822, %824) {shift = 0 : i8} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
+    %826 = "tosa.mul"(%825, %54) {shift = 0 : i8} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
     %827 = "tosa.add"(%826, %54) : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
     %828 = "tosa.clamp"(%827) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x832x14x14xf32>) -> tensor<1x832x14x14xf32>
     %829 = "tosa.transpose"(%828, %111) : (tensor<1x832x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x832xf32>
     %830 = "tosa.conv2d"(%829, %53, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x832xf32>, tensor<128x1x1x832xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %831 = "tosa.transpose"(%830, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %832 = "tosa.sub"(%831, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %833 = "tosa.mul"(%832, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %834 = "tosa.mul"(%833, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %833 = "tosa.mul"(%832, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %834 = "tosa.mul"(%833, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %835 = "tosa.add"(%834, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %836 = "tosa.clamp"(%835) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %837 = "tosa.transpose"(%836, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4220,16 +4220,16 @@ module {
     %840 = "tosa.sub"(%inserted_slice_468, %52) : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
     %841 = "tosa.add"(%52, %106) : (tensor<1x864x1x1xf32>, tensor<f32>) -> tensor<1x864x1x1xf32>
     %842 = "tosa.rsqrt"(%841) : (tensor<1x864x1x1xf32>) -> tensor<1x864x1x1xf32>
-    %843 = "tosa.mul"(%840, %842) {shift = 0 : i32} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
-    %844 = "tosa.mul"(%843, %52) {shift = 0 : i32} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
+    %843 = "tosa.mul"(%840, %842) {shift = 0 : i8} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
+    %844 = "tosa.mul"(%843, %52) {shift = 0 : i8} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
     %845 = "tosa.add"(%844, %52) : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
     %846 = "tosa.clamp"(%845) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x864x14x14xf32>) -> tensor<1x864x14x14xf32>
     %847 = "tosa.transpose"(%846, %111) : (tensor<1x864x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x864xf32>
     %848 = "tosa.conv2d"(%847, %51, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x864xf32>, tensor<128x1x1x864xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %849 = "tosa.transpose"(%848, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %850 = "tosa.sub"(%849, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %851 = "tosa.mul"(%850, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %852 = "tosa.mul"(%851, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %851 = "tosa.mul"(%850, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %852 = "tosa.mul"(%851, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %853 = "tosa.add"(%852, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %854 = "tosa.clamp"(%853) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %855 = "tosa.transpose"(%854, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4259,16 +4259,16 @@ module {
     %858 = "tosa.sub"(%inserted_slice_489, %50) : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
     %859 = "tosa.add"(%50, %106) : (tensor<1x896x1x1xf32>, tensor<f32>) -> tensor<1x896x1x1xf32>
     %860 = "tosa.rsqrt"(%859) : (tensor<1x896x1x1xf32>) -> tensor<1x896x1x1xf32>
-    %861 = "tosa.mul"(%858, %860) {shift = 0 : i32} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
-    %862 = "tosa.mul"(%861, %50) {shift = 0 : i32} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
+    %861 = "tosa.mul"(%858, %860) {shift = 0 : i8} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
+    %862 = "tosa.mul"(%861, %50) {shift = 0 : i8} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
     %863 = "tosa.add"(%862, %50) : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
     %864 = "tosa.clamp"(%863) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x896x14x14xf32>) -> tensor<1x896x14x14xf32>
     %865 = "tosa.transpose"(%864, %111) : (tensor<1x896x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x896xf32>
     %866 = "tosa.conv2d"(%865, %49, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x896xf32>, tensor<128x1x1x896xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %867 = "tosa.transpose"(%866, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %868 = "tosa.sub"(%867, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %869 = "tosa.mul"(%868, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %870 = "tosa.mul"(%869, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %869 = "tosa.mul"(%868, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %870 = "tosa.mul"(%869, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %871 = "tosa.add"(%870, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %872 = "tosa.clamp"(%871) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %873 = "tosa.transpose"(%872, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4299,16 +4299,16 @@ module {
     %876 = "tosa.sub"(%inserted_slice_511, %48) : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
     %877 = "tosa.add"(%48, %106) : (tensor<1x928x1x1xf32>, tensor<f32>) -> tensor<1x928x1x1xf32>
     %878 = "tosa.rsqrt"(%877) : (tensor<1x928x1x1xf32>) -> tensor<1x928x1x1xf32>
-    %879 = "tosa.mul"(%876, %878) {shift = 0 : i32} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
-    %880 = "tosa.mul"(%879, %48) {shift = 0 : i32} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
+    %879 = "tosa.mul"(%876, %878) {shift = 0 : i8} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
+    %880 = "tosa.mul"(%879, %48) {shift = 0 : i8} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
     %881 = "tosa.add"(%880, %48) : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
     %882 = "tosa.clamp"(%881) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x928x14x14xf32>) -> tensor<1x928x14x14xf32>
     %883 = "tosa.transpose"(%882, %111) : (tensor<1x928x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x928xf32>
     %884 = "tosa.conv2d"(%883, %47, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x928xf32>, tensor<128x1x1x928xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %885 = "tosa.transpose"(%884, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %886 = "tosa.sub"(%885, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %887 = "tosa.mul"(%886, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %888 = "tosa.mul"(%887, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %887 = "tosa.mul"(%886, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %888 = "tosa.mul"(%887, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %889 = "tosa.add"(%888, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %890 = "tosa.clamp"(%889) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %891 = "tosa.transpose"(%890, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4340,16 +4340,16 @@ module {
     %894 = "tosa.sub"(%inserted_slice_534, %46) : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
     %895 = "tosa.add"(%46, %106) : (tensor<1x960x1x1xf32>, tensor<f32>) -> tensor<1x960x1x1xf32>
     %896 = "tosa.rsqrt"(%895) : (tensor<1x960x1x1xf32>) -> tensor<1x960x1x1xf32>
-    %897 = "tosa.mul"(%894, %896) {shift = 0 : i32} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
-    %898 = "tosa.mul"(%897, %46) {shift = 0 : i32} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
+    %897 = "tosa.mul"(%894, %896) {shift = 0 : i8} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
+    %898 = "tosa.mul"(%897, %46) {shift = 0 : i8} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
     %899 = "tosa.add"(%898, %46) : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
     %900 = "tosa.clamp"(%899) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x960x14x14xf32>) -> tensor<1x960x14x14xf32>
     %901 = "tosa.transpose"(%900, %111) : (tensor<1x960x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x960xf32>
     %902 = "tosa.conv2d"(%901, %45, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x960xf32>, tensor<128x1x1x960xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %903 = "tosa.transpose"(%902, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %904 = "tosa.sub"(%903, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %905 = "tosa.mul"(%904, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %906 = "tosa.mul"(%905, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %905 = "tosa.mul"(%904, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %906 = "tosa.mul"(%905, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %907 = "tosa.add"(%906, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %908 = "tosa.clamp"(%907) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %909 = "tosa.transpose"(%908, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4382,16 +4382,16 @@ module {
     %912 = "tosa.sub"(%inserted_slice_558, %44) : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
     %913 = "tosa.add"(%44, %106) : (tensor<1x992x1x1xf32>, tensor<f32>) -> tensor<1x992x1x1xf32>
     %914 = "tosa.rsqrt"(%913) : (tensor<1x992x1x1xf32>) -> tensor<1x992x1x1xf32>
-    %915 = "tosa.mul"(%912, %914) {shift = 0 : i32} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
-    %916 = "tosa.mul"(%915, %44) {shift = 0 : i32} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
+    %915 = "tosa.mul"(%912, %914) {shift = 0 : i8} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
+    %916 = "tosa.mul"(%915, %44) {shift = 0 : i8} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
     %917 = "tosa.add"(%916, %44) : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
     %918 = "tosa.clamp"(%917) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x992x14x14xf32>) -> tensor<1x992x14x14xf32>
     %919 = "tosa.transpose"(%918, %111) : (tensor<1x992x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x992xf32>
     %920 = "tosa.conv2d"(%919, %43, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x992xf32>, tensor<128x1x1x992xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %921 = "tosa.transpose"(%920, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %922 = "tosa.sub"(%921, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %923 = "tosa.mul"(%922, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %924 = "tosa.mul"(%923, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %923 = "tosa.mul"(%922, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %924 = "tosa.mul"(%923, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %925 = "tosa.add"(%924, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %926 = "tosa.clamp"(%925) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %927 = "tosa.transpose"(%926, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4425,16 +4425,16 @@ module {
     %930 = "tosa.sub"(%inserted_slice_583, %42) : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
     %931 = "tosa.add"(%42, %106) : (tensor<1x1024x1x1xf32>, tensor<f32>) -> tensor<1x1024x1x1xf32>
     %932 = "tosa.rsqrt"(%931) : (tensor<1x1024x1x1xf32>) -> tensor<1x1024x1x1xf32>
-    %933 = "tosa.mul"(%930, %932) {shift = 0 : i32} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
-    %934 = "tosa.mul"(%933, %42) {shift = 0 : i32} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
+    %933 = "tosa.mul"(%930, %932) {shift = 0 : i8} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
+    %934 = "tosa.mul"(%933, %42) {shift = 0 : i8} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
     %935 = "tosa.add"(%934, %42) : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
     %936 = "tosa.clamp"(%935) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1024x14x14xf32>) -> tensor<1x1024x14x14xf32>
     %937 = "tosa.transpose"(%936, %111) : (tensor<1x1024x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1024xf32>
     %938 = "tosa.conv2d"(%937, %41, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1024xf32>, tensor<128x1x1x1024xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %939 = "tosa.transpose"(%938, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %940 = "tosa.sub"(%939, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %941 = "tosa.mul"(%940, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %942 = "tosa.mul"(%941, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %941 = "tosa.mul"(%940, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %942 = "tosa.mul"(%941, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %943 = "tosa.add"(%942, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %944 = "tosa.clamp"(%943) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %945 = "tosa.transpose"(%944, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4469,16 +4469,16 @@ module {
     %948 = "tosa.sub"(%inserted_slice_609, %40) : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
     %949 = "tosa.add"(%40, %106) : (tensor<1x1056x1x1xf32>, tensor<f32>) -> tensor<1x1056x1x1xf32>
     %950 = "tosa.rsqrt"(%949) : (tensor<1x1056x1x1xf32>) -> tensor<1x1056x1x1xf32>
-    %951 = "tosa.mul"(%948, %950) {shift = 0 : i32} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
-    %952 = "tosa.mul"(%951, %40) {shift = 0 : i32} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
+    %951 = "tosa.mul"(%948, %950) {shift = 0 : i8} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
+    %952 = "tosa.mul"(%951, %40) {shift = 0 : i8} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
     %953 = "tosa.add"(%952, %40) : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
     %954 = "tosa.clamp"(%953) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1056x14x14xf32>) -> tensor<1x1056x14x14xf32>
     %955 = "tosa.transpose"(%954, %111) : (tensor<1x1056x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1056xf32>
     %956 = "tosa.conv2d"(%955, %39, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1056xf32>, tensor<128x1x1x1056xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %957 = "tosa.transpose"(%956, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %958 = "tosa.sub"(%957, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %959 = "tosa.mul"(%958, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %960 = "tosa.mul"(%959, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %959 = "tosa.mul"(%958, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %960 = "tosa.mul"(%959, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %961 = "tosa.add"(%960, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %962 = "tosa.clamp"(%961) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %963 = "tosa.transpose"(%962, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4514,16 +4514,16 @@ module {
     %966 = "tosa.sub"(%inserted_slice_636, %38) : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
     %967 = "tosa.add"(%38, %106) : (tensor<1x1088x1x1xf32>, tensor<f32>) -> tensor<1x1088x1x1xf32>
     %968 = "tosa.rsqrt"(%967) : (tensor<1x1088x1x1xf32>) -> tensor<1x1088x1x1xf32>
-    %969 = "tosa.mul"(%966, %968) {shift = 0 : i32} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
-    %970 = "tosa.mul"(%969, %38) {shift = 0 : i32} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
+    %969 = "tosa.mul"(%966, %968) {shift = 0 : i8} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
+    %970 = "tosa.mul"(%969, %38) {shift = 0 : i8} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
     %971 = "tosa.add"(%970, %38) : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
     %972 = "tosa.clamp"(%971) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1088x14x14xf32>) -> tensor<1x1088x14x14xf32>
     %973 = "tosa.transpose"(%972, %111) : (tensor<1x1088x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1088xf32>
     %974 = "tosa.conv2d"(%973, %37, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1088xf32>, tensor<128x1x1x1088xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %975 = "tosa.transpose"(%974, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %976 = "tosa.sub"(%975, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %977 = "tosa.mul"(%976, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %978 = "tosa.mul"(%977, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %977 = "tosa.mul"(%976, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %978 = "tosa.mul"(%977, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %979 = "tosa.add"(%978, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %980 = "tosa.clamp"(%979) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %981 = "tosa.transpose"(%980, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4560,16 +4560,16 @@ module {
     %984 = "tosa.sub"(%inserted_slice_664, %36) : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
     %985 = "tosa.add"(%36, %106) : (tensor<1x1120x1x1xf32>, tensor<f32>) -> tensor<1x1120x1x1xf32>
     %986 = "tosa.rsqrt"(%985) : (tensor<1x1120x1x1xf32>) -> tensor<1x1120x1x1xf32>
-    %987 = "tosa.mul"(%984, %986) {shift = 0 : i32} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
-    %988 = "tosa.mul"(%987, %36) {shift = 0 : i32} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
+    %987 = "tosa.mul"(%984, %986) {shift = 0 : i8} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
+    %988 = "tosa.mul"(%987, %36) {shift = 0 : i8} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
     %989 = "tosa.add"(%988, %36) : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
     %990 = "tosa.clamp"(%989) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1120x14x14xf32>) -> tensor<1x1120x14x14xf32>
     %991 = "tosa.transpose"(%990, %111) : (tensor<1x1120x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1120xf32>
     %992 = "tosa.conv2d"(%991, %35, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1120xf32>, tensor<128x1x1x1120xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %993 = "tosa.transpose"(%992, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %994 = "tosa.sub"(%993, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %995 = "tosa.mul"(%994, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %996 = "tosa.mul"(%995, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %995 = "tosa.mul"(%994, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %996 = "tosa.mul"(%995, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %997 = "tosa.add"(%996, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %998 = "tosa.clamp"(%997) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %999 = "tosa.transpose"(%998, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4607,16 +4607,16 @@ module {
     %1002 = "tosa.sub"(%inserted_slice_693, %34) : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
     %1003 = "tosa.add"(%34, %106) : (tensor<1x1152x1x1xf32>, tensor<f32>) -> tensor<1x1152x1x1xf32>
     %1004 = "tosa.rsqrt"(%1003) : (tensor<1x1152x1x1xf32>) -> tensor<1x1152x1x1xf32>
-    %1005 = "tosa.mul"(%1002, %1004) {shift = 0 : i32} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
-    %1006 = "tosa.mul"(%1005, %34) {shift = 0 : i32} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
+    %1005 = "tosa.mul"(%1002, %1004) {shift = 0 : i8} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
+    %1006 = "tosa.mul"(%1005, %34) {shift = 0 : i8} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
     %1007 = "tosa.add"(%1006, %34) : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
     %1008 = "tosa.clamp"(%1007) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1152x14x14xf32>) -> tensor<1x1152x14x14xf32>
     %1009 = "tosa.transpose"(%1008, %111) : (tensor<1x1152x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1152xf32>
     %1010 = "tosa.conv2d"(%1009, %33, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1152xf32>, tensor<128x1x1x1152xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %1011 = "tosa.transpose"(%1010, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %1012 = "tosa.sub"(%1011, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1013 = "tosa.mul"(%1012, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1014 = "tosa.mul"(%1013, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1013 = "tosa.mul"(%1012, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1014 = "tosa.mul"(%1013, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1015 = "tosa.add"(%1014, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1016 = "tosa.clamp"(%1015) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %1017 = "tosa.transpose"(%1016, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4655,16 +4655,16 @@ module {
     %1020 = "tosa.sub"(%inserted_slice_723, %32) : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
     %1021 = "tosa.add"(%32, %106) : (tensor<1x1184x1x1xf32>, tensor<f32>) -> tensor<1x1184x1x1xf32>
     %1022 = "tosa.rsqrt"(%1021) : (tensor<1x1184x1x1xf32>) -> tensor<1x1184x1x1xf32>
-    %1023 = "tosa.mul"(%1020, %1022) {shift = 0 : i32} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
-    %1024 = "tosa.mul"(%1023, %32) {shift = 0 : i32} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
+    %1023 = "tosa.mul"(%1020, %1022) {shift = 0 : i8} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
+    %1024 = "tosa.mul"(%1023, %32) {shift = 0 : i8} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
     %1025 = "tosa.add"(%1024, %32) : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
     %1026 = "tosa.clamp"(%1025) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1184x14x14xf32>) -> tensor<1x1184x14x14xf32>
     %1027 = "tosa.transpose"(%1026, %111) : (tensor<1x1184x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1184xf32>
     %1028 = "tosa.conv2d"(%1027, %31, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1184xf32>, tensor<128x1x1x1184xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %1029 = "tosa.transpose"(%1028, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %1030 = "tosa.sub"(%1029, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1031 = "tosa.mul"(%1030, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1032 = "tosa.mul"(%1031, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1031 = "tosa.mul"(%1030, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1032 = "tosa.mul"(%1031, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1033 = "tosa.add"(%1032, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1034 = "tosa.clamp"(%1033) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %1035 = "tosa.transpose"(%1034, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4704,16 +4704,16 @@ module {
     %1038 = "tosa.sub"(%inserted_slice_754, %30) : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
     %1039 = "tosa.add"(%30, %106) : (tensor<1x1216x1x1xf32>, tensor<f32>) -> tensor<1x1216x1x1xf32>
     %1040 = "tosa.rsqrt"(%1039) : (tensor<1x1216x1x1xf32>) -> tensor<1x1216x1x1xf32>
-    %1041 = "tosa.mul"(%1038, %1040) {shift = 0 : i32} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
-    %1042 = "tosa.mul"(%1041, %30) {shift = 0 : i32} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
+    %1041 = "tosa.mul"(%1038, %1040) {shift = 0 : i8} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
+    %1042 = "tosa.mul"(%1041, %30) {shift = 0 : i8} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
     %1043 = "tosa.add"(%1042, %30) : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
     %1044 = "tosa.clamp"(%1043) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1216x14x14xf32>) -> tensor<1x1216x14x14xf32>
     %1045 = "tosa.transpose"(%1044, %111) : (tensor<1x1216x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1216xf32>
     %1046 = "tosa.conv2d"(%1045, %29, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1216xf32>, tensor<128x1x1x1216xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %1047 = "tosa.transpose"(%1046, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %1048 = "tosa.sub"(%1047, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1049 = "tosa.mul"(%1048, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1050 = "tosa.mul"(%1049, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1049 = "tosa.mul"(%1048, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1050 = "tosa.mul"(%1049, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1051 = "tosa.add"(%1050, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1052 = "tosa.clamp"(%1051) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %1053 = "tosa.transpose"(%1052, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4754,16 +4754,16 @@ module {
     %1056 = "tosa.sub"(%inserted_slice_786, %28) : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
     %1057 = "tosa.add"(%28, %106) : (tensor<1x1248x1x1xf32>, tensor<f32>) -> tensor<1x1248x1x1xf32>
     %1058 = "tosa.rsqrt"(%1057) : (tensor<1x1248x1x1xf32>) -> tensor<1x1248x1x1xf32>
-    %1059 = "tosa.mul"(%1056, %1058) {shift = 0 : i32} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
-    %1060 = "tosa.mul"(%1059, %28) {shift = 0 : i32} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
+    %1059 = "tosa.mul"(%1056, %1058) {shift = 0 : i8} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
+    %1060 = "tosa.mul"(%1059, %28) {shift = 0 : i8} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
     %1061 = "tosa.add"(%1060, %28) : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
     %1062 = "tosa.clamp"(%1061) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1248x14x14xf32>) -> tensor<1x1248x14x14xf32>
     %1063 = "tosa.transpose"(%1062, %111) : (tensor<1x1248x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1248xf32>
     %1064 = "tosa.conv2d"(%1063, %27, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x14x14x1248xf32>, tensor<128x1x1x1248xf32>, tensor<128xf32>) -> tensor<1x14x14x128xf32>
     %1065 = "tosa.transpose"(%1064, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %1066 = "tosa.sub"(%1065, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1067 = "tosa.mul"(%1066, %192) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %1068 = "tosa.mul"(%1067, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1067 = "tosa.mul"(%1066, %192) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %1068 = "tosa.mul"(%1067, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1069 = "tosa.add"(%1068, %103) : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
     %1070 = "tosa.clamp"(%1069) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %1071 = "tosa.transpose"(%1070, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
@@ -4805,8 +4805,8 @@ module {
     %1074 = "tosa.sub"(%inserted_slice_819, %26) : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
     %1075 = "tosa.add"(%26, %106) : (tensor<1x1280x1x1xf32>, tensor<f32>) -> tensor<1x1280x1x1xf32>
     %1076 = "tosa.rsqrt"(%1075) : (tensor<1x1280x1x1xf32>) -> tensor<1x1280x1x1xf32>
-    %1077 = "tosa.mul"(%1074, %1076) {shift = 0 : i32} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
-    %1078 = "tosa.mul"(%1077, %26) {shift = 0 : i32} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
+    %1077 = "tosa.mul"(%1074, %1076) {shift = 0 : i8} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
+    %1078 = "tosa.mul"(%1077, %26) {shift = 0 : i8} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
     %1079 = "tosa.add"(%1078, %26) : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
     %1080 = "tosa.clamp"(%1079) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1280x14x14xf32>) -> tensor<1x1280x14x14xf32>
     %1081 = "tosa.transpose"(%1080, %111) : (tensor<1x1280x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x1280xf32>
@@ -4814,16 +4814,16 @@ module {
     %1083 = "tosa.avg_pool2d"(%1082) {acc_type = f32, kernel = array<i64: 2, 2>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<1x14x14x640xf32>) -> tensor<1x7x7x640xf32>
     %1084 = "tosa.transpose"(%1083, %112) : (tensor<1x7x7x640xf32>, tensor<4xi64>) -> tensor<1x640x7x7xf32>
     %1085 = "tosa.sub"(%1084, %66) : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
-    %1086 = "tosa.mul"(%1085, %716) {shift = 0 : i32} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
-    %1087 = "tosa.mul"(%1086, %66) {shift = 0 : i32} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
+    %1086 = "tosa.mul"(%1085, %716) {shift = 0 : i8} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
+    %1087 = "tosa.mul"(%1086, %66) {shift = 0 : i8} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
     %1088 = "tosa.add"(%1087, %66) : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
     %1089 = "tosa.clamp"(%1088) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x640x7x7xf32>) -> tensor<1x640x7x7xf32>
     %1090 = "tosa.transpose"(%1089, %111) : (tensor<1x640x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x640xf32>
     %1091 = "tosa.conv2d"(%1090, %65, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x640xf32>, tensor<128x1x1x640xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1092 = "tosa.transpose"(%1091, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1093 = "tosa.sub"(%1092, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1094 = "tosa.mul"(%1093, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1095 = "tosa.mul"(%1094, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1094 = "tosa.mul"(%1093, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1095 = "tosa.mul"(%1094, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1096 = "tosa.add"(%1095, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1097 = "tosa.clamp"(%1096) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1098 = "tosa.transpose"(%1097, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -4832,16 +4832,16 @@ module {
     %inserted_slice_820 = tensor.insert_slice %1084 into %cst_49[0, 0, 0, 0] [1, 640, 7, 7] [1, 1, 1, 1] : tensor<1x640x7x7xf32> into tensor<1x672x7x7xf32>
     %inserted_slice_821 = tensor.insert_slice %1100 into %inserted_slice_820[0, 640, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x672x7x7xf32>
     %1101 = "tosa.sub"(%inserted_slice_821, %64) : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
-    %1102 = "tosa.mul"(%1101, %734) {shift = 0 : i32} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
-    %1103 = "tosa.mul"(%1102, %64) {shift = 0 : i32} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
+    %1102 = "tosa.mul"(%1101, %734) {shift = 0 : i8} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
+    %1103 = "tosa.mul"(%1102, %64) {shift = 0 : i8} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
     %1104 = "tosa.add"(%1103, %64) : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
     %1105 = "tosa.clamp"(%1104) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x672x7x7xf32>) -> tensor<1x672x7x7xf32>
     %1106 = "tosa.transpose"(%1105, %111) : (tensor<1x672x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x672xf32>
     %1107 = "tosa.conv2d"(%1106, %63, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x672xf32>, tensor<128x1x1x672xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1108 = "tosa.transpose"(%1107, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1109 = "tosa.sub"(%1108, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1110 = "tosa.mul"(%1109, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1111 = "tosa.mul"(%1110, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1110 = "tosa.mul"(%1109, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1111 = "tosa.mul"(%1110, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1112 = "tosa.add"(%1111, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1113 = "tosa.clamp"(%1112) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1114 = "tosa.transpose"(%1113, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -4851,16 +4851,16 @@ module {
     %inserted_slice_823 = tensor.insert_slice %1100 into %inserted_slice_822[0, 640, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x704x7x7xf32>
     %inserted_slice_824 = tensor.insert_slice %1116 into %inserted_slice_823[0, 672, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x704x7x7xf32>
     %1117 = "tosa.sub"(%inserted_slice_824, %62) : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
-    %1118 = "tosa.mul"(%1117, %752) {shift = 0 : i32} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
-    %1119 = "tosa.mul"(%1118, %62) {shift = 0 : i32} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
+    %1118 = "tosa.mul"(%1117, %752) {shift = 0 : i8} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
+    %1119 = "tosa.mul"(%1118, %62) {shift = 0 : i8} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
     %1120 = "tosa.add"(%1119, %62) : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
     %1121 = "tosa.clamp"(%1120) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x704x7x7xf32>) -> tensor<1x704x7x7xf32>
     %1122 = "tosa.transpose"(%1121, %111) : (tensor<1x704x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x704xf32>
     %1123 = "tosa.conv2d"(%1122, %61, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x704xf32>, tensor<128x1x1x704xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1124 = "tosa.transpose"(%1123, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1125 = "tosa.sub"(%1124, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1126 = "tosa.mul"(%1125, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1127 = "tosa.mul"(%1126, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1126 = "tosa.mul"(%1125, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1127 = "tosa.mul"(%1126, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1128 = "tosa.add"(%1127, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1129 = "tosa.clamp"(%1128) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1130 = "tosa.transpose"(%1129, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -4871,16 +4871,16 @@ module {
     %inserted_slice_827 = tensor.insert_slice %1116 into %inserted_slice_826[0, 672, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x736x7x7xf32>
     %inserted_slice_828 = tensor.insert_slice %1132 into %inserted_slice_827[0, 704, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x736x7x7xf32>
     %1133 = "tosa.sub"(%inserted_slice_828, %60) : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
-    %1134 = "tosa.mul"(%1133, %770) {shift = 0 : i32} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
-    %1135 = "tosa.mul"(%1134, %60) {shift = 0 : i32} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
+    %1134 = "tosa.mul"(%1133, %770) {shift = 0 : i8} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
+    %1135 = "tosa.mul"(%1134, %60) {shift = 0 : i8} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
     %1136 = "tosa.add"(%1135, %60) : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
     %1137 = "tosa.clamp"(%1136) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x736x7x7xf32>) -> tensor<1x736x7x7xf32>
     %1138 = "tosa.transpose"(%1137, %111) : (tensor<1x736x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x736xf32>
     %1139 = "tosa.conv2d"(%1138, %59, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x736xf32>, tensor<128x1x1x736xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1140 = "tosa.transpose"(%1139, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1141 = "tosa.sub"(%1140, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1142 = "tosa.mul"(%1141, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1143 = "tosa.mul"(%1142, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1142 = "tosa.mul"(%1141, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1143 = "tosa.mul"(%1142, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1144 = "tosa.add"(%1143, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1145 = "tosa.clamp"(%1144) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1146 = "tosa.transpose"(%1145, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -4892,16 +4892,16 @@ module {
     %inserted_slice_832 = tensor.insert_slice %1132 into %inserted_slice_831[0, 704, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x768x7x7xf32>
     %inserted_slice_833 = tensor.insert_slice %1148 into %inserted_slice_832[0, 736, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x768x7x7xf32>
     %1149 = "tosa.sub"(%inserted_slice_833, %58) : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
-    %1150 = "tosa.mul"(%1149, %788) {shift = 0 : i32} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
-    %1151 = "tosa.mul"(%1150, %58) {shift = 0 : i32} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
+    %1150 = "tosa.mul"(%1149, %788) {shift = 0 : i8} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
+    %1151 = "tosa.mul"(%1150, %58) {shift = 0 : i8} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
     %1152 = "tosa.add"(%1151, %58) : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
     %1153 = "tosa.clamp"(%1152) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x768x7x7xf32>) -> tensor<1x768x7x7xf32>
     %1154 = "tosa.transpose"(%1153, %111) : (tensor<1x768x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x768xf32>
     %1155 = "tosa.conv2d"(%1154, %57, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x768xf32>, tensor<128x1x1x768xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1156 = "tosa.transpose"(%1155, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1157 = "tosa.sub"(%1156, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1158 = "tosa.mul"(%1157, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1159 = "tosa.mul"(%1158, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1158 = "tosa.mul"(%1157, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1159 = "tosa.mul"(%1158, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1160 = "tosa.add"(%1159, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1161 = "tosa.clamp"(%1160) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1162 = "tosa.transpose"(%1161, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -4914,16 +4914,16 @@ module {
     %inserted_slice_838 = tensor.insert_slice %1148 into %inserted_slice_837[0, 736, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x800x7x7xf32>
     %inserted_slice_839 = tensor.insert_slice %1164 into %inserted_slice_838[0, 768, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x800x7x7xf32>
     %1165 = "tosa.sub"(%inserted_slice_839, %56) : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
-    %1166 = "tosa.mul"(%1165, %806) {shift = 0 : i32} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
-    %1167 = "tosa.mul"(%1166, %56) {shift = 0 : i32} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
+    %1166 = "tosa.mul"(%1165, %806) {shift = 0 : i8} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
+    %1167 = "tosa.mul"(%1166, %56) {shift = 0 : i8} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
     %1168 = "tosa.add"(%1167, %56) : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
     %1169 = "tosa.clamp"(%1168) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x800x7x7xf32>) -> tensor<1x800x7x7xf32>
     %1170 = "tosa.transpose"(%1169, %111) : (tensor<1x800x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x800xf32>
     %1171 = "tosa.conv2d"(%1170, %55, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x800xf32>, tensor<128x1x1x800xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1172 = "tosa.transpose"(%1171, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1173 = "tosa.sub"(%1172, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1174 = "tosa.mul"(%1173, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1175 = "tosa.mul"(%1174, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1174 = "tosa.mul"(%1173, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1175 = "tosa.mul"(%1174, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1176 = "tosa.add"(%1175, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1177 = "tosa.clamp"(%1176) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1178 = "tosa.transpose"(%1177, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -4937,16 +4937,16 @@ module {
     %inserted_slice_845 = tensor.insert_slice %1164 into %inserted_slice_844[0, 768, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x832x7x7xf32>
     %inserted_slice_846 = tensor.insert_slice %1180 into %inserted_slice_845[0, 800, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x832x7x7xf32>
     %1181 = "tosa.sub"(%inserted_slice_846, %54) : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
-    %1182 = "tosa.mul"(%1181, %824) {shift = 0 : i32} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
-    %1183 = "tosa.mul"(%1182, %54) {shift = 0 : i32} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
+    %1182 = "tosa.mul"(%1181, %824) {shift = 0 : i8} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
+    %1183 = "tosa.mul"(%1182, %54) {shift = 0 : i8} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
     %1184 = "tosa.add"(%1183, %54) : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
     %1185 = "tosa.clamp"(%1184) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x832x7x7xf32>) -> tensor<1x832x7x7xf32>
     %1186 = "tosa.transpose"(%1185, %111) : (tensor<1x832x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x832xf32>
     %1187 = "tosa.conv2d"(%1186, %53, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x832xf32>, tensor<128x1x1x832xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1188 = "tosa.transpose"(%1187, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1189 = "tosa.sub"(%1188, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1190 = "tosa.mul"(%1189, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1191 = "tosa.mul"(%1190, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1190 = "tosa.mul"(%1189, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1191 = "tosa.mul"(%1190, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1192 = "tosa.add"(%1191, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1193 = "tosa.clamp"(%1192) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1194 = "tosa.transpose"(%1193, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -4961,16 +4961,16 @@ module {
     %inserted_slice_853 = tensor.insert_slice %1180 into %inserted_slice_852[0, 800, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x864x7x7xf32>
     %inserted_slice_854 = tensor.insert_slice %1196 into %inserted_slice_853[0, 832, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x864x7x7xf32>
     %1197 = "tosa.sub"(%inserted_slice_854, %52) : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
-    %1198 = "tosa.mul"(%1197, %842) {shift = 0 : i32} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
-    %1199 = "tosa.mul"(%1198, %52) {shift = 0 : i32} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
+    %1198 = "tosa.mul"(%1197, %842) {shift = 0 : i8} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
+    %1199 = "tosa.mul"(%1198, %52) {shift = 0 : i8} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
     %1200 = "tosa.add"(%1199, %52) : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
     %1201 = "tosa.clamp"(%1200) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x864x7x7xf32>) -> tensor<1x864x7x7xf32>
     %1202 = "tosa.transpose"(%1201, %111) : (tensor<1x864x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x864xf32>
     %1203 = "tosa.conv2d"(%1202, %51, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x864xf32>, tensor<128x1x1x864xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1204 = "tosa.transpose"(%1203, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1205 = "tosa.sub"(%1204, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1206 = "tosa.mul"(%1205, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1207 = "tosa.mul"(%1206, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1206 = "tosa.mul"(%1205, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1207 = "tosa.mul"(%1206, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1208 = "tosa.add"(%1207, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1209 = "tosa.clamp"(%1208) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1210 = "tosa.transpose"(%1209, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -4986,16 +4986,16 @@ module {
     %inserted_slice_862 = tensor.insert_slice %1196 into %inserted_slice_861[0, 832, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x896x7x7xf32>
     %inserted_slice_863 = tensor.insert_slice %1212 into %inserted_slice_862[0, 864, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x896x7x7xf32>
     %1213 = "tosa.sub"(%inserted_slice_863, %50) : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
-    %1214 = "tosa.mul"(%1213, %860) {shift = 0 : i32} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
-    %1215 = "tosa.mul"(%1214, %50) {shift = 0 : i32} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
+    %1214 = "tosa.mul"(%1213, %860) {shift = 0 : i8} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
+    %1215 = "tosa.mul"(%1214, %50) {shift = 0 : i8} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
     %1216 = "tosa.add"(%1215, %50) : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
     %1217 = "tosa.clamp"(%1216) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x896x7x7xf32>) -> tensor<1x896x7x7xf32>
     %1218 = "tosa.transpose"(%1217, %111) : (tensor<1x896x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x896xf32>
     %1219 = "tosa.conv2d"(%1218, %49, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x896xf32>, tensor<128x1x1x896xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1220 = "tosa.transpose"(%1219, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1221 = "tosa.sub"(%1220, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1222 = "tosa.mul"(%1221, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1223 = "tosa.mul"(%1222, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1222 = "tosa.mul"(%1221, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1223 = "tosa.mul"(%1222, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1224 = "tosa.add"(%1223, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1225 = "tosa.clamp"(%1224) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1226 = "tosa.transpose"(%1225, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5012,16 +5012,16 @@ module {
     %inserted_slice_872 = tensor.insert_slice %1212 into %inserted_slice_871[0, 864, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x928x7x7xf32>
     %inserted_slice_873 = tensor.insert_slice %1228 into %inserted_slice_872[0, 896, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x928x7x7xf32>
     %1229 = "tosa.sub"(%inserted_slice_873, %48) : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
-    %1230 = "tosa.mul"(%1229, %878) {shift = 0 : i32} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
-    %1231 = "tosa.mul"(%1230, %48) {shift = 0 : i32} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
+    %1230 = "tosa.mul"(%1229, %878) {shift = 0 : i8} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
+    %1231 = "tosa.mul"(%1230, %48) {shift = 0 : i8} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
     %1232 = "tosa.add"(%1231, %48) : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
     %1233 = "tosa.clamp"(%1232) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x928x7x7xf32>) -> tensor<1x928x7x7xf32>
     %1234 = "tosa.transpose"(%1233, %111) : (tensor<1x928x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x928xf32>
     %1235 = "tosa.conv2d"(%1234, %47, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x928xf32>, tensor<128x1x1x928xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1236 = "tosa.transpose"(%1235, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1237 = "tosa.sub"(%1236, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1238 = "tosa.mul"(%1237, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1239 = "tosa.mul"(%1238, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1238 = "tosa.mul"(%1237, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1239 = "tosa.mul"(%1238, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1240 = "tosa.add"(%1239, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1241 = "tosa.clamp"(%1240) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1242 = "tosa.transpose"(%1241, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5039,16 +5039,16 @@ module {
     %inserted_slice_883 = tensor.insert_slice %1228 into %inserted_slice_882[0, 896, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x960x7x7xf32>
     %inserted_slice_884 = tensor.insert_slice %1244 into %inserted_slice_883[0, 928, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x960x7x7xf32>
     %1245 = "tosa.sub"(%inserted_slice_884, %46) : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
-    %1246 = "tosa.mul"(%1245, %896) {shift = 0 : i32} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
-    %1247 = "tosa.mul"(%1246, %46) {shift = 0 : i32} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
+    %1246 = "tosa.mul"(%1245, %896) {shift = 0 : i8} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
+    %1247 = "tosa.mul"(%1246, %46) {shift = 0 : i8} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
     %1248 = "tosa.add"(%1247, %46) : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
     %1249 = "tosa.clamp"(%1248) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x960x7x7xf32>) -> tensor<1x960x7x7xf32>
     %1250 = "tosa.transpose"(%1249, %111) : (tensor<1x960x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x960xf32>
     %1251 = "tosa.conv2d"(%1250, %45, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x960xf32>, tensor<128x1x1x960xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1252 = "tosa.transpose"(%1251, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1253 = "tosa.sub"(%1252, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1254 = "tosa.mul"(%1253, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1255 = "tosa.mul"(%1254, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1254 = "tosa.mul"(%1253, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1255 = "tosa.mul"(%1254, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1256 = "tosa.add"(%1255, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1257 = "tosa.clamp"(%1256) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1258 = "tosa.transpose"(%1257, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5067,16 +5067,16 @@ module {
     %inserted_slice_895 = tensor.insert_slice %1244 into %inserted_slice_894[0, 928, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x992x7x7xf32>
     %inserted_slice_896 = tensor.insert_slice %1260 into %inserted_slice_895[0, 960, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x992x7x7xf32>
     %1261 = "tosa.sub"(%inserted_slice_896, %44) : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
-    %1262 = "tosa.mul"(%1261, %914) {shift = 0 : i32} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
-    %1263 = "tosa.mul"(%1262, %44) {shift = 0 : i32} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
+    %1262 = "tosa.mul"(%1261, %914) {shift = 0 : i8} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
+    %1263 = "tosa.mul"(%1262, %44) {shift = 0 : i8} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
     %1264 = "tosa.add"(%1263, %44) : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
     %1265 = "tosa.clamp"(%1264) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x992x7x7xf32>) -> tensor<1x992x7x7xf32>
     %1266 = "tosa.transpose"(%1265, %111) : (tensor<1x992x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x992xf32>
     %1267 = "tosa.conv2d"(%1266, %43, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x992xf32>, tensor<128x1x1x992xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1268 = "tosa.transpose"(%1267, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1269 = "tosa.sub"(%1268, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1270 = "tosa.mul"(%1269, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1271 = "tosa.mul"(%1270, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1270 = "tosa.mul"(%1269, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1271 = "tosa.mul"(%1270, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1272 = "tosa.add"(%1271, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1273 = "tosa.clamp"(%1272) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1274 = "tosa.transpose"(%1273, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5096,16 +5096,16 @@ module {
     %inserted_slice_908 = tensor.insert_slice %1260 into %inserted_slice_907[0, 960, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1024x7x7xf32>
     %inserted_slice_909 = tensor.insert_slice %1276 into %inserted_slice_908[0, 992, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1024x7x7xf32>
     %1277 = "tosa.sub"(%inserted_slice_909, %42) : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
-    %1278 = "tosa.mul"(%1277, %932) {shift = 0 : i32} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
-    %1279 = "tosa.mul"(%1278, %42) {shift = 0 : i32} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
+    %1278 = "tosa.mul"(%1277, %932) {shift = 0 : i8} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
+    %1279 = "tosa.mul"(%1278, %42) {shift = 0 : i8} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
     %1280 = "tosa.add"(%1279, %42) : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
     %1281 = "tosa.clamp"(%1280) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1024x7x7xf32>) -> tensor<1x1024x7x7xf32>
     %1282 = "tosa.transpose"(%1281, %111) : (tensor<1x1024x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1024xf32>
     %1283 = "tosa.conv2d"(%1282, %41, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1024xf32>, tensor<128x1x1x1024xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1284 = "tosa.transpose"(%1283, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1285 = "tosa.sub"(%1284, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1286 = "tosa.mul"(%1285, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1287 = "tosa.mul"(%1286, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1286 = "tosa.mul"(%1285, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1287 = "tosa.mul"(%1286, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1288 = "tosa.add"(%1287, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1289 = "tosa.clamp"(%1288) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1290 = "tosa.transpose"(%1289, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5126,16 +5126,16 @@ module {
     %inserted_slice_922 = tensor.insert_slice %1276 into %inserted_slice_921[0, 992, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1056x7x7xf32>
     %inserted_slice_923 = tensor.insert_slice %1292 into %inserted_slice_922[0, 1024, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1056x7x7xf32>
     %1293 = "tosa.sub"(%inserted_slice_923, %40) : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
-    %1294 = "tosa.mul"(%1293, %950) {shift = 0 : i32} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
-    %1295 = "tosa.mul"(%1294, %40) {shift = 0 : i32} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
+    %1294 = "tosa.mul"(%1293, %950) {shift = 0 : i8} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
+    %1295 = "tosa.mul"(%1294, %40) {shift = 0 : i8} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
     %1296 = "tosa.add"(%1295, %40) : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
     %1297 = "tosa.clamp"(%1296) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1056x7x7xf32>) -> tensor<1x1056x7x7xf32>
     %1298 = "tosa.transpose"(%1297, %111) : (tensor<1x1056x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1056xf32>
     %1299 = "tosa.conv2d"(%1298, %39, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1056xf32>, tensor<128x1x1x1056xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1300 = "tosa.transpose"(%1299, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1301 = "tosa.sub"(%1300, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1302 = "tosa.mul"(%1301, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1303 = "tosa.mul"(%1302, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1302 = "tosa.mul"(%1301, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1303 = "tosa.mul"(%1302, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1304 = "tosa.add"(%1303, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1305 = "tosa.clamp"(%1304) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1306 = "tosa.transpose"(%1305, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5157,16 +5157,16 @@ module {
     %inserted_slice_937 = tensor.insert_slice %1292 into %inserted_slice_936[0, 1024, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1088x7x7xf32>
     %inserted_slice_938 = tensor.insert_slice %1308 into %inserted_slice_937[0, 1056, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1088x7x7xf32>
     %1309 = "tosa.sub"(%inserted_slice_938, %38) : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
-    %1310 = "tosa.mul"(%1309, %968) {shift = 0 : i32} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
-    %1311 = "tosa.mul"(%1310, %38) {shift = 0 : i32} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
+    %1310 = "tosa.mul"(%1309, %968) {shift = 0 : i8} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
+    %1311 = "tosa.mul"(%1310, %38) {shift = 0 : i8} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
     %1312 = "tosa.add"(%1311, %38) : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
     %1313 = "tosa.clamp"(%1312) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1088x7x7xf32>) -> tensor<1x1088x7x7xf32>
     %1314 = "tosa.transpose"(%1313, %111) : (tensor<1x1088x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1088xf32>
     %1315 = "tosa.conv2d"(%1314, %37, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1088xf32>, tensor<128x1x1x1088xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1316 = "tosa.transpose"(%1315, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1317 = "tosa.sub"(%1316, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1318 = "tosa.mul"(%1317, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1319 = "tosa.mul"(%1318, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1318 = "tosa.mul"(%1317, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1319 = "tosa.mul"(%1318, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1320 = "tosa.add"(%1319, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1321 = "tosa.clamp"(%1320) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1322 = "tosa.transpose"(%1321, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5189,16 +5189,16 @@ module {
     %inserted_slice_953 = tensor.insert_slice %1308 into %inserted_slice_952[0, 1056, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1120x7x7xf32>
     %inserted_slice_954 = tensor.insert_slice %1324 into %inserted_slice_953[0, 1088, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1120x7x7xf32>
     %1325 = "tosa.sub"(%inserted_slice_954, %36) : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
-    %1326 = "tosa.mul"(%1325, %986) {shift = 0 : i32} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
-    %1327 = "tosa.mul"(%1326, %36) {shift = 0 : i32} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
+    %1326 = "tosa.mul"(%1325, %986) {shift = 0 : i8} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
+    %1327 = "tosa.mul"(%1326, %36) {shift = 0 : i8} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
     %1328 = "tosa.add"(%1327, %36) : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
     %1329 = "tosa.clamp"(%1328) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1120x7x7xf32>) -> tensor<1x1120x7x7xf32>
     %1330 = "tosa.transpose"(%1329, %111) : (tensor<1x1120x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1120xf32>
     %1331 = "tosa.conv2d"(%1330, %35, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1120xf32>, tensor<128x1x1x1120xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1332 = "tosa.transpose"(%1331, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1333 = "tosa.sub"(%1332, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1334 = "tosa.mul"(%1333, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1335 = "tosa.mul"(%1334, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1334 = "tosa.mul"(%1333, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1335 = "tosa.mul"(%1334, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1336 = "tosa.add"(%1335, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1337 = "tosa.clamp"(%1336) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1338 = "tosa.transpose"(%1337, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5222,16 +5222,16 @@ module {
     %inserted_slice_970 = tensor.insert_slice %1324 into %inserted_slice_969[0, 1088, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1152x7x7xf32>
     %inserted_slice_971 = tensor.insert_slice %1340 into %inserted_slice_970[0, 1120, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1152x7x7xf32>
     %1341 = "tosa.sub"(%inserted_slice_971, %34) : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
-    %1342 = "tosa.mul"(%1341, %1004) {shift = 0 : i32} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
-    %1343 = "tosa.mul"(%1342, %34) {shift = 0 : i32} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
+    %1342 = "tosa.mul"(%1341, %1004) {shift = 0 : i8} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
+    %1343 = "tosa.mul"(%1342, %34) {shift = 0 : i8} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
     %1344 = "tosa.add"(%1343, %34) : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
     %1345 = "tosa.clamp"(%1344) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1152x7x7xf32>) -> tensor<1x1152x7x7xf32>
     %1346 = "tosa.transpose"(%1345, %111) : (tensor<1x1152x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1152xf32>
     %1347 = "tosa.conv2d"(%1346, %33, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1152xf32>, tensor<128x1x1x1152xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1348 = "tosa.transpose"(%1347, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1349 = "tosa.sub"(%1348, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1350 = "tosa.mul"(%1349, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1351 = "tosa.mul"(%1350, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1350 = "tosa.mul"(%1349, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1351 = "tosa.mul"(%1350, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1352 = "tosa.add"(%1351, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1353 = "tosa.clamp"(%1352) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1354 = "tosa.transpose"(%1353, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5256,16 +5256,16 @@ module {
     %inserted_slice_988 = tensor.insert_slice %1340 into %inserted_slice_987[0, 1120, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1184x7x7xf32>
     %inserted_slice_989 = tensor.insert_slice %1356 into %inserted_slice_988[0, 1152, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1184x7x7xf32>
     %1357 = "tosa.sub"(%inserted_slice_989, %32) : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
-    %1358 = "tosa.mul"(%1357, %1022) {shift = 0 : i32} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
-    %1359 = "tosa.mul"(%1358, %32) {shift = 0 : i32} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
+    %1358 = "tosa.mul"(%1357, %1022) {shift = 0 : i8} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
+    %1359 = "tosa.mul"(%1358, %32) {shift = 0 : i8} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
     %1360 = "tosa.add"(%1359, %32) : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
     %1361 = "tosa.clamp"(%1360) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1184x7x7xf32>) -> tensor<1x1184x7x7xf32>
     %1362 = "tosa.transpose"(%1361, %111) : (tensor<1x1184x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1184xf32>
     %1363 = "tosa.conv2d"(%1362, %31, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1184xf32>, tensor<128x1x1x1184xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1364 = "tosa.transpose"(%1363, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1365 = "tosa.sub"(%1364, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1366 = "tosa.mul"(%1365, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1367 = "tosa.mul"(%1366, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1366 = "tosa.mul"(%1365, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1367 = "tosa.mul"(%1366, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1368 = "tosa.add"(%1367, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1369 = "tosa.clamp"(%1368) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1370 = "tosa.transpose"(%1369, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5291,16 +5291,16 @@ module {
     %inserted_slice_1007 = tensor.insert_slice %1356 into %inserted_slice_1006[0, 1152, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1216x7x7xf32>
     %inserted_slice_1008 = tensor.insert_slice %1372 into %inserted_slice_1007[0, 1184, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1216x7x7xf32>
     %1373 = "tosa.sub"(%inserted_slice_1008, %30) : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
-    %1374 = "tosa.mul"(%1373, %1040) {shift = 0 : i32} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
-    %1375 = "tosa.mul"(%1374, %30) {shift = 0 : i32} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
+    %1374 = "tosa.mul"(%1373, %1040) {shift = 0 : i8} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
+    %1375 = "tosa.mul"(%1374, %30) {shift = 0 : i8} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
     %1376 = "tosa.add"(%1375, %30) : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
     %1377 = "tosa.clamp"(%1376) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1216x7x7xf32>) -> tensor<1x1216x7x7xf32>
     %1378 = "tosa.transpose"(%1377, %111) : (tensor<1x1216x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1216xf32>
     %1379 = "tosa.conv2d"(%1378, %29, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1216xf32>, tensor<128x1x1x1216xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1380 = "tosa.transpose"(%1379, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1381 = "tosa.sub"(%1380, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1382 = "tosa.mul"(%1381, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1383 = "tosa.mul"(%1382, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1382 = "tosa.mul"(%1381, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1383 = "tosa.mul"(%1382, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1384 = "tosa.add"(%1383, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1385 = "tosa.clamp"(%1384) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1386 = "tosa.transpose"(%1385, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5327,16 +5327,16 @@ module {
     %inserted_slice_1027 = tensor.insert_slice %1372 into %inserted_slice_1026[0, 1184, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1248x7x7xf32>
     %inserted_slice_1028 = tensor.insert_slice %1388 into %inserted_slice_1027[0, 1216, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1248x7x7xf32>
     %1389 = "tosa.sub"(%inserted_slice_1028, %28) : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
-    %1390 = "tosa.mul"(%1389, %1058) {shift = 0 : i32} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
-    %1391 = "tosa.mul"(%1390, %28) {shift = 0 : i32} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
+    %1390 = "tosa.mul"(%1389, %1058) {shift = 0 : i8} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
+    %1391 = "tosa.mul"(%1390, %28) {shift = 0 : i8} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
     %1392 = "tosa.add"(%1391, %28) : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
     %1393 = "tosa.clamp"(%1392) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1248x7x7xf32>) -> tensor<1x1248x7x7xf32>
     %1394 = "tosa.transpose"(%1393, %111) : (tensor<1x1248x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1248xf32>
     %1395 = "tosa.conv2d"(%1394, %27, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1248xf32>, tensor<128x1x1x1248xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1396 = "tosa.transpose"(%1395, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1397 = "tosa.sub"(%1396, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1398 = "tosa.mul"(%1397, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1399 = "tosa.mul"(%1398, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1398 = "tosa.mul"(%1397, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1399 = "tosa.mul"(%1398, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1400 = "tosa.add"(%1399, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1401 = "tosa.clamp"(%1400) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1402 = "tosa.transpose"(%1401, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5364,16 +5364,16 @@ module {
     %inserted_slice_1048 = tensor.insert_slice %1388 into %inserted_slice_1047[0, 1216, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1280x7x7xf32>
     %inserted_slice_1049 = tensor.insert_slice %1404 into %inserted_slice_1048[0, 1248, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x32x7x7xf32> into tensor<1x1280x7x7xf32>
     %1405 = "tosa.sub"(%inserted_slice_1049, %26) : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
-    %1406 = "tosa.mul"(%1405, %1076) {shift = 0 : i32} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
-    %1407 = "tosa.mul"(%1406, %26) {shift = 0 : i32} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
+    %1406 = "tosa.mul"(%1405, %1076) {shift = 0 : i8} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
+    %1407 = "tosa.mul"(%1406, %26) {shift = 0 : i8} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
     %1408 = "tosa.add"(%1407, %26) : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
     %1409 = "tosa.clamp"(%1408) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1280x7x7xf32>) -> tensor<1x1280x7x7xf32>
     %1410 = "tosa.transpose"(%1409, %111) : (tensor<1x1280x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1280xf32>
     %1411 = "tosa.conv2d"(%1410, %23, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1280xf32>, tensor<128x1x1x1280xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1412 = "tosa.transpose"(%1411, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1413 = "tosa.sub"(%1412, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1414 = "tosa.mul"(%1413, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1415 = "tosa.mul"(%1414, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1414 = "tosa.mul"(%1413, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1415 = "tosa.mul"(%1414, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1416 = "tosa.add"(%1415, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1417 = "tosa.clamp"(%1416) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1418 = "tosa.transpose"(%1417, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5404,16 +5404,16 @@ module {
     %1421 = "tosa.sub"(%inserted_slice_1071, %22) : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
     %1422 = "tosa.add"(%22, %106) : (tensor<1x1312x1x1xf32>, tensor<f32>) -> tensor<1x1312x1x1xf32>
     %1423 = "tosa.rsqrt"(%1422) : (tensor<1x1312x1x1xf32>) -> tensor<1x1312x1x1xf32>
-    %1424 = "tosa.mul"(%1421, %1423) {shift = 0 : i32} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
-    %1425 = "tosa.mul"(%1424, %22) {shift = 0 : i32} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
+    %1424 = "tosa.mul"(%1421, %1423) {shift = 0 : i8} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
+    %1425 = "tosa.mul"(%1424, %22) {shift = 0 : i8} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
     %1426 = "tosa.add"(%1425, %22) : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
     %1427 = "tosa.clamp"(%1426) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1312x7x7xf32>) -> tensor<1x1312x7x7xf32>
     %1428 = "tosa.transpose"(%1427, %111) : (tensor<1x1312x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1312xf32>
     %1429 = "tosa.conv2d"(%1428, %21, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1312xf32>, tensor<128x1x1x1312xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1430 = "tosa.transpose"(%1429, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1431 = "tosa.sub"(%1430, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1432 = "tosa.mul"(%1431, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1433 = "tosa.mul"(%1432, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1432 = "tosa.mul"(%1431, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1433 = "tosa.mul"(%1432, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1434 = "tosa.add"(%1433, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1435 = "tosa.clamp"(%1434) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1436 = "tosa.transpose"(%1435, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5445,16 +5445,16 @@ module {
     %1439 = "tosa.sub"(%inserted_slice_1094, %20) : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
     %1440 = "tosa.add"(%20, %106) : (tensor<1x1344x1x1xf32>, tensor<f32>) -> tensor<1x1344x1x1xf32>
     %1441 = "tosa.rsqrt"(%1440) : (tensor<1x1344x1x1xf32>) -> tensor<1x1344x1x1xf32>
-    %1442 = "tosa.mul"(%1439, %1441) {shift = 0 : i32} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
-    %1443 = "tosa.mul"(%1442, %20) {shift = 0 : i32} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
+    %1442 = "tosa.mul"(%1439, %1441) {shift = 0 : i8} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
+    %1443 = "tosa.mul"(%1442, %20) {shift = 0 : i8} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
     %1444 = "tosa.add"(%1443, %20) : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
     %1445 = "tosa.clamp"(%1444) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1344x7x7xf32>) -> tensor<1x1344x7x7xf32>
     %1446 = "tosa.transpose"(%1445, %111) : (tensor<1x1344x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1344xf32>
     %1447 = "tosa.conv2d"(%1446, %19, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1344xf32>, tensor<128x1x1x1344xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1448 = "tosa.transpose"(%1447, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1449 = "tosa.sub"(%1448, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1450 = "tosa.mul"(%1449, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1451 = "tosa.mul"(%1450, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1450 = "tosa.mul"(%1449, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1451 = "tosa.mul"(%1450, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1452 = "tosa.add"(%1451, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1453 = "tosa.clamp"(%1452) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1454 = "tosa.transpose"(%1453, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5487,16 +5487,16 @@ module {
     %1457 = "tosa.sub"(%inserted_slice_1118, %18) : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
     %1458 = "tosa.add"(%18, %106) : (tensor<1x1376x1x1xf32>, tensor<f32>) -> tensor<1x1376x1x1xf32>
     %1459 = "tosa.rsqrt"(%1458) : (tensor<1x1376x1x1xf32>) -> tensor<1x1376x1x1xf32>
-    %1460 = "tosa.mul"(%1457, %1459) {shift = 0 : i32} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
-    %1461 = "tosa.mul"(%1460, %18) {shift = 0 : i32} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
+    %1460 = "tosa.mul"(%1457, %1459) {shift = 0 : i8} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
+    %1461 = "tosa.mul"(%1460, %18) {shift = 0 : i8} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
     %1462 = "tosa.add"(%1461, %18) : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
     %1463 = "tosa.clamp"(%1462) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1376x7x7xf32>) -> tensor<1x1376x7x7xf32>
     %1464 = "tosa.transpose"(%1463, %111) : (tensor<1x1376x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1376xf32>
     %1465 = "tosa.conv2d"(%1464, %17, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1376xf32>, tensor<128x1x1x1376xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1466 = "tosa.transpose"(%1465, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1467 = "tosa.sub"(%1466, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1468 = "tosa.mul"(%1467, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1469 = "tosa.mul"(%1468, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1468 = "tosa.mul"(%1467, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1469 = "tosa.mul"(%1468, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1470 = "tosa.add"(%1469, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1471 = "tosa.clamp"(%1470) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1472 = "tosa.transpose"(%1471, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5530,16 +5530,16 @@ module {
     %1475 = "tosa.sub"(%inserted_slice_1143, %16) : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
     %1476 = "tosa.add"(%16, %106) : (tensor<1x1408x1x1xf32>, tensor<f32>) -> tensor<1x1408x1x1xf32>
     %1477 = "tosa.rsqrt"(%1476) : (tensor<1x1408x1x1xf32>) -> tensor<1x1408x1x1xf32>
-    %1478 = "tosa.mul"(%1475, %1477) {shift = 0 : i32} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
-    %1479 = "tosa.mul"(%1478, %16) {shift = 0 : i32} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
+    %1478 = "tosa.mul"(%1475, %1477) {shift = 0 : i8} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
+    %1479 = "tosa.mul"(%1478, %16) {shift = 0 : i8} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
     %1480 = "tosa.add"(%1479, %16) : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
     %1481 = "tosa.clamp"(%1480) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1408x7x7xf32>) -> tensor<1x1408x7x7xf32>
     %1482 = "tosa.transpose"(%1481, %111) : (tensor<1x1408x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1408xf32>
     %1483 = "tosa.conv2d"(%1482, %15, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1408xf32>, tensor<128x1x1x1408xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1484 = "tosa.transpose"(%1483, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1485 = "tosa.sub"(%1484, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1486 = "tosa.mul"(%1485, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1487 = "tosa.mul"(%1486, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1486 = "tosa.mul"(%1485, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1487 = "tosa.mul"(%1486, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1488 = "tosa.add"(%1487, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1489 = "tosa.clamp"(%1488) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1490 = "tosa.transpose"(%1489, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5574,16 +5574,16 @@ module {
     %1493 = "tosa.sub"(%inserted_slice_1169, %14) : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
     %1494 = "tosa.add"(%14, %106) : (tensor<1x1440x1x1xf32>, tensor<f32>) -> tensor<1x1440x1x1xf32>
     %1495 = "tosa.rsqrt"(%1494) : (tensor<1x1440x1x1xf32>) -> tensor<1x1440x1x1xf32>
-    %1496 = "tosa.mul"(%1493, %1495) {shift = 0 : i32} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
-    %1497 = "tosa.mul"(%1496, %14) {shift = 0 : i32} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
+    %1496 = "tosa.mul"(%1493, %1495) {shift = 0 : i8} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
+    %1497 = "tosa.mul"(%1496, %14) {shift = 0 : i8} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
     %1498 = "tosa.add"(%1497, %14) : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
     %1499 = "tosa.clamp"(%1498) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1440x7x7xf32>) -> tensor<1x1440x7x7xf32>
     %1500 = "tosa.transpose"(%1499, %111) : (tensor<1x1440x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1440xf32>
     %1501 = "tosa.conv2d"(%1500, %13, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1440xf32>, tensor<128x1x1x1440xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1502 = "tosa.transpose"(%1501, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1503 = "tosa.sub"(%1502, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1504 = "tosa.mul"(%1503, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1505 = "tosa.mul"(%1504, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1504 = "tosa.mul"(%1503, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1505 = "tosa.mul"(%1504, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1506 = "tosa.add"(%1505, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1507 = "tosa.clamp"(%1506) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1508 = "tosa.transpose"(%1507, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5619,16 +5619,16 @@ module {
     %1511 = "tosa.sub"(%inserted_slice_1196, %12) : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
     %1512 = "tosa.add"(%12, %106) : (tensor<1x1472x1x1xf32>, tensor<f32>) -> tensor<1x1472x1x1xf32>
     %1513 = "tosa.rsqrt"(%1512) : (tensor<1x1472x1x1xf32>) -> tensor<1x1472x1x1xf32>
-    %1514 = "tosa.mul"(%1511, %1513) {shift = 0 : i32} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
-    %1515 = "tosa.mul"(%1514, %12) {shift = 0 : i32} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
+    %1514 = "tosa.mul"(%1511, %1513) {shift = 0 : i8} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
+    %1515 = "tosa.mul"(%1514, %12) {shift = 0 : i8} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
     %1516 = "tosa.add"(%1515, %12) : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
     %1517 = "tosa.clamp"(%1516) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1472x7x7xf32>) -> tensor<1x1472x7x7xf32>
     %1518 = "tosa.transpose"(%1517, %111) : (tensor<1x1472x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1472xf32>
     %1519 = "tosa.conv2d"(%1518, %11, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1472xf32>, tensor<128x1x1x1472xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1520 = "tosa.transpose"(%1519, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1521 = "tosa.sub"(%1520, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1522 = "tosa.mul"(%1521, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1523 = "tosa.mul"(%1522, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1522 = "tosa.mul"(%1521, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1523 = "tosa.mul"(%1522, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1524 = "tosa.add"(%1523, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1525 = "tosa.clamp"(%1524) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1526 = "tosa.transpose"(%1525, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5665,16 +5665,16 @@ module {
     %1529 = "tosa.sub"(%inserted_slice_1224, %10) : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
     %1530 = "tosa.add"(%10, %106) : (tensor<1x1504x1x1xf32>, tensor<f32>) -> tensor<1x1504x1x1xf32>
     %1531 = "tosa.rsqrt"(%1530) : (tensor<1x1504x1x1xf32>) -> tensor<1x1504x1x1xf32>
-    %1532 = "tosa.mul"(%1529, %1531) {shift = 0 : i32} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
-    %1533 = "tosa.mul"(%1532, %10) {shift = 0 : i32} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
+    %1532 = "tosa.mul"(%1529, %1531) {shift = 0 : i8} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
+    %1533 = "tosa.mul"(%1532, %10) {shift = 0 : i8} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
     %1534 = "tosa.add"(%1533, %10) : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
     %1535 = "tosa.clamp"(%1534) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1504x7x7xf32>) -> tensor<1x1504x7x7xf32>
     %1536 = "tosa.transpose"(%1535, %111) : (tensor<1x1504x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1504xf32>
     %1537 = "tosa.conv2d"(%1536, %9, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1504xf32>, tensor<128x1x1x1504xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1538 = "tosa.transpose"(%1537, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1539 = "tosa.sub"(%1538, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1540 = "tosa.mul"(%1539, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1541 = "tosa.mul"(%1540, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1540 = "tosa.mul"(%1539, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1541 = "tosa.mul"(%1540, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1542 = "tosa.add"(%1541, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1543 = "tosa.clamp"(%1542) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1544 = "tosa.transpose"(%1543, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5712,16 +5712,16 @@ module {
     %1547 = "tosa.sub"(%inserted_slice_1253, %8) : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
     %1548 = "tosa.add"(%8, %106) : (tensor<1x1536x1x1xf32>, tensor<f32>) -> tensor<1x1536x1x1xf32>
     %1549 = "tosa.rsqrt"(%1548) : (tensor<1x1536x1x1xf32>) -> tensor<1x1536x1x1xf32>
-    %1550 = "tosa.mul"(%1547, %1549) {shift = 0 : i32} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
-    %1551 = "tosa.mul"(%1550, %8) {shift = 0 : i32} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
+    %1550 = "tosa.mul"(%1547, %1549) {shift = 0 : i8} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
+    %1551 = "tosa.mul"(%1550, %8) {shift = 0 : i8} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
     %1552 = "tosa.add"(%1551, %8) : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
     %1553 = "tosa.clamp"(%1552) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1536x7x7xf32>) -> tensor<1x1536x7x7xf32>
     %1554 = "tosa.transpose"(%1553, %111) : (tensor<1x1536x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1536xf32>
     %1555 = "tosa.conv2d"(%1554, %7, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1536xf32>, tensor<128x1x1x1536xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1556 = "tosa.transpose"(%1555, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1557 = "tosa.sub"(%1556, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1558 = "tosa.mul"(%1557, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1559 = "tosa.mul"(%1558, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1558 = "tosa.mul"(%1557, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1559 = "tosa.mul"(%1558, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1560 = "tosa.add"(%1559, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1561 = "tosa.clamp"(%1560) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1562 = "tosa.transpose"(%1561, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5760,16 +5760,16 @@ module {
     %1565 = "tosa.sub"(%inserted_slice_1283, %6) : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
     %1566 = "tosa.add"(%6, %106) : (tensor<1x1568x1x1xf32>, tensor<f32>) -> tensor<1x1568x1x1xf32>
     %1567 = "tosa.rsqrt"(%1566) : (tensor<1x1568x1x1xf32>) -> tensor<1x1568x1x1xf32>
-    %1568 = "tosa.mul"(%1565, %1567) {shift = 0 : i32} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
-    %1569 = "tosa.mul"(%1568, %6) {shift = 0 : i32} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
+    %1568 = "tosa.mul"(%1565, %1567) {shift = 0 : i8} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
+    %1569 = "tosa.mul"(%1568, %6) {shift = 0 : i8} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
     %1570 = "tosa.add"(%1569, %6) : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
     %1571 = "tosa.clamp"(%1570) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1568x7x7xf32>) -> tensor<1x1568x7x7xf32>
     %1572 = "tosa.transpose"(%1571, %111) : (tensor<1x1568x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1568xf32>
     %1573 = "tosa.conv2d"(%1572, %5, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1568xf32>, tensor<128x1x1x1568xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1574 = "tosa.transpose"(%1573, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1575 = "tosa.sub"(%1574, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1576 = "tosa.mul"(%1575, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1577 = "tosa.mul"(%1576, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1576 = "tosa.mul"(%1575, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1577 = "tosa.mul"(%1576, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1578 = "tosa.add"(%1577, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1579 = "tosa.clamp"(%1578) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1580 = "tosa.transpose"(%1579, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5809,16 +5809,16 @@ module {
     %1583 = "tosa.sub"(%inserted_slice_1314, %4) : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
     %1584 = "tosa.add"(%4, %106) : (tensor<1x1600x1x1xf32>, tensor<f32>) -> tensor<1x1600x1x1xf32>
     %1585 = "tosa.rsqrt"(%1584) : (tensor<1x1600x1x1xf32>) -> tensor<1x1600x1x1xf32>
-    %1586 = "tosa.mul"(%1583, %1585) {shift = 0 : i32} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
-    %1587 = "tosa.mul"(%1586, %4) {shift = 0 : i32} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
+    %1586 = "tosa.mul"(%1583, %1585) {shift = 0 : i8} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
+    %1587 = "tosa.mul"(%1586, %4) {shift = 0 : i8} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
     %1588 = "tosa.add"(%1587, %4) : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
     %1589 = "tosa.clamp"(%1588) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1600x7x7xf32>) -> tensor<1x1600x7x7xf32>
     %1590 = "tosa.transpose"(%1589, %111) : (tensor<1x1600x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1600xf32>
     %1591 = "tosa.conv2d"(%1590, %3, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1600xf32>, tensor<128x1x1x1600xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1592 = "tosa.transpose"(%1591, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1593 = "tosa.sub"(%1592, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1594 = "tosa.mul"(%1593, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1595 = "tosa.mul"(%1594, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1594 = "tosa.mul"(%1593, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1595 = "tosa.mul"(%1594, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1596 = "tosa.add"(%1595, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1597 = "tosa.clamp"(%1596) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1598 = "tosa.transpose"(%1597, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5859,16 +5859,16 @@ module {
     %1601 = "tosa.sub"(%inserted_slice_1346, %2) : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
     %1602 = "tosa.add"(%2, %106) : (tensor<1x1632x1x1xf32>, tensor<f32>) -> tensor<1x1632x1x1xf32>
     %1603 = "tosa.rsqrt"(%1602) : (tensor<1x1632x1x1xf32>) -> tensor<1x1632x1x1xf32>
-    %1604 = "tosa.mul"(%1601, %1603) {shift = 0 : i32} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
-    %1605 = "tosa.mul"(%1604, %2) {shift = 0 : i32} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
+    %1604 = "tosa.mul"(%1601, %1603) {shift = 0 : i8} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
+    %1605 = "tosa.mul"(%1604, %2) {shift = 0 : i8} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
     %1606 = "tosa.add"(%1605, %2) : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
     %1607 = "tosa.clamp"(%1606) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1632x7x7xf32>) -> tensor<1x1632x7x7xf32>
     %1608 = "tosa.transpose"(%1607, %111) : (tensor<1x1632x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1632xf32>
     %1609 = "tosa.conv2d"(%1608, %1, %104) {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<1x7x7x1632xf32>, tensor<128x1x1x1632xf32>, tensor<128xf32>) -> tensor<1x7x7x128xf32>
     %1610 = "tosa.transpose"(%1609, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1611 = "tosa.sub"(%1610, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1612 = "tosa.mul"(%1611, %192) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1613 = "tosa.mul"(%1612, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1612 = "tosa.mul"(%1611, %192) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1613 = "tosa.mul"(%1612, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1614 = "tosa.add"(%1613, %103) : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
     %1615 = "tosa.clamp"(%1614) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1616 = "tosa.transpose"(%1615, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
@@ -5910,8 +5910,8 @@ module {
     %1619 = "tosa.sub"(%inserted_slice_1379, %0) : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
     %1620 = "tosa.add"(%0, %106) : (tensor<1x1664x1x1xf32>, tensor<f32>) -> tensor<1x1664x1x1xf32>
     %1621 = "tosa.rsqrt"(%1620) : (tensor<1x1664x1x1xf32>) -> tensor<1x1664x1x1xf32>
-    %1622 = "tosa.mul"(%1619, %1621) {shift = 0 : i32} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
-    %1623 = "tosa.mul"(%1622, %0) {shift = 0 : i32} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
+    %1622 = "tosa.mul"(%1619, %1621) {shift = 0 : i8} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
+    %1623 = "tosa.mul"(%1622, %0) {shift = 0 : i8} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
     %1624 = "tosa.add"(%1623, %0) : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
     %1625 = "tosa.clamp"(%1624) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1664x7x7xf32>) -> tensor<1x1664x7x7xf32>
     %1626 = "tosa.transpose"(%1625, %111) : (tensor<1x1664x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x1664xf32>
@@ -5927,8 +5927,8 @@ module {
     %1631 = "tosa.transpose"(%1630, %112) : (tensor<1x7x7x1664xf32>, tensor<4xi64>) -> tensor<1x1664x7x7xf32>
     %1632 = "tosa.equal"(%1624, %1625) : (tensor<1x1664x7x7xf32>, tensor<1x1664x7x7xf32>) -> tensor<1x1664x7x7xi1>
     %1633 = "tosa.select"(%1632, %1631, %113) : (tensor<1x1664x7x7xi1>, tensor<1x1664x7x7xf32>, tensor<f32>) -> tensor<1x1664x7x7xf32>
-    %1634 = "tosa.mul"(%1633, %0) {shift = 0 : i32} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
-    %1635 = "tosa.mul"(%1621, %1634) {shift = 0 : i32} : (tensor<1x1664x1x1xf32>, tensor<1x1664x7x7xf32>) -> tensor<1x1664x7x7xf32>
+    %1634 = "tosa.mul"(%1633, %0) {shift = 0 : i8} : (tensor<1x1664x7x7xf32>, tensor<1x1664x1x1xf32>) -> tensor<1x1664x7x7xf32>
+    %1635 = "tosa.mul"(%1621, %1634) {shift = 0 : i8} : (tensor<1x1664x1x1xf32>, tensor<1x1664x7x7xf32>) -> tensor<1x1664x7x7xf32>
     %extracted_slice = tensor.extract_slice %1635[0, 1632, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1664x7x7xf32> to tensor<1x32x7x7xf32>
     %extracted_slice_1380 = tensor.extract_slice %1635[0, 1600, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1664x7x7xf32> to tensor<1x32x7x7xf32>
     %extracted_slice_1381 = tensor.extract_slice %1635[0, 1568, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1664x7x7xf32> to tensor<1x32x7x7xf32>
@@ -5967,15 +5967,15 @@ module {
     %1638 = "tosa.transpose"(%1637, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1639 = "tosa.equal"(%1614, %1615) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %1640 = "tosa.select"(%1639, %1638, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %1641 = "tosa.mul"(%1640, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1642 = "tosa.mul"(%192, %1641) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %1641 = "tosa.mul"(%1640, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1642 = "tosa.mul"(%192, %1641) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1643 = "tosa.transpose"(%1642, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %1644 = "tosa.transpose_conv2d"(%1643, %115, %cst_84) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1632>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1632x1x1x128xf32>, tensor<1632xf32>) -> tensor<1x7x7x1632xf32>
     %1645 = "tosa.transpose"(%1644, %112) : (tensor<1x7x7x1632xf32>, tensor<4xi64>) -> tensor<1x1632x7x7xf32>
     %1646 = "tosa.equal"(%1606, %1607) : (tensor<1x1632x7x7xf32>, tensor<1x1632x7x7xf32>) -> tensor<1x1632x7x7xi1>
     %1647 = "tosa.select"(%1646, %1645, %113) : (tensor<1x1632x7x7xi1>, tensor<1x1632x7x7xf32>, tensor<f32>) -> tensor<1x1632x7x7xf32>
-    %1648 = "tosa.mul"(%1647, %2) {shift = 0 : i32} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
-    %1649 = "tosa.mul"(%1603, %1648) {shift = 0 : i32} : (tensor<1x1632x1x1xf32>, tensor<1x1632x7x7xf32>) -> tensor<1x1632x7x7xf32>
+    %1648 = "tosa.mul"(%1647, %2) {shift = 0 : i8} : (tensor<1x1632x7x7xf32>, tensor<1x1632x1x1xf32>) -> tensor<1x1632x7x7xf32>
+    %1649 = "tosa.mul"(%1603, %1648) {shift = 0 : i8} : (tensor<1x1632x1x1xf32>, tensor<1x1632x7x7xf32>) -> tensor<1x1632x7x7xf32>
     %extracted_slice_1412 = tensor.extract_slice %1649[0, 1600, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1632x7x7xf32> to tensor<1x32x7x7xf32>
     %1650 = "tosa.add"(%extracted_slice_1380, %extracted_slice_1412) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1413 = tensor.extract_slice %1649[0, 1568, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1632x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6045,15 +6045,15 @@ module {
     %1684 = "tosa.transpose"(%1683, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1685 = "tosa.equal"(%1596, %1597) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %1686 = "tosa.select"(%1685, %1684, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %1687 = "tosa.mul"(%1686, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1688 = "tosa.mul"(%192, %1687) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %1687 = "tosa.mul"(%1686, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1688 = "tosa.mul"(%192, %1687) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1689 = "tosa.transpose"(%1688, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %1690 = "tosa.transpose_conv2d"(%1689, %116, %cst_85) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1600>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1600x1x1x128xf32>, tensor<1600xf32>) -> tensor<1x7x7x1600xf32>
     %1691 = "tosa.transpose"(%1690, %112) : (tensor<1x7x7x1600xf32>, tensor<4xi64>) -> tensor<1x1600x7x7xf32>
     %1692 = "tosa.equal"(%1588, %1589) : (tensor<1x1600x7x7xf32>, tensor<1x1600x7x7xf32>) -> tensor<1x1600x7x7xi1>
     %1693 = "tosa.select"(%1692, %1691, %113) : (tensor<1x1600x7x7xi1>, tensor<1x1600x7x7xf32>, tensor<f32>) -> tensor<1x1600x7x7xf32>
-    %1694 = "tosa.mul"(%1693, %4) {shift = 0 : i32} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
-    %1695 = "tosa.mul"(%1585, %1694) {shift = 0 : i32} : (tensor<1x1600x1x1xf32>, tensor<1x1600x7x7xf32>) -> tensor<1x1600x7x7xf32>
+    %1694 = "tosa.mul"(%1693, %4) {shift = 0 : i8} : (tensor<1x1600x7x7xf32>, tensor<1x1600x1x1xf32>) -> tensor<1x1600x7x7xf32>
+    %1695 = "tosa.mul"(%1585, %1694) {shift = 0 : i8} : (tensor<1x1600x1x1xf32>, tensor<1x1600x7x7xf32>) -> tensor<1x1600x7x7xf32>
     %extracted_slice_1444 = tensor.extract_slice %1695[0, 1568, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1600x7x7xf32> to tensor<1x32x7x7xf32>
     %1696 = "tosa.add"(%1651, %extracted_slice_1444) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1445 = tensor.extract_slice %1695[0, 1536, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1600x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6121,15 +6121,15 @@ module {
     %1729 = "tosa.transpose"(%1728, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1730 = "tosa.equal"(%1578, %1579) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %1731 = "tosa.select"(%1730, %1729, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %1732 = "tosa.mul"(%1731, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1733 = "tosa.mul"(%192, %1732) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %1732 = "tosa.mul"(%1731, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1733 = "tosa.mul"(%192, %1732) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1734 = "tosa.transpose"(%1733, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %1735 = "tosa.transpose_conv2d"(%1734, %117, %cst_86) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1568>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1568x1x1x128xf32>, tensor<1568xf32>) -> tensor<1x7x7x1568xf32>
     %1736 = "tosa.transpose"(%1735, %112) : (tensor<1x7x7x1568xf32>, tensor<4xi64>) -> tensor<1x1568x7x7xf32>
     %1737 = "tosa.equal"(%1570, %1571) : (tensor<1x1568x7x7xf32>, tensor<1x1568x7x7xf32>) -> tensor<1x1568x7x7xi1>
     %1738 = "tosa.select"(%1737, %1736, %113) : (tensor<1x1568x7x7xi1>, tensor<1x1568x7x7xf32>, tensor<f32>) -> tensor<1x1568x7x7xf32>
-    %1739 = "tosa.mul"(%1738, %6) {shift = 0 : i32} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
-    %1740 = "tosa.mul"(%1567, %1739) {shift = 0 : i32} : (tensor<1x1568x1x1xf32>, tensor<1x1568x7x7xf32>) -> tensor<1x1568x7x7xf32>
+    %1739 = "tosa.mul"(%1738, %6) {shift = 0 : i8} : (tensor<1x1568x7x7xf32>, tensor<1x1568x1x1xf32>) -> tensor<1x1568x7x7xf32>
+    %1740 = "tosa.mul"(%1567, %1739) {shift = 0 : i8} : (tensor<1x1568x1x1xf32>, tensor<1x1568x7x7xf32>) -> tensor<1x1568x7x7xf32>
     %extracted_slice_1475 = tensor.extract_slice %1740[0, 1536, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1568x7x7xf32> to tensor<1x32x7x7xf32>
     %1741 = "tosa.add"(%1697, %extracted_slice_1475) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1476 = tensor.extract_slice %1740[0, 1504, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1568x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6195,15 +6195,15 @@ module {
     %1773 = "tosa.transpose"(%1772, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1774 = "tosa.equal"(%1560, %1561) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %1775 = "tosa.select"(%1774, %1773, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %1776 = "tosa.mul"(%1775, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1777 = "tosa.mul"(%192, %1776) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %1776 = "tosa.mul"(%1775, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1777 = "tosa.mul"(%192, %1776) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1778 = "tosa.transpose"(%1777, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %1779 = "tosa.transpose_conv2d"(%1778, %118, %cst_87) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1536>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1536x1x1x128xf32>, tensor<1536xf32>) -> tensor<1x7x7x1536xf32>
     %1780 = "tosa.transpose"(%1779, %112) : (tensor<1x7x7x1536xf32>, tensor<4xi64>) -> tensor<1x1536x7x7xf32>
     %1781 = "tosa.equal"(%1552, %1553) : (tensor<1x1536x7x7xf32>, tensor<1x1536x7x7xf32>) -> tensor<1x1536x7x7xi1>
     %1782 = "tosa.select"(%1781, %1780, %113) : (tensor<1x1536x7x7xi1>, tensor<1x1536x7x7xf32>, tensor<f32>) -> tensor<1x1536x7x7xf32>
-    %1783 = "tosa.mul"(%1782, %8) {shift = 0 : i32} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
-    %1784 = "tosa.mul"(%1549, %1783) {shift = 0 : i32} : (tensor<1x1536x1x1xf32>, tensor<1x1536x7x7xf32>) -> tensor<1x1536x7x7xf32>
+    %1783 = "tosa.mul"(%1782, %8) {shift = 0 : i8} : (tensor<1x1536x7x7xf32>, tensor<1x1536x1x1xf32>) -> tensor<1x1536x7x7xf32>
+    %1784 = "tosa.mul"(%1549, %1783) {shift = 0 : i8} : (tensor<1x1536x1x1xf32>, tensor<1x1536x7x7xf32>) -> tensor<1x1536x7x7xf32>
     %extracted_slice_1505 = tensor.extract_slice %1784[0, 1504, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1536x7x7xf32> to tensor<1x32x7x7xf32>
     %1785 = "tosa.add"(%1742, %extracted_slice_1505) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1506 = tensor.extract_slice %1784[0, 1472, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1536x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6267,15 +6267,15 @@ module {
     %1816 = "tosa.transpose"(%1815, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1817 = "tosa.equal"(%1542, %1543) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %1818 = "tosa.select"(%1817, %1816, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %1819 = "tosa.mul"(%1818, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1820 = "tosa.mul"(%192, %1819) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %1819 = "tosa.mul"(%1818, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1820 = "tosa.mul"(%192, %1819) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1821 = "tosa.transpose"(%1820, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %1822 = "tosa.transpose_conv2d"(%1821, %119, %cst_88) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1504>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1504x1x1x128xf32>, tensor<1504xf32>) -> tensor<1x7x7x1504xf32>
     %1823 = "tosa.transpose"(%1822, %112) : (tensor<1x7x7x1504xf32>, tensor<4xi64>) -> tensor<1x1504x7x7xf32>
     %1824 = "tosa.equal"(%1534, %1535) : (tensor<1x1504x7x7xf32>, tensor<1x1504x7x7xf32>) -> tensor<1x1504x7x7xi1>
     %1825 = "tosa.select"(%1824, %1823, %113) : (tensor<1x1504x7x7xi1>, tensor<1x1504x7x7xf32>, tensor<f32>) -> tensor<1x1504x7x7xf32>
-    %1826 = "tosa.mul"(%1825, %10) {shift = 0 : i32} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
-    %1827 = "tosa.mul"(%1531, %1826) {shift = 0 : i32} : (tensor<1x1504x1x1xf32>, tensor<1x1504x7x7xf32>) -> tensor<1x1504x7x7xf32>
+    %1826 = "tosa.mul"(%1825, %10) {shift = 0 : i8} : (tensor<1x1504x7x7xf32>, tensor<1x1504x1x1xf32>) -> tensor<1x1504x7x7xf32>
+    %1827 = "tosa.mul"(%1531, %1826) {shift = 0 : i8} : (tensor<1x1504x1x1xf32>, tensor<1x1504x7x7xf32>) -> tensor<1x1504x7x7xf32>
     %extracted_slice_1534 = tensor.extract_slice %1827[0, 1472, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1504x7x7xf32> to tensor<1x32x7x7xf32>
     %1828 = "tosa.add"(%1786, %extracted_slice_1534) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1535 = tensor.extract_slice %1827[0, 1440, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1504x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6337,15 +6337,15 @@ module {
     %1858 = "tosa.transpose"(%1857, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1859 = "tosa.equal"(%1524, %1525) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %1860 = "tosa.select"(%1859, %1858, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %1861 = "tosa.mul"(%1860, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1862 = "tosa.mul"(%192, %1861) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %1861 = "tosa.mul"(%1860, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1862 = "tosa.mul"(%192, %1861) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1863 = "tosa.transpose"(%1862, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %1864 = "tosa.transpose_conv2d"(%1863, %120, %cst_89) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1472>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1472x1x1x128xf32>, tensor<1472xf32>) -> tensor<1x7x7x1472xf32>
     %1865 = "tosa.transpose"(%1864, %112) : (tensor<1x7x7x1472xf32>, tensor<4xi64>) -> tensor<1x1472x7x7xf32>
     %1866 = "tosa.equal"(%1516, %1517) : (tensor<1x1472x7x7xf32>, tensor<1x1472x7x7xf32>) -> tensor<1x1472x7x7xi1>
     %1867 = "tosa.select"(%1866, %1865, %113) : (tensor<1x1472x7x7xi1>, tensor<1x1472x7x7xf32>, tensor<f32>) -> tensor<1x1472x7x7xf32>
-    %1868 = "tosa.mul"(%1867, %12) {shift = 0 : i32} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
-    %1869 = "tosa.mul"(%1513, %1868) {shift = 0 : i32} : (tensor<1x1472x1x1xf32>, tensor<1x1472x7x7xf32>) -> tensor<1x1472x7x7xf32>
+    %1868 = "tosa.mul"(%1867, %12) {shift = 0 : i8} : (tensor<1x1472x7x7xf32>, tensor<1x1472x1x1xf32>) -> tensor<1x1472x7x7xf32>
+    %1869 = "tosa.mul"(%1513, %1868) {shift = 0 : i8} : (tensor<1x1472x1x1xf32>, tensor<1x1472x7x7xf32>) -> tensor<1x1472x7x7xf32>
     %extracted_slice_1562 = tensor.extract_slice %1869[0, 1440, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1472x7x7xf32> to tensor<1x32x7x7xf32>
     %1870 = "tosa.add"(%1829, %extracted_slice_1562) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1563 = tensor.extract_slice %1869[0, 1408, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1472x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6405,15 +6405,15 @@ module {
     %1899 = "tosa.transpose"(%1898, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1900 = "tosa.equal"(%1506, %1507) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %1901 = "tosa.select"(%1900, %1899, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %1902 = "tosa.mul"(%1901, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1903 = "tosa.mul"(%192, %1902) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %1902 = "tosa.mul"(%1901, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1903 = "tosa.mul"(%192, %1902) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1904 = "tosa.transpose"(%1903, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %1905 = "tosa.transpose_conv2d"(%1904, %121, %cst_90) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1440>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1440x1x1x128xf32>, tensor<1440xf32>) -> tensor<1x7x7x1440xf32>
     %1906 = "tosa.transpose"(%1905, %112) : (tensor<1x7x7x1440xf32>, tensor<4xi64>) -> tensor<1x1440x7x7xf32>
     %1907 = "tosa.equal"(%1498, %1499) : (tensor<1x1440x7x7xf32>, tensor<1x1440x7x7xf32>) -> tensor<1x1440x7x7xi1>
     %1908 = "tosa.select"(%1907, %1906, %113) : (tensor<1x1440x7x7xi1>, tensor<1x1440x7x7xf32>, tensor<f32>) -> tensor<1x1440x7x7xf32>
-    %1909 = "tosa.mul"(%1908, %14) {shift = 0 : i32} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
-    %1910 = "tosa.mul"(%1495, %1909) {shift = 0 : i32} : (tensor<1x1440x1x1xf32>, tensor<1x1440x7x7xf32>) -> tensor<1x1440x7x7xf32>
+    %1909 = "tosa.mul"(%1908, %14) {shift = 0 : i8} : (tensor<1x1440x7x7xf32>, tensor<1x1440x1x1xf32>) -> tensor<1x1440x7x7xf32>
+    %1910 = "tosa.mul"(%1495, %1909) {shift = 0 : i8} : (tensor<1x1440x1x1xf32>, tensor<1x1440x7x7xf32>) -> tensor<1x1440x7x7xf32>
     %extracted_slice_1589 = tensor.extract_slice %1910[0, 1408, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1440x7x7xf32> to tensor<1x32x7x7xf32>
     %1911 = "tosa.add"(%1871, %extracted_slice_1589) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1590 = tensor.extract_slice %1910[0, 1376, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1440x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6471,15 +6471,15 @@ module {
     %1939 = "tosa.transpose"(%1938, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1940 = "tosa.equal"(%1488, %1489) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %1941 = "tosa.select"(%1940, %1939, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %1942 = "tosa.mul"(%1941, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1943 = "tosa.mul"(%192, %1942) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %1942 = "tosa.mul"(%1941, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1943 = "tosa.mul"(%192, %1942) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1944 = "tosa.transpose"(%1943, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %1945 = "tosa.transpose_conv2d"(%1944, %122, %cst_91) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1408>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1408x1x1x128xf32>, tensor<1408xf32>) -> tensor<1x7x7x1408xf32>
     %1946 = "tosa.transpose"(%1945, %112) : (tensor<1x7x7x1408xf32>, tensor<4xi64>) -> tensor<1x1408x7x7xf32>
     %1947 = "tosa.equal"(%1480, %1481) : (tensor<1x1408x7x7xf32>, tensor<1x1408x7x7xf32>) -> tensor<1x1408x7x7xi1>
     %1948 = "tosa.select"(%1947, %1946, %113) : (tensor<1x1408x7x7xi1>, tensor<1x1408x7x7xf32>, tensor<f32>) -> tensor<1x1408x7x7xf32>
-    %1949 = "tosa.mul"(%1948, %16) {shift = 0 : i32} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
-    %1950 = "tosa.mul"(%1477, %1949) {shift = 0 : i32} : (tensor<1x1408x1x1xf32>, tensor<1x1408x7x7xf32>) -> tensor<1x1408x7x7xf32>
+    %1949 = "tosa.mul"(%1948, %16) {shift = 0 : i8} : (tensor<1x1408x7x7xf32>, tensor<1x1408x1x1xf32>) -> tensor<1x1408x7x7xf32>
+    %1950 = "tosa.mul"(%1477, %1949) {shift = 0 : i8} : (tensor<1x1408x1x1xf32>, tensor<1x1408x7x7xf32>) -> tensor<1x1408x7x7xf32>
     %extracted_slice_1615 = tensor.extract_slice %1950[0, 1376, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1408x7x7xf32> to tensor<1x32x7x7xf32>
     %1951 = "tosa.add"(%1912, %extracted_slice_1615) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1616 = tensor.extract_slice %1950[0, 1344, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1408x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6535,15 +6535,15 @@ module {
     %1978 = "tosa.transpose"(%1977, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %1979 = "tosa.equal"(%1470, %1471) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %1980 = "tosa.select"(%1979, %1978, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %1981 = "tosa.mul"(%1980, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %1982 = "tosa.mul"(%192, %1981) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %1981 = "tosa.mul"(%1980, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %1982 = "tosa.mul"(%192, %1981) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %1983 = "tosa.transpose"(%1982, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %1984 = "tosa.transpose_conv2d"(%1983, %123, %cst_92) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1376>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1376x1x1x128xf32>, tensor<1376xf32>) -> tensor<1x7x7x1376xf32>
     %1985 = "tosa.transpose"(%1984, %112) : (tensor<1x7x7x1376xf32>, tensor<4xi64>) -> tensor<1x1376x7x7xf32>
     %1986 = "tosa.equal"(%1462, %1463) : (tensor<1x1376x7x7xf32>, tensor<1x1376x7x7xf32>) -> tensor<1x1376x7x7xi1>
     %1987 = "tosa.select"(%1986, %1985, %113) : (tensor<1x1376x7x7xi1>, tensor<1x1376x7x7xf32>, tensor<f32>) -> tensor<1x1376x7x7xf32>
-    %1988 = "tosa.mul"(%1987, %18) {shift = 0 : i32} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
-    %1989 = "tosa.mul"(%1459, %1988) {shift = 0 : i32} : (tensor<1x1376x1x1xf32>, tensor<1x1376x7x7xf32>) -> tensor<1x1376x7x7xf32>
+    %1988 = "tosa.mul"(%1987, %18) {shift = 0 : i8} : (tensor<1x1376x7x7xf32>, tensor<1x1376x1x1xf32>) -> tensor<1x1376x7x7xf32>
+    %1989 = "tosa.mul"(%1459, %1988) {shift = 0 : i8} : (tensor<1x1376x1x1xf32>, tensor<1x1376x7x7xf32>) -> tensor<1x1376x7x7xf32>
     %extracted_slice_1640 = tensor.extract_slice %1989[0, 1344, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1376x7x7xf32> to tensor<1x32x7x7xf32>
     %1990 = "tosa.add"(%1952, %extracted_slice_1640) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1641 = tensor.extract_slice %1989[0, 1312, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1376x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6597,15 +6597,15 @@ module {
     %2016 = "tosa.transpose"(%2015, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2017 = "tosa.equal"(%1452, %1453) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2018 = "tosa.select"(%2017, %2016, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2019 = "tosa.mul"(%2018, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2020 = "tosa.mul"(%192, %2019) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2019 = "tosa.mul"(%2018, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2020 = "tosa.mul"(%192, %2019) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2021 = "tosa.transpose"(%2020, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2022 = "tosa.transpose_conv2d"(%2021, %124, %cst_93) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1344>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1344x1x1x128xf32>, tensor<1344xf32>) -> tensor<1x7x7x1344xf32>
     %2023 = "tosa.transpose"(%2022, %112) : (tensor<1x7x7x1344xf32>, tensor<4xi64>) -> tensor<1x1344x7x7xf32>
     %2024 = "tosa.equal"(%1444, %1445) : (tensor<1x1344x7x7xf32>, tensor<1x1344x7x7xf32>) -> tensor<1x1344x7x7xi1>
     %2025 = "tosa.select"(%2024, %2023, %113) : (tensor<1x1344x7x7xi1>, tensor<1x1344x7x7xf32>, tensor<f32>) -> tensor<1x1344x7x7xf32>
-    %2026 = "tosa.mul"(%2025, %20) {shift = 0 : i32} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
-    %2027 = "tosa.mul"(%1441, %2026) {shift = 0 : i32} : (tensor<1x1344x1x1xf32>, tensor<1x1344x7x7xf32>) -> tensor<1x1344x7x7xf32>
+    %2026 = "tosa.mul"(%2025, %20) {shift = 0 : i8} : (tensor<1x1344x7x7xf32>, tensor<1x1344x1x1xf32>) -> tensor<1x1344x7x7xf32>
+    %2027 = "tosa.mul"(%1441, %2026) {shift = 0 : i8} : (tensor<1x1344x1x1xf32>, tensor<1x1344x7x7xf32>) -> tensor<1x1344x7x7xf32>
     %extracted_slice_1664 = tensor.extract_slice %2027[0, 1312, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1344x7x7xf32> to tensor<1x32x7x7xf32>
     %2028 = "tosa.add"(%1991, %extracted_slice_1664) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1665 = tensor.extract_slice %2027[0, 1280, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1344x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6657,15 +6657,15 @@ module {
     %2053 = "tosa.transpose"(%2052, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2054 = "tosa.equal"(%1434, %1435) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2055 = "tosa.select"(%2054, %2053, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2056 = "tosa.mul"(%2055, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2057 = "tosa.mul"(%192, %2056) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2056 = "tosa.mul"(%2055, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2057 = "tosa.mul"(%192, %2056) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2058 = "tosa.transpose"(%2057, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2059 = "tosa.transpose_conv2d"(%2058, %125, %cst_94) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1312>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1312x1x1x128xf32>, tensor<1312xf32>) -> tensor<1x7x7x1312xf32>
     %2060 = "tosa.transpose"(%2059, %112) : (tensor<1x7x7x1312xf32>, tensor<4xi64>) -> tensor<1x1312x7x7xf32>
     %2061 = "tosa.equal"(%1426, %1427) : (tensor<1x1312x7x7xf32>, tensor<1x1312x7x7xf32>) -> tensor<1x1312x7x7xi1>
     %2062 = "tosa.select"(%2061, %2060, %113) : (tensor<1x1312x7x7xi1>, tensor<1x1312x7x7xf32>, tensor<f32>) -> tensor<1x1312x7x7xf32>
-    %2063 = "tosa.mul"(%2062, %22) {shift = 0 : i32} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
-    %2064 = "tosa.mul"(%1423, %2063) {shift = 0 : i32} : (tensor<1x1312x1x1xf32>, tensor<1x1312x7x7xf32>) -> tensor<1x1312x7x7xf32>
+    %2063 = "tosa.mul"(%2062, %22) {shift = 0 : i8} : (tensor<1x1312x7x7xf32>, tensor<1x1312x1x1xf32>) -> tensor<1x1312x7x7xf32>
+    %2064 = "tosa.mul"(%1423, %2063) {shift = 0 : i8} : (tensor<1x1312x1x1xf32>, tensor<1x1312x7x7xf32>) -> tensor<1x1312x7x7xf32>
     %extracted_slice_1687 = tensor.extract_slice %2064[0, 1280, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1312x7x7xf32> to tensor<1x32x7x7xf32>
     %2065 = "tosa.add"(%2029, %extracted_slice_1687) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1688 = tensor.extract_slice %2064[0, 1248, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1312x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6715,15 +6715,15 @@ module {
     %2089 = "tosa.transpose"(%2088, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2090 = "tosa.equal"(%1416, %1417) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2091 = "tosa.select"(%2090, %2089, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2092 = "tosa.mul"(%2091, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2093 = "tosa.mul"(%192, %2092) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2092 = "tosa.mul"(%2091, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2093 = "tosa.mul"(%192, %2092) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2094 = "tosa.transpose"(%2093, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2095 = "tosa.transpose_conv2d"(%2094, %126, %cst_95) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1280>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1280x1x1x128xf32>, tensor<1280xf32>) -> tensor<1x7x7x1280xf32>
     %2096 = "tosa.transpose"(%2095, %112) : (tensor<1x7x7x1280xf32>, tensor<4xi64>) -> tensor<1x1280x7x7xf32>
     %2097 = "tosa.equal"(%1408, %1409) : (tensor<1x1280x7x7xf32>, tensor<1x1280x7x7xf32>) -> tensor<1x1280x7x7xi1>
     %2098 = "tosa.select"(%2097, %2096, %113) : (tensor<1x1280x7x7xi1>, tensor<1x1280x7x7xf32>, tensor<f32>) -> tensor<1x1280x7x7xf32>
-    %2099 = "tosa.mul"(%2098, %26) {shift = 0 : i32} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
-    %2100 = "tosa.mul"(%1076, %2099) {shift = 0 : i32} : (tensor<1x1280x1x1xf32>, tensor<1x1280x7x7xf32>) -> tensor<1x1280x7x7xf32>
+    %2099 = "tosa.mul"(%2098, %26) {shift = 0 : i8} : (tensor<1x1280x7x7xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x7x7xf32>
+    %2100 = "tosa.mul"(%1076, %2099) {shift = 0 : i8} : (tensor<1x1280x1x1xf32>, tensor<1x1280x7x7xf32>) -> tensor<1x1280x7x7xf32>
     %extracted_slice_1709 = tensor.extract_slice %2100[0, 1248, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1280x7x7xf32> to tensor<1x32x7x7xf32>
     %2101 = "tosa.add"(%2066, %extracted_slice_1709) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1710 = tensor.extract_slice %2100[0, 1216, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1280x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6771,15 +6771,15 @@ module {
     %2124 = "tosa.transpose"(%2123, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2125 = "tosa.equal"(%1400, %1401) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2126 = "tosa.select"(%2125, %2124, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2127 = "tosa.mul"(%2126, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2128 = "tosa.mul"(%192, %2127) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2127 = "tosa.mul"(%2126, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2128 = "tosa.mul"(%192, %2127) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2129 = "tosa.transpose"(%2128, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2130 = "tosa.transpose_conv2d"(%2129, %127, %cst_96) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1248>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1248x1x1x128xf32>, tensor<1248xf32>) -> tensor<1x7x7x1248xf32>
     %2131 = "tosa.transpose"(%2130, %112) : (tensor<1x7x7x1248xf32>, tensor<4xi64>) -> tensor<1x1248x7x7xf32>
     %2132 = "tosa.equal"(%1392, %1393) : (tensor<1x1248x7x7xf32>, tensor<1x1248x7x7xf32>) -> tensor<1x1248x7x7xi1>
     %2133 = "tosa.select"(%2132, %2131, %113) : (tensor<1x1248x7x7xi1>, tensor<1x1248x7x7xf32>, tensor<f32>) -> tensor<1x1248x7x7xf32>
-    %2134 = "tosa.mul"(%2133, %28) {shift = 0 : i32} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
-    %2135 = "tosa.mul"(%1058, %2134) {shift = 0 : i32} : (tensor<1x1248x1x1xf32>, tensor<1x1248x7x7xf32>) -> tensor<1x1248x7x7xf32>
+    %2134 = "tosa.mul"(%2133, %28) {shift = 0 : i8} : (tensor<1x1248x7x7xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x7x7xf32>
+    %2135 = "tosa.mul"(%1058, %2134) {shift = 0 : i8} : (tensor<1x1248x1x1xf32>, tensor<1x1248x7x7xf32>) -> tensor<1x1248x7x7xf32>
     %extracted_slice_1730 = tensor.extract_slice %2135[0, 1216, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1248x7x7xf32> to tensor<1x32x7x7xf32>
     %2136 = "tosa.add"(%2102, %extracted_slice_1730) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1731 = tensor.extract_slice %2135[0, 1184, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1248x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6825,15 +6825,15 @@ module {
     %2158 = "tosa.transpose"(%2157, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2159 = "tosa.equal"(%1384, %1385) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2160 = "tosa.select"(%2159, %2158, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2161 = "tosa.mul"(%2160, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2162 = "tosa.mul"(%192, %2161) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2161 = "tosa.mul"(%2160, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2162 = "tosa.mul"(%192, %2161) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2163 = "tosa.transpose"(%2162, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2164 = "tosa.transpose_conv2d"(%2163, %128, %cst_97) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1216>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1216x1x1x128xf32>, tensor<1216xf32>) -> tensor<1x7x7x1216xf32>
     %2165 = "tosa.transpose"(%2164, %112) : (tensor<1x7x7x1216xf32>, tensor<4xi64>) -> tensor<1x1216x7x7xf32>
     %2166 = "tosa.equal"(%1376, %1377) : (tensor<1x1216x7x7xf32>, tensor<1x1216x7x7xf32>) -> tensor<1x1216x7x7xi1>
     %2167 = "tosa.select"(%2166, %2165, %113) : (tensor<1x1216x7x7xi1>, tensor<1x1216x7x7xf32>, tensor<f32>) -> tensor<1x1216x7x7xf32>
-    %2168 = "tosa.mul"(%2167, %30) {shift = 0 : i32} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
-    %2169 = "tosa.mul"(%1040, %2168) {shift = 0 : i32} : (tensor<1x1216x1x1xf32>, tensor<1x1216x7x7xf32>) -> tensor<1x1216x7x7xf32>
+    %2168 = "tosa.mul"(%2167, %30) {shift = 0 : i8} : (tensor<1x1216x7x7xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x7x7xf32>
+    %2169 = "tosa.mul"(%1040, %2168) {shift = 0 : i8} : (tensor<1x1216x1x1xf32>, tensor<1x1216x7x7xf32>) -> tensor<1x1216x7x7xf32>
     %extracted_slice_1750 = tensor.extract_slice %2169[0, 1184, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1216x7x7xf32> to tensor<1x32x7x7xf32>
     %2170 = "tosa.add"(%2137, %extracted_slice_1750) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1751 = tensor.extract_slice %2169[0, 1152, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1216x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6877,15 +6877,15 @@ module {
     %2191 = "tosa.transpose"(%2190, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2192 = "tosa.equal"(%1368, %1369) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2193 = "tosa.select"(%2192, %2191, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2194 = "tosa.mul"(%2193, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2195 = "tosa.mul"(%192, %2194) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2194 = "tosa.mul"(%2193, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2195 = "tosa.mul"(%192, %2194) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2196 = "tosa.transpose"(%2195, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2197 = "tosa.transpose_conv2d"(%2196, %129, %cst_98) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1184>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1184x1x1x128xf32>, tensor<1184xf32>) -> tensor<1x7x7x1184xf32>
     %2198 = "tosa.transpose"(%2197, %112) : (tensor<1x7x7x1184xf32>, tensor<4xi64>) -> tensor<1x1184x7x7xf32>
     %2199 = "tosa.equal"(%1360, %1361) : (tensor<1x1184x7x7xf32>, tensor<1x1184x7x7xf32>) -> tensor<1x1184x7x7xi1>
     %2200 = "tosa.select"(%2199, %2198, %113) : (tensor<1x1184x7x7xi1>, tensor<1x1184x7x7xf32>, tensor<f32>) -> tensor<1x1184x7x7xf32>
-    %2201 = "tosa.mul"(%2200, %32) {shift = 0 : i32} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
-    %2202 = "tosa.mul"(%1022, %2201) {shift = 0 : i32} : (tensor<1x1184x1x1xf32>, tensor<1x1184x7x7xf32>) -> tensor<1x1184x7x7xf32>
+    %2201 = "tosa.mul"(%2200, %32) {shift = 0 : i8} : (tensor<1x1184x7x7xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x7x7xf32>
+    %2202 = "tosa.mul"(%1022, %2201) {shift = 0 : i8} : (tensor<1x1184x1x1xf32>, tensor<1x1184x7x7xf32>) -> tensor<1x1184x7x7xf32>
     %extracted_slice_1769 = tensor.extract_slice %2202[0, 1152, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1184x7x7xf32> to tensor<1x32x7x7xf32>
     %2203 = "tosa.add"(%2171, %extracted_slice_1769) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1770 = tensor.extract_slice %2202[0, 1120, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1184x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6927,15 +6927,15 @@ module {
     %2223 = "tosa.transpose"(%2222, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2224 = "tosa.equal"(%1352, %1353) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2225 = "tosa.select"(%2224, %2223, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2226 = "tosa.mul"(%2225, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2227 = "tosa.mul"(%192, %2226) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2226 = "tosa.mul"(%2225, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2227 = "tosa.mul"(%192, %2226) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2228 = "tosa.transpose"(%2227, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2229 = "tosa.transpose_conv2d"(%2228, %130, %cst_99) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1152>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1152x1x1x128xf32>, tensor<1152xf32>) -> tensor<1x7x7x1152xf32>
     %2230 = "tosa.transpose"(%2229, %112) : (tensor<1x7x7x1152xf32>, tensor<4xi64>) -> tensor<1x1152x7x7xf32>
     %2231 = "tosa.equal"(%1344, %1345) : (tensor<1x1152x7x7xf32>, tensor<1x1152x7x7xf32>) -> tensor<1x1152x7x7xi1>
     %2232 = "tosa.select"(%2231, %2230, %113) : (tensor<1x1152x7x7xi1>, tensor<1x1152x7x7xf32>, tensor<f32>) -> tensor<1x1152x7x7xf32>
-    %2233 = "tosa.mul"(%2232, %34) {shift = 0 : i32} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
-    %2234 = "tosa.mul"(%1004, %2233) {shift = 0 : i32} : (tensor<1x1152x1x1xf32>, tensor<1x1152x7x7xf32>) -> tensor<1x1152x7x7xf32>
+    %2233 = "tosa.mul"(%2232, %34) {shift = 0 : i8} : (tensor<1x1152x7x7xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x7x7xf32>
+    %2234 = "tosa.mul"(%1004, %2233) {shift = 0 : i8} : (tensor<1x1152x1x1xf32>, tensor<1x1152x7x7xf32>) -> tensor<1x1152x7x7xf32>
     %extracted_slice_1787 = tensor.extract_slice %2234[0, 1120, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1152x7x7xf32> to tensor<1x32x7x7xf32>
     %2235 = "tosa.add"(%2204, %extracted_slice_1787) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1788 = tensor.extract_slice %2234[0, 1088, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1152x7x7xf32> to tensor<1x32x7x7xf32>
@@ -6975,15 +6975,15 @@ module {
     %2254 = "tosa.transpose"(%2253, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2255 = "tosa.equal"(%1336, %1337) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2256 = "tosa.select"(%2255, %2254, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2257 = "tosa.mul"(%2256, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2258 = "tosa.mul"(%192, %2257) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2257 = "tosa.mul"(%2256, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2258 = "tosa.mul"(%192, %2257) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2259 = "tosa.transpose"(%2258, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2260 = "tosa.transpose_conv2d"(%2259, %131, %cst_100) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1120>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1120x1x1x128xf32>, tensor<1120xf32>) -> tensor<1x7x7x1120xf32>
     %2261 = "tosa.transpose"(%2260, %112) : (tensor<1x7x7x1120xf32>, tensor<4xi64>) -> tensor<1x1120x7x7xf32>
     %2262 = "tosa.equal"(%1328, %1329) : (tensor<1x1120x7x7xf32>, tensor<1x1120x7x7xf32>) -> tensor<1x1120x7x7xi1>
     %2263 = "tosa.select"(%2262, %2261, %113) : (tensor<1x1120x7x7xi1>, tensor<1x1120x7x7xf32>, tensor<f32>) -> tensor<1x1120x7x7xf32>
-    %2264 = "tosa.mul"(%2263, %36) {shift = 0 : i32} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
-    %2265 = "tosa.mul"(%986, %2264) {shift = 0 : i32} : (tensor<1x1120x1x1xf32>, tensor<1x1120x7x7xf32>) -> tensor<1x1120x7x7xf32>
+    %2264 = "tosa.mul"(%2263, %36) {shift = 0 : i8} : (tensor<1x1120x7x7xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x7x7xf32>
+    %2265 = "tosa.mul"(%986, %2264) {shift = 0 : i8} : (tensor<1x1120x1x1xf32>, tensor<1x1120x7x7xf32>) -> tensor<1x1120x7x7xf32>
     %extracted_slice_1804 = tensor.extract_slice %2265[0, 1088, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1120x7x7xf32> to tensor<1x32x7x7xf32>
     %2266 = "tosa.add"(%2236, %extracted_slice_1804) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1805 = tensor.extract_slice %2265[0, 1056, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1120x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7021,15 +7021,15 @@ module {
     %2284 = "tosa.transpose"(%2283, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2285 = "tosa.equal"(%1320, %1321) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2286 = "tosa.select"(%2285, %2284, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2287 = "tosa.mul"(%2286, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2288 = "tosa.mul"(%192, %2287) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2287 = "tosa.mul"(%2286, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2288 = "tosa.mul"(%192, %2287) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2289 = "tosa.transpose"(%2288, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2290 = "tosa.transpose_conv2d"(%2289, %132, %cst_101) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1088>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1088x1x1x128xf32>, tensor<1088xf32>) -> tensor<1x7x7x1088xf32>
     %2291 = "tosa.transpose"(%2290, %112) : (tensor<1x7x7x1088xf32>, tensor<4xi64>) -> tensor<1x1088x7x7xf32>
     %2292 = "tosa.equal"(%1312, %1313) : (tensor<1x1088x7x7xf32>, tensor<1x1088x7x7xf32>) -> tensor<1x1088x7x7xi1>
     %2293 = "tosa.select"(%2292, %2291, %113) : (tensor<1x1088x7x7xi1>, tensor<1x1088x7x7xf32>, tensor<f32>) -> tensor<1x1088x7x7xf32>
-    %2294 = "tosa.mul"(%2293, %38) {shift = 0 : i32} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
-    %2295 = "tosa.mul"(%968, %2294) {shift = 0 : i32} : (tensor<1x1088x1x1xf32>, tensor<1x1088x7x7xf32>) -> tensor<1x1088x7x7xf32>
+    %2294 = "tosa.mul"(%2293, %38) {shift = 0 : i8} : (tensor<1x1088x7x7xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x7x7xf32>
+    %2295 = "tosa.mul"(%968, %2294) {shift = 0 : i8} : (tensor<1x1088x1x1xf32>, tensor<1x1088x7x7xf32>) -> tensor<1x1088x7x7xf32>
     %extracted_slice_1820 = tensor.extract_slice %2295[0, 1056, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1088x7x7xf32> to tensor<1x32x7x7xf32>
     %2296 = "tosa.add"(%2267, %extracted_slice_1820) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1821 = tensor.extract_slice %2295[0, 1024, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1088x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7065,15 +7065,15 @@ module {
     %2313 = "tosa.transpose"(%2312, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2314 = "tosa.equal"(%1304, %1305) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2315 = "tosa.select"(%2314, %2313, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2316 = "tosa.mul"(%2315, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2317 = "tosa.mul"(%192, %2316) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2316 = "tosa.mul"(%2315, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2317 = "tosa.mul"(%192, %2316) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2318 = "tosa.transpose"(%2317, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2319 = "tosa.transpose_conv2d"(%2318, %133, %cst_102) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1056>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1056x1x1x128xf32>, tensor<1056xf32>) -> tensor<1x7x7x1056xf32>
     %2320 = "tosa.transpose"(%2319, %112) : (tensor<1x7x7x1056xf32>, tensor<4xi64>) -> tensor<1x1056x7x7xf32>
     %2321 = "tosa.equal"(%1296, %1297) : (tensor<1x1056x7x7xf32>, tensor<1x1056x7x7xf32>) -> tensor<1x1056x7x7xi1>
     %2322 = "tosa.select"(%2321, %2320, %113) : (tensor<1x1056x7x7xi1>, tensor<1x1056x7x7xf32>, tensor<f32>) -> tensor<1x1056x7x7xf32>
-    %2323 = "tosa.mul"(%2322, %40) {shift = 0 : i32} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
-    %2324 = "tosa.mul"(%950, %2323) {shift = 0 : i32} : (tensor<1x1056x1x1xf32>, tensor<1x1056x7x7xf32>) -> tensor<1x1056x7x7xf32>
+    %2323 = "tosa.mul"(%2322, %40) {shift = 0 : i8} : (tensor<1x1056x7x7xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x7x7xf32>
+    %2324 = "tosa.mul"(%950, %2323) {shift = 0 : i8} : (tensor<1x1056x1x1xf32>, tensor<1x1056x7x7xf32>) -> tensor<1x1056x7x7xf32>
     %extracted_slice_1835 = tensor.extract_slice %2324[0, 1024, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1056x7x7xf32> to tensor<1x32x7x7xf32>
     %2325 = "tosa.add"(%2297, %extracted_slice_1835) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1836 = tensor.extract_slice %2324[0, 992, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1056x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7107,15 +7107,15 @@ module {
     %2341 = "tosa.transpose"(%2340, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2342 = "tosa.equal"(%1288, %1289) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2343 = "tosa.select"(%2342, %2341, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2344 = "tosa.mul"(%2343, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2345 = "tosa.mul"(%192, %2344) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2344 = "tosa.mul"(%2343, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2345 = "tosa.mul"(%192, %2344) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2346 = "tosa.transpose"(%2345, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2347 = "tosa.transpose_conv2d"(%2346, %134, %cst_103) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 1024>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<1024x1x1x128xf32>, tensor<1024xf32>) -> tensor<1x7x7x1024xf32>
     %2348 = "tosa.transpose"(%2347, %112) : (tensor<1x7x7x1024xf32>, tensor<4xi64>) -> tensor<1x1024x7x7xf32>
     %2349 = "tosa.equal"(%1280, %1281) : (tensor<1x1024x7x7xf32>, tensor<1x1024x7x7xf32>) -> tensor<1x1024x7x7xi1>
     %2350 = "tosa.select"(%2349, %2348, %113) : (tensor<1x1024x7x7xi1>, tensor<1x1024x7x7xf32>, tensor<f32>) -> tensor<1x1024x7x7xf32>
-    %2351 = "tosa.mul"(%2350, %42) {shift = 0 : i32} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
-    %2352 = "tosa.mul"(%932, %2351) {shift = 0 : i32} : (tensor<1x1024x1x1xf32>, tensor<1x1024x7x7xf32>) -> tensor<1x1024x7x7xf32>
+    %2351 = "tosa.mul"(%2350, %42) {shift = 0 : i8} : (tensor<1x1024x7x7xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x7x7xf32>
+    %2352 = "tosa.mul"(%932, %2351) {shift = 0 : i8} : (tensor<1x1024x1x1xf32>, tensor<1x1024x7x7xf32>) -> tensor<1x1024x7x7xf32>
     %extracted_slice_1849 = tensor.extract_slice %2352[0, 992, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1024x7x7xf32> to tensor<1x32x7x7xf32>
     %2353 = "tosa.add"(%2326, %extracted_slice_1849) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1850 = tensor.extract_slice %2352[0, 960, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x1024x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7147,15 +7147,15 @@ module {
     %2368 = "tosa.transpose"(%2367, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2369 = "tosa.equal"(%1272, %1273) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2370 = "tosa.select"(%2369, %2368, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2371 = "tosa.mul"(%2370, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2372 = "tosa.mul"(%192, %2371) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2371 = "tosa.mul"(%2370, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2372 = "tosa.mul"(%192, %2371) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2373 = "tosa.transpose"(%2372, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2374 = "tosa.transpose_conv2d"(%2373, %135, %cst_104) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 992>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<992x1x1x128xf32>, tensor<992xf32>) -> tensor<1x7x7x992xf32>
     %2375 = "tosa.transpose"(%2374, %112) : (tensor<1x7x7x992xf32>, tensor<4xi64>) -> tensor<1x992x7x7xf32>
     %2376 = "tosa.equal"(%1264, %1265) : (tensor<1x992x7x7xf32>, tensor<1x992x7x7xf32>) -> tensor<1x992x7x7xi1>
     %2377 = "tosa.select"(%2376, %2375, %113) : (tensor<1x992x7x7xi1>, tensor<1x992x7x7xf32>, tensor<f32>) -> tensor<1x992x7x7xf32>
-    %2378 = "tosa.mul"(%2377, %44) {shift = 0 : i32} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
-    %2379 = "tosa.mul"(%914, %2378) {shift = 0 : i32} : (tensor<1x992x1x1xf32>, tensor<1x992x7x7xf32>) -> tensor<1x992x7x7xf32>
+    %2378 = "tosa.mul"(%2377, %44) {shift = 0 : i8} : (tensor<1x992x7x7xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x7x7xf32>
+    %2379 = "tosa.mul"(%914, %2378) {shift = 0 : i8} : (tensor<1x992x1x1xf32>, tensor<1x992x7x7xf32>) -> tensor<1x992x7x7xf32>
     %extracted_slice_1862 = tensor.extract_slice %2379[0, 960, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x992x7x7xf32> to tensor<1x32x7x7xf32>
     %2380 = "tosa.add"(%2354, %extracted_slice_1862) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1863 = tensor.extract_slice %2379[0, 928, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x992x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7185,15 +7185,15 @@ module {
     %2394 = "tosa.transpose"(%2393, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2395 = "tosa.equal"(%1256, %1257) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2396 = "tosa.select"(%2395, %2394, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2397 = "tosa.mul"(%2396, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2398 = "tosa.mul"(%192, %2397) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2397 = "tosa.mul"(%2396, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2398 = "tosa.mul"(%192, %2397) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2399 = "tosa.transpose"(%2398, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2400 = "tosa.transpose_conv2d"(%2399, %136, %cst_105) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 960>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<960x1x1x128xf32>, tensor<960xf32>) -> tensor<1x7x7x960xf32>
     %2401 = "tosa.transpose"(%2400, %112) : (tensor<1x7x7x960xf32>, tensor<4xi64>) -> tensor<1x960x7x7xf32>
     %2402 = "tosa.equal"(%1248, %1249) : (tensor<1x960x7x7xf32>, tensor<1x960x7x7xf32>) -> tensor<1x960x7x7xi1>
     %2403 = "tosa.select"(%2402, %2401, %113) : (tensor<1x960x7x7xi1>, tensor<1x960x7x7xf32>, tensor<f32>) -> tensor<1x960x7x7xf32>
-    %2404 = "tosa.mul"(%2403, %46) {shift = 0 : i32} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
-    %2405 = "tosa.mul"(%896, %2404) {shift = 0 : i32} : (tensor<1x960x1x1xf32>, tensor<1x960x7x7xf32>) -> tensor<1x960x7x7xf32>
+    %2404 = "tosa.mul"(%2403, %46) {shift = 0 : i8} : (tensor<1x960x7x7xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x7x7xf32>
+    %2405 = "tosa.mul"(%896, %2404) {shift = 0 : i8} : (tensor<1x960x1x1xf32>, tensor<1x960x7x7xf32>) -> tensor<1x960x7x7xf32>
     %extracted_slice_1874 = tensor.extract_slice %2405[0, 928, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x960x7x7xf32> to tensor<1x32x7x7xf32>
     %2406 = "tosa.add"(%2381, %extracted_slice_1874) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1875 = tensor.extract_slice %2405[0, 896, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x960x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7221,15 +7221,15 @@ module {
     %2419 = "tosa.transpose"(%2418, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2420 = "tosa.equal"(%1240, %1241) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2421 = "tosa.select"(%2420, %2419, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2422 = "tosa.mul"(%2421, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2423 = "tosa.mul"(%192, %2422) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2422 = "tosa.mul"(%2421, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2423 = "tosa.mul"(%192, %2422) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2424 = "tosa.transpose"(%2423, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2425 = "tosa.transpose_conv2d"(%2424, %137, %cst_106) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 928>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<928x1x1x128xf32>, tensor<928xf32>) -> tensor<1x7x7x928xf32>
     %2426 = "tosa.transpose"(%2425, %112) : (tensor<1x7x7x928xf32>, tensor<4xi64>) -> tensor<1x928x7x7xf32>
     %2427 = "tosa.equal"(%1232, %1233) : (tensor<1x928x7x7xf32>, tensor<1x928x7x7xf32>) -> tensor<1x928x7x7xi1>
     %2428 = "tosa.select"(%2427, %2426, %113) : (tensor<1x928x7x7xi1>, tensor<1x928x7x7xf32>, tensor<f32>) -> tensor<1x928x7x7xf32>
-    %2429 = "tosa.mul"(%2428, %48) {shift = 0 : i32} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
-    %2430 = "tosa.mul"(%878, %2429) {shift = 0 : i32} : (tensor<1x928x1x1xf32>, tensor<1x928x7x7xf32>) -> tensor<1x928x7x7xf32>
+    %2429 = "tosa.mul"(%2428, %48) {shift = 0 : i8} : (tensor<1x928x7x7xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x7x7xf32>
+    %2430 = "tosa.mul"(%878, %2429) {shift = 0 : i8} : (tensor<1x928x1x1xf32>, tensor<1x928x7x7xf32>) -> tensor<1x928x7x7xf32>
     %extracted_slice_1885 = tensor.extract_slice %2430[0, 896, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x928x7x7xf32> to tensor<1x32x7x7xf32>
     %2431 = "tosa.add"(%2407, %extracted_slice_1885) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1886 = tensor.extract_slice %2430[0, 864, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x928x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7255,15 +7255,15 @@ module {
     %2443 = "tosa.transpose"(%2442, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2444 = "tosa.equal"(%1224, %1225) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2445 = "tosa.select"(%2444, %2443, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2446 = "tosa.mul"(%2445, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2447 = "tosa.mul"(%192, %2446) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2446 = "tosa.mul"(%2445, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2447 = "tosa.mul"(%192, %2446) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2448 = "tosa.transpose"(%2447, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2449 = "tosa.transpose_conv2d"(%2448, %138, %cst_107) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 896>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<896x1x1x128xf32>, tensor<896xf32>) -> tensor<1x7x7x896xf32>
     %2450 = "tosa.transpose"(%2449, %112) : (tensor<1x7x7x896xf32>, tensor<4xi64>) -> tensor<1x896x7x7xf32>
     %2451 = "tosa.equal"(%1216, %1217) : (tensor<1x896x7x7xf32>, tensor<1x896x7x7xf32>) -> tensor<1x896x7x7xi1>
     %2452 = "tosa.select"(%2451, %2450, %113) : (tensor<1x896x7x7xi1>, tensor<1x896x7x7xf32>, tensor<f32>) -> tensor<1x896x7x7xf32>
-    %2453 = "tosa.mul"(%2452, %50) {shift = 0 : i32} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
-    %2454 = "tosa.mul"(%860, %2453) {shift = 0 : i32} : (tensor<1x896x1x1xf32>, tensor<1x896x7x7xf32>) -> tensor<1x896x7x7xf32>
+    %2453 = "tosa.mul"(%2452, %50) {shift = 0 : i8} : (tensor<1x896x7x7xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x7x7xf32>
+    %2454 = "tosa.mul"(%860, %2453) {shift = 0 : i8} : (tensor<1x896x1x1xf32>, tensor<1x896x7x7xf32>) -> tensor<1x896x7x7xf32>
     %extracted_slice_1895 = tensor.extract_slice %2454[0, 864, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x896x7x7xf32> to tensor<1x32x7x7xf32>
     %2455 = "tosa.add"(%2432, %extracted_slice_1895) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1896 = tensor.extract_slice %2454[0, 832, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x896x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7287,15 +7287,15 @@ module {
     %2466 = "tosa.transpose"(%2465, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2467 = "tosa.equal"(%1208, %1209) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2468 = "tosa.select"(%2467, %2466, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2469 = "tosa.mul"(%2468, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2470 = "tosa.mul"(%192, %2469) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2469 = "tosa.mul"(%2468, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2470 = "tosa.mul"(%192, %2469) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2471 = "tosa.transpose"(%2470, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2472 = "tosa.transpose_conv2d"(%2471, %139, %cst_108) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 864>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<864x1x1x128xf32>, tensor<864xf32>) -> tensor<1x7x7x864xf32>
     %2473 = "tosa.transpose"(%2472, %112) : (tensor<1x7x7x864xf32>, tensor<4xi64>) -> tensor<1x864x7x7xf32>
     %2474 = "tosa.equal"(%1200, %1201) : (tensor<1x864x7x7xf32>, tensor<1x864x7x7xf32>) -> tensor<1x864x7x7xi1>
     %2475 = "tosa.select"(%2474, %2473, %113) : (tensor<1x864x7x7xi1>, tensor<1x864x7x7xf32>, tensor<f32>) -> tensor<1x864x7x7xf32>
-    %2476 = "tosa.mul"(%2475, %52) {shift = 0 : i32} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
-    %2477 = "tosa.mul"(%842, %2476) {shift = 0 : i32} : (tensor<1x864x1x1xf32>, tensor<1x864x7x7xf32>) -> tensor<1x864x7x7xf32>
+    %2476 = "tosa.mul"(%2475, %52) {shift = 0 : i8} : (tensor<1x864x7x7xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x7x7xf32>
+    %2477 = "tosa.mul"(%842, %2476) {shift = 0 : i8} : (tensor<1x864x1x1xf32>, tensor<1x864x7x7xf32>) -> tensor<1x864x7x7xf32>
     %extracted_slice_1904 = tensor.extract_slice %2477[0, 832, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x864x7x7xf32> to tensor<1x32x7x7xf32>
     %2478 = "tosa.add"(%2456, %extracted_slice_1904) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1905 = tensor.extract_slice %2477[0, 800, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x864x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7317,15 +7317,15 @@ module {
     %2488 = "tosa.transpose"(%2487, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2489 = "tosa.equal"(%1192, %1193) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2490 = "tosa.select"(%2489, %2488, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2491 = "tosa.mul"(%2490, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2492 = "tosa.mul"(%192, %2491) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2491 = "tosa.mul"(%2490, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2492 = "tosa.mul"(%192, %2491) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2493 = "tosa.transpose"(%2492, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2494 = "tosa.transpose_conv2d"(%2493, %140, %cst_109) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 832>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<832x1x1x128xf32>, tensor<832xf32>) -> tensor<1x7x7x832xf32>
     %2495 = "tosa.transpose"(%2494, %112) : (tensor<1x7x7x832xf32>, tensor<4xi64>) -> tensor<1x832x7x7xf32>
     %2496 = "tosa.equal"(%1184, %1185) : (tensor<1x832x7x7xf32>, tensor<1x832x7x7xf32>) -> tensor<1x832x7x7xi1>
     %2497 = "tosa.select"(%2496, %2495, %113) : (tensor<1x832x7x7xi1>, tensor<1x832x7x7xf32>, tensor<f32>) -> tensor<1x832x7x7xf32>
-    %2498 = "tosa.mul"(%2497, %54) {shift = 0 : i32} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
-    %2499 = "tosa.mul"(%824, %2498) {shift = 0 : i32} : (tensor<1x832x1x1xf32>, tensor<1x832x7x7xf32>) -> tensor<1x832x7x7xf32>
+    %2498 = "tosa.mul"(%2497, %54) {shift = 0 : i8} : (tensor<1x832x7x7xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x7x7xf32>
+    %2499 = "tosa.mul"(%824, %2498) {shift = 0 : i8} : (tensor<1x832x1x1xf32>, tensor<1x832x7x7xf32>) -> tensor<1x832x7x7xf32>
     %extracted_slice_1912 = tensor.extract_slice %2499[0, 800, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x832x7x7xf32> to tensor<1x32x7x7xf32>
     %2500 = "tosa.add"(%2479, %extracted_slice_1912) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1913 = tensor.extract_slice %2499[0, 768, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x832x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7345,15 +7345,15 @@ module {
     %2509 = "tosa.transpose"(%2508, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2510 = "tosa.equal"(%1176, %1177) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2511 = "tosa.select"(%2510, %2509, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2512 = "tosa.mul"(%2511, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2513 = "tosa.mul"(%192, %2512) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2512 = "tosa.mul"(%2511, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2513 = "tosa.mul"(%192, %2512) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2514 = "tosa.transpose"(%2513, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2515 = "tosa.transpose_conv2d"(%2514, %141, %cst_110) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 800>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<800x1x1x128xf32>, tensor<800xf32>) -> tensor<1x7x7x800xf32>
     %2516 = "tosa.transpose"(%2515, %112) : (tensor<1x7x7x800xf32>, tensor<4xi64>) -> tensor<1x800x7x7xf32>
     %2517 = "tosa.equal"(%1168, %1169) : (tensor<1x800x7x7xf32>, tensor<1x800x7x7xf32>) -> tensor<1x800x7x7xi1>
     %2518 = "tosa.select"(%2517, %2516, %113) : (tensor<1x800x7x7xi1>, tensor<1x800x7x7xf32>, tensor<f32>) -> tensor<1x800x7x7xf32>
-    %2519 = "tosa.mul"(%2518, %56) {shift = 0 : i32} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
-    %2520 = "tosa.mul"(%806, %2519) {shift = 0 : i32} : (tensor<1x800x1x1xf32>, tensor<1x800x7x7xf32>) -> tensor<1x800x7x7xf32>
+    %2519 = "tosa.mul"(%2518, %56) {shift = 0 : i8} : (tensor<1x800x7x7xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x7x7xf32>
+    %2520 = "tosa.mul"(%806, %2519) {shift = 0 : i8} : (tensor<1x800x1x1xf32>, tensor<1x800x7x7xf32>) -> tensor<1x800x7x7xf32>
     %extracted_slice_1919 = tensor.extract_slice %2520[0, 768, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x800x7x7xf32> to tensor<1x32x7x7xf32>
     %2521 = "tosa.add"(%2501, %extracted_slice_1919) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1920 = tensor.extract_slice %2520[0, 736, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x800x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7371,15 +7371,15 @@ module {
     %2529 = "tosa.transpose"(%2528, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2530 = "tosa.equal"(%1160, %1161) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2531 = "tosa.select"(%2530, %2529, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2532 = "tosa.mul"(%2531, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2533 = "tosa.mul"(%192, %2532) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2532 = "tosa.mul"(%2531, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2533 = "tosa.mul"(%192, %2532) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2534 = "tosa.transpose"(%2533, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2535 = "tosa.transpose_conv2d"(%2534, %142, %cst_111) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 768>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<768x1x1x128xf32>, tensor<768xf32>) -> tensor<1x7x7x768xf32>
     %2536 = "tosa.transpose"(%2535, %112) : (tensor<1x7x7x768xf32>, tensor<4xi64>) -> tensor<1x768x7x7xf32>
     %2537 = "tosa.equal"(%1152, %1153) : (tensor<1x768x7x7xf32>, tensor<1x768x7x7xf32>) -> tensor<1x768x7x7xi1>
     %2538 = "tosa.select"(%2537, %2536, %113) : (tensor<1x768x7x7xi1>, tensor<1x768x7x7xf32>, tensor<f32>) -> tensor<1x768x7x7xf32>
-    %2539 = "tosa.mul"(%2538, %58) {shift = 0 : i32} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
-    %2540 = "tosa.mul"(%788, %2539) {shift = 0 : i32} : (tensor<1x768x1x1xf32>, tensor<1x768x7x7xf32>) -> tensor<1x768x7x7xf32>
+    %2539 = "tosa.mul"(%2538, %58) {shift = 0 : i8} : (tensor<1x768x7x7xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x7x7xf32>
+    %2540 = "tosa.mul"(%788, %2539) {shift = 0 : i8} : (tensor<1x768x1x1xf32>, tensor<1x768x7x7xf32>) -> tensor<1x768x7x7xf32>
     %extracted_slice_1925 = tensor.extract_slice %2540[0, 736, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x768x7x7xf32> to tensor<1x32x7x7xf32>
     %2541 = "tosa.add"(%2522, %extracted_slice_1925) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1926 = tensor.extract_slice %2540[0, 704, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x768x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7395,15 +7395,15 @@ module {
     %2548 = "tosa.transpose"(%2547, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2549 = "tosa.equal"(%1144, %1145) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2550 = "tosa.select"(%2549, %2548, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2551 = "tosa.mul"(%2550, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2552 = "tosa.mul"(%192, %2551) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2551 = "tosa.mul"(%2550, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2552 = "tosa.mul"(%192, %2551) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2553 = "tosa.transpose"(%2552, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2554 = "tosa.transpose_conv2d"(%2553, %143, %cst_112) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 736>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<736x1x1x128xf32>, tensor<736xf32>) -> tensor<1x7x7x736xf32>
     %2555 = "tosa.transpose"(%2554, %112) : (tensor<1x7x7x736xf32>, tensor<4xi64>) -> tensor<1x736x7x7xf32>
     %2556 = "tosa.equal"(%1136, %1137) : (tensor<1x736x7x7xf32>, tensor<1x736x7x7xf32>) -> tensor<1x736x7x7xi1>
     %2557 = "tosa.select"(%2556, %2555, %113) : (tensor<1x736x7x7xi1>, tensor<1x736x7x7xf32>, tensor<f32>) -> tensor<1x736x7x7xf32>
-    %2558 = "tosa.mul"(%2557, %60) {shift = 0 : i32} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
-    %2559 = "tosa.mul"(%770, %2558) {shift = 0 : i32} : (tensor<1x736x1x1xf32>, tensor<1x736x7x7xf32>) -> tensor<1x736x7x7xf32>
+    %2558 = "tosa.mul"(%2557, %60) {shift = 0 : i8} : (tensor<1x736x7x7xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x7x7xf32>
+    %2559 = "tosa.mul"(%770, %2558) {shift = 0 : i8} : (tensor<1x736x1x1xf32>, tensor<1x736x7x7xf32>) -> tensor<1x736x7x7xf32>
     %extracted_slice_1930 = tensor.extract_slice %2559[0, 704, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x736x7x7xf32> to tensor<1x32x7x7xf32>
     %2560 = "tosa.add"(%2542, %extracted_slice_1930) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1931 = tensor.extract_slice %2559[0, 672, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x736x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7417,15 +7417,15 @@ module {
     %2566 = "tosa.transpose"(%2565, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2567 = "tosa.equal"(%1128, %1129) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2568 = "tosa.select"(%2567, %2566, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2569 = "tosa.mul"(%2568, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2570 = "tosa.mul"(%192, %2569) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2569 = "tosa.mul"(%2568, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2570 = "tosa.mul"(%192, %2569) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2571 = "tosa.transpose"(%2570, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2572 = "tosa.transpose_conv2d"(%2571, %144, %cst_113) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 704>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<704x1x1x128xf32>, tensor<704xf32>) -> tensor<1x7x7x704xf32>
     %2573 = "tosa.transpose"(%2572, %112) : (tensor<1x7x7x704xf32>, tensor<4xi64>) -> tensor<1x704x7x7xf32>
     %2574 = "tosa.equal"(%1120, %1121) : (tensor<1x704x7x7xf32>, tensor<1x704x7x7xf32>) -> tensor<1x704x7x7xi1>
     %2575 = "tosa.select"(%2574, %2573, %113) : (tensor<1x704x7x7xi1>, tensor<1x704x7x7xf32>, tensor<f32>) -> tensor<1x704x7x7xf32>
-    %2576 = "tosa.mul"(%2575, %62) {shift = 0 : i32} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
-    %2577 = "tosa.mul"(%752, %2576) {shift = 0 : i32} : (tensor<1x704x1x1xf32>, tensor<1x704x7x7xf32>) -> tensor<1x704x7x7xf32>
+    %2576 = "tosa.mul"(%2575, %62) {shift = 0 : i8} : (tensor<1x704x7x7xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x7x7xf32>
+    %2577 = "tosa.mul"(%752, %2576) {shift = 0 : i8} : (tensor<1x704x1x1xf32>, tensor<1x704x7x7xf32>) -> tensor<1x704x7x7xf32>
     %extracted_slice_1934 = tensor.extract_slice %2577[0, 672, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x704x7x7xf32> to tensor<1x32x7x7xf32>
     %2578 = "tosa.add"(%2561, %extracted_slice_1934) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1935 = tensor.extract_slice %2577[0, 640, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x704x7x7xf32> to tensor<1x32x7x7xf32>
@@ -7437,15 +7437,15 @@ module {
     %2583 = "tosa.transpose"(%2582, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2584 = "tosa.equal"(%1112, %1113) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2585 = "tosa.select"(%2584, %2583, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2586 = "tosa.mul"(%2585, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2587 = "tosa.mul"(%192, %2586) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2586 = "tosa.mul"(%2585, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2587 = "tosa.mul"(%192, %2586) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2588 = "tosa.transpose"(%2587, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2589 = "tosa.transpose_conv2d"(%2588, %145, %cst_114) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 672>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<672x1x1x128xf32>, tensor<672xf32>) -> tensor<1x7x7x672xf32>
     %2590 = "tosa.transpose"(%2589, %112) : (tensor<1x7x7x672xf32>, tensor<4xi64>) -> tensor<1x672x7x7xf32>
     %2591 = "tosa.equal"(%1104, %1105) : (tensor<1x672x7x7xf32>, tensor<1x672x7x7xf32>) -> tensor<1x672x7x7xi1>
     %2592 = "tosa.select"(%2591, %2590, %113) : (tensor<1x672x7x7xi1>, tensor<1x672x7x7xf32>, tensor<f32>) -> tensor<1x672x7x7xf32>
-    %2593 = "tosa.mul"(%2592, %64) {shift = 0 : i32} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
-    %2594 = "tosa.mul"(%734, %2593) {shift = 0 : i32} : (tensor<1x672x1x1xf32>, tensor<1x672x7x7xf32>) -> tensor<1x672x7x7xf32>
+    %2593 = "tosa.mul"(%2592, %64) {shift = 0 : i8} : (tensor<1x672x7x7xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x7x7xf32>
+    %2594 = "tosa.mul"(%734, %2593) {shift = 0 : i8} : (tensor<1x672x1x1xf32>, tensor<1x672x7x7xf32>) -> tensor<1x672x7x7xf32>
     %extracted_slice_1937 = tensor.extract_slice %2594[0, 640, 0, 0] [1, 32, 7, 7] [1, 1, 1, 1] : tensor<1x672x7x7xf32> to tensor<1x32x7x7xf32>
     %2595 = "tosa.add"(%2579, %extracted_slice_1937) : (tensor<1x32x7x7xf32>, tensor<1x32x7x7xf32>) -> tensor<1x32x7x7xf32>
     %extracted_slice_1938 = tensor.extract_slice %2594[0, 0, 0, 0] [1, 640, 7, 7] [1, 1, 1, 1] : tensor<1x672x7x7xf32> to tensor<1x640x7x7xf32>
@@ -7455,15 +7455,15 @@ module {
     %2599 = "tosa.transpose"(%2598, %112) : (tensor<1x7x7x128xf32>, tensor<4xi64>) -> tensor<1x128x7x7xf32>
     %2600 = "tosa.equal"(%1096, %1097) : (tensor<1x128x7x7xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xi1>
     %2601 = "tosa.select"(%2600, %2599, %113) : (tensor<1x128x7x7xi1>, tensor<1x128x7x7xf32>, tensor<f32>) -> tensor<1x128x7x7xf32>
-    %2602 = "tosa.mul"(%2601, %103) {shift = 0 : i32} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
-    %2603 = "tosa.mul"(%192, %2602) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
+    %2602 = "tosa.mul"(%2601, %103) {shift = 0 : i8} : (tensor<1x128x7x7xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x7x7xf32>
+    %2603 = "tosa.mul"(%192, %2602) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x7x7xf32>) -> tensor<1x128x7x7xf32>
     %2604 = "tosa.transpose"(%2603, %111) : (tensor<1x128x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x128xf32>
     %2605 = "tosa.transpose_conv2d"(%2604, %146, %cst_115) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 7, 7, 640>, stride = array<i64: 1, 1>} : (tensor<1x7x7x128xf32>, tensor<640x1x1x128xf32>, tensor<640xf32>) -> tensor<1x7x7x640xf32>
     %2606 = "tosa.transpose"(%2605, %112) : (tensor<1x7x7x640xf32>, tensor<4xi64>) -> tensor<1x640x7x7xf32>
     %2607 = "tosa.equal"(%1088, %1089) : (tensor<1x640x7x7xf32>, tensor<1x640x7x7xf32>) -> tensor<1x640x7x7xi1>
     %2608 = "tosa.select"(%2607, %2606, %113) : (tensor<1x640x7x7xi1>, tensor<1x640x7x7xf32>, tensor<f32>) -> tensor<1x640x7x7xf32>
-    %2609 = "tosa.mul"(%2608, %66) {shift = 0 : i32} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
-    %2610 = "tosa.mul"(%716, %2609) {shift = 0 : i32} : (tensor<1x640x1x1xf32>, tensor<1x640x7x7xf32>) -> tensor<1x640x7x7xf32>
+    %2609 = "tosa.mul"(%2608, %66) {shift = 0 : i8} : (tensor<1x640x7x7xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x7x7xf32>
+    %2610 = "tosa.mul"(%716, %2609) {shift = 0 : i8} : (tensor<1x640x1x1xf32>, tensor<1x640x7x7xf32>) -> tensor<1x640x7x7xf32>
     %2611 = "tosa.add"(%2596, %2610) : (tensor<1x640x7x7xf32>, tensor<1x640x7x7xf32>) -> tensor<1x640x7x7xf32>
     %2612 = "tosa.transpose"(%2611, %111) : (tensor<1x640x7x7xf32>, tensor<4xi64>) -> tensor<1x7x7x640xf32>
     %2613 = linalg.generic {indexing_maps = [#map3, #map1, #map2, #map3], iterator_types = ["parallel", "reduction", "reduction", "parallel", "reduction", "reduction"]} ins(%1082, %cst_117, %2612 : tensor<1x14x14x640xf32>, tensor<2x2xf32>, tensor<1x7x7x640xf32>) outs(%cst_116 : tensor<1x14x14x640xf32>) {
@@ -7476,8 +7476,8 @@ module {
     %2615 = "tosa.transpose"(%2614, %112) : (tensor<1x14x14x1280xf32>, tensor<4xi64>) -> tensor<1x1280x14x14xf32>
     %2616 = "tosa.equal"(%1079, %1080) : (tensor<1x1280x14x14xf32>, tensor<1x1280x14x14xf32>) -> tensor<1x1280x14x14xi1>
     %2617 = "tosa.select"(%2616, %2615, %113) : (tensor<1x1280x14x14xi1>, tensor<1x1280x14x14xf32>, tensor<f32>) -> tensor<1x1280x14x14xf32>
-    %2618 = "tosa.mul"(%2617, %26) {shift = 0 : i32} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
-    %2619 = "tosa.mul"(%1076, %2618) {shift = 0 : i32} : (tensor<1x1280x1x1xf32>, tensor<1x1280x14x14xf32>) -> tensor<1x1280x14x14xf32>
+    %2618 = "tosa.mul"(%2617, %26) {shift = 0 : i8} : (tensor<1x1280x14x14xf32>, tensor<1x1280x1x1xf32>) -> tensor<1x1280x14x14xf32>
+    %2619 = "tosa.mul"(%1076, %2618) {shift = 0 : i8} : (tensor<1x1280x1x1xf32>, tensor<1x1280x14x14xf32>) -> tensor<1x1280x14x14xf32>
     %extracted_slice_1939 = tensor.extract_slice %2619[0, 1248, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1280x14x14xf32> to tensor<1x32x14x14xf32>
     %extracted_slice_1940 = tensor.extract_slice %2619[0, 1216, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1280x14x14xf32> to tensor<1x32x14x14xf32>
     %extracted_slice_1941 = tensor.extract_slice %2619[0, 1184, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1280x14x14xf32> to tensor<1x32x14x14xf32>
@@ -7516,15 +7516,15 @@ module {
     %2622 = "tosa.transpose"(%2621, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %2623 = "tosa.equal"(%1069, %1070) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %2624 = "tosa.select"(%2623, %2622, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %2625 = "tosa.mul"(%2624, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %2626 = "tosa.mul"(%192, %2625) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %2625 = "tosa.mul"(%2624, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %2626 = "tosa.mul"(%192, %2625) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %2627 = "tosa.transpose"(%2626, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %2628 = "tosa.transpose_conv2d"(%2627, %127, %cst_96) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 1248>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<1248x1x1x128xf32>, tensor<1248xf32>) -> tensor<1x14x14x1248xf32>
     %2629 = "tosa.transpose"(%2628, %112) : (tensor<1x14x14x1248xf32>, tensor<4xi64>) -> tensor<1x1248x14x14xf32>
     %2630 = "tosa.equal"(%1061, %1062) : (tensor<1x1248x14x14xf32>, tensor<1x1248x14x14xf32>) -> tensor<1x1248x14x14xi1>
     %2631 = "tosa.select"(%2630, %2629, %113) : (tensor<1x1248x14x14xi1>, tensor<1x1248x14x14xf32>, tensor<f32>) -> tensor<1x1248x14x14xf32>
-    %2632 = "tosa.mul"(%2631, %28) {shift = 0 : i32} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
-    %2633 = "tosa.mul"(%1058, %2632) {shift = 0 : i32} : (tensor<1x1248x1x1xf32>, tensor<1x1248x14x14xf32>) -> tensor<1x1248x14x14xf32>
+    %2632 = "tosa.mul"(%2631, %28) {shift = 0 : i8} : (tensor<1x1248x14x14xf32>, tensor<1x1248x1x1xf32>) -> tensor<1x1248x14x14xf32>
+    %2633 = "tosa.mul"(%1058, %2632) {shift = 0 : i8} : (tensor<1x1248x1x1xf32>, tensor<1x1248x14x14xf32>) -> tensor<1x1248x14x14xf32>
     %extracted_slice_1972 = tensor.extract_slice %2633[0, 1216, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1248x14x14xf32> to tensor<1x32x14x14xf32>
     %2634 = "tosa.add"(%extracted_slice_1940, %extracted_slice_1972) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_1973 = tensor.extract_slice %2633[0, 1184, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1248x14x14xf32> to tensor<1x32x14x14xf32>
@@ -7594,15 +7594,15 @@ module {
     %2668 = "tosa.transpose"(%2667, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %2669 = "tosa.equal"(%1051, %1052) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %2670 = "tosa.select"(%2669, %2668, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %2671 = "tosa.mul"(%2670, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %2672 = "tosa.mul"(%192, %2671) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %2671 = "tosa.mul"(%2670, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %2672 = "tosa.mul"(%192, %2671) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %2673 = "tosa.transpose"(%2672, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %2674 = "tosa.transpose_conv2d"(%2673, %128, %cst_97) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 1216>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<1216x1x1x128xf32>, tensor<1216xf32>) -> tensor<1x14x14x1216xf32>
     %2675 = "tosa.transpose"(%2674, %112) : (tensor<1x14x14x1216xf32>, tensor<4xi64>) -> tensor<1x1216x14x14xf32>
     %2676 = "tosa.equal"(%1043, %1044) : (tensor<1x1216x14x14xf32>, tensor<1x1216x14x14xf32>) -> tensor<1x1216x14x14xi1>
     %2677 = "tosa.select"(%2676, %2675, %113) : (tensor<1x1216x14x14xi1>, tensor<1x1216x14x14xf32>, tensor<f32>) -> tensor<1x1216x14x14xf32>
-    %2678 = "tosa.mul"(%2677, %30) {shift = 0 : i32} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
-    %2679 = "tosa.mul"(%1040, %2678) {shift = 0 : i32} : (tensor<1x1216x1x1xf32>, tensor<1x1216x14x14xf32>) -> tensor<1x1216x14x14xf32>
+    %2678 = "tosa.mul"(%2677, %30) {shift = 0 : i8} : (tensor<1x1216x14x14xf32>, tensor<1x1216x1x1xf32>) -> tensor<1x1216x14x14xf32>
+    %2679 = "tosa.mul"(%1040, %2678) {shift = 0 : i8} : (tensor<1x1216x1x1xf32>, tensor<1x1216x14x14xf32>) -> tensor<1x1216x14x14xf32>
     %extracted_slice_2004 = tensor.extract_slice %2679[0, 1184, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1216x14x14xf32> to tensor<1x32x14x14xf32>
     %2680 = "tosa.add"(%2635, %extracted_slice_2004) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2005 = tensor.extract_slice %2679[0, 1152, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1216x14x14xf32> to tensor<1x32x14x14xf32>
@@ -7670,15 +7670,15 @@ module {
     %2713 = "tosa.transpose"(%2712, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %2714 = "tosa.equal"(%1033, %1034) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %2715 = "tosa.select"(%2714, %2713, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %2716 = "tosa.mul"(%2715, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %2717 = "tosa.mul"(%192, %2716) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %2716 = "tosa.mul"(%2715, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %2717 = "tosa.mul"(%192, %2716) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %2718 = "tosa.transpose"(%2717, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %2719 = "tosa.transpose_conv2d"(%2718, %129, %cst_98) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 1184>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<1184x1x1x128xf32>, tensor<1184xf32>) -> tensor<1x14x14x1184xf32>
     %2720 = "tosa.transpose"(%2719, %112) : (tensor<1x14x14x1184xf32>, tensor<4xi64>) -> tensor<1x1184x14x14xf32>
     %2721 = "tosa.equal"(%1025, %1026) : (tensor<1x1184x14x14xf32>, tensor<1x1184x14x14xf32>) -> tensor<1x1184x14x14xi1>
     %2722 = "tosa.select"(%2721, %2720, %113) : (tensor<1x1184x14x14xi1>, tensor<1x1184x14x14xf32>, tensor<f32>) -> tensor<1x1184x14x14xf32>
-    %2723 = "tosa.mul"(%2722, %32) {shift = 0 : i32} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
-    %2724 = "tosa.mul"(%1022, %2723) {shift = 0 : i32} : (tensor<1x1184x1x1xf32>, tensor<1x1184x14x14xf32>) -> tensor<1x1184x14x14xf32>
+    %2723 = "tosa.mul"(%2722, %32) {shift = 0 : i8} : (tensor<1x1184x14x14xf32>, tensor<1x1184x1x1xf32>) -> tensor<1x1184x14x14xf32>
+    %2724 = "tosa.mul"(%1022, %2723) {shift = 0 : i8} : (tensor<1x1184x1x1xf32>, tensor<1x1184x14x14xf32>) -> tensor<1x1184x14x14xf32>
     %extracted_slice_2035 = tensor.extract_slice %2724[0, 1152, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1184x14x14xf32> to tensor<1x32x14x14xf32>
     %2725 = "tosa.add"(%2681, %extracted_slice_2035) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2036 = tensor.extract_slice %2724[0, 1120, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1184x14x14xf32> to tensor<1x32x14x14xf32>
@@ -7744,15 +7744,15 @@ module {
     %2757 = "tosa.transpose"(%2756, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %2758 = "tosa.equal"(%1015, %1016) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %2759 = "tosa.select"(%2758, %2757, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %2760 = "tosa.mul"(%2759, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %2761 = "tosa.mul"(%192, %2760) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %2760 = "tosa.mul"(%2759, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %2761 = "tosa.mul"(%192, %2760) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %2762 = "tosa.transpose"(%2761, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %2763 = "tosa.transpose_conv2d"(%2762, %130, %cst_99) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 1152>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<1152x1x1x128xf32>, tensor<1152xf32>) -> tensor<1x14x14x1152xf32>
     %2764 = "tosa.transpose"(%2763, %112) : (tensor<1x14x14x1152xf32>, tensor<4xi64>) -> tensor<1x1152x14x14xf32>
     %2765 = "tosa.equal"(%1007, %1008) : (tensor<1x1152x14x14xf32>, tensor<1x1152x14x14xf32>) -> tensor<1x1152x14x14xi1>
     %2766 = "tosa.select"(%2765, %2764, %113) : (tensor<1x1152x14x14xi1>, tensor<1x1152x14x14xf32>, tensor<f32>) -> tensor<1x1152x14x14xf32>
-    %2767 = "tosa.mul"(%2766, %34) {shift = 0 : i32} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
-    %2768 = "tosa.mul"(%1004, %2767) {shift = 0 : i32} : (tensor<1x1152x1x1xf32>, tensor<1x1152x14x14xf32>) -> tensor<1x1152x14x14xf32>
+    %2767 = "tosa.mul"(%2766, %34) {shift = 0 : i8} : (tensor<1x1152x14x14xf32>, tensor<1x1152x1x1xf32>) -> tensor<1x1152x14x14xf32>
+    %2768 = "tosa.mul"(%1004, %2767) {shift = 0 : i8} : (tensor<1x1152x1x1xf32>, tensor<1x1152x14x14xf32>) -> tensor<1x1152x14x14xf32>
     %extracted_slice_2065 = tensor.extract_slice %2768[0, 1120, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1152x14x14xf32> to tensor<1x32x14x14xf32>
     %2769 = "tosa.add"(%2726, %extracted_slice_2065) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2066 = tensor.extract_slice %2768[0, 1088, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1152x14x14xf32> to tensor<1x32x14x14xf32>
@@ -7816,15 +7816,15 @@ module {
     %2800 = "tosa.transpose"(%2799, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %2801 = "tosa.equal"(%997, %998) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %2802 = "tosa.select"(%2801, %2800, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %2803 = "tosa.mul"(%2802, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %2804 = "tosa.mul"(%192, %2803) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %2803 = "tosa.mul"(%2802, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %2804 = "tosa.mul"(%192, %2803) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %2805 = "tosa.transpose"(%2804, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %2806 = "tosa.transpose_conv2d"(%2805, %131, %cst_100) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 1120>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<1120x1x1x128xf32>, tensor<1120xf32>) -> tensor<1x14x14x1120xf32>
     %2807 = "tosa.transpose"(%2806, %112) : (tensor<1x14x14x1120xf32>, tensor<4xi64>) -> tensor<1x1120x14x14xf32>
     %2808 = "tosa.equal"(%989, %990) : (tensor<1x1120x14x14xf32>, tensor<1x1120x14x14xf32>) -> tensor<1x1120x14x14xi1>
     %2809 = "tosa.select"(%2808, %2807, %113) : (tensor<1x1120x14x14xi1>, tensor<1x1120x14x14xf32>, tensor<f32>) -> tensor<1x1120x14x14xf32>
-    %2810 = "tosa.mul"(%2809, %36) {shift = 0 : i32} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
-    %2811 = "tosa.mul"(%986, %2810) {shift = 0 : i32} : (tensor<1x1120x1x1xf32>, tensor<1x1120x14x14xf32>) -> tensor<1x1120x14x14xf32>
+    %2810 = "tosa.mul"(%2809, %36) {shift = 0 : i8} : (tensor<1x1120x14x14xf32>, tensor<1x1120x1x1xf32>) -> tensor<1x1120x14x14xf32>
+    %2811 = "tosa.mul"(%986, %2810) {shift = 0 : i8} : (tensor<1x1120x1x1xf32>, tensor<1x1120x14x14xf32>) -> tensor<1x1120x14x14xf32>
     %extracted_slice_2094 = tensor.extract_slice %2811[0, 1088, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1120x14x14xf32> to tensor<1x32x14x14xf32>
     %2812 = "tosa.add"(%2770, %extracted_slice_2094) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2095 = tensor.extract_slice %2811[0, 1056, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1120x14x14xf32> to tensor<1x32x14x14xf32>
@@ -7886,15 +7886,15 @@ module {
     %2842 = "tosa.transpose"(%2841, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %2843 = "tosa.equal"(%979, %980) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %2844 = "tosa.select"(%2843, %2842, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %2845 = "tosa.mul"(%2844, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %2846 = "tosa.mul"(%192, %2845) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %2845 = "tosa.mul"(%2844, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %2846 = "tosa.mul"(%192, %2845) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %2847 = "tosa.transpose"(%2846, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %2848 = "tosa.transpose_conv2d"(%2847, %132, %cst_101) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 1088>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<1088x1x1x128xf32>, tensor<1088xf32>) -> tensor<1x14x14x1088xf32>
     %2849 = "tosa.transpose"(%2848, %112) : (tensor<1x14x14x1088xf32>, tensor<4xi64>) -> tensor<1x1088x14x14xf32>
     %2850 = "tosa.equal"(%971, %972) : (tensor<1x1088x14x14xf32>, tensor<1x1088x14x14xf32>) -> tensor<1x1088x14x14xi1>
     %2851 = "tosa.select"(%2850, %2849, %113) : (tensor<1x1088x14x14xi1>, tensor<1x1088x14x14xf32>, tensor<f32>) -> tensor<1x1088x14x14xf32>
-    %2852 = "tosa.mul"(%2851, %38) {shift = 0 : i32} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
-    %2853 = "tosa.mul"(%968, %2852) {shift = 0 : i32} : (tensor<1x1088x1x1xf32>, tensor<1x1088x14x14xf32>) -> tensor<1x1088x14x14xf32>
+    %2852 = "tosa.mul"(%2851, %38) {shift = 0 : i8} : (tensor<1x1088x14x14xf32>, tensor<1x1088x1x1xf32>) -> tensor<1x1088x14x14xf32>
+    %2853 = "tosa.mul"(%968, %2852) {shift = 0 : i8} : (tensor<1x1088x1x1xf32>, tensor<1x1088x14x14xf32>) -> tensor<1x1088x14x14xf32>
     %extracted_slice_2122 = tensor.extract_slice %2853[0, 1056, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1088x14x14xf32> to tensor<1x32x14x14xf32>
     %2854 = "tosa.add"(%2813, %extracted_slice_2122) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2123 = tensor.extract_slice %2853[0, 1024, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1088x14x14xf32> to tensor<1x32x14x14xf32>
@@ -7954,15 +7954,15 @@ module {
     %2883 = "tosa.transpose"(%2882, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %2884 = "tosa.equal"(%961, %962) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %2885 = "tosa.select"(%2884, %2883, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %2886 = "tosa.mul"(%2885, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %2887 = "tosa.mul"(%192, %2886) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %2886 = "tosa.mul"(%2885, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %2887 = "tosa.mul"(%192, %2886) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %2888 = "tosa.transpose"(%2887, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %2889 = "tosa.transpose_conv2d"(%2888, %133, %cst_102) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 1056>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<1056x1x1x128xf32>, tensor<1056xf32>) -> tensor<1x14x14x1056xf32>
     %2890 = "tosa.transpose"(%2889, %112) : (tensor<1x14x14x1056xf32>, tensor<4xi64>) -> tensor<1x1056x14x14xf32>
     %2891 = "tosa.equal"(%953, %954) : (tensor<1x1056x14x14xf32>, tensor<1x1056x14x14xf32>) -> tensor<1x1056x14x14xi1>
     %2892 = "tosa.select"(%2891, %2890, %113) : (tensor<1x1056x14x14xi1>, tensor<1x1056x14x14xf32>, tensor<f32>) -> tensor<1x1056x14x14xf32>
-    %2893 = "tosa.mul"(%2892, %40) {shift = 0 : i32} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
-    %2894 = "tosa.mul"(%950, %2893) {shift = 0 : i32} : (tensor<1x1056x1x1xf32>, tensor<1x1056x14x14xf32>) -> tensor<1x1056x14x14xf32>
+    %2893 = "tosa.mul"(%2892, %40) {shift = 0 : i8} : (tensor<1x1056x14x14xf32>, tensor<1x1056x1x1xf32>) -> tensor<1x1056x14x14xf32>
+    %2894 = "tosa.mul"(%950, %2893) {shift = 0 : i8} : (tensor<1x1056x1x1xf32>, tensor<1x1056x14x14xf32>) -> tensor<1x1056x14x14xf32>
     %extracted_slice_2149 = tensor.extract_slice %2894[0, 1024, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1056x14x14xf32> to tensor<1x32x14x14xf32>
     %2895 = "tosa.add"(%2855, %extracted_slice_2149) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2150 = tensor.extract_slice %2894[0, 992, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1056x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8020,15 +8020,15 @@ module {
     %2923 = "tosa.transpose"(%2922, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %2924 = "tosa.equal"(%943, %944) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %2925 = "tosa.select"(%2924, %2923, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %2926 = "tosa.mul"(%2925, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %2927 = "tosa.mul"(%192, %2926) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %2926 = "tosa.mul"(%2925, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %2927 = "tosa.mul"(%192, %2926) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %2928 = "tosa.transpose"(%2927, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %2929 = "tosa.transpose_conv2d"(%2928, %134, %cst_103) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 1024>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<1024x1x1x128xf32>, tensor<1024xf32>) -> tensor<1x14x14x1024xf32>
     %2930 = "tosa.transpose"(%2929, %112) : (tensor<1x14x14x1024xf32>, tensor<4xi64>) -> tensor<1x1024x14x14xf32>
     %2931 = "tosa.equal"(%935, %936) : (tensor<1x1024x14x14xf32>, tensor<1x1024x14x14xf32>) -> tensor<1x1024x14x14xi1>
     %2932 = "tosa.select"(%2931, %2930, %113) : (tensor<1x1024x14x14xi1>, tensor<1x1024x14x14xf32>, tensor<f32>) -> tensor<1x1024x14x14xf32>
-    %2933 = "tosa.mul"(%2932, %42) {shift = 0 : i32} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
-    %2934 = "tosa.mul"(%932, %2933) {shift = 0 : i32} : (tensor<1x1024x1x1xf32>, tensor<1x1024x14x14xf32>) -> tensor<1x1024x14x14xf32>
+    %2933 = "tosa.mul"(%2932, %42) {shift = 0 : i8} : (tensor<1x1024x14x14xf32>, tensor<1x1024x1x1xf32>) -> tensor<1x1024x14x14xf32>
+    %2934 = "tosa.mul"(%932, %2933) {shift = 0 : i8} : (tensor<1x1024x1x1xf32>, tensor<1x1024x14x14xf32>) -> tensor<1x1024x14x14xf32>
     %extracted_slice_2175 = tensor.extract_slice %2934[0, 992, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1024x14x14xf32> to tensor<1x32x14x14xf32>
     %2935 = "tosa.add"(%2896, %extracted_slice_2175) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2176 = tensor.extract_slice %2934[0, 960, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x1024x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8084,15 +8084,15 @@ module {
     %2962 = "tosa.transpose"(%2961, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %2963 = "tosa.equal"(%925, %926) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %2964 = "tosa.select"(%2963, %2962, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %2965 = "tosa.mul"(%2964, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %2966 = "tosa.mul"(%192, %2965) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %2965 = "tosa.mul"(%2964, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %2966 = "tosa.mul"(%192, %2965) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %2967 = "tosa.transpose"(%2966, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %2968 = "tosa.transpose_conv2d"(%2967, %135, %cst_104) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 992>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<992x1x1x128xf32>, tensor<992xf32>) -> tensor<1x14x14x992xf32>
     %2969 = "tosa.transpose"(%2968, %112) : (tensor<1x14x14x992xf32>, tensor<4xi64>) -> tensor<1x992x14x14xf32>
     %2970 = "tosa.equal"(%917, %918) : (tensor<1x992x14x14xf32>, tensor<1x992x14x14xf32>) -> tensor<1x992x14x14xi1>
     %2971 = "tosa.select"(%2970, %2969, %113) : (tensor<1x992x14x14xi1>, tensor<1x992x14x14xf32>, tensor<f32>) -> tensor<1x992x14x14xf32>
-    %2972 = "tosa.mul"(%2971, %44) {shift = 0 : i32} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
-    %2973 = "tosa.mul"(%914, %2972) {shift = 0 : i32} : (tensor<1x992x1x1xf32>, tensor<1x992x14x14xf32>) -> tensor<1x992x14x14xf32>
+    %2972 = "tosa.mul"(%2971, %44) {shift = 0 : i8} : (tensor<1x992x14x14xf32>, tensor<1x992x1x1xf32>) -> tensor<1x992x14x14xf32>
+    %2973 = "tosa.mul"(%914, %2972) {shift = 0 : i8} : (tensor<1x992x1x1xf32>, tensor<1x992x14x14xf32>) -> tensor<1x992x14x14xf32>
     %extracted_slice_2200 = tensor.extract_slice %2973[0, 960, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x992x14x14xf32> to tensor<1x32x14x14xf32>
     %2974 = "tosa.add"(%2936, %extracted_slice_2200) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2201 = tensor.extract_slice %2973[0, 928, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x992x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8146,15 +8146,15 @@ module {
     %3000 = "tosa.transpose"(%2999, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3001 = "tosa.equal"(%907, %908) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3002 = "tosa.select"(%3001, %3000, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3003 = "tosa.mul"(%3002, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3004 = "tosa.mul"(%192, %3003) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3003 = "tosa.mul"(%3002, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3004 = "tosa.mul"(%192, %3003) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3005 = "tosa.transpose"(%3004, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3006 = "tosa.transpose_conv2d"(%3005, %136, %cst_105) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 960>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<960x1x1x128xf32>, tensor<960xf32>) -> tensor<1x14x14x960xf32>
     %3007 = "tosa.transpose"(%3006, %112) : (tensor<1x14x14x960xf32>, tensor<4xi64>) -> tensor<1x960x14x14xf32>
     %3008 = "tosa.equal"(%899, %900) : (tensor<1x960x14x14xf32>, tensor<1x960x14x14xf32>) -> tensor<1x960x14x14xi1>
     %3009 = "tosa.select"(%3008, %3007, %113) : (tensor<1x960x14x14xi1>, tensor<1x960x14x14xf32>, tensor<f32>) -> tensor<1x960x14x14xf32>
-    %3010 = "tosa.mul"(%3009, %46) {shift = 0 : i32} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
-    %3011 = "tosa.mul"(%896, %3010) {shift = 0 : i32} : (tensor<1x960x1x1xf32>, tensor<1x960x14x14xf32>) -> tensor<1x960x14x14xf32>
+    %3010 = "tosa.mul"(%3009, %46) {shift = 0 : i8} : (tensor<1x960x14x14xf32>, tensor<1x960x1x1xf32>) -> tensor<1x960x14x14xf32>
+    %3011 = "tosa.mul"(%896, %3010) {shift = 0 : i8} : (tensor<1x960x1x1xf32>, tensor<1x960x14x14xf32>) -> tensor<1x960x14x14xf32>
     %extracted_slice_2224 = tensor.extract_slice %3011[0, 928, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x960x14x14xf32> to tensor<1x32x14x14xf32>
     %3012 = "tosa.add"(%2975, %extracted_slice_2224) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2225 = tensor.extract_slice %3011[0, 896, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x960x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8206,15 +8206,15 @@ module {
     %3037 = "tosa.transpose"(%3036, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3038 = "tosa.equal"(%889, %890) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3039 = "tosa.select"(%3038, %3037, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3040 = "tosa.mul"(%3039, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3041 = "tosa.mul"(%192, %3040) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3040 = "tosa.mul"(%3039, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3041 = "tosa.mul"(%192, %3040) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3042 = "tosa.transpose"(%3041, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3043 = "tosa.transpose_conv2d"(%3042, %137, %cst_106) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 928>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<928x1x1x128xf32>, tensor<928xf32>) -> tensor<1x14x14x928xf32>
     %3044 = "tosa.transpose"(%3043, %112) : (tensor<1x14x14x928xf32>, tensor<4xi64>) -> tensor<1x928x14x14xf32>
     %3045 = "tosa.equal"(%881, %882) : (tensor<1x928x14x14xf32>, tensor<1x928x14x14xf32>) -> tensor<1x928x14x14xi1>
     %3046 = "tosa.select"(%3045, %3044, %113) : (tensor<1x928x14x14xi1>, tensor<1x928x14x14xf32>, tensor<f32>) -> tensor<1x928x14x14xf32>
-    %3047 = "tosa.mul"(%3046, %48) {shift = 0 : i32} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
-    %3048 = "tosa.mul"(%878, %3047) {shift = 0 : i32} : (tensor<1x928x1x1xf32>, tensor<1x928x14x14xf32>) -> tensor<1x928x14x14xf32>
+    %3047 = "tosa.mul"(%3046, %48) {shift = 0 : i8} : (tensor<1x928x14x14xf32>, tensor<1x928x1x1xf32>) -> tensor<1x928x14x14xf32>
+    %3048 = "tosa.mul"(%878, %3047) {shift = 0 : i8} : (tensor<1x928x1x1xf32>, tensor<1x928x14x14xf32>) -> tensor<1x928x14x14xf32>
     %extracted_slice_2247 = tensor.extract_slice %3048[0, 896, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x928x14x14xf32> to tensor<1x32x14x14xf32>
     %3049 = "tosa.add"(%3013, %extracted_slice_2247) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2248 = tensor.extract_slice %3048[0, 864, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x928x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8264,15 +8264,15 @@ module {
     %3073 = "tosa.transpose"(%3072, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3074 = "tosa.equal"(%871, %872) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3075 = "tosa.select"(%3074, %3073, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3076 = "tosa.mul"(%3075, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3077 = "tosa.mul"(%192, %3076) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3076 = "tosa.mul"(%3075, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3077 = "tosa.mul"(%192, %3076) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3078 = "tosa.transpose"(%3077, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3079 = "tosa.transpose_conv2d"(%3078, %138, %cst_107) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 896>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<896x1x1x128xf32>, tensor<896xf32>) -> tensor<1x14x14x896xf32>
     %3080 = "tosa.transpose"(%3079, %112) : (tensor<1x14x14x896xf32>, tensor<4xi64>) -> tensor<1x896x14x14xf32>
     %3081 = "tosa.equal"(%863, %864) : (tensor<1x896x14x14xf32>, tensor<1x896x14x14xf32>) -> tensor<1x896x14x14xi1>
     %3082 = "tosa.select"(%3081, %3080, %113) : (tensor<1x896x14x14xi1>, tensor<1x896x14x14xf32>, tensor<f32>) -> tensor<1x896x14x14xf32>
-    %3083 = "tosa.mul"(%3082, %50) {shift = 0 : i32} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
-    %3084 = "tosa.mul"(%860, %3083) {shift = 0 : i32} : (tensor<1x896x1x1xf32>, tensor<1x896x14x14xf32>) -> tensor<1x896x14x14xf32>
+    %3083 = "tosa.mul"(%3082, %50) {shift = 0 : i8} : (tensor<1x896x14x14xf32>, tensor<1x896x1x1xf32>) -> tensor<1x896x14x14xf32>
+    %3084 = "tosa.mul"(%860, %3083) {shift = 0 : i8} : (tensor<1x896x1x1xf32>, tensor<1x896x14x14xf32>) -> tensor<1x896x14x14xf32>
     %extracted_slice_2269 = tensor.extract_slice %3084[0, 864, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x896x14x14xf32> to tensor<1x32x14x14xf32>
     %3085 = "tosa.add"(%3050, %extracted_slice_2269) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2270 = tensor.extract_slice %3084[0, 832, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x896x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8320,15 +8320,15 @@ module {
     %3108 = "tosa.transpose"(%3107, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3109 = "tosa.equal"(%853, %854) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3110 = "tosa.select"(%3109, %3108, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3111 = "tosa.mul"(%3110, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3112 = "tosa.mul"(%192, %3111) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3111 = "tosa.mul"(%3110, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3112 = "tosa.mul"(%192, %3111) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3113 = "tosa.transpose"(%3112, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3114 = "tosa.transpose_conv2d"(%3113, %139, %cst_108) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 864>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<864x1x1x128xf32>, tensor<864xf32>) -> tensor<1x14x14x864xf32>
     %3115 = "tosa.transpose"(%3114, %112) : (tensor<1x14x14x864xf32>, tensor<4xi64>) -> tensor<1x864x14x14xf32>
     %3116 = "tosa.equal"(%845, %846) : (tensor<1x864x14x14xf32>, tensor<1x864x14x14xf32>) -> tensor<1x864x14x14xi1>
     %3117 = "tosa.select"(%3116, %3115, %113) : (tensor<1x864x14x14xi1>, tensor<1x864x14x14xf32>, tensor<f32>) -> tensor<1x864x14x14xf32>
-    %3118 = "tosa.mul"(%3117, %52) {shift = 0 : i32} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
-    %3119 = "tosa.mul"(%842, %3118) {shift = 0 : i32} : (tensor<1x864x1x1xf32>, tensor<1x864x14x14xf32>) -> tensor<1x864x14x14xf32>
+    %3118 = "tosa.mul"(%3117, %52) {shift = 0 : i8} : (tensor<1x864x14x14xf32>, tensor<1x864x1x1xf32>) -> tensor<1x864x14x14xf32>
+    %3119 = "tosa.mul"(%842, %3118) {shift = 0 : i8} : (tensor<1x864x1x1xf32>, tensor<1x864x14x14xf32>) -> tensor<1x864x14x14xf32>
     %extracted_slice_2290 = tensor.extract_slice %3119[0, 832, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x864x14x14xf32> to tensor<1x32x14x14xf32>
     %3120 = "tosa.add"(%3086, %extracted_slice_2290) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2291 = tensor.extract_slice %3119[0, 800, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x864x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8374,15 +8374,15 @@ module {
     %3142 = "tosa.transpose"(%3141, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3143 = "tosa.equal"(%835, %836) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3144 = "tosa.select"(%3143, %3142, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3145 = "tosa.mul"(%3144, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3146 = "tosa.mul"(%192, %3145) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3145 = "tosa.mul"(%3144, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3146 = "tosa.mul"(%192, %3145) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3147 = "tosa.transpose"(%3146, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3148 = "tosa.transpose_conv2d"(%3147, %140, %cst_109) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 832>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<832x1x1x128xf32>, tensor<832xf32>) -> tensor<1x14x14x832xf32>
     %3149 = "tosa.transpose"(%3148, %112) : (tensor<1x14x14x832xf32>, tensor<4xi64>) -> tensor<1x832x14x14xf32>
     %3150 = "tosa.equal"(%827, %828) : (tensor<1x832x14x14xf32>, tensor<1x832x14x14xf32>) -> tensor<1x832x14x14xi1>
     %3151 = "tosa.select"(%3150, %3149, %113) : (tensor<1x832x14x14xi1>, tensor<1x832x14x14xf32>, tensor<f32>) -> tensor<1x832x14x14xf32>
-    %3152 = "tosa.mul"(%3151, %54) {shift = 0 : i32} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
-    %3153 = "tosa.mul"(%824, %3152) {shift = 0 : i32} : (tensor<1x832x1x1xf32>, tensor<1x832x14x14xf32>) -> tensor<1x832x14x14xf32>
+    %3152 = "tosa.mul"(%3151, %54) {shift = 0 : i8} : (tensor<1x832x14x14xf32>, tensor<1x832x1x1xf32>) -> tensor<1x832x14x14xf32>
+    %3153 = "tosa.mul"(%824, %3152) {shift = 0 : i8} : (tensor<1x832x1x1xf32>, tensor<1x832x14x14xf32>) -> tensor<1x832x14x14xf32>
     %extracted_slice_2310 = tensor.extract_slice %3153[0, 800, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x832x14x14xf32> to tensor<1x32x14x14xf32>
     %3154 = "tosa.add"(%3121, %extracted_slice_2310) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2311 = tensor.extract_slice %3153[0, 768, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x832x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8426,15 +8426,15 @@ module {
     %3175 = "tosa.transpose"(%3174, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3176 = "tosa.equal"(%817, %818) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3177 = "tosa.select"(%3176, %3175, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3178 = "tosa.mul"(%3177, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3179 = "tosa.mul"(%192, %3178) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3178 = "tosa.mul"(%3177, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3179 = "tosa.mul"(%192, %3178) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3180 = "tosa.transpose"(%3179, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3181 = "tosa.transpose_conv2d"(%3180, %141, %cst_110) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 800>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<800x1x1x128xf32>, tensor<800xf32>) -> tensor<1x14x14x800xf32>
     %3182 = "tosa.transpose"(%3181, %112) : (tensor<1x14x14x800xf32>, tensor<4xi64>) -> tensor<1x800x14x14xf32>
     %3183 = "tosa.equal"(%809, %810) : (tensor<1x800x14x14xf32>, tensor<1x800x14x14xf32>) -> tensor<1x800x14x14xi1>
     %3184 = "tosa.select"(%3183, %3182, %113) : (tensor<1x800x14x14xi1>, tensor<1x800x14x14xf32>, tensor<f32>) -> tensor<1x800x14x14xf32>
-    %3185 = "tosa.mul"(%3184, %56) {shift = 0 : i32} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
-    %3186 = "tosa.mul"(%806, %3185) {shift = 0 : i32} : (tensor<1x800x1x1xf32>, tensor<1x800x14x14xf32>) -> tensor<1x800x14x14xf32>
+    %3185 = "tosa.mul"(%3184, %56) {shift = 0 : i8} : (tensor<1x800x14x14xf32>, tensor<1x800x1x1xf32>) -> tensor<1x800x14x14xf32>
+    %3186 = "tosa.mul"(%806, %3185) {shift = 0 : i8} : (tensor<1x800x1x1xf32>, tensor<1x800x14x14xf32>) -> tensor<1x800x14x14xf32>
     %extracted_slice_2329 = tensor.extract_slice %3186[0, 768, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x800x14x14xf32> to tensor<1x32x14x14xf32>
     %3187 = "tosa.add"(%3155, %extracted_slice_2329) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2330 = tensor.extract_slice %3186[0, 736, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x800x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8476,15 +8476,15 @@ module {
     %3207 = "tosa.transpose"(%3206, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3208 = "tosa.equal"(%799, %800) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3209 = "tosa.select"(%3208, %3207, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3210 = "tosa.mul"(%3209, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3211 = "tosa.mul"(%192, %3210) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3210 = "tosa.mul"(%3209, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3211 = "tosa.mul"(%192, %3210) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3212 = "tosa.transpose"(%3211, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3213 = "tosa.transpose_conv2d"(%3212, %142, %cst_111) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 768>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<768x1x1x128xf32>, tensor<768xf32>) -> tensor<1x14x14x768xf32>
     %3214 = "tosa.transpose"(%3213, %112) : (tensor<1x14x14x768xf32>, tensor<4xi64>) -> tensor<1x768x14x14xf32>
     %3215 = "tosa.equal"(%791, %792) : (tensor<1x768x14x14xf32>, tensor<1x768x14x14xf32>) -> tensor<1x768x14x14xi1>
     %3216 = "tosa.select"(%3215, %3214, %113) : (tensor<1x768x14x14xi1>, tensor<1x768x14x14xf32>, tensor<f32>) -> tensor<1x768x14x14xf32>
-    %3217 = "tosa.mul"(%3216, %58) {shift = 0 : i32} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
-    %3218 = "tosa.mul"(%788, %3217) {shift = 0 : i32} : (tensor<1x768x1x1xf32>, tensor<1x768x14x14xf32>) -> tensor<1x768x14x14xf32>
+    %3217 = "tosa.mul"(%3216, %58) {shift = 0 : i8} : (tensor<1x768x14x14xf32>, tensor<1x768x1x1xf32>) -> tensor<1x768x14x14xf32>
+    %3218 = "tosa.mul"(%788, %3217) {shift = 0 : i8} : (tensor<1x768x1x1xf32>, tensor<1x768x14x14xf32>) -> tensor<1x768x14x14xf32>
     %extracted_slice_2347 = tensor.extract_slice %3218[0, 736, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x768x14x14xf32> to tensor<1x32x14x14xf32>
     %3219 = "tosa.add"(%3188, %extracted_slice_2347) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2348 = tensor.extract_slice %3218[0, 704, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x768x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8524,15 +8524,15 @@ module {
     %3238 = "tosa.transpose"(%3237, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3239 = "tosa.equal"(%781, %782) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3240 = "tosa.select"(%3239, %3238, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3241 = "tosa.mul"(%3240, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3242 = "tosa.mul"(%192, %3241) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3241 = "tosa.mul"(%3240, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3242 = "tosa.mul"(%192, %3241) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3243 = "tosa.transpose"(%3242, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3244 = "tosa.transpose_conv2d"(%3243, %143, %cst_112) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 736>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<736x1x1x128xf32>, tensor<736xf32>) -> tensor<1x14x14x736xf32>
     %3245 = "tosa.transpose"(%3244, %112) : (tensor<1x14x14x736xf32>, tensor<4xi64>) -> tensor<1x736x14x14xf32>
     %3246 = "tosa.equal"(%773, %774) : (tensor<1x736x14x14xf32>, tensor<1x736x14x14xf32>) -> tensor<1x736x14x14xi1>
     %3247 = "tosa.select"(%3246, %3245, %113) : (tensor<1x736x14x14xi1>, tensor<1x736x14x14xf32>, tensor<f32>) -> tensor<1x736x14x14xf32>
-    %3248 = "tosa.mul"(%3247, %60) {shift = 0 : i32} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
-    %3249 = "tosa.mul"(%770, %3248) {shift = 0 : i32} : (tensor<1x736x1x1xf32>, tensor<1x736x14x14xf32>) -> tensor<1x736x14x14xf32>
+    %3248 = "tosa.mul"(%3247, %60) {shift = 0 : i8} : (tensor<1x736x14x14xf32>, tensor<1x736x1x1xf32>) -> tensor<1x736x14x14xf32>
+    %3249 = "tosa.mul"(%770, %3248) {shift = 0 : i8} : (tensor<1x736x1x1xf32>, tensor<1x736x14x14xf32>) -> tensor<1x736x14x14xf32>
     %extracted_slice_2364 = tensor.extract_slice %3249[0, 704, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x736x14x14xf32> to tensor<1x32x14x14xf32>
     %3250 = "tosa.add"(%3220, %extracted_slice_2364) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2365 = tensor.extract_slice %3249[0, 672, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x736x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8570,15 +8570,15 @@ module {
     %3268 = "tosa.transpose"(%3267, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3269 = "tosa.equal"(%763, %764) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3270 = "tosa.select"(%3269, %3268, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3271 = "tosa.mul"(%3270, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3272 = "tosa.mul"(%192, %3271) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3271 = "tosa.mul"(%3270, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3272 = "tosa.mul"(%192, %3271) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3273 = "tosa.transpose"(%3272, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3274 = "tosa.transpose_conv2d"(%3273, %144, %cst_113) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 704>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<704x1x1x128xf32>, tensor<704xf32>) -> tensor<1x14x14x704xf32>
     %3275 = "tosa.transpose"(%3274, %112) : (tensor<1x14x14x704xf32>, tensor<4xi64>) -> tensor<1x704x14x14xf32>
     %3276 = "tosa.equal"(%755, %756) : (tensor<1x704x14x14xf32>, tensor<1x704x14x14xf32>) -> tensor<1x704x14x14xi1>
     %3277 = "tosa.select"(%3276, %3275, %113) : (tensor<1x704x14x14xi1>, tensor<1x704x14x14xf32>, tensor<f32>) -> tensor<1x704x14x14xf32>
-    %3278 = "tosa.mul"(%3277, %62) {shift = 0 : i32} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
-    %3279 = "tosa.mul"(%752, %3278) {shift = 0 : i32} : (tensor<1x704x1x1xf32>, tensor<1x704x14x14xf32>) -> tensor<1x704x14x14xf32>
+    %3278 = "tosa.mul"(%3277, %62) {shift = 0 : i8} : (tensor<1x704x14x14xf32>, tensor<1x704x1x1xf32>) -> tensor<1x704x14x14xf32>
+    %3279 = "tosa.mul"(%752, %3278) {shift = 0 : i8} : (tensor<1x704x1x1xf32>, tensor<1x704x14x14xf32>) -> tensor<1x704x14x14xf32>
     %extracted_slice_2380 = tensor.extract_slice %3279[0, 672, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x704x14x14xf32> to tensor<1x32x14x14xf32>
     %3280 = "tosa.add"(%3251, %extracted_slice_2380) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2381 = tensor.extract_slice %3279[0, 640, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x704x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8614,15 +8614,15 @@ module {
     %3297 = "tosa.transpose"(%3296, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3298 = "tosa.equal"(%745, %746) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3299 = "tosa.select"(%3298, %3297, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3300 = "tosa.mul"(%3299, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3301 = "tosa.mul"(%192, %3300) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3300 = "tosa.mul"(%3299, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3301 = "tosa.mul"(%192, %3300) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3302 = "tosa.transpose"(%3301, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3303 = "tosa.transpose_conv2d"(%3302, %145, %cst_114) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 672>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<672x1x1x128xf32>, tensor<672xf32>) -> tensor<1x14x14x672xf32>
     %3304 = "tosa.transpose"(%3303, %112) : (tensor<1x14x14x672xf32>, tensor<4xi64>) -> tensor<1x672x14x14xf32>
     %3305 = "tosa.equal"(%737, %738) : (tensor<1x672x14x14xf32>, tensor<1x672x14x14xf32>) -> tensor<1x672x14x14xi1>
     %3306 = "tosa.select"(%3305, %3304, %113) : (tensor<1x672x14x14xi1>, tensor<1x672x14x14xf32>, tensor<f32>) -> tensor<1x672x14x14xf32>
-    %3307 = "tosa.mul"(%3306, %64) {shift = 0 : i32} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
-    %3308 = "tosa.mul"(%734, %3307) {shift = 0 : i32} : (tensor<1x672x1x1xf32>, tensor<1x672x14x14xf32>) -> tensor<1x672x14x14xf32>
+    %3307 = "tosa.mul"(%3306, %64) {shift = 0 : i8} : (tensor<1x672x14x14xf32>, tensor<1x672x1x1xf32>) -> tensor<1x672x14x14xf32>
+    %3308 = "tosa.mul"(%734, %3307) {shift = 0 : i8} : (tensor<1x672x1x1xf32>, tensor<1x672x14x14xf32>) -> tensor<1x672x14x14xf32>
     %extracted_slice_2395 = tensor.extract_slice %3308[0, 640, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x672x14x14xf32> to tensor<1x32x14x14xf32>
     %3309 = "tosa.add"(%3281, %extracted_slice_2395) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2396 = tensor.extract_slice %3308[0, 608, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x672x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8656,15 +8656,15 @@ module {
     %3325 = "tosa.transpose"(%3324, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3326 = "tosa.equal"(%727, %728) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3327 = "tosa.select"(%3326, %3325, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3328 = "tosa.mul"(%3327, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3329 = "tosa.mul"(%192, %3328) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3328 = "tosa.mul"(%3327, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3329 = "tosa.mul"(%192, %3328) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3330 = "tosa.transpose"(%3329, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3331 = "tosa.transpose_conv2d"(%3330, %146, %cst_115) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 640>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<640x1x1x128xf32>, tensor<640xf32>) -> tensor<1x14x14x640xf32>
     %3332 = "tosa.transpose"(%3331, %112) : (tensor<1x14x14x640xf32>, tensor<4xi64>) -> tensor<1x640x14x14xf32>
     %3333 = "tosa.equal"(%719, %720) : (tensor<1x640x14x14xf32>, tensor<1x640x14x14xf32>) -> tensor<1x640x14x14xi1>
     %3334 = "tosa.select"(%3333, %3332, %113) : (tensor<1x640x14x14xi1>, tensor<1x640x14x14xf32>, tensor<f32>) -> tensor<1x640x14x14xf32>
-    %3335 = "tosa.mul"(%3334, %66) {shift = 0 : i32} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
-    %3336 = "tosa.mul"(%716, %3335) {shift = 0 : i32} : (tensor<1x640x1x1xf32>, tensor<1x640x14x14xf32>) -> tensor<1x640x14x14xf32>
+    %3335 = "tosa.mul"(%3334, %66) {shift = 0 : i8} : (tensor<1x640x14x14xf32>, tensor<1x640x1x1xf32>) -> tensor<1x640x14x14xf32>
+    %3336 = "tosa.mul"(%716, %3335) {shift = 0 : i8} : (tensor<1x640x1x1xf32>, tensor<1x640x14x14xf32>) -> tensor<1x640x14x14xf32>
     %extracted_slice_2409 = tensor.extract_slice %3336[0, 608, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x640x14x14xf32> to tensor<1x32x14x14xf32>
     %3337 = "tosa.add"(%3310, %extracted_slice_2409) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2410 = tensor.extract_slice %3336[0, 576, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x640x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8696,15 +8696,15 @@ module {
     %3352 = "tosa.transpose"(%3351, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3353 = "tosa.equal"(%709, %710) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3354 = "tosa.select"(%3353, %3352, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3355 = "tosa.mul"(%3354, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3356 = "tosa.mul"(%192, %3355) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3355 = "tosa.mul"(%3354, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3356 = "tosa.mul"(%192, %3355) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3357 = "tosa.transpose"(%3356, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3358 = "tosa.transpose_conv2d"(%3357, %148, %cst_118) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 608>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<608x1x1x128xf32>, tensor<608xf32>) -> tensor<1x14x14x608xf32>
     %3359 = "tosa.transpose"(%3358, %112) : (tensor<1x14x14x608xf32>, tensor<4xi64>) -> tensor<1x608x14x14xf32>
     %3360 = "tosa.equal"(%701, %702) : (tensor<1x608x14x14xf32>, tensor<1x608x14x14xf32>) -> tensor<1x608x14x14xi1>
     %3361 = "tosa.select"(%3360, %3359, %113) : (tensor<1x608x14x14xi1>, tensor<1x608x14x14xf32>, tensor<f32>) -> tensor<1x608x14x14xf32>
-    %3362 = "tosa.mul"(%3361, %68) {shift = 0 : i32} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
-    %3363 = "tosa.mul"(%698, %3362) {shift = 0 : i32} : (tensor<1x608x1x1xf32>, tensor<1x608x14x14xf32>) -> tensor<1x608x14x14xf32>
+    %3362 = "tosa.mul"(%3361, %68) {shift = 0 : i8} : (tensor<1x608x14x14xf32>, tensor<1x608x1x1xf32>) -> tensor<1x608x14x14xf32>
+    %3363 = "tosa.mul"(%698, %3362) {shift = 0 : i8} : (tensor<1x608x1x1xf32>, tensor<1x608x14x14xf32>) -> tensor<1x608x14x14xf32>
     %extracted_slice_2422 = tensor.extract_slice %3363[0, 576, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x608x14x14xf32> to tensor<1x32x14x14xf32>
     %3364 = "tosa.add"(%3338, %extracted_slice_2422) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2423 = tensor.extract_slice %3363[0, 544, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x608x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8734,15 +8734,15 @@ module {
     %3378 = "tosa.transpose"(%3377, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3379 = "tosa.equal"(%691, %692) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3380 = "tosa.select"(%3379, %3378, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3381 = "tosa.mul"(%3380, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3382 = "tosa.mul"(%192, %3381) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3381 = "tosa.mul"(%3380, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3382 = "tosa.mul"(%192, %3381) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3383 = "tosa.transpose"(%3382, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3384 = "tosa.transpose_conv2d"(%3383, %149, %cst_119) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 576>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<576x1x1x128xf32>, tensor<576xf32>) -> tensor<1x14x14x576xf32>
     %3385 = "tosa.transpose"(%3384, %112) : (tensor<1x14x14x576xf32>, tensor<4xi64>) -> tensor<1x576x14x14xf32>
     %3386 = "tosa.equal"(%683, %684) : (tensor<1x576x14x14xf32>, tensor<1x576x14x14xf32>) -> tensor<1x576x14x14xi1>
     %3387 = "tosa.select"(%3386, %3385, %113) : (tensor<1x576x14x14xi1>, tensor<1x576x14x14xf32>, tensor<f32>) -> tensor<1x576x14x14xf32>
-    %3388 = "tosa.mul"(%3387, %70) {shift = 0 : i32} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
-    %3389 = "tosa.mul"(%680, %3388) {shift = 0 : i32} : (tensor<1x576x1x1xf32>, tensor<1x576x14x14xf32>) -> tensor<1x576x14x14xf32>
+    %3388 = "tosa.mul"(%3387, %70) {shift = 0 : i8} : (tensor<1x576x14x14xf32>, tensor<1x576x1x1xf32>) -> tensor<1x576x14x14xf32>
+    %3389 = "tosa.mul"(%680, %3388) {shift = 0 : i8} : (tensor<1x576x1x1xf32>, tensor<1x576x14x14xf32>) -> tensor<1x576x14x14xf32>
     %extracted_slice_2434 = tensor.extract_slice %3389[0, 544, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x576x14x14xf32> to tensor<1x32x14x14xf32>
     %3390 = "tosa.add"(%3365, %extracted_slice_2434) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2435 = tensor.extract_slice %3389[0, 512, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x576x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8770,15 +8770,15 @@ module {
     %3403 = "tosa.transpose"(%3402, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3404 = "tosa.equal"(%673, %674) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3405 = "tosa.select"(%3404, %3403, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3406 = "tosa.mul"(%3405, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3407 = "tosa.mul"(%192, %3406) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3406 = "tosa.mul"(%3405, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3407 = "tosa.mul"(%192, %3406) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3408 = "tosa.transpose"(%3407, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3409 = "tosa.transpose_conv2d"(%3408, %150, %cst_120) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 544>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<544x1x1x128xf32>, tensor<544xf32>) -> tensor<1x14x14x544xf32>
     %3410 = "tosa.transpose"(%3409, %112) : (tensor<1x14x14x544xf32>, tensor<4xi64>) -> tensor<1x544x14x14xf32>
     %3411 = "tosa.equal"(%665, %666) : (tensor<1x544x14x14xf32>, tensor<1x544x14x14xf32>) -> tensor<1x544x14x14xi1>
     %3412 = "tosa.select"(%3411, %3410, %113) : (tensor<1x544x14x14xi1>, tensor<1x544x14x14xf32>, tensor<f32>) -> tensor<1x544x14x14xf32>
-    %3413 = "tosa.mul"(%3412, %72) {shift = 0 : i32} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
-    %3414 = "tosa.mul"(%662, %3413) {shift = 0 : i32} : (tensor<1x544x1x1xf32>, tensor<1x544x14x14xf32>) -> tensor<1x544x14x14xf32>
+    %3413 = "tosa.mul"(%3412, %72) {shift = 0 : i8} : (tensor<1x544x14x14xf32>, tensor<1x544x1x1xf32>) -> tensor<1x544x14x14xf32>
+    %3414 = "tosa.mul"(%662, %3413) {shift = 0 : i8} : (tensor<1x544x1x1xf32>, tensor<1x544x14x14xf32>) -> tensor<1x544x14x14xf32>
     %extracted_slice_2445 = tensor.extract_slice %3414[0, 512, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x544x14x14xf32> to tensor<1x32x14x14xf32>
     %3415 = "tosa.add"(%3391, %extracted_slice_2445) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2446 = tensor.extract_slice %3414[0, 480, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x544x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8804,15 +8804,15 @@ module {
     %3427 = "tosa.transpose"(%3426, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3428 = "tosa.equal"(%655, %656) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3429 = "tosa.select"(%3428, %3427, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3430 = "tosa.mul"(%3429, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3431 = "tosa.mul"(%192, %3430) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3430 = "tosa.mul"(%3429, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3431 = "tosa.mul"(%192, %3430) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3432 = "tosa.transpose"(%3431, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3433 = "tosa.transpose_conv2d"(%3432, %151, %cst_121) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 512>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<512x1x1x128xf32>, tensor<512xf32>) -> tensor<1x14x14x512xf32>
     %3434 = "tosa.transpose"(%3433, %112) : (tensor<1x14x14x512xf32>, tensor<4xi64>) -> tensor<1x512x14x14xf32>
     %3435 = "tosa.equal"(%647, %648) : (tensor<1x512x14x14xf32>, tensor<1x512x14x14xf32>) -> tensor<1x512x14x14xi1>
     %3436 = "tosa.select"(%3435, %3434, %113) : (tensor<1x512x14x14xi1>, tensor<1x512x14x14xf32>, tensor<f32>) -> tensor<1x512x14x14xf32>
-    %3437 = "tosa.mul"(%3436, %76) {shift = 0 : i32} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
-    %3438 = "tosa.mul"(%507, %3437) {shift = 0 : i32} : (tensor<1x512x1x1xf32>, tensor<1x512x14x14xf32>) -> tensor<1x512x14x14xf32>
+    %3437 = "tosa.mul"(%3436, %76) {shift = 0 : i8} : (tensor<1x512x14x14xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x14x14xf32>
+    %3438 = "tosa.mul"(%507, %3437) {shift = 0 : i8} : (tensor<1x512x1x1xf32>, tensor<1x512x14x14xf32>) -> tensor<1x512x14x14xf32>
     %extracted_slice_2455 = tensor.extract_slice %3438[0, 480, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x512x14x14xf32> to tensor<1x32x14x14xf32>
     %3439 = "tosa.add"(%3416, %extracted_slice_2455) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2456 = tensor.extract_slice %3438[0, 448, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x512x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8836,15 +8836,15 @@ module {
     %3450 = "tosa.transpose"(%3449, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3451 = "tosa.equal"(%639, %640) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3452 = "tosa.select"(%3451, %3450, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3453 = "tosa.mul"(%3452, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3454 = "tosa.mul"(%192, %3453) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3453 = "tosa.mul"(%3452, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3454 = "tosa.mul"(%192, %3453) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3455 = "tosa.transpose"(%3454, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3456 = "tosa.transpose_conv2d"(%3455, %152, %cst_122) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 480>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<480x1x1x128xf32>, tensor<480xf32>) -> tensor<1x14x14x480xf32>
     %3457 = "tosa.transpose"(%3456, %112) : (tensor<1x14x14x480xf32>, tensor<4xi64>) -> tensor<1x480x14x14xf32>
     %3458 = "tosa.equal"(%631, %632) : (tensor<1x480x14x14xf32>, tensor<1x480x14x14xf32>) -> tensor<1x480x14x14xi1>
     %3459 = "tosa.select"(%3458, %3457, %113) : (tensor<1x480x14x14xi1>, tensor<1x480x14x14xf32>, tensor<f32>) -> tensor<1x480x14x14xf32>
-    %3460 = "tosa.mul"(%3459, %78) {shift = 0 : i32} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
-    %3461 = "tosa.mul"(%489, %3460) {shift = 0 : i32} : (tensor<1x480x1x1xf32>, tensor<1x480x14x14xf32>) -> tensor<1x480x14x14xf32>
+    %3460 = "tosa.mul"(%3459, %78) {shift = 0 : i8} : (tensor<1x480x14x14xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x14x14xf32>
+    %3461 = "tosa.mul"(%489, %3460) {shift = 0 : i8} : (tensor<1x480x1x1xf32>, tensor<1x480x14x14xf32>) -> tensor<1x480x14x14xf32>
     %extracted_slice_2464 = tensor.extract_slice %3461[0, 448, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x480x14x14xf32> to tensor<1x32x14x14xf32>
     %3462 = "tosa.add"(%3440, %extracted_slice_2464) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2465 = tensor.extract_slice %3461[0, 416, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x480x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8866,15 +8866,15 @@ module {
     %3472 = "tosa.transpose"(%3471, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3473 = "tosa.equal"(%623, %624) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3474 = "tosa.select"(%3473, %3472, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3475 = "tosa.mul"(%3474, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3476 = "tosa.mul"(%192, %3475) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3475 = "tosa.mul"(%3474, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3476 = "tosa.mul"(%192, %3475) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3477 = "tosa.transpose"(%3476, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3478 = "tosa.transpose_conv2d"(%3477, %153, %cst_123) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 448>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<448x1x1x128xf32>, tensor<448xf32>) -> tensor<1x14x14x448xf32>
     %3479 = "tosa.transpose"(%3478, %112) : (tensor<1x14x14x448xf32>, tensor<4xi64>) -> tensor<1x448x14x14xf32>
     %3480 = "tosa.equal"(%615, %616) : (tensor<1x448x14x14xf32>, tensor<1x448x14x14xf32>) -> tensor<1x448x14x14xi1>
     %3481 = "tosa.select"(%3480, %3479, %113) : (tensor<1x448x14x14xi1>, tensor<1x448x14x14xf32>, tensor<f32>) -> tensor<1x448x14x14xf32>
-    %3482 = "tosa.mul"(%3481, %80) {shift = 0 : i32} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
-    %3483 = "tosa.mul"(%471, %3482) {shift = 0 : i32} : (tensor<1x448x1x1xf32>, tensor<1x448x14x14xf32>) -> tensor<1x448x14x14xf32>
+    %3482 = "tosa.mul"(%3481, %80) {shift = 0 : i8} : (tensor<1x448x14x14xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x14x14xf32>
+    %3483 = "tosa.mul"(%471, %3482) {shift = 0 : i8} : (tensor<1x448x1x1xf32>, tensor<1x448x14x14xf32>) -> tensor<1x448x14x14xf32>
     %extracted_slice_2472 = tensor.extract_slice %3483[0, 416, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x448x14x14xf32> to tensor<1x32x14x14xf32>
     %3484 = "tosa.add"(%3463, %extracted_slice_2472) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2473 = tensor.extract_slice %3483[0, 384, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x448x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8894,15 +8894,15 @@ module {
     %3493 = "tosa.transpose"(%3492, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3494 = "tosa.equal"(%607, %608) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3495 = "tosa.select"(%3494, %3493, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3496 = "tosa.mul"(%3495, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3497 = "tosa.mul"(%192, %3496) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3496 = "tosa.mul"(%3495, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3497 = "tosa.mul"(%192, %3496) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3498 = "tosa.transpose"(%3497, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3499 = "tosa.transpose_conv2d"(%3498, %154, %cst_124) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 416>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<416x1x1x128xf32>, tensor<416xf32>) -> tensor<1x14x14x416xf32>
     %3500 = "tosa.transpose"(%3499, %112) : (tensor<1x14x14x416xf32>, tensor<4xi64>) -> tensor<1x416x14x14xf32>
     %3501 = "tosa.equal"(%599, %600) : (tensor<1x416x14x14xf32>, tensor<1x416x14x14xf32>) -> tensor<1x416x14x14xi1>
     %3502 = "tosa.select"(%3501, %3500, %113) : (tensor<1x416x14x14xi1>, tensor<1x416x14x14xf32>, tensor<f32>) -> tensor<1x416x14x14xf32>
-    %3503 = "tosa.mul"(%3502, %82) {shift = 0 : i32} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
-    %3504 = "tosa.mul"(%453, %3503) {shift = 0 : i32} : (tensor<1x416x1x1xf32>, tensor<1x416x14x14xf32>) -> tensor<1x416x14x14xf32>
+    %3503 = "tosa.mul"(%3502, %82) {shift = 0 : i8} : (tensor<1x416x14x14xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x14x14xf32>
+    %3504 = "tosa.mul"(%453, %3503) {shift = 0 : i8} : (tensor<1x416x1x1xf32>, tensor<1x416x14x14xf32>) -> tensor<1x416x14x14xf32>
     %extracted_slice_2479 = tensor.extract_slice %3504[0, 384, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x416x14x14xf32> to tensor<1x32x14x14xf32>
     %3505 = "tosa.add"(%3485, %extracted_slice_2479) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2480 = tensor.extract_slice %3504[0, 352, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x416x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8920,15 +8920,15 @@ module {
     %3513 = "tosa.transpose"(%3512, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3514 = "tosa.equal"(%591, %592) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3515 = "tosa.select"(%3514, %3513, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3516 = "tosa.mul"(%3515, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3517 = "tosa.mul"(%192, %3516) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3516 = "tosa.mul"(%3515, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3517 = "tosa.mul"(%192, %3516) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3518 = "tosa.transpose"(%3517, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3519 = "tosa.transpose_conv2d"(%3518, %155, %cst_125) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 384>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<384x1x1x128xf32>, tensor<384xf32>) -> tensor<1x14x14x384xf32>
     %3520 = "tosa.transpose"(%3519, %112) : (tensor<1x14x14x384xf32>, tensor<4xi64>) -> tensor<1x384x14x14xf32>
     %3521 = "tosa.equal"(%583, %584) : (tensor<1x384x14x14xf32>, tensor<1x384x14x14xf32>) -> tensor<1x384x14x14xi1>
     %3522 = "tosa.select"(%3521, %3520, %113) : (tensor<1x384x14x14xi1>, tensor<1x384x14x14xf32>, tensor<f32>) -> tensor<1x384x14x14xf32>
-    %3523 = "tosa.mul"(%3522, %84) {shift = 0 : i32} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
-    %3524 = "tosa.mul"(%435, %3523) {shift = 0 : i32} : (tensor<1x384x1x1xf32>, tensor<1x384x14x14xf32>) -> tensor<1x384x14x14xf32>
+    %3523 = "tosa.mul"(%3522, %84) {shift = 0 : i8} : (tensor<1x384x14x14xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x14x14xf32>
+    %3524 = "tosa.mul"(%435, %3523) {shift = 0 : i8} : (tensor<1x384x1x1xf32>, tensor<1x384x14x14xf32>) -> tensor<1x384x14x14xf32>
     %extracted_slice_2485 = tensor.extract_slice %3524[0, 352, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x384x14x14xf32> to tensor<1x32x14x14xf32>
     %3525 = "tosa.add"(%3506, %extracted_slice_2485) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2486 = tensor.extract_slice %3524[0, 320, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x384x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8944,15 +8944,15 @@ module {
     %3532 = "tosa.transpose"(%3531, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3533 = "tosa.equal"(%575, %576) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3534 = "tosa.select"(%3533, %3532, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3535 = "tosa.mul"(%3534, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3536 = "tosa.mul"(%192, %3535) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3535 = "tosa.mul"(%3534, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3536 = "tosa.mul"(%192, %3535) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3537 = "tosa.transpose"(%3536, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3538 = "tosa.transpose_conv2d"(%3537, %156, %cst_126) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 352>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<352x1x1x128xf32>, tensor<352xf32>) -> tensor<1x14x14x352xf32>
     %3539 = "tosa.transpose"(%3538, %112) : (tensor<1x14x14x352xf32>, tensor<4xi64>) -> tensor<1x352x14x14xf32>
     %3540 = "tosa.equal"(%567, %568) : (tensor<1x352x14x14xf32>, tensor<1x352x14x14xf32>) -> tensor<1x352x14x14xi1>
     %3541 = "tosa.select"(%3540, %3539, %113) : (tensor<1x352x14x14xi1>, tensor<1x352x14x14xf32>, tensor<f32>) -> tensor<1x352x14x14xf32>
-    %3542 = "tosa.mul"(%3541, %86) {shift = 0 : i32} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
-    %3543 = "tosa.mul"(%417, %3542) {shift = 0 : i32} : (tensor<1x352x1x1xf32>, tensor<1x352x14x14xf32>) -> tensor<1x352x14x14xf32>
+    %3542 = "tosa.mul"(%3541, %86) {shift = 0 : i8} : (tensor<1x352x14x14xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x14x14xf32>
+    %3543 = "tosa.mul"(%417, %3542) {shift = 0 : i8} : (tensor<1x352x1x1xf32>, tensor<1x352x14x14xf32>) -> tensor<1x352x14x14xf32>
     %extracted_slice_2490 = tensor.extract_slice %3543[0, 320, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x352x14x14xf32> to tensor<1x32x14x14xf32>
     %3544 = "tosa.add"(%3526, %extracted_slice_2490) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2491 = tensor.extract_slice %3543[0, 288, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x352x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8966,15 +8966,15 @@ module {
     %3550 = "tosa.transpose"(%3549, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3551 = "tosa.equal"(%559, %560) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3552 = "tosa.select"(%3551, %3550, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3553 = "tosa.mul"(%3552, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3554 = "tosa.mul"(%192, %3553) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3553 = "tosa.mul"(%3552, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3554 = "tosa.mul"(%192, %3553) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3555 = "tosa.transpose"(%3554, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3556 = "tosa.transpose_conv2d"(%3555, %157, %cst_127) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 320>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<320x1x1x128xf32>, tensor<320xf32>) -> tensor<1x14x14x320xf32>
     %3557 = "tosa.transpose"(%3556, %112) : (tensor<1x14x14x320xf32>, tensor<4xi64>) -> tensor<1x320x14x14xf32>
     %3558 = "tosa.equal"(%551, %552) : (tensor<1x320x14x14xf32>, tensor<1x320x14x14xf32>) -> tensor<1x320x14x14xi1>
     %3559 = "tosa.select"(%3558, %3557, %113) : (tensor<1x320x14x14xi1>, tensor<1x320x14x14xf32>, tensor<f32>) -> tensor<1x320x14x14xf32>
-    %3560 = "tosa.mul"(%3559, %88) {shift = 0 : i32} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
-    %3561 = "tosa.mul"(%399, %3560) {shift = 0 : i32} : (tensor<1x320x1x1xf32>, tensor<1x320x14x14xf32>) -> tensor<1x320x14x14xf32>
+    %3560 = "tosa.mul"(%3559, %88) {shift = 0 : i8} : (tensor<1x320x14x14xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x14x14xf32>
+    %3561 = "tosa.mul"(%399, %3560) {shift = 0 : i8} : (tensor<1x320x1x1xf32>, tensor<1x320x14x14xf32>) -> tensor<1x320x14x14xf32>
     %extracted_slice_2494 = tensor.extract_slice %3561[0, 288, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x320x14x14xf32> to tensor<1x32x14x14xf32>
     %3562 = "tosa.add"(%3545, %extracted_slice_2494) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2495 = tensor.extract_slice %3561[0, 256, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x320x14x14xf32> to tensor<1x32x14x14xf32>
@@ -8986,15 +8986,15 @@ module {
     %3567 = "tosa.transpose"(%3566, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3568 = "tosa.equal"(%543, %544) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3569 = "tosa.select"(%3568, %3567, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3570 = "tosa.mul"(%3569, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3571 = "tosa.mul"(%192, %3570) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3570 = "tosa.mul"(%3569, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3571 = "tosa.mul"(%192, %3570) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3572 = "tosa.transpose"(%3571, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3573 = "tosa.transpose_conv2d"(%3572, %158, %cst_128) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 288>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<288x1x1x128xf32>, tensor<288xf32>) -> tensor<1x14x14x288xf32>
     %3574 = "tosa.transpose"(%3573, %112) : (tensor<1x14x14x288xf32>, tensor<4xi64>) -> tensor<1x288x14x14xf32>
     %3575 = "tosa.equal"(%535, %536) : (tensor<1x288x14x14xf32>, tensor<1x288x14x14xf32>) -> tensor<1x288x14x14xi1>
     %3576 = "tosa.select"(%3575, %3574, %113) : (tensor<1x288x14x14xi1>, tensor<1x288x14x14xf32>, tensor<f32>) -> tensor<1x288x14x14xf32>
-    %3577 = "tosa.mul"(%3576, %90) {shift = 0 : i32} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
-    %3578 = "tosa.mul"(%381, %3577) {shift = 0 : i32} : (tensor<1x288x1x1xf32>, tensor<1x288x14x14xf32>) -> tensor<1x288x14x14xf32>
+    %3577 = "tosa.mul"(%3576, %90) {shift = 0 : i8} : (tensor<1x288x14x14xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x14x14xf32>
+    %3578 = "tosa.mul"(%381, %3577) {shift = 0 : i8} : (tensor<1x288x1x1xf32>, tensor<1x288x14x14xf32>) -> tensor<1x288x14x14xf32>
     %extracted_slice_2497 = tensor.extract_slice %3578[0, 256, 0, 0] [1, 32, 14, 14] [1, 1, 1, 1] : tensor<1x288x14x14xf32> to tensor<1x32x14x14xf32>
     %3579 = "tosa.add"(%3563, %extracted_slice_2497) : (tensor<1x32x14x14xf32>, tensor<1x32x14x14xf32>) -> tensor<1x32x14x14xf32>
     %extracted_slice_2498 = tensor.extract_slice %3578[0, 0, 0, 0] [1, 256, 14, 14] [1, 1, 1, 1] : tensor<1x288x14x14xf32> to tensor<1x256x14x14xf32>
@@ -9004,15 +9004,15 @@ module {
     %3583 = "tosa.transpose"(%3582, %112) : (tensor<1x14x14x128xf32>, tensor<4xi64>) -> tensor<1x128x14x14xf32>
     %3584 = "tosa.equal"(%527, %528) : (tensor<1x128x14x14xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xi1>
     %3585 = "tosa.select"(%3584, %3583, %113) : (tensor<1x128x14x14xi1>, tensor<1x128x14x14xf32>, tensor<f32>) -> tensor<1x128x14x14xf32>
-    %3586 = "tosa.mul"(%3585, %103) {shift = 0 : i32} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
-    %3587 = "tosa.mul"(%192, %3586) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
+    %3586 = "tosa.mul"(%3585, %103) {shift = 0 : i8} : (tensor<1x128x14x14xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x14x14xf32>
+    %3587 = "tosa.mul"(%192, %3586) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x14x14xf32>) -> tensor<1x128x14x14xf32>
     %3588 = "tosa.transpose"(%3587, %111) : (tensor<1x128x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x128xf32>
     %3589 = "tosa.transpose_conv2d"(%3588, %159, %cst_129) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 14, 14, 256>, stride = array<i64: 1, 1>} : (tensor<1x14x14x128xf32>, tensor<256x1x1x128xf32>, tensor<256xf32>) -> tensor<1x14x14x256xf32>
     %3590 = "tosa.transpose"(%3589, %112) : (tensor<1x14x14x256xf32>, tensor<4xi64>) -> tensor<1x256x14x14xf32>
     %3591 = "tosa.equal"(%519, %520) : (tensor<1x256x14x14xf32>, tensor<1x256x14x14xf32>) -> tensor<1x256x14x14xi1>
     %3592 = "tosa.select"(%3591, %3590, %113) : (tensor<1x256x14x14xi1>, tensor<1x256x14x14xf32>, tensor<f32>) -> tensor<1x256x14x14xf32>
-    %3593 = "tosa.mul"(%3592, %92) {shift = 0 : i32} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
-    %3594 = "tosa.mul"(%290, %3593) {shift = 0 : i32} : (tensor<1x256x1x1xf32>, tensor<1x256x14x14xf32>) -> tensor<1x256x14x14xf32>
+    %3593 = "tosa.mul"(%3592, %92) {shift = 0 : i8} : (tensor<1x256x14x14xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x14x14xf32>
+    %3594 = "tosa.mul"(%290, %3593) {shift = 0 : i8} : (tensor<1x256x1x1xf32>, tensor<1x256x14x14xf32>) -> tensor<1x256x14x14xf32>
     %3595 = "tosa.add"(%3580, %3594) : (tensor<1x256x14x14xf32>, tensor<1x256x14x14xf32>) -> tensor<1x256x14x14xf32>
     %3596 = "tosa.transpose"(%3595, %111) : (tensor<1x256x14x14xf32>, tensor<4xi64>) -> tensor<1x14x14x256xf32>
     %3597 = linalg.generic {indexing_maps = [#map3, #map1, #map2, #map3], iterator_types = ["parallel", "reduction", "reduction", "parallel", "reduction", "reduction"]} ins(%513, %cst_117, %3596 : tensor<1x28x28x256xf32>, tensor<2x2xf32>, tensor<1x14x14x256xf32>) outs(%cst_130 : tensor<1x28x28x256xf32>) {
@@ -9025,8 +9025,8 @@ module {
     %3599 = "tosa.transpose"(%3598, %112) : (tensor<1x28x28x512xf32>, tensor<4xi64>) -> tensor<1x512x28x28xf32>
     %3600 = "tosa.equal"(%510, %511) : (tensor<1x512x28x28xf32>, tensor<1x512x28x28xf32>) -> tensor<1x512x28x28xi1>
     %3601 = "tosa.select"(%3600, %3599, %113) : (tensor<1x512x28x28xi1>, tensor<1x512x28x28xf32>, tensor<f32>) -> tensor<1x512x28x28xf32>
-    %3602 = "tosa.mul"(%3601, %76) {shift = 0 : i32} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
-    %3603 = "tosa.mul"(%507, %3602) {shift = 0 : i32} : (tensor<1x512x1x1xf32>, tensor<1x512x28x28xf32>) -> tensor<1x512x28x28xf32>
+    %3602 = "tosa.mul"(%3601, %76) {shift = 0 : i8} : (tensor<1x512x28x28xf32>, tensor<1x512x1x1xf32>) -> tensor<1x512x28x28xf32>
+    %3603 = "tosa.mul"(%507, %3602) {shift = 0 : i8} : (tensor<1x512x1x1xf32>, tensor<1x512x28x28xf32>) -> tensor<1x512x28x28xf32>
     %extracted_slice_2499 = tensor.extract_slice %3603[0, 480, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x512x28x28xf32> to tensor<1x32x28x28xf32>
     %extracted_slice_2500 = tensor.extract_slice %3603[0, 448, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x512x28x28xf32> to tensor<1x32x28x28xf32>
     %extracted_slice_2501 = tensor.extract_slice %3603[0, 416, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x512x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9045,15 +9045,15 @@ module {
     %3606 = "tosa.transpose"(%3605, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3607 = "tosa.equal"(%500, %501) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3608 = "tosa.select"(%3607, %3606, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3609 = "tosa.mul"(%3608, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3610 = "tosa.mul"(%192, %3609) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3609 = "tosa.mul"(%3608, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3610 = "tosa.mul"(%192, %3609) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3611 = "tosa.transpose"(%3610, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3612 = "tosa.transpose_conv2d"(%3611, %152, %cst_122) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 480>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<480x1x1x128xf32>, tensor<480xf32>) -> tensor<1x28x28x480xf32>
     %3613 = "tosa.transpose"(%3612, %112) : (tensor<1x28x28x480xf32>, tensor<4xi64>) -> tensor<1x480x28x28xf32>
     %3614 = "tosa.equal"(%492, %493) : (tensor<1x480x28x28xf32>, tensor<1x480x28x28xf32>) -> tensor<1x480x28x28xi1>
     %3615 = "tosa.select"(%3614, %3613, %113) : (tensor<1x480x28x28xi1>, tensor<1x480x28x28xf32>, tensor<f32>) -> tensor<1x480x28x28xf32>
-    %3616 = "tosa.mul"(%3615, %78) {shift = 0 : i32} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
-    %3617 = "tosa.mul"(%489, %3616) {shift = 0 : i32} : (tensor<1x480x1x1xf32>, tensor<1x480x28x28xf32>) -> tensor<1x480x28x28xf32>
+    %3616 = "tosa.mul"(%3615, %78) {shift = 0 : i8} : (tensor<1x480x28x28xf32>, tensor<1x480x1x1xf32>) -> tensor<1x480x28x28xf32>
+    %3617 = "tosa.mul"(%489, %3616) {shift = 0 : i8} : (tensor<1x480x1x1xf32>, tensor<1x480x28x28xf32>) -> tensor<1x480x28x28xf32>
     %extracted_slice_2512 = tensor.extract_slice %3617[0, 448, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x480x28x28xf32> to tensor<1x32x28x28xf32>
     %3618 = "tosa.add"(%extracted_slice_2500, %extracted_slice_2512) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2513 = tensor.extract_slice %3617[0, 416, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x480x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9083,15 +9083,15 @@ module {
     %3632 = "tosa.transpose"(%3631, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3633 = "tosa.equal"(%482, %483) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3634 = "tosa.select"(%3633, %3632, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3635 = "tosa.mul"(%3634, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3636 = "tosa.mul"(%192, %3635) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3635 = "tosa.mul"(%3634, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3636 = "tosa.mul"(%192, %3635) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3637 = "tosa.transpose"(%3636, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3638 = "tosa.transpose_conv2d"(%3637, %153, %cst_123) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 448>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<448x1x1x128xf32>, tensor<448xf32>) -> tensor<1x28x28x448xf32>
     %3639 = "tosa.transpose"(%3638, %112) : (tensor<1x28x28x448xf32>, tensor<4xi64>) -> tensor<1x448x28x28xf32>
     %3640 = "tosa.equal"(%474, %475) : (tensor<1x448x28x28xf32>, tensor<1x448x28x28xf32>) -> tensor<1x448x28x28xi1>
     %3641 = "tosa.select"(%3640, %3639, %113) : (tensor<1x448x28x28xi1>, tensor<1x448x28x28xf32>, tensor<f32>) -> tensor<1x448x28x28xf32>
-    %3642 = "tosa.mul"(%3641, %80) {shift = 0 : i32} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
-    %3643 = "tosa.mul"(%471, %3642) {shift = 0 : i32} : (tensor<1x448x1x1xf32>, tensor<1x448x28x28xf32>) -> tensor<1x448x28x28xf32>
+    %3642 = "tosa.mul"(%3641, %80) {shift = 0 : i8} : (tensor<1x448x28x28xf32>, tensor<1x448x1x1xf32>) -> tensor<1x448x28x28xf32>
+    %3643 = "tosa.mul"(%471, %3642) {shift = 0 : i8} : (tensor<1x448x1x1xf32>, tensor<1x448x28x28xf32>) -> tensor<1x448x28x28xf32>
     %extracted_slice_2524 = tensor.extract_slice %3643[0, 416, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x448x28x28xf32> to tensor<1x32x28x28xf32>
     %3644 = "tosa.add"(%3619, %extracted_slice_2524) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2525 = tensor.extract_slice %3643[0, 384, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x448x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9119,15 +9119,15 @@ module {
     %3657 = "tosa.transpose"(%3656, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3658 = "tosa.equal"(%464, %465) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3659 = "tosa.select"(%3658, %3657, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3660 = "tosa.mul"(%3659, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3661 = "tosa.mul"(%192, %3660) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3660 = "tosa.mul"(%3659, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3661 = "tosa.mul"(%192, %3660) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3662 = "tosa.transpose"(%3661, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3663 = "tosa.transpose_conv2d"(%3662, %154, %cst_124) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 416>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<416x1x1x128xf32>, tensor<416xf32>) -> tensor<1x28x28x416xf32>
     %3664 = "tosa.transpose"(%3663, %112) : (tensor<1x28x28x416xf32>, tensor<4xi64>) -> tensor<1x416x28x28xf32>
     %3665 = "tosa.equal"(%456, %457) : (tensor<1x416x28x28xf32>, tensor<1x416x28x28xf32>) -> tensor<1x416x28x28xi1>
     %3666 = "tosa.select"(%3665, %3664, %113) : (tensor<1x416x28x28xi1>, tensor<1x416x28x28xf32>, tensor<f32>) -> tensor<1x416x28x28xf32>
-    %3667 = "tosa.mul"(%3666, %82) {shift = 0 : i32} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
-    %3668 = "tosa.mul"(%453, %3667) {shift = 0 : i32} : (tensor<1x416x1x1xf32>, tensor<1x416x28x28xf32>) -> tensor<1x416x28x28xf32>
+    %3667 = "tosa.mul"(%3666, %82) {shift = 0 : i8} : (tensor<1x416x28x28xf32>, tensor<1x416x1x1xf32>) -> tensor<1x416x28x28xf32>
+    %3668 = "tosa.mul"(%453, %3667) {shift = 0 : i8} : (tensor<1x416x1x1xf32>, tensor<1x416x28x28xf32>) -> tensor<1x416x28x28xf32>
     %extracted_slice_2535 = tensor.extract_slice %3668[0, 384, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x416x28x28xf32> to tensor<1x32x28x28xf32>
     %3669 = "tosa.add"(%3645, %extracted_slice_2535) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2536 = tensor.extract_slice %3668[0, 352, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x416x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9153,15 +9153,15 @@ module {
     %3681 = "tosa.transpose"(%3680, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3682 = "tosa.equal"(%446, %447) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3683 = "tosa.select"(%3682, %3681, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3684 = "tosa.mul"(%3683, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3685 = "tosa.mul"(%192, %3684) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3684 = "tosa.mul"(%3683, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3685 = "tosa.mul"(%192, %3684) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3686 = "tosa.transpose"(%3685, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3687 = "tosa.transpose_conv2d"(%3686, %155, %cst_125) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 384>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<384x1x1x128xf32>, tensor<384xf32>) -> tensor<1x28x28x384xf32>
     %3688 = "tosa.transpose"(%3687, %112) : (tensor<1x28x28x384xf32>, tensor<4xi64>) -> tensor<1x384x28x28xf32>
     %3689 = "tosa.equal"(%438, %439) : (tensor<1x384x28x28xf32>, tensor<1x384x28x28xf32>) -> tensor<1x384x28x28xi1>
     %3690 = "tosa.select"(%3689, %3688, %113) : (tensor<1x384x28x28xi1>, tensor<1x384x28x28xf32>, tensor<f32>) -> tensor<1x384x28x28xf32>
-    %3691 = "tosa.mul"(%3690, %84) {shift = 0 : i32} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
-    %3692 = "tosa.mul"(%435, %3691) {shift = 0 : i32} : (tensor<1x384x1x1xf32>, tensor<1x384x28x28xf32>) -> tensor<1x384x28x28xf32>
+    %3691 = "tosa.mul"(%3690, %84) {shift = 0 : i8} : (tensor<1x384x28x28xf32>, tensor<1x384x1x1xf32>) -> tensor<1x384x28x28xf32>
+    %3692 = "tosa.mul"(%435, %3691) {shift = 0 : i8} : (tensor<1x384x1x1xf32>, tensor<1x384x28x28xf32>) -> tensor<1x384x28x28xf32>
     %extracted_slice_2545 = tensor.extract_slice %3692[0, 352, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x384x28x28xf32> to tensor<1x32x28x28xf32>
     %3693 = "tosa.add"(%3670, %extracted_slice_2545) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2546 = tensor.extract_slice %3692[0, 320, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x384x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9185,15 +9185,15 @@ module {
     %3704 = "tosa.transpose"(%3703, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3705 = "tosa.equal"(%428, %429) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3706 = "tosa.select"(%3705, %3704, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3707 = "tosa.mul"(%3706, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3708 = "tosa.mul"(%192, %3707) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3707 = "tosa.mul"(%3706, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3708 = "tosa.mul"(%192, %3707) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3709 = "tosa.transpose"(%3708, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3710 = "tosa.transpose_conv2d"(%3709, %156, %cst_126) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 352>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<352x1x1x128xf32>, tensor<352xf32>) -> tensor<1x28x28x352xf32>
     %3711 = "tosa.transpose"(%3710, %112) : (tensor<1x28x28x352xf32>, tensor<4xi64>) -> tensor<1x352x28x28xf32>
     %3712 = "tosa.equal"(%420, %421) : (tensor<1x352x28x28xf32>, tensor<1x352x28x28xf32>) -> tensor<1x352x28x28xi1>
     %3713 = "tosa.select"(%3712, %3711, %113) : (tensor<1x352x28x28xi1>, tensor<1x352x28x28xf32>, tensor<f32>) -> tensor<1x352x28x28xf32>
-    %3714 = "tosa.mul"(%3713, %86) {shift = 0 : i32} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
-    %3715 = "tosa.mul"(%417, %3714) {shift = 0 : i32} : (tensor<1x352x1x1xf32>, tensor<1x352x28x28xf32>) -> tensor<1x352x28x28xf32>
+    %3714 = "tosa.mul"(%3713, %86) {shift = 0 : i8} : (tensor<1x352x28x28xf32>, tensor<1x352x1x1xf32>) -> tensor<1x352x28x28xf32>
+    %3715 = "tosa.mul"(%417, %3714) {shift = 0 : i8} : (tensor<1x352x1x1xf32>, tensor<1x352x28x28xf32>) -> tensor<1x352x28x28xf32>
     %extracted_slice_2554 = tensor.extract_slice %3715[0, 320, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x352x28x28xf32> to tensor<1x32x28x28xf32>
     %3716 = "tosa.add"(%3694, %extracted_slice_2554) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2555 = tensor.extract_slice %3715[0, 288, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x352x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9215,15 +9215,15 @@ module {
     %3726 = "tosa.transpose"(%3725, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3727 = "tosa.equal"(%410, %411) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3728 = "tosa.select"(%3727, %3726, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3729 = "tosa.mul"(%3728, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3730 = "tosa.mul"(%192, %3729) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3729 = "tosa.mul"(%3728, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3730 = "tosa.mul"(%192, %3729) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3731 = "tosa.transpose"(%3730, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3732 = "tosa.transpose_conv2d"(%3731, %157, %cst_127) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 320>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<320x1x1x128xf32>, tensor<320xf32>) -> tensor<1x28x28x320xf32>
     %3733 = "tosa.transpose"(%3732, %112) : (tensor<1x28x28x320xf32>, tensor<4xi64>) -> tensor<1x320x28x28xf32>
     %3734 = "tosa.equal"(%402, %403) : (tensor<1x320x28x28xf32>, tensor<1x320x28x28xf32>) -> tensor<1x320x28x28xi1>
     %3735 = "tosa.select"(%3734, %3733, %113) : (tensor<1x320x28x28xi1>, tensor<1x320x28x28xf32>, tensor<f32>) -> tensor<1x320x28x28xf32>
-    %3736 = "tosa.mul"(%3735, %88) {shift = 0 : i32} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
-    %3737 = "tosa.mul"(%399, %3736) {shift = 0 : i32} : (tensor<1x320x1x1xf32>, tensor<1x320x28x28xf32>) -> tensor<1x320x28x28xf32>
+    %3736 = "tosa.mul"(%3735, %88) {shift = 0 : i8} : (tensor<1x320x28x28xf32>, tensor<1x320x1x1xf32>) -> tensor<1x320x28x28xf32>
+    %3737 = "tosa.mul"(%399, %3736) {shift = 0 : i8} : (tensor<1x320x1x1xf32>, tensor<1x320x28x28xf32>) -> tensor<1x320x28x28xf32>
     %extracted_slice_2562 = tensor.extract_slice %3737[0, 288, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x320x28x28xf32> to tensor<1x32x28x28xf32>
     %3738 = "tosa.add"(%3717, %extracted_slice_2562) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2563 = tensor.extract_slice %3737[0, 256, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x320x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9243,15 +9243,15 @@ module {
     %3747 = "tosa.transpose"(%3746, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3748 = "tosa.equal"(%392, %393) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3749 = "tosa.select"(%3748, %3747, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3750 = "tosa.mul"(%3749, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3751 = "tosa.mul"(%192, %3750) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3750 = "tosa.mul"(%3749, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3751 = "tosa.mul"(%192, %3750) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3752 = "tosa.transpose"(%3751, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3753 = "tosa.transpose_conv2d"(%3752, %158, %cst_128) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 288>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<288x1x1x128xf32>, tensor<288xf32>) -> tensor<1x28x28x288xf32>
     %3754 = "tosa.transpose"(%3753, %112) : (tensor<1x28x28x288xf32>, tensor<4xi64>) -> tensor<1x288x28x28xf32>
     %3755 = "tosa.equal"(%384, %385) : (tensor<1x288x28x28xf32>, tensor<1x288x28x28xf32>) -> tensor<1x288x28x28xi1>
     %3756 = "tosa.select"(%3755, %3754, %113) : (tensor<1x288x28x28xi1>, tensor<1x288x28x28xf32>, tensor<f32>) -> tensor<1x288x28x28xf32>
-    %3757 = "tosa.mul"(%3756, %90) {shift = 0 : i32} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
-    %3758 = "tosa.mul"(%381, %3757) {shift = 0 : i32} : (tensor<1x288x1x1xf32>, tensor<1x288x28x28xf32>) -> tensor<1x288x28x28xf32>
+    %3757 = "tosa.mul"(%3756, %90) {shift = 0 : i8} : (tensor<1x288x28x28xf32>, tensor<1x288x1x1xf32>) -> tensor<1x288x28x28xf32>
+    %3758 = "tosa.mul"(%381, %3757) {shift = 0 : i8} : (tensor<1x288x1x1xf32>, tensor<1x288x28x28xf32>) -> tensor<1x288x28x28xf32>
     %extracted_slice_2569 = tensor.extract_slice %3758[0, 256, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x288x28x28xf32> to tensor<1x32x28x28xf32>
     %3759 = "tosa.add"(%3739, %extracted_slice_2569) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2570 = tensor.extract_slice %3758[0, 224, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x288x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9269,15 +9269,15 @@ module {
     %3767 = "tosa.transpose"(%3766, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3768 = "tosa.equal"(%374, %375) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3769 = "tosa.select"(%3768, %3767, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3770 = "tosa.mul"(%3769, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3771 = "tosa.mul"(%192, %3770) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3770 = "tosa.mul"(%3769, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3771 = "tosa.mul"(%192, %3770) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3772 = "tosa.transpose"(%3771, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3773 = "tosa.transpose_conv2d"(%3772, %159, %cst_129) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 256>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<256x1x1x128xf32>, tensor<256xf32>) -> tensor<1x28x28x256xf32>
     %3774 = "tosa.transpose"(%3773, %112) : (tensor<1x28x28x256xf32>, tensor<4xi64>) -> tensor<1x256x28x28xf32>
     %3775 = "tosa.equal"(%366, %367) : (tensor<1x256x28x28xf32>, tensor<1x256x28x28xf32>) -> tensor<1x256x28x28xi1>
     %3776 = "tosa.select"(%3775, %3774, %113) : (tensor<1x256x28x28xi1>, tensor<1x256x28x28xf32>, tensor<f32>) -> tensor<1x256x28x28xf32>
-    %3777 = "tosa.mul"(%3776, %92) {shift = 0 : i32} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
-    %3778 = "tosa.mul"(%290, %3777) {shift = 0 : i32} : (tensor<1x256x1x1xf32>, tensor<1x256x28x28xf32>) -> tensor<1x256x28x28xf32>
+    %3777 = "tosa.mul"(%3776, %92) {shift = 0 : i8} : (tensor<1x256x28x28xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x28x28xf32>
+    %3778 = "tosa.mul"(%290, %3777) {shift = 0 : i8} : (tensor<1x256x1x1xf32>, tensor<1x256x28x28xf32>) -> tensor<1x256x28x28xf32>
     %extracted_slice_2575 = tensor.extract_slice %3778[0, 224, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x256x28x28xf32> to tensor<1x32x28x28xf32>
     %3779 = "tosa.add"(%3760, %extracted_slice_2575) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2576 = tensor.extract_slice %3778[0, 192, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x256x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9293,15 +9293,15 @@ module {
     %3786 = "tosa.transpose"(%3785, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3787 = "tosa.equal"(%358, %359) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3788 = "tosa.select"(%3787, %3786, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3789 = "tosa.mul"(%3788, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3790 = "tosa.mul"(%192, %3789) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3789 = "tosa.mul"(%3788, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3790 = "tosa.mul"(%192, %3789) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3791 = "tosa.transpose"(%3790, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3792 = "tosa.transpose_conv2d"(%3791, %161, %cst_131) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 224>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<224x1x1x128xf32>, tensor<224xf32>) -> tensor<1x28x28x224xf32>
     %3793 = "tosa.transpose"(%3792, %112) : (tensor<1x28x28x224xf32>, tensor<4xi64>) -> tensor<1x224x28x28xf32>
     %3794 = "tosa.equal"(%350, %351) : (tensor<1x224x28x28xf32>, tensor<1x224x28x28xf32>) -> tensor<1x224x28x28xi1>
     %3795 = "tosa.select"(%3794, %3793, %113) : (tensor<1x224x28x28xi1>, tensor<1x224x28x28xf32>, tensor<f32>) -> tensor<1x224x28x28xf32>
-    %3796 = "tosa.mul"(%3795, %94) {shift = 0 : i32} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
-    %3797 = "tosa.mul"(%272, %3796) {shift = 0 : i32} : (tensor<1x224x1x1xf32>, tensor<1x224x28x28xf32>) -> tensor<1x224x28x28xf32>
+    %3796 = "tosa.mul"(%3795, %94) {shift = 0 : i8} : (tensor<1x224x28x28xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x28x28xf32>
+    %3797 = "tosa.mul"(%272, %3796) {shift = 0 : i8} : (tensor<1x224x1x1xf32>, tensor<1x224x28x28xf32>) -> tensor<1x224x28x28xf32>
     %extracted_slice_2580 = tensor.extract_slice %3797[0, 192, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x224x28x28xf32> to tensor<1x32x28x28xf32>
     %3798 = "tosa.add"(%3780, %extracted_slice_2580) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2581 = tensor.extract_slice %3797[0, 160, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x224x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9315,15 +9315,15 @@ module {
     %3804 = "tosa.transpose"(%3803, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3805 = "tosa.equal"(%342, %343) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3806 = "tosa.select"(%3805, %3804, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3807 = "tosa.mul"(%3806, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3808 = "tosa.mul"(%192, %3807) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3807 = "tosa.mul"(%3806, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3808 = "tosa.mul"(%192, %3807) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3809 = "tosa.transpose"(%3808, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3810 = "tosa.transpose_conv2d"(%3809, %162, %cst_132) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 192>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<192x1x1x128xf32>, tensor<192xf32>) -> tensor<1x28x28x192xf32>
     %3811 = "tosa.transpose"(%3810, %112) : (tensor<1x28x28x192xf32>, tensor<4xi64>) -> tensor<1x192x28x28xf32>
     %3812 = "tosa.equal"(%334, %335) : (tensor<1x192x28x28xf32>, tensor<1x192x28x28xf32>) -> tensor<1x192x28x28xi1>
     %3813 = "tosa.select"(%3812, %3811, %113) : (tensor<1x192x28x28xi1>, tensor<1x192x28x28xf32>, tensor<f32>) -> tensor<1x192x28x28xf32>
-    %3814 = "tosa.mul"(%3813, %96) {shift = 0 : i32} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
-    %3815 = "tosa.mul"(%254, %3814) {shift = 0 : i32} : (tensor<1x192x1x1xf32>, tensor<1x192x28x28xf32>) -> tensor<1x192x28x28xf32>
+    %3814 = "tosa.mul"(%3813, %96) {shift = 0 : i8} : (tensor<1x192x28x28xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x28x28xf32>
+    %3815 = "tosa.mul"(%254, %3814) {shift = 0 : i8} : (tensor<1x192x1x1xf32>, tensor<1x192x28x28xf32>) -> tensor<1x192x28x28xf32>
     %extracted_slice_2584 = tensor.extract_slice %3815[0, 160, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x192x28x28xf32> to tensor<1x32x28x28xf32>
     %3816 = "tosa.add"(%3799, %extracted_slice_2584) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2585 = tensor.extract_slice %3815[0, 128, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x192x28x28xf32> to tensor<1x32x28x28xf32>
@@ -9335,15 +9335,15 @@ module {
     %3821 = "tosa.transpose"(%3820, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3822 = "tosa.equal"(%326, %327) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3823 = "tosa.select"(%3822, %3821, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3824 = "tosa.mul"(%3823, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3825 = "tosa.mul"(%192, %3824) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3824 = "tosa.mul"(%3823, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3825 = "tosa.mul"(%192, %3824) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3826 = "tosa.transpose"(%3825, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3827 = "tosa.transpose_conv2d"(%3826, %163, %cst_133) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 160>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<160x1x1x128xf32>, tensor<160xf32>) -> tensor<1x28x28x160xf32>
     %3828 = "tosa.transpose"(%3827, %112) : (tensor<1x28x28x160xf32>, tensor<4xi64>) -> tensor<1x160x28x28xf32>
     %3829 = "tosa.equal"(%318, %319) : (tensor<1x160x28x28xf32>, tensor<1x160x28x28xf32>) -> tensor<1x160x28x28xi1>
     %3830 = "tosa.select"(%3829, %3828, %113) : (tensor<1x160x28x28xi1>, tensor<1x160x28x28xf32>, tensor<f32>) -> tensor<1x160x28x28xf32>
-    %3831 = "tosa.mul"(%3830, %98) {shift = 0 : i32} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
-    %3832 = "tosa.mul"(%236, %3831) {shift = 0 : i32} : (tensor<1x160x1x1xf32>, tensor<1x160x28x28xf32>) -> tensor<1x160x28x28xf32>
+    %3831 = "tosa.mul"(%3830, %98) {shift = 0 : i8} : (tensor<1x160x28x28xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x28x28xf32>
+    %3832 = "tosa.mul"(%236, %3831) {shift = 0 : i8} : (tensor<1x160x1x1xf32>, tensor<1x160x28x28xf32>) -> tensor<1x160x28x28xf32>
     %extracted_slice_2587 = tensor.extract_slice %3832[0, 128, 0, 0] [1, 32, 28, 28] [1, 1, 1, 1] : tensor<1x160x28x28xf32> to tensor<1x32x28x28xf32>
     %3833 = "tosa.add"(%3817, %extracted_slice_2587) : (tensor<1x32x28x28xf32>, tensor<1x32x28x28xf32>) -> tensor<1x32x28x28xf32>
     %extracted_slice_2588 = tensor.extract_slice %3832[0, 0, 0, 0] [1, 128, 28, 28] [1, 1, 1, 1] : tensor<1x160x28x28xf32> to tensor<1x128x28x28xf32>
@@ -9353,15 +9353,15 @@ module {
     %3837 = "tosa.transpose"(%3836, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3838 = "tosa.equal"(%310, %311) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3839 = "tosa.select"(%3838, %3837, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3840 = "tosa.mul"(%3839, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3841 = "tosa.mul"(%192, %3840) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3840 = "tosa.mul"(%3839, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3841 = "tosa.mul"(%192, %3840) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3842 = "tosa.transpose"(%3841, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3843 = "tosa.transpose_conv2d"(%3842, %164, %cst_83) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 28, 28, 128>, stride = array<i64: 1, 1>} : (tensor<1x28x28x128xf32>, tensor<128x1x1x128xf32>, tensor<128xf32>) -> tensor<1x28x28x128xf32>
     %3844 = "tosa.transpose"(%3843, %112) : (tensor<1x28x28x128xf32>, tensor<4xi64>) -> tensor<1x128x28x28xf32>
     %3845 = "tosa.equal"(%302, %303) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xi1>
     %3846 = "tosa.select"(%3845, %3844, %113) : (tensor<1x128x28x28xi1>, tensor<1x128x28x28xf32>, tensor<f32>) -> tensor<1x128x28x28xf32>
-    %3847 = "tosa.mul"(%3846, %103) {shift = 0 : i32} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
-    %3848 = "tosa.mul"(%192, %3847) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
+    %3847 = "tosa.mul"(%3846, %103) {shift = 0 : i8} : (tensor<1x128x28x28xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x28x28xf32>
+    %3848 = "tosa.mul"(%192, %3847) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3849 = "tosa.add"(%3834, %3848) : (tensor<1x128x28x28xf32>, tensor<1x128x28x28xf32>) -> tensor<1x128x28x28xf32>
     %3850 = "tosa.transpose"(%3849, %111) : (tensor<1x128x28x28xf32>, tensor<4xi64>) -> tensor<1x28x28x128xf32>
     %3851 = linalg.generic {indexing_maps = [#map3, #map1, #map2, #map3], iterator_types = ["parallel", "reduction", "reduction", "parallel", "reduction", "reduction"]} ins(%296, %cst_117, %3850 : tensor<1x56x56x128xf32>, tensor<2x2xf32>, tensor<1x28x28x128xf32>) outs(%cst_134 : tensor<1x56x56x128xf32>) {
@@ -9374,8 +9374,8 @@ module {
     %3853 = "tosa.transpose"(%3852, %112) : (tensor<1x56x56x256xf32>, tensor<4xi64>) -> tensor<1x256x56x56xf32>
     %3854 = "tosa.equal"(%293, %294) : (tensor<1x256x56x56xf32>, tensor<1x256x56x56xf32>) -> tensor<1x256x56x56xi1>
     %3855 = "tosa.select"(%3854, %3853, %113) : (tensor<1x256x56x56xi1>, tensor<1x256x56x56xf32>, tensor<f32>) -> tensor<1x256x56x56xf32>
-    %3856 = "tosa.mul"(%3855, %92) {shift = 0 : i32} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
-    %3857 = "tosa.mul"(%290, %3856) {shift = 0 : i32} : (tensor<1x256x1x1xf32>, tensor<1x256x56x56xf32>) -> tensor<1x256x56x56xf32>
+    %3856 = "tosa.mul"(%3855, %92) {shift = 0 : i8} : (tensor<1x256x56x56xf32>, tensor<1x256x1x1xf32>) -> tensor<1x256x56x56xf32>
+    %3857 = "tosa.mul"(%290, %3856) {shift = 0 : i8} : (tensor<1x256x1x1xf32>, tensor<1x256x56x56xf32>) -> tensor<1x256x56x56xf32>
     %extracted_slice_2589 = tensor.extract_slice %3857[0, 224, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x256x56x56xf32> to tensor<1x32x56x56xf32>
     %extracted_slice_2590 = tensor.extract_slice %3857[0, 192, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x256x56x56xf32> to tensor<1x32x56x56xf32>
     %extracted_slice_2591 = tensor.extract_slice %3857[0, 160, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x256x56x56xf32> to tensor<1x32x56x56xf32>
@@ -9388,15 +9388,15 @@ module {
     %3860 = "tosa.transpose"(%3859, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %3861 = "tosa.equal"(%283, %284) : (tensor<1x128x56x56xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xi1>
     %3862 = "tosa.select"(%3861, %3860, %113) : (tensor<1x128x56x56xi1>, tensor<1x128x56x56xf32>, tensor<f32>) -> tensor<1x128x56x56xf32>
-    %3863 = "tosa.mul"(%3862, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %3864 = "tosa.mul"(%192, %3863) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
+    %3863 = "tosa.mul"(%3862, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %3864 = "tosa.mul"(%192, %3863) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %3865 = "tosa.transpose"(%3864, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
     %3866 = "tosa.transpose_conv2d"(%3865, %161, %cst_131) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 56, 56, 224>, stride = array<i64: 1, 1>} : (tensor<1x56x56x128xf32>, tensor<224x1x1x128xf32>, tensor<224xf32>) -> tensor<1x56x56x224xf32>
     %3867 = "tosa.transpose"(%3866, %112) : (tensor<1x56x56x224xf32>, tensor<4xi64>) -> tensor<1x224x56x56xf32>
     %3868 = "tosa.equal"(%275, %276) : (tensor<1x224x56x56xf32>, tensor<1x224x56x56xf32>) -> tensor<1x224x56x56xi1>
     %3869 = "tosa.select"(%3868, %3867, %113) : (tensor<1x224x56x56xi1>, tensor<1x224x56x56xf32>, tensor<f32>) -> tensor<1x224x56x56xf32>
-    %3870 = "tosa.mul"(%3869, %94) {shift = 0 : i32} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
-    %3871 = "tosa.mul"(%272, %3870) {shift = 0 : i32} : (tensor<1x224x1x1xf32>, tensor<1x224x56x56xf32>) -> tensor<1x224x56x56xf32>
+    %3870 = "tosa.mul"(%3869, %94) {shift = 0 : i8} : (tensor<1x224x56x56xf32>, tensor<1x224x1x1xf32>) -> tensor<1x224x56x56xf32>
+    %3871 = "tosa.mul"(%272, %3870) {shift = 0 : i8} : (tensor<1x224x1x1xf32>, tensor<1x224x56x56xf32>) -> tensor<1x224x56x56xf32>
     %extracted_slice_2596 = tensor.extract_slice %3871[0, 192, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x224x56x56xf32> to tensor<1x32x56x56xf32>
     %3872 = "tosa.add"(%extracted_slice_2590, %extracted_slice_2596) : (tensor<1x32x56x56xf32>, tensor<1x32x56x56xf32>) -> tensor<1x32x56x56xf32>
     %extracted_slice_2597 = tensor.extract_slice %3871[0, 160, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x224x56x56xf32> to tensor<1x32x56x56xf32>
@@ -9414,15 +9414,15 @@ module {
     %3880 = "tosa.transpose"(%3879, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %3881 = "tosa.equal"(%265, %266) : (tensor<1x128x56x56xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xi1>
     %3882 = "tosa.select"(%3881, %3880, %113) : (tensor<1x128x56x56xi1>, tensor<1x128x56x56xf32>, tensor<f32>) -> tensor<1x128x56x56xf32>
-    %3883 = "tosa.mul"(%3882, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %3884 = "tosa.mul"(%192, %3883) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
+    %3883 = "tosa.mul"(%3882, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %3884 = "tosa.mul"(%192, %3883) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %3885 = "tosa.transpose"(%3884, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
     %3886 = "tosa.transpose_conv2d"(%3885, %162, %cst_132) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 56, 56, 192>, stride = array<i64: 1, 1>} : (tensor<1x56x56x128xf32>, tensor<192x1x1x128xf32>, tensor<192xf32>) -> tensor<1x56x56x192xf32>
     %3887 = "tosa.transpose"(%3886, %112) : (tensor<1x56x56x192xf32>, tensor<4xi64>) -> tensor<1x192x56x56xf32>
     %3888 = "tosa.equal"(%257, %258) : (tensor<1x192x56x56xf32>, tensor<1x192x56x56xf32>) -> tensor<1x192x56x56xi1>
     %3889 = "tosa.select"(%3888, %3887, %113) : (tensor<1x192x56x56xi1>, tensor<1x192x56x56xf32>, tensor<f32>) -> tensor<1x192x56x56xf32>
-    %3890 = "tosa.mul"(%3889, %96) {shift = 0 : i32} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
-    %3891 = "tosa.mul"(%254, %3890) {shift = 0 : i32} : (tensor<1x192x1x1xf32>, tensor<1x192x56x56xf32>) -> tensor<1x192x56x56xf32>
+    %3890 = "tosa.mul"(%3889, %96) {shift = 0 : i8} : (tensor<1x192x56x56xf32>, tensor<1x192x1x1xf32>) -> tensor<1x192x56x56xf32>
+    %3891 = "tosa.mul"(%254, %3890) {shift = 0 : i8} : (tensor<1x192x1x1xf32>, tensor<1x192x56x56xf32>) -> tensor<1x192x56x56xf32>
     %extracted_slice_2602 = tensor.extract_slice %3891[0, 160, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x192x56x56xf32> to tensor<1x32x56x56xf32>
     %3892 = "tosa.add"(%3873, %extracted_slice_2602) : (tensor<1x32x56x56xf32>, tensor<1x32x56x56xf32>) -> tensor<1x32x56x56xf32>
     %extracted_slice_2603 = tensor.extract_slice %3891[0, 128, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x192x56x56xf32> to tensor<1x32x56x56xf32>
@@ -9438,15 +9438,15 @@ module {
     %3899 = "tosa.transpose"(%3898, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %3900 = "tosa.equal"(%247, %248) : (tensor<1x128x56x56xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xi1>
     %3901 = "tosa.select"(%3900, %3899, %113) : (tensor<1x128x56x56xi1>, tensor<1x128x56x56xf32>, tensor<f32>) -> tensor<1x128x56x56xf32>
-    %3902 = "tosa.mul"(%3901, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %3903 = "tosa.mul"(%192, %3902) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
+    %3902 = "tosa.mul"(%3901, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %3903 = "tosa.mul"(%192, %3902) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %3904 = "tosa.transpose"(%3903, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
     %3905 = "tosa.transpose_conv2d"(%3904, %163, %cst_133) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 56, 56, 160>, stride = array<i64: 1, 1>} : (tensor<1x56x56x128xf32>, tensor<160x1x1x128xf32>, tensor<160xf32>) -> tensor<1x56x56x160xf32>
     %3906 = "tosa.transpose"(%3905, %112) : (tensor<1x56x56x160xf32>, tensor<4xi64>) -> tensor<1x160x56x56xf32>
     %3907 = "tosa.equal"(%239, %240) : (tensor<1x160x56x56xf32>, tensor<1x160x56x56xf32>) -> tensor<1x160x56x56xi1>
     %3908 = "tosa.select"(%3907, %3906, %113) : (tensor<1x160x56x56xi1>, tensor<1x160x56x56xf32>, tensor<f32>) -> tensor<1x160x56x56xf32>
-    %3909 = "tosa.mul"(%3908, %98) {shift = 0 : i32} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
-    %3910 = "tosa.mul"(%236, %3909) {shift = 0 : i32} : (tensor<1x160x1x1xf32>, tensor<1x160x56x56xf32>) -> tensor<1x160x56x56xf32>
+    %3909 = "tosa.mul"(%3908, %98) {shift = 0 : i8} : (tensor<1x160x56x56xf32>, tensor<1x160x1x1xf32>) -> tensor<1x160x56x56xf32>
+    %3910 = "tosa.mul"(%236, %3909) {shift = 0 : i8} : (tensor<1x160x1x1xf32>, tensor<1x160x56x56xf32>) -> tensor<1x160x56x56xf32>
     %extracted_slice_2607 = tensor.extract_slice %3910[0, 128, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x160x56x56xf32> to tensor<1x32x56x56xf32>
     %3911 = "tosa.add"(%3893, %extracted_slice_2607) : (tensor<1x32x56x56xf32>, tensor<1x32x56x56xf32>) -> tensor<1x32x56x56xf32>
     %extracted_slice_2608 = tensor.extract_slice %3910[0, 96, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x160x56x56xf32> to tensor<1x32x56x56xf32>
@@ -9460,15 +9460,15 @@ module {
     %3917 = "tosa.transpose"(%3916, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %3918 = "tosa.equal"(%229, %230) : (tensor<1x128x56x56xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xi1>
     %3919 = "tosa.select"(%3918, %3917, %113) : (tensor<1x128x56x56xi1>, tensor<1x128x56x56xf32>, tensor<f32>) -> tensor<1x128x56x56xf32>
-    %3920 = "tosa.mul"(%3919, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %3921 = "tosa.mul"(%192, %3920) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
+    %3920 = "tosa.mul"(%3919, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %3921 = "tosa.mul"(%192, %3920) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %3922 = "tosa.transpose"(%3921, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
     %3923 = "tosa.transpose_conv2d"(%3922, %164, %cst_83) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 56, 56, 128>, stride = array<i64: 1, 1>} : (tensor<1x56x56x128xf32>, tensor<128x1x1x128xf32>, tensor<128xf32>) -> tensor<1x56x56x128xf32>
     %3924 = "tosa.transpose"(%3923, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %3925 = "tosa.equal"(%221, %222) : (tensor<1x128x56x56xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xi1>
     %3926 = "tosa.select"(%3925, %3924, %113) : (tensor<1x128x56x56xi1>, tensor<1x128x56x56xf32>, tensor<f32>) -> tensor<1x128x56x56xf32>
-    %3927 = "tosa.mul"(%3926, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %3928 = "tosa.mul"(%192, %3927) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
+    %3927 = "tosa.mul"(%3926, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %3928 = "tosa.mul"(%192, %3927) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %extracted_slice_2611 = tensor.extract_slice %3928[0, 96, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x128x56x56xf32> to tensor<1x32x56x56xf32>
     %3929 = "tosa.add"(%3912, %extracted_slice_2611) : (tensor<1x32x56x56xf32>, tensor<1x32x56x56xf32>) -> tensor<1x32x56x56xf32>
     %extracted_slice_2612 = tensor.extract_slice %3928[0, 64, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x128x56x56xf32> to tensor<1x32x56x56xf32>
@@ -9480,15 +9480,15 @@ module {
     %3934 = "tosa.transpose"(%3933, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %3935 = "tosa.equal"(%213, %214) : (tensor<1x128x56x56xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xi1>
     %3936 = "tosa.select"(%3935, %3934, %113) : (tensor<1x128x56x56xi1>, tensor<1x128x56x56xf32>, tensor<f32>) -> tensor<1x128x56x56xf32>
-    %3937 = "tosa.mul"(%3936, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %3938 = "tosa.mul"(%192, %3937) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
+    %3937 = "tosa.mul"(%3936, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %3938 = "tosa.mul"(%192, %3937) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %3939 = "tosa.transpose"(%3938, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
     %3940 = "tosa.transpose_conv2d"(%3939, %165, %cst_135) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 56, 56, 96>, stride = array<i64: 1, 1>} : (tensor<1x56x56x128xf32>, tensor<96x1x1x128xf32>, tensor<96xf32>) -> tensor<1x56x56x96xf32>
     %3941 = "tosa.transpose"(%3940, %112) : (tensor<1x56x56x96xf32>, tensor<4xi64>) -> tensor<1x96x56x56xf32>
     %3942 = "tosa.equal"(%205, %206) : (tensor<1x96x56x56xf32>, tensor<1x96x56x56xf32>) -> tensor<1x96x56x56xi1>
     %3943 = "tosa.select"(%3942, %3941, %113) : (tensor<1x96x56x56xi1>, tensor<1x96x56x56xf32>, tensor<f32>) -> tensor<1x96x56x56xf32>
-    %3944 = "tosa.mul"(%3943, %100) {shift = 0 : i32} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
-    %3945 = "tosa.mul"(%202, %3944) {shift = 0 : i32} : (tensor<1x96x1x1xf32>, tensor<1x96x56x56xf32>) -> tensor<1x96x56x56xf32>
+    %3944 = "tosa.mul"(%3943, %100) {shift = 0 : i8} : (tensor<1x96x56x56xf32>, tensor<1x96x1x1xf32>) -> tensor<1x96x56x56xf32>
+    %3945 = "tosa.mul"(%202, %3944) {shift = 0 : i8} : (tensor<1x96x1x1xf32>, tensor<1x96x56x56xf32>) -> tensor<1x96x56x56xf32>
     %extracted_slice_2614 = tensor.extract_slice %3945[0, 64, 0, 0] [1, 32, 56, 56] [1, 1, 1, 1] : tensor<1x96x56x56xf32> to tensor<1x32x56x56xf32>
     %3946 = "tosa.add"(%3930, %extracted_slice_2614) : (tensor<1x32x56x56xf32>, tensor<1x32x56x56xf32>) -> tensor<1x32x56x56xf32>
     %extracted_slice_2615 = tensor.extract_slice %3945[0, 0, 0, 0] [1, 64, 56, 56] [1, 1, 1, 1] : tensor<1x96x56x56xf32> to tensor<1x64x56x56xf32>
@@ -9498,15 +9498,15 @@ module {
     %3950 = "tosa.transpose"(%3949, %112) : (tensor<1x56x56x128xf32>, tensor<4xi64>) -> tensor<1x128x56x56xf32>
     %3951 = "tosa.equal"(%195, %196) : (tensor<1x128x56x56xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xi1>
     %3952 = "tosa.select"(%3951, %3950, %113) : (tensor<1x128x56x56xi1>, tensor<1x128x56x56xf32>, tensor<f32>) -> tensor<1x128x56x56xf32>
-    %3953 = "tosa.mul"(%3952, %103) {shift = 0 : i32} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
-    %3954 = "tosa.mul"(%192, %3953) {shift = 0 : i32} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
+    %3953 = "tosa.mul"(%3952, %103) {shift = 0 : i8} : (tensor<1x128x56x56xf32>, tensor<1x128x1x1xf32>) -> tensor<1x128x56x56xf32>
+    %3954 = "tosa.mul"(%192, %3953) {shift = 0 : i8} : (tensor<1x128x1x1xf32>, tensor<1x128x56x56xf32>) -> tensor<1x128x56x56xf32>
     %3955 = "tosa.transpose"(%3954, %111) : (tensor<1x128x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x128xf32>
     %3956 = "tosa.transpose_conv2d"(%3955, %166, %cst_136) {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 1, 56, 56, 64>, stride = array<i64: 1, 1>} : (tensor<1x56x56x128xf32>, tensor<64x1x1x128xf32>, tensor<64xf32>) -> tensor<1x56x56x64xf32>
     %3957 = "tosa.transpose"(%3956, %112) : (tensor<1x56x56x64xf32>, tensor<4xi64>) -> tensor<1x64x56x56xf32>
     %3958 = "tosa.equal"(%185, %186) : (tensor<1x64x56x56xf32>, tensor<1x64x56x56xf32>) -> tensor<1x64x56x56xi1>
     %3959 = "tosa.select"(%3958, %3957, %113) : (tensor<1x64x56x56xi1>, tensor<1x64x56x56xf32>, tensor<f32>) -> tensor<1x64x56x56xf32>
-    %3960 = "tosa.mul"(%3959, %107) {shift = 0 : i32} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
-    %3961 = "tosa.mul"(%174, %3960) {shift = 0 : i32} : (tensor<1x64x1x1xf32>, tensor<1x64x56x56xf32>) -> tensor<1x64x56x56xf32>
+    %3960 = "tosa.mul"(%3959, %107) {shift = 0 : i8} : (tensor<1x64x56x56xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x56x56xf32>
+    %3961 = "tosa.mul"(%174, %3960) {shift = 0 : i8} : (tensor<1x64x1x1xf32>, tensor<1x64x56x56xf32>) -> tensor<1x64x56x56xf32>
     %3962 = "tosa.add"(%3947, %3961) : (tensor<1x64x56x56xf32>, tensor<1x64x56x56xf32>) -> tensor<1x64x56x56xf32>
     %3963 = "tosa.transpose"(%3962, %111) : (tensor<1x64x56x56xf32>, tensor<4xi64>) -> tensor<1x56x56x64xf32>
     %padded = tensor.pad %179 low[0, 1, 1, 0] high[0, 1, 1, 0] {
@@ -9524,8 +9524,8 @@ module {
     %3965 = "tosa.transpose"(%extracted_slice_2616, %112) : (tensor<1x112x112x64xf32>, tensor<4xi64>) -> tensor<1x64x112x112xf32>
     %3966 = "tosa.equal"(%177, %178) : (tensor<1x64x112x112xf32>, tensor<1x64x112x112xf32>) -> tensor<1x64x112x112xi1>
     %3967 = "tosa.select"(%3966, %3965, %113) : (tensor<1x64x112x112xi1>, tensor<1x64x112x112xf32>, tensor<f32>) -> tensor<1x64x112x112xf32>
-    %3968 = "tosa.mul"(%3967, %107) {shift = 0 : i32} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
-    %3969 = "tosa.mul"(%174, %3968) {shift = 0 : i32} : (tensor<1x64x1x1xf32>, tensor<1x64x112x112xf32>) -> tensor<1x64x112x112xf32>
+    %3968 = "tosa.mul"(%3967, %107) {shift = 0 : i8} : (tensor<1x64x112x112xf32>, tensor<1x64x1x1xf32>) -> tensor<1x64x112x112xf32>
+    %3969 = "tosa.mul"(%174, %3968) {shift = 0 : i8} : (tensor<1x64x1x1xf32>, tensor<1x64x112x112xf32>) -> tensor<1x64x112x112xf32>
     %3970 = "tosa.transpose"(%3969, %111) : (tensor<1x64x112x112xf32>, tensor<4xi64>) -> tensor<1x112x112x64xf32>
     %3971 = "tosa.transpose_conv2d"(%3970, %167, %cst_139) {out_pad = array<i64: -3, -3, -3, -3>, out_shape = array<i64: 1, 224, 224, 3>, stride = array<i64: 2, 2>} : (tensor<1x112x112x64xf32>, tensor<3x7x7x64xf32>, tensor<3xf32>) -> tensor<1x224x224x3xf32>
     %3972 = "tosa.transpose"(%3971, %112) : (tensor<1x224x224x3xf32>, tensor<4xi64>) -> tensor<1x3x224x224xf32>

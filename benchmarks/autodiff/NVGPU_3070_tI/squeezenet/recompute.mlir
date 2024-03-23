@@ -333,7 +333,7 @@ module attributes {torch.debug_module_name = "SqueezeNet"} {
     %151 = "tosa.transpose"(%150, %26) : (tensor<1x13x13x1000xf32>, tensor<4xi32>) -> tensor<1x1000x13x13xf32>
     %152 = "tosa.clamp"(%151) {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<1x1000x13x13xf32>) -> tensor<1x1000x13x13xf32>
     %153 = "tosa.reshape"(%arg0) {new_shape = array<i64: 1, 1, 1, 1000>} : (tensor<1x1000xf32>) -> tensor<1x1x1x1000xf32>
-    %154 = "tosa.mul"(%153, %25) {shift = 0 : i32} : (tensor<1x1x1x1000xf32>, tensor<1x13x13x1000xf32>) -> tensor<1x13x13x1000xf32>
+    %154 = "tosa.mul"(%153, %25) {shift = 0 : i8} : (tensor<1x1x1x1000xf32>, tensor<1x13x13x1000xf32>) -> tensor<1x13x13x1000xf32>
     %155 = "tosa.transpose"(%154, %26) : (tensor<1x13x13x1000xf32>, tensor<4xi32>) -> tensor<1x1000x13x13xf32>
     %156 = "tosa.equal"(%151, %152) : (tensor<1x1000x13x13xf32>, tensor<1x1000x13x13xf32>) -> tensor<1x1000x13x13xi1>
     %157 = "tosa.select"(%156, %155, %27) : (tensor<1x1000x13x13xi1>, tensor<1x1000x13x13xf32>, tensor<f32>) -> tensor<1x1000x13x13xf32>

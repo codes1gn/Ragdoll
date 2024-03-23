@@ -1,0 +1,7 @@
+,time,pass,item,acceleration
+0,4.22408312397424,Forward,Torch Dynamo,0.9551046257700555
+0,4.034441331345024,Forward,Torch Native,1.0
+0,4.530360116749197,Backward,Torch Dynamo,0.6800647048010628
+0,3.080938015439551,Backward,Torch Native,1.0
+0,8.754443240723436,Full,Torch Dynamo,0.8127734855468188
+0,7.115379346784575,Full,Torch Native,1.0

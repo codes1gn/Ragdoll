@@ -9,6 +9,8 @@ codegen_tools_install/
 *ragdoll/*__pycache__*
 cmake-build-debug/
 cmake-build-release/
+dist/
+*.vmfb
 
 compile_commands.json
 *.ipynb_checkpoints*

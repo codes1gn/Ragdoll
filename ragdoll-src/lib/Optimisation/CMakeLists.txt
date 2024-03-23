@@ -1,8 +1,10 @@
 # TODO: consider to split this CMAKE target once the volume become too bold
 add_mlir_conversion_library(RagdollOptimisation
   # TosaExt/TosaExtLowerings.cpp
+  Autodiff/IdenticalTransposeRemoval.cpp
   Autodiff/AutodiffInline.cpp
   Autodiff/AutodiffOptimise.cpp
+  Autodiff/AutodiffPrepareBatchSize.cpp
   Autodiff/AutodiffVjp.cpp
   Autodiff/AutodiffVjpPublicFunctions.cpp
   Common/LegaliseToIREECompatibility.cpp

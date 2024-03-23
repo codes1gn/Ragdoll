@@ -395,7 +395,7 @@ module attributes {torch.debug_module_name = "SqueezeNet"} {
     %79 = ml_program.global_load @global151 : tensor<1x1000x13x13xf32>
     %80 = ml_program.global_load @global152 : tensor<1x1000x13x13xf32>
     %81 = "tosa.reshape"(%arg0) {new_shape = array<i64: 1, 1, 1, 1000>} : (tensor<1x1000xf32>) -> tensor<1x1x1x1000xf32>
-    %82 = "tosa.mul"(%81, %0) {shift = 0 : i32} : (tensor<1x1x1x1000xf32>, tensor<1x13x13x1000xf32>) -> tensor<1x13x13x1000xf32>
+    %82 = "tosa.mul"(%81, %0) {shift = 0 : i8} : (tensor<1x1x1x1000xf32>, tensor<1x13x13x1000xf32>) -> tensor<1x13x13x1000xf32>
     %83 = "tosa.transpose"(%82, %1) : (tensor<1x13x13x1000xf32>, tensor<4xi32>) -> tensor<1x1000x13x13xf32>
     %84 = "tosa.equal"(%79, %80) : (tensor<1x1000x13x13xf32>, tensor<1x1000x13x13xf32>) -> tensor<1x1000x13x13xi1>
     %85 = "tosa.select"(%84, %83, %2) : (tensor<1x1000x13x13xi1>, tensor<1x1000x13x13xf32>, tensor<f32>) -> tensor<1x1000x13x13xf32>

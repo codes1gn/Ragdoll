@@ -1,0 +1,358 @@
+module attributes {hal.device.targets = [#hal.device.target<"cuda", {executable_targets = [#hal.executable.target<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>], legacy_sync}>], torch.debug_module_name = "autodiff-conv-fusion"} {
+  hal.executable private @fuse_conv_pair_dispatch_0 {
+    hal.executable.variant public @cuda_nvptx_fb target(<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>) {
+      hal.executable.export public @fuse_conv_pair_dispatch_0_slow_memcpy ordinal(0) layout(#hal.pipeline.layout<push_constants = 1, sets = [<0, bindings = [<0, storage_buffer, ReadOnly>, <1, storage_buffer>]>]>) {
+      ^bb0(%arg0: !hal.device):
+        %x, %y, %z = flow.dispatch.workgroup_count_from_slice 
+        hal.return %x, %y, %z : index, index, index
+      }
+      builtin.module {
+        func.func @fuse_conv_pair_dispatch_0_slow_memcpy() {
+          %c0 = arith.constant 0 : index
+          %0 = hal.interface.constant.load[0] : i32
+          %1 = arith.index_castui %0 : i32 to index
+          %2 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%c0) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<512x3x3x512xf32>>
+          %3 = hal.interface.binding.subspan set(0) binding(1) type(storage_buffer) alignment(64) offset(%1) : !flow.dispatch.tensor<readwrite:tensor<512x4x4x512xf32>>
+          %4 = flow.dispatch.tensor.load %2, offsets = [0, 0, 0, 0], sizes = [512, 3, 3, 512], strides = [1, 1, 1, 1] : !flow.dispatch.tensor<readonly:tensor<512x3x3x512xf32>> -> tensor<512x3x3x512xf32>
+          flow.dispatch.tensor.store %4, %3, offsets = [0, 0, 0, 0], sizes = [512, 3, 3, 512], strides = [1, 1, 1, 1] : tensor<512x3x3x512xf32> -> !flow.dispatch.tensor<readwrite:tensor<512x4x4x512xf32>>
+          return
+        }
+      }
+    }
+  }
+  hal.executable private @fuse_conv_pair_dispatch_1 {
+    hal.executable.variant public @cuda_nvptx_fb target(<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>) {
+      hal.executable.export public @fuse_conv_pair_dispatch_1_transpose_2x2x1024x2x512_f32 ordinal(0) layout(#hal.pipeline.layout<push_constants = 2, sets = [<0, bindings = [<0, storage_buffer, ReadOnly>, <1, storage_buffer>]>]>) {
+      ^bb0(%arg0: !hal.device):
+        %x, %y, %z = flow.dispatch.workgroup_count_from_slice 
+        hal.return %x, %y, %z : index, index, index
+      }
+      builtin.module {
+        func.func @fuse_conv_pair_dispatch_1_transpose_2x2x1024x2x512_f32() {
+          %0 = hal.interface.constant.load[0] : i32
+          %1 = hal.interface.constant.load[1] : i32
+          %2 = arith.index_castui %0 : i32 to index
+          %3 = arith.index_castui %1 : i32 to index
+          %4 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%2) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<1024x2x2x2x512xf32>>
+          %5 = hal.interface.binding.subspan set(0) binding(1) type(storage_buffer) alignment(64) offset(%3) : !flow.dispatch.tensor<writeonly:tensor<2x2x1024x2x512xf32>>
+          %6 = flow.dispatch.tensor.load %4, offsets = [0, 0, 0, 0, 0], sizes = [1024, 2, 2, 2, 512], strides = [1, 1, 1, 1, 1] : !flow.dispatch.tensor<readonly:tensor<1024x2x2x2x512xf32>> -> tensor<1024x2x2x2x512xf32>
+          %7 = tensor.empty() : tensor<2x2x1024x2x512xf32>
+          %8 = linalg.generic {indexing_maps = [affine_map<(d0, d1, d2, d3, d4) -> (d2, d0, d3, d1, d4)>, affine_map<(d0, d1, d2, d3, d4) -> (d0, d1, d2, d3, d4)>], iterator_types = ["parallel", "parallel", "parallel", "parallel", "parallel"]} ins(%6 : tensor<1024x2x2x2x512xf32>) outs(%7 : tensor<2x2x1024x2x512xf32>) {
+          ^bb0(%in: f32, %out: f32):
+            linalg.yield %in : f32
+          } -> tensor<2x2x1024x2x512xf32>
+          flow.dispatch.tensor.store %8, %5, offsets = [0, 0, 0, 0, 0], sizes = [2, 2, 1024, 2, 512], strides = [1, 1, 1, 1, 1] : tensor<2x2x1024x2x512xf32> -> !flow.dispatch.tensor<writeonly:tensor<2x2x1024x2x512xf32>>
+          return
+        }
+      }
+    }
+  }
+  hal.executable private @fuse_conv_pair_dispatch_2 {
+    hal.executable.variant public @cuda_nvptx_fb target(<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>) {
+      hal.executable.export public @fuse_conv_pair_dispatch_2_generic_2048x2x2x512_f32 ordinal(0) layout(#hal.pipeline.layout<push_constants = 2, sets = [<0, bindings = [<0, storage_buffer, ReadOnly>, <1, storage_buffer>]>]>) {
+      ^bb0(%arg0: !hal.device):
+        %x, %y, %z = flow.dispatch.workgroup_count_from_slice 
+        hal.return %x, %y, %z : index, index, index
+      }
+      builtin.module {
+        func.func @fuse_conv_pair_dispatch_2_generic_2048x2x2x512_f32() {
+          %c1 = arith.constant 1 : index
+          %0 = hal.interface.constant.load[0] : i32
+          %1 = hal.interface.constant.load[1] : i32
+          %2 = arith.index_castui %0 : i32 to index
+          %3 = arith.index_castui %1 : i32 to index
+          %4 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%2) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<2048x2x2x512xf32>>
+          %5 = hal.interface.binding.subspan set(0) binding(1) type(storage_buffer) alignment(64) offset(%3) : !flow.dispatch.tensor<writeonly:tensor<2048x2x2x512xf32>>
+          %6 = flow.dispatch.tensor.load %4, offsets = [0, 0, 0, 0], sizes = [2048, 2, 2, 512], strides = [1, 1, 1, 1] : !flow.dispatch.tensor<readonly:tensor<2048x2x2x512xf32>> -> tensor<2048x2x2x512xf32>
+          %7 = tensor.empty() : tensor<2048x2x2x512xf32>
+          %8 = linalg.generic {indexing_maps = [affine_map<(d0, d1, d2, d3) -> (d0, d1, d2, d3)>], iterator_types = ["parallel", "parallel", "parallel", "parallel"]} outs(%7 : tensor<2048x2x2x512xf32>) {
+          ^bb0(%out: f32):
+            %9 = linalg.index 0 : index
+            %10 = linalg.index 1 : index
+            %11 = arith.subi %c1, %10 : index
+            %12 = linalg.index 2 : index
+            %13 = linalg.index 3 : index
+            %extracted = tensor.extract %6[%9, %11, %12, %13] : tensor<2048x2x2x512xf32>
+            linalg.yield %extracted : f32
+          } -> tensor<2048x2x2x512xf32>
+          flow.dispatch.tensor.store %8, %5, offsets = [0, 0, 0, 0], sizes = [2048, 2, 2, 512], strides = [1, 1, 1, 1] : tensor<2048x2x2x512xf32> -> !flow.dispatch.tensor<writeonly:tensor<2048x2x2x512xf32>>
+          return
+        }
+      }
+    }
+  }
+  hal.executable private @fuse_conv_pair_dispatch_3 {
+    hal.executable.variant public @cuda_nvptx_fb target(<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>) {
+      hal.executable.export public @fuse_conv_pair_dispatch_3_slow_memcpy ordinal(0) layout(#hal.pipeline.layout<push_constants = 0, sets = [<0, bindings = [<0, storage_buffer, ReadOnly>, <1, storage_buffer>]>]>) {
+      ^bb0(%arg0: !hal.device):
+        %x, %y, %z = flow.dispatch.workgroup_count_from_slice 
+        hal.return %x, %y, %z : index, index, index
+      }
+      builtin.module {
+        func.func @fuse_conv_pair_dispatch_3_slow_memcpy() {
+          %c0 = arith.constant 0 : index
+          %c33554432 = arith.constant 33554432 : index
+          %0 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%c0) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<1x7x7x512xf32>>
+          %1 = hal.interface.binding.subspan set(0) binding(1) type(storage_buffer) alignment(64) offset(%c33554432) : !flow.dispatch.tensor<readwrite:tensor<1x9x9x512xf32>>
+          %2 = flow.dispatch.tensor.load %0, offsets = [0, 0, 0, 0], sizes = [1, 7, 7, 512], strides = [1, 1, 1, 1] : !flow.dispatch.tensor<readonly:tensor<1x7x7x512xf32>> -> tensor<1x7x7x512xf32>
+          flow.dispatch.tensor.store %2, %1, offsets = [0, 1, 1, 0], sizes = [1, 7, 7, 512], strides = [1, 1, 1, 1] : tensor<1x7x7x512xf32> -> !flow.dispatch.tensor<readwrite:tensor<1x9x9x512xf32>>
+          return
+        }
+      }
+    }
+  }
+  hal.executable private @fuse_conv_pair_dispatch_4 {
+    hal.executable.variant public @cuda_nvptx_fb target(<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>) {
+      hal.executable.export public @fuse_conv_pair_dispatch_4_generic_2x2x512x2048_f32 ordinal(0) layout(#hal.pipeline.layout<push_constants = 2, sets = [<0, bindings = [<0, storage_buffer, ReadOnly>, <1, storage_buffer>]>]>) {
+      ^bb0(%arg0: !hal.device):
+        %x, %y, %z = flow.dispatch.workgroup_count_from_slice 
+        hal.return %x, %y, %z : index, index, index
+      }
+      builtin.module {
+        func.func @fuse_conv_pair_dispatch_4_generic_2x2x512x2048_f32() {
+          %c1 = arith.constant 1 : index
+          %0 = hal.interface.constant.load[0] : i32
+          %1 = hal.interface.constant.load[1] : i32
+          %2 = arith.index_castui %0 : i32 to index
+          %3 = arith.index_castui %1 : i32 to index
+          %4 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%2) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<2048x2x2x512xf32>>
+          %5 = hal.interface.binding.subspan set(0) binding(1) type(storage_buffer) alignment(64) offset(%3) : !flow.dispatch.tensor<writeonly:tensor<2x2x512x2048xf32>>
+          %6 = flow.dispatch.tensor.load %4, offsets = [0, 0, 0, 0], sizes = [2048, 2, 2, 512], strides = [1, 1, 1, 1] : !flow.dispatch.tensor<readonly:tensor<2048x2x2x512xf32>> -> tensor<2048x2x2x512xf32>
+          %7 = tensor.empty() : tensor<2x2x512x2048xf32>
+          %8 = linalg.generic {indexing_maps = [affine_map<(d0, d1, d2, d3) -> (d0, d1, d2, d3)>], iterator_types = ["parallel", "parallel", "parallel", "parallel"]} outs(%7 : tensor<2x2x512x2048xf32>) {
+          ^bb0(%out: f32):
+            %9 = linalg.index 0 : index
+            %10 = linalg.index 1 : index
+            %11 = linalg.index 2 : index
+            %12 = linalg.index 3 : index
+            %13 = arith.subi %c1, %10 : index
+            %extracted = tensor.extract %6[%12, %9, %13, %11] : tensor<2048x2x2x512xf32>
+            linalg.yield %extracted : f32
+          } -> tensor<2x2x512x2048xf32>
+          flow.dispatch.tensor.store %8, %5, offsets = [0, 0, 0, 0], sizes = [2, 2, 512, 2048], strides = [1, 1, 1, 1] : tensor<2x2x512x2048xf32> -> !flow.dispatch.tensor<writeonly:tensor<2x2x512x2048xf32>>
+          return
+        }
+      }
+    }
+  }
+  hal.executable private @fuse_conv_pair_dispatch_5 {
+    hal.executable.variant public @cuda_nvptx_fb target(<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>) {
+      hal.executable.export public @fuse_conv_pair_dispatch_5_conv_2d_nhwc_hwcf_1x8x8x2048x2x2x512_f32 ordinal(0) layout(#hal.pipeline.layout<push_constants = 2, sets = [<0, bindings = [<0, storage_buffer, ReadOnly>, <1, storage_buffer>]>]>) {
+      ^bb0(%arg0: !hal.device):
+        %x, %y, %z = flow.dispatch.workgroup_count_from_slice 
+        hal.return %x, %y, %z : index, index, index
+      }
+      builtin.module {
+        func.func @fuse_conv_pair_dispatch_5_conv_2d_nhwc_hwcf_1x8x8x2048x2x2x512_f32() {
+          %cst = arith.constant 0.000000e+00 : f32
+          %c33554432 = arith.constant 33554432 : index
+          %0 = hal.interface.constant.load[0] : i32
+          %1 = hal.interface.constant.load[1] : i32
+          %2 = arith.index_castui %0 : i32 to index
+          %3 = arith.index_castui %1 : i32 to index
+          %4 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%c33554432) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<1x9x9x512xf32>>
+          %5 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%2) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<2x2x512x2048xf32>>
+          %6 = hal.interface.binding.subspan set(0) binding(1) type(storage_buffer) alignment(64) offset(%3) : !flow.dispatch.tensor<writeonly:tensor<1x8x8x2048xf32>>
+          %7 = flow.dispatch.tensor.load %4, offsets = [0, 0, 0, 0], sizes = [1, 9, 9, 512], strides = [1, 1, 1, 1] : !flow.dispatch.tensor<readonly:tensor<1x9x9x512xf32>> -> tensor<1x9x9x512xf32>
+          %8 = flow.dispatch.tensor.load %5, offsets = [0, 0, 0, 0], sizes = [2, 2, 512, 2048], strides = [1, 1, 1, 1] : !flow.dispatch.tensor<readonly:tensor<2x2x512x2048xf32>> -> tensor<2x2x512x2048xf32>
+          %9 = tensor.empty() : tensor<1x8x8x2048xf32>
+          %10 = linalg.fill ins(%cst : f32) outs(%9 : tensor<1x8x8x2048xf32>) -> tensor<1x8x8x2048xf32>
+          %11 = linalg.conv_2d_nhwc_hwcf {dilations = dense<1> : tensor<2xi64>, strides = dense<1> : tensor<2xi64>} ins(%7, %8 : tensor<1x9x9x512xf32>, tensor<2x2x512x2048xf32>) outs(%10 : tensor<1x8x8x2048xf32>) -> tensor<1x8x8x2048xf32>
+          flow.dispatch.tensor.store %11, %6, offsets = [0, 0, 0, 0], sizes = [1, 8, 8, 2048], strides = [1, 1, 1, 1] : tensor<1x8x8x2048xf32> -> !flow.dispatch.tensor<writeonly:tensor<1x8x8x2048xf32>>
+          return
+        }
+      }
+    }
+  }
+  hal.executable private @fuse_conv_pair_dispatch_6 {
+    hal.executable.variant public @cuda_nvptx_fb target(<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>) {
+      hal.executable.export public @fuse_conv_pair_dispatch_6_generic_8x2x8x1024_f32 ordinal(0) layout(#hal.pipeline.layout<push_constants = 2, sets = [<0, bindings = [<0, storage_buffer, ReadOnly>, <1, storage_buffer>]>]>) {
+      ^bb0(%arg0: !hal.device):
+        %x, %y, %z = flow.dispatch.workgroup_count_from_slice 
+        hal.return %x, %y, %z : index, index, index
+      }
+      builtin.module {
+        func.func @fuse_conv_pair_dispatch_6_generic_8x2x8x1024_f32() {
+          %cst = arith.constant 0.000000e+00 : f32
+          %0 = hal.interface.constant.load[0] : i32
+          %1 = hal.interface.constant.load[1] : i32
+          %2 = arith.index_castui %0 : i32 to index
+          %3 = arith.index_castui %1 : i32 to index
+          %4 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%2) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<8x8x2x1024xf32>>
+          %5 = hal.interface.binding.subspan set(0) binding(1) type(storage_buffer) alignment(64) offset(%3) : !flow.dispatch.tensor<writeonly:tensor<8x2x8x1024xf32>>
+          %6 = flow.dispatch.tensor.load %4, offsets = [0, 0, 0, 0], sizes = [8, 8, 2, 1024], strides = [1, 1, 1, 1] : !flow.dispatch.tensor<readonly:tensor<8x8x2x1024xf32>> -> tensor<8x8x2x1024xf32>
+          %7 = tensor.empty() : tensor<8x2x8x1024xf32>
+          %8 = linalg.generic {indexing_maps = [affine_map<(d0, d1, d2, d3) -> (d0, d2, d1, d3)>, affine_map<(d0, d1, d2, d3) -> (d0, d1, d2, d3)>], iterator_types = ["parallel", "parallel", "parallel", "parallel"]} ins(%6 : tensor<8x8x2x1024xf32>) outs(%7 : tensor<8x2x8x1024xf32>) {
+          ^bb0(%in: f32, %out: f32):
+            %9 = arith.addf %in, %cst : f32
+            linalg.yield %9 : f32
+          } -> tensor<8x2x8x1024xf32>
+          flow.dispatch.tensor.store %8, %5, offsets = [0, 0, 0, 0], sizes = [8, 2, 8, 1024], strides = [1, 1, 1, 1] : tensor<8x2x8x1024xf32> -> !flow.dispatch.tensor<writeonly:tensor<8x2x8x1024xf32>>
+          return
+        }
+      }
+    }
+  }
+  hal.executable private @fuse_conv_pair_dispatch_7 {
+    hal.executable.variant public @cuda_nvptx_fb target(<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>) {
+      hal.executable.export public @fuse_conv_pair_dispatch_7_slow_memcpy ordinal(0) layout(#hal.pipeline.layout<push_constants = 2, sets = [<0, bindings = [<0, storage_buffer, ReadOnly>, <1, storage_buffer>]>]>) {
+      ^bb0(%arg0: !hal.device):
+        %x, %y, %z = flow.dispatch.workgroup_count_from_slice 
+        hal.return %x, %y, %z : index, index, index
+      }
+      builtin.module {
+        func.func @fuse_conv_pair_dispatch_7_slow_memcpy() {
+          %0 = hal.interface.constant.load[0] : i32
+          %1 = hal.interface.constant.load[1] : i32
+          %2 = arith.index_castui %0 : i32 to index
+          %3 = arith.index_castui %1 : i32 to index
+          %4 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%2) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<1x16x16x512xf32>>
+          %5 = hal.interface.binding.subspan set(0) binding(1) type(storage_buffer) alignment(64) offset(%3) : !flow.dispatch.tensor<writeonly:tensor<7x7x512xf32>>
+          %6 = flow.dispatch.tensor.load %4, offsets = [0, 0, 0, 0], sizes = [1, 7, 7, 512], strides = [1, 1, 1, 1] : !flow.dispatch.tensor<readonly:tensor<1x16x16x512xf32>> -> tensor<7x7x512xf32>
+          flow.dispatch.tensor.store %6, %5, offsets = [0, 0, 0], sizes = [7, 7, 512], strides = [1, 1, 1] : tensor<7x7x512xf32> -> !flow.dispatch.tensor<writeonly:tensor<7x7x512xf32>>
+          return
+        }
+      }
+    }
+  }
+  hal.executable private @fuse_conv_pair_dispatch_15 {
+    hal.executable.variant public @cuda_nvptx_fb target(<"cuda", "cuda-nvptx-fb", {target_arch = "sm_86"}>) {
+      hal.executable.export public @fuse_conv_pair_dispatch_15_generic_25088_f32 ordinal(0) layout(#hal.pipeline.layout<push_constants = 0, sets = [<0, bindings = [<0, storage_buffer, ReadOnly>, <1, storage_buffer>]>]>) {
+      ^bb0(%arg0: !hal.device):
+        %x, %y, %z = flow.dispatch.workgroup_count_from_slice 
+        hal.return %x, %y, %z : index, index, index
+      }
+      builtin.module {
+        func.func @fuse_conv_pair_dispatch_15_generic_25088_f32() {
+          %c100352 = arith.constant 100352 : index
+          %c0 = arith.constant 0 : index
+          %0 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%c100352) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<25088xf32>>
+          %1 = hal.interface.binding.subspan set(0) binding(0) type(storage_buffer) alignment(64) offset(%c0) flags(ReadOnly) : !flow.dispatch.tensor<readonly:tensor<25088xf32>>
+          %2 = hal.interface.binding.subspan set(0) binding(1) type(storage_buffer) alignment(64) offset(%c0) : !flow.dispatch.tensor<writeonly:tensor<25088xf32>>
+          %3 = flow.dispatch.tensor.load %0, offsets = [0], sizes = [25088], strides = [1] : !flow.dispatch.tensor<readonly:tensor<25088xf32>> -> tensor<25088xf32>
+          %4 = flow.dispatch.tensor.load %1, offsets = [0], sizes = [25088], strides = [1] : !flow.dispatch.tensor<readonly:tensor<25088xf32>> -> tensor<25088xf32>
+          %5 = tensor.empty() : tensor<25088xf32>
+          %6 = linalg.generic {indexing_maps = [affine_map<(d0) -> (d0)>, affine_map<(d0) -> (d0)>, affine_map<(d0) -> (d0)>], iterator_types = ["parallel"]} ins(%3, %4 : tensor<25088xf32>, tensor<25088xf32>) outs(%5 : tensor<25088xf32>) {
+          ^bb0(%in: f32, %in_0: f32, %out: f32):
+            %7 = arith.addf %in, %in_0 : f32
+            linalg.yield %7 : f32
+          } -> tensor<25088xf32>
+          flow.dispatch.tensor.store %6, %2, offsets = [0], sizes = [25088], strides = [1] : tensor<25088xf32> -> !flow.dispatch.tensor<writeonly:tensor<25088xf32>>
+          return
+        }
+      }
+    }
+  }
+  func.func @fuse_conv_pair(%arg0: !hal.buffer_view, %arg1: !hal.buffer_view, %arg2: !hal.buffer_view) -> !hal.buffer_view attributes {iree.abi.stub, iree.reflection = {iree.abi.declaration = "sync func @fuse_conv_pair(%input0: tensor<1x7x7x512xf32>, %input1: tensor<512x3x3x512xf32>, %input2: tensor<512x3x3x512xf32>) -> (%output0: tensor<1x7x7x512xf32>)"}} {
+    %c624640_i32 = arith.constant 624640 : i32
+    %c100352_i32 = arith.constant 100352 : i32
+    %c33720320_i32 = arith.constant 33720320 : i32
+    %c1048576_i32 = arith.constant 1048576 : i32
+    %c524288_i32 = arith.constant 524288 : i32
+    %c16777216_i32 = arith.constant 16777216 : i32
+    %c0_i32 = arith.constant 0 : i32
+    %c50497536 = arith.constant 50497536 : index
+    %c1048576 = arith.constant 1048576 : index
+    %c33554432 = arith.constant 33554432 : index
+    %c100352 = arith.constant 100352 : index
+    %c9437184 = arith.constant 9437184 : index
+    %c16777216 = arith.constant 16777216 : index
+    %c165888 = arith.constant 165888 : index
+    %c0_i8 = arith.constant 0 : i8
+    %c0 = arith.constant 0 : index
+    %c3 = arith.constant 3 : index
+    %c553648160_i32 = arith.constant 553648160 : i32
+    %c1_i32 = arith.constant 1 : i32
+    %c1 = arith.constant 1 : index
+    %c7 = arith.constant 7 : index
+    %c512 = arith.constant 512 : index
+    hal.buffer_view.assert<%arg0 : !hal.buffer_view> message("input0") shape([%c1, %c7, %c7, %c512]) type(%c553648160_i32) encoding(%c1_i32)
+    %0 = stream.tensor.import %arg0 : !hal.buffer_view -> tensor<1x7x7x512xf32> in !stream.resource<external>{%c100352}
+    hal.buffer_view.assert<%arg1 : !hal.buffer_view> message("input1") shape([%c512, %c3, %c3, %c512]) type(%c553648160_i32) encoding(%c1_i32)
+    %1 = stream.tensor.import %arg1 : !hal.buffer_view -> tensor<512x3x3x512xf32> in !stream.resource<external>{%c9437184}
+    hal.buffer_view.assert<%arg2 : !hal.buffer_view> message("input2") shape([%c512, %c3, %c3, %c512]) type(%c553648160_i32) encoding(%c1_i32)
+    %2 = stream.tensor.import %arg2 : !hal.buffer_view -> tensor<512x3x3x512xf32> in !stream.resource<external>{%c9437184}
+    %result, %result_timepoint = stream.resource.alloca uninitialized : !stream.resource<external>{%c100352} => !stream.timepoint
+    %result_0, %result_timepoint_1 = stream.resource.alloca uninitialized : !stream.resource<transient>{%c50497536} => !stream.timepoint
+    %3 = stream.timepoint.join max(%result_timepoint, %result_timepoint_1) => !stream.timepoint
+    %4 = stream.cmd.execute await(%3) => with(%1 as %arg3: !stream.resource<external>{%c9437184}, %0 as %arg4: !stream.resource<external>{%c100352}, %2 as %arg5: !stream.resource<external>{%c9437184}, %result as %arg6: !stream.resource<external>{%c100352}, %result_0 as %arg7: !stream.resource<transient>{%c50497536}) {
+      stream.cmd.fill %c0_i8, %arg7[%c0 for %c16777216] : i8 -> !stream.resource<transient>{%c50497536}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_0::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_0_slow_memcpy(%c0_i32 : i32) {
+        ro %arg3[%c0 for %c9437184] : !stream.resource<external>{%c9437184},
+        rw %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_1::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_1_transpose_2x2x1024x2x512_f32(%c0_i32, %c16777216_i32 : i32, i32) {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.concurrent {
+        stream.cmd.dispatch @fuse_conv_pair_dispatch_2::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_2_generic_2048x2x2x512_f32(%c16777216_i32, %c0_i32 : i32, i32) {
+          ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+          wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+        } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+        stream.cmd.fill %c0_i8, %arg7[%c33554432 for %c165888] : i8 -> !stream.resource<transient>{%c50497536}
+      }
+      stream.cmd.concurrent {
+        stream.cmd.dispatch @fuse_conv_pair_dispatch_3::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_3_slow_memcpy {
+          ro %arg4[%c0 for %c100352] : !stream.resource<external>{%c100352},
+          rw %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+        } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+        stream.cmd.dispatch @fuse_conv_pair_dispatch_4::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_4_generic_2x2x512x2048_f32(%c0_i32, %c16777216_i32 : i32, i32) {
+          ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+          wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+        } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      }
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_5::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_5_conv_2d_nhwc_hwcf_1x8x8x2048x2x2x512_f32(%c16777216_i32, %c0_i32 : i32, i32) {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_6::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_6_generic_8x2x8x1024_f32(%c0_i32, %c524288_i32 : i32, i32) {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.concurrent {
+        stream.cmd.dispatch @fuse_conv_pair_dispatch_7::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_7_slow_memcpy(%c524288_i32, %c0_i32 : i32, i32) {
+          ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+          wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+        } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+        stream.cmd.fill %c0_i8, %arg7[%c1048576 for %c16777216] : i8 -> !stream.resource<transient>{%c50497536}
+      }
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_0::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_0_slow_memcpy(%c1048576_i32 : i32) {
+        ro %arg5[%c0 for %c9437184] : !stream.resource<external>{%c9437184},
+        rw %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_1::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_1_transpose_2x2x1024x2x512_f32(%c1048576_i32, %c33720320_i32 : i32, i32) {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_2::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_2_generic_2048x2x2x512_f32(%c33720320_i32, %c100352_i32 : i32, i32) {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_4::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_4_generic_2x2x512x2048_f32(%c100352_i32, %c33720320_i32 : i32, i32) {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_5::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_5_conv_2d_nhwc_hwcf_1x8x8x2048x2x2x512_f32(%c33720320_i32, %c100352_i32 : i32, i32) {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_6::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_6_generic_8x2x8x1024_f32(%c100352_i32, %c624640_i32 : i32, i32) {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_7::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_7_slow_memcpy(%c624640_i32, %c100352_i32 : i32, i32) {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+      stream.cmd.dispatch @fuse_conv_pair_dispatch_15::@cuda_nvptx_fb::@fuse_conv_pair_dispatch_15_generic_25088_f32 {
+        ro %arg7[%c0 for %c50497536] : !stream.resource<transient>{%c50497536},
+        wo %arg6[%c0 for %c100352] : !stream.resource<external>{%c100352}
+      } attributes {hal.interface.bindings = [#hal.interface.binding<0, 0>, #hal.interface.binding<0, 1>]}
+    } => !stream.timepoint
+    %5 = stream.resource.dealloca await(%4) => %result_0 : !stream.resource<transient>{%c50497536} => !stream.timepoint
+    %6 = stream.timepoint.await %5 => %result : !stream.resource<external>{%c100352}
+    %7 = stream.tensor.export %6 : tensor<1x7x7x512xf32> in !stream.resource<external>{%c100352} -> !hal.buffer_view
+    return %7 : !hal.buffer_view
+  }
+}

@@ -86,6 +86,24 @@ def AutodiffOptimise : Pass<"ragdoll-autodiff-optimise"> {
   let constructor = "mlir::ragdoll::autodiff::createAutodiffOptimisePass()";
 }
 
+// TODO(albert): move this util opt to common
+def IdenticalTransposeRemoval : Pass<"ragdoll-identical-transpose-removal"> {
+  let summary = "Apply optimisations on `linalg.generic` and some other ops";
+  let constructor = "mlir::ragdoll::autodiff::createIdenticalTransposeRemovalPass()";
+}
+
+// --------------------------------------------------------------------------
+// FUNCTION: package vjp func to public entry func for export
+// --------------------------------------------------------------------------
+def AutodiffPrepareBatchSize : Pass<"ragdoll-autodiff-prepare-batch-size"> {
+  let summary = "Call `autodiff.vjp` for each public function";
+  let constructor = "mlir::ragdoll::autodiff::createAutodiffPrepareBatchSizePass()";
+  let options = [
+    Option<"batchsize", "batchsize", "int32_t", "1", "Set the batchsize for tosa-model">
+  ];
+  let dependentDialects = ["mlir::ragdoll::autodiff::AutodiffDialect"];
+}
+
 // --------------------------------------------------------------------------
 // FUNCTION: build vjp func for input-func
 // --------------------------------------------------------------------------

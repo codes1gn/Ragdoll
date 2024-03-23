@@ -24,8 +24,10 @@ namespace ragdoll {
 namespace autodiff {
 
 // Declare your pass entry
+std::unique_ptr<Pass> createIdenticalTransposeRemovalPass();
 std::unique_ptr<Pass> createAutodiffInlineFunctionCall();
 std::unique_ptr<Pass> createAutodiffOptimisePass();
+std::unique_ptr<Pass> createAutodiffPrepareBatchSizePass();
 std::unique_ptr<Pass> createAutodiffVjpPass();
 std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass();
 
@@ -41,6 +43,8 @@ std::unique_ptr<Pass> createAutodiffVjpPublicFunctionsPass();
 #define GEN_PASS_DECL_AUTODIFFOPTIMISE
 #define GEN_PASS_DECL_AUTODIFFVJP
 #define GEN_PASS_DECL_AUTODIFFVJPPUBLICFUNCTIONS
+#define GEN_PASS_DECL_AUTODIFFPREPAREBATCHSIZE
+#define GEN_PASS_DECL_IDENTICALTRANSPOSEREMOVAL
 #include "Optimisation/Passes.h.inc"
 
 } // namespace autodiff
