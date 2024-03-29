@@ -1,0 +1,49 @@
+module attributes {torch.debug_module_name = "AlexNet"} {
+  func.func @forward(%arg0: tensor<4x224x224x3xf32>) -> tensor<4x1000xf32> {
+    %0 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<256xf32>}> : () -> tensor<256xf32>
+    %1 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<384xf32>}> : () -> tensor<384xf32>
+    %2 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<192xf32>}> : () -> tensor<192xf32>
+    %3 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<64xf32>}> : () -> tensor<64xf32>
+    %4 = "tosa.const"() <{value = dense<[0, 2, 3, 1]> : tensor<4xi32>}> : () -> tensor<4xi32>
+    %5 = "tosa.const"() <{value = dense<[0, 3, 1, 2]> : tensor<4xi32>}> : () -> tensor<4xi32>
+    %6 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<4x1000xf32>}> : () -> tensor<4x1000xf32>
+    %7 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<4x4096x1000xf32>}> : () -> tensor<4x4096x1000xf32>
+    %8 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<4x4096x4096xf32>}> : () -> tensor<4x4096x4096xf32>
+    %9 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<4x4096xf32>}> : () -> tensor<4x4096xf32>
+    %10 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<4x9216x4096xf32>}> : () -> tensor<4x9216x4096xf32>
+    %11 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<256x3x3x256xf32>}> : () -> tensor<256x3x3x256xf32>
+    %12 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<256x3x3x384xf32>}> : () -> tensor<256x3x3x384xf32>
+    %13 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<384x3x3x192xf32>}> : () -> tensor<384x3x3x192xf32>
+    %14 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<192x5x5x64xf32>}> : () -> tensor<192x5x5x64xf32>
+    %15 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<64x11x11x3xf32>}> : () -> tensor<64x11x11x3xf32>
+    %16 = tosa.conv2d %arg0, %15, %3 {dilation = array<i64: 1, 1>, pad = array<i64: 2, 2, 2, 2>, stride = array<i64: 4, 4>} : (tensor<4x224x224x3xf32>, tensor<64x11x11x3xf32>, tensor<64xf32>) -> tensor<4x55x55x64xf32>
+    %17 = tosa.clamp %16 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<4x55x55x64xf32>) -> tensor<4x55x55x64xf32>
+    %18 = tosa.max_pool2d %17 {kernel = array<i64: 3, 3>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<4x55x55x64xf32>) -> tensor<4x27x27x64xf32>
+    %19 = tosa.conv2d %18, %14, %2 {dilation = array<i64: 1, 1>, pad = array<i64: 2, 2, 2, 2>, stride = array<i64: 1, 1>} : (tensor<4x27x27x64xf32>, tensor<192x5x5x64xf32>, tensor<192xf32>) -> tensor<4x27x27x192xf32>
+    %20 = tosa.clamp %19 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<4x27x27x192xf32>) -> tensor<4x27x27x192xf32>
+    %21 = tosa.max_pool2d %20 {kernel = array<i64: 3, 3>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<4x27x27x192xf32>) -> tensor<4x13x13x192xf32>
+    %22 = tosa.conv2d %21, %13, %1 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<4x13x13x192xf32>, tensor<384x3x3x192xf32>, tensor<384xf32>) -> tensor<4x13x13x384xf32>
+    %23 = tosa.clamp %22 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<4x13x13x384xf32>) -> tensor<4x13x13x384xf32>
+    %24 = tosa.conv2d %23, %12, %0 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<4x13x13x384xf32>, tensor<256x3x3x384xf32>, tensor<256xf32>) -> tensor<4x13x13x256xf32>
+    %25 = tosa.clamp %24 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<4x13x13x256xf32>) -> tensor<4x13x13x256xf32>
+    %26 = tosa.conv2d %25, %11, %0 {dilation = array<i64: 1, 1>, pad = array<i64: 1, 1, 1, 1>, stride = array<i64: 1, 1>} : (tensor<4x13x13x256xf32>, tensor<256x3x3x256xf32>, tensor<256xf32>) -> tensor<4x13x13x256xf32>
+    %27 = tosa.clamp %26 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<4x13x13x256xf32>) -> tensor<4x13x13x256xf32>
+    %28 = tosa.max_pool2d %27 {kernel = array<i64: 3, 3>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 2, 2>} : (tensor<4x13x13x256xf32>) -> tensor<4x6x6x256xf32>
+    %29 = tosa.reshape %28 {new_shape = array<i64: 4, 1, 9216>} : (tensor<4x6x6x256xf32>) -> tensor<4x1x9216xf32>
+    %30 = tosa.matmul %29, %10 : (tensor<4x1x9216xf32>, tensor<4x9216x4096xf32>) -> tensor<4x1x4096xf32>
+    %31 = tosa.reshape %30 {new_shape = array<i64: 4, 4096>} : (tensor<4x1x4096xf32>) -> tensor<4x4096xf32>
+    %32 = tosa.add %31, %9 : (tensor<4x4096xf32>, tensor<4x4096xf32>) -> tensor<4x4096xf32>
+    %33 = tosa.clamp %32 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<4x4096xf32>) -> tensor<4x4096xf32>
+    %34 = tosa.reshape %33 {new_shape = array<i64: 4, 1, 4096>} : (tensor<4x4096xf32>) -> tensor<4x1x4096xf32>
+    %35 = tosa.matmul %34, %8 : (tensor<4x1x4096xf32>, tensor<4x4096x4096xf32>) -> tensor<4x1x4096xf32>
+    %36 = tosa.reshape %35 {new_shape = array<i64: 4, 4096>} : (tensor<4x1x4096xf32>) -> tensor<4x4096xf32>
+    %37 = tosa.add %36, %9 : (tensor<4x4096xf32>, tensor<4x4096xf32>) -> tensor<4x4096xf32>
+    %38 = tosa.clamp %37 {max_fp = 3.40282347E+38 : f32, max_int = 2147483647 : i64, min_fp = 0.000000e+00 : f32, min_int = 0 : i64} : (tensor<4x4096xf32>) -> tensor<4x4096xf32>
+    %39 = tosa.reshape %38 {new_shape = array<i64: 4, 1, 4096>} : (tensor<4x4096xf32>) -> tensor<4x1x4096xf32>
+    %40 = tosa.matmul %39, %7 : (tensor<4x1x4096xf32>, tensor<4x4096x1000xf32>) -> tensor<4x1x1000xf32>
+    %41 = tosa.reshape %40 {new_shape = array<i64: 4, 1000>} : (tensor<4x1x1000xf32>) -> tensor<4x1000xf32>
+    %42 = tosa.add %41, %6 : (tensor<4x1000xf32>, tensor<4x1000xf32>) -> tensor<4x1000xf32>
+    return %42 : tensor<4x1000xf32>
+  }
+}
+

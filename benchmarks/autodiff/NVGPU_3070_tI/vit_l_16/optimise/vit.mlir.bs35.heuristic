@@ -1,0 +1,1788 @@
+#map = affine_map<(d0, d1, d2, d3) -> (d0, d1, d2)>
+#map1 = affine_map<(d0, d1, d2, d3) -> (d0, d1, d3)>
+module {
+  ml_program.global private mutable @global135(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global134(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global133(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global132(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global131(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global130(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global129(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global127(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global126(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global125(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global124(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global123(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global122(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global121(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global120(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global119(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global118(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global116(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global115(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global114(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global113(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global112(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global111(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global110(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global109(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global108(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global107(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global105(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global104(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global103(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global102(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global101(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global100(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global99(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global98(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global97(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global96(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global94(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global93(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global92(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global91(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global90(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global89(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global88(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global87(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global86(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global85(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global83(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global82(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global81(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global80(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global79(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global78(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global77(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global76(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global75(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global74(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global72(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global71(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global70(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global69(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global68(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global67(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global66(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global65(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global64(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global63(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global61(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global60(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global59(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global58(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global57(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global56(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global55(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global54(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global53(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global52(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global50(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global49(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global48(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global47(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global46(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global45(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global44(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global43(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global42(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global41(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global39(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global38(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global37(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global36(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global35(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global34(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global33(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global32(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global31(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global30(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global28(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global27(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global26(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global25(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global24(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global23(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global22(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global21(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global20(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global19(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global17(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global16(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global15(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global14(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global13(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global12(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global11(dense<1.000000e+00> : tensor<35x197x4096xf32>) : tensor<35x197x4096xf32>
+  ml_program.global private mutable @global10(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global9(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global8(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global6(dense<1.000000e+00> : tensor<560x197x1xf32>) : tensor<560x197x1xf32>
+  ml_program.global private mutable @global5(dense<1.000000e+00> : tensor<560x197x197xf32>) : tensor<560x197x197xf32>
+  ml_program.global private mutable @global4(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  ml_program.global private mutable @global3(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global2(dense<1.000000e+00> : tensor<35x197x1xf32>) : tensor<35x197x1xf32>
+  ml_program.global private mutable @global1(dense<1.000000e+00> : tensor<35x197x1024xf32>) : tensor<35x197x1024xf32>
+  func.func @dforward(%arg0: tensor<35x1000xf32>) -> tensor<35x3x224x224xf32> {
+    %cst = arith.constant dense<0.000000e+00> : tensor<3xf32>
+    %cst_0 = arith.constant dense<0.000000e+00> : tensor<560x197x197xf32>
+    %cst_1 = arith.constant dense<0.000000e+00> : tensor<35x197x1024xf32>
+    %0 = "tosa.const"() <{value = dense<[0, 3, 1, 2]> : tensor<4xi64>}> : () -> tensor<4xi64>
+    %1 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<3x16x16x1024xf32>}> : () -> tensor<3x16x16x1024xf32>
+    %2 = "tosa.const"() <{value = dense<[0, 2, 3, 1]> : tensor<4xi64>}> : () -> tensor<4xi64>
+    %3 = "tosa.const"() <{value = dense<[0, 2, 1]> : tensor<3xi32>}> : () -> tensor<3xi32>
+    %4 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<35x1024x1024xf32>}> : () -> tensor<35x1024x1024xf32>
+    %5 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<35x4096x1024xf32>}> : () -> tensor<35x4096x1024xf32>
+    %6 = "tosa.const"() <{value = dense<2.000000e+00> : tensor<35x197x4096xf32>}> : () -> tensor<35x197x4096xf32>
+    %7 = "tosa.const"() <{value = dense<1.000000e+00> : tensor<f32>}> : () -> tensor<f32>
+    %8 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<35x1024x4096xf32>}> : () -> tensor<35x1024x4096xf32>
+    %9 = "tosa.const"() <{value = dense<-1.500000e+00> : tensor<f32>}> : () -> tensor<f32>
+    %10 = "tosa.const"() <{value = dense<-5.000000e-01> : tensor<f32>}> : () -> tensor<f32>
+    %cst_2 = arith.constant 0.000000e+00 : f32
+    %11 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<35x1000x1024xf32>}> : () -> tensor<35x1000x1024xf32>
+    %12 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<1024xf32>}> : () -> tensor<1024xf32>
+    %13 = "tosa.const"() <{value = dense<[0, 2, 1]> : tensor<3xi64>}> : () -> tensor<3xi64>
+    %14 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<35x197x1024xf32>}> : () -> tensor<35x197x1024xf32>
+    %15 = "tosa.const"() <{value = dense<0.00130208337> : tensor<f32>}> : () -> tensor<f32>
+    %16 = "tosa.const"() <{value = dense<9.99999997E-7> : tensor<f32>}> : () -> tensor<f32>
+    %17 = "tosa.const"() <{value = dense<[0, 2, 1, 3]> : tensor<4xi64>}> : () -> tensor<4xi64>
+    %18 = "tosa.const"() <{value = dense<6.400000e+01> : tensor<f32>}> : () -> tensor<f32>
+    %19 = "tosa.const"() <{value = dense<7.777000e-02> : tensor<4096xf32>}> : () -> tensor<4096xf32>
+    %20 = "tosa.const"() <{value = dense<1.000000e+00> : tensor<35x197x4096xf32>}> : () -> tensor<35x197x4096xf32>
+    %21 = "tosa.const"() <{value = dense<5.000000e-01> : tensor<35x197x4096xf32>}> : () -> tensor<35x197x4096xf32>
+    %22 = "tosa.const"() <{value = dense<1.57079637> : tensor<35x197x4096xf32>}> : () -> tensor<35x197x4096xf32>
+    %23 = "tosa.const"() <{value = dense<4.471500e-02> : tensor<35x197x4096xf32>}> : () -> tensor<35x197x4096xf32>
+    %24 = "tosa.const"() <{value = dense<3.000000e+00> : tensor<35x197x4096xf32>}> : () -> tensor<35x197x4096xf32>
+    %global1 = ml_program.global_load @global1 : tensor<35x197x1024xf32>
+    %25 = tosa.add %global1, %14 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global2 = ml_program.global_load @global2 : tensor<35x197x1xf32>
+    %26 = tosa.mul %global2, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %27 = tosa.sub %25, %26 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global3 = ml_program.global_load @global3 : tensor<35x197x1xf32>
+    %28 = tosa.mul %global3, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %29 = tosa.add %28, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %30 = tosa.rsqrt %29 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global4 = ml_program.global_load @global4 : tensor<35x197x1024xf32>
+    %31 = tosa.add %global4, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %32 = tosa.reshape %31 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %33 = tosa.transpose %32, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %34 = tosa.reshape %33 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global5 = ml_program.global_load @global5 : tensor<560x197x197xf32>
+    %35 = tosa.rsqrt %18 : (tensor<f32>) -> tensor<f32>
+    %36 = tosa.mul %global5, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %37 = tosa.exp %36 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %38 = tosa.reduce_sum %37 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global6 = ml_program.global_load @global6 : tensor<560x197x1xf32>
+    %39 = tosa.mul %37, %global6 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global8 = ml_program.global_load @global8 : tensor<35x197x1024xf32>
+    %40 = tosa.add %global8, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %41 = tosa.add %40, %25 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global9 = ml_program.global_load @global9 : tensor<35x197x1xf32>
+    %42 = tosa.mul %global9, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %43 = tosa.sub %41, %42 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global10 = ml_program.global_load @global10 : tensor<35x197x1xf32>
+    %44 = tosa.mul %global10, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %45 = tosa.add %44, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %46 = tosa.rsqrt %45 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global11 = ml_program.global_load @global11 : tensor<35x197x4096xf32>
+    %47 = tosa.add %global11, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %48 = tosa.mul %47, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %49 = tosa.rsqrt %22 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %50 = tosa.pow %47, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %51 = tosa.mul %50, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %52 = tosa.add %47, %51 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %53 = tosa.mul %49, %52 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %54 = tosa.tanh %53 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %55 = tosa.add %54, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global12 = ml_program.global_load @global12 : tensor<35x197x1024xf32>
+    %56 = tosa.add %global12, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %57 = tosa.add %41, %56 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global13 = ml_program.global_load @global13 : tensor<35x197x1xf32>
+    %58 = tosa.mul %global13, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %59 = tosa.sub %57, %58 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global14 = ml_program.global_load @global14 : tensor<35x197x1xf32>
+    %60 = tosa.mul %global14, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %61 = tosa.add %60, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %62 = tosa.rsqrt %61 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global15 = ml_program.global_load @global15 : tensor<35x197x1024xf32>
+    %63 = tosa.add %global15, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %64 = tosa.reshape %63 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %65 = tosa.transpose %64, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %66 = tosa.reshape %65 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global16 = ml_program.global_load @global16 : tensor<560x197x197xf32>
+    %67 = tosa.mul %global16, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %68 = tosa.exp %67 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %69 = tosa.reduce_sum %68 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global17 = ml_program.global_load @global17 : tensor<560x197x1xf32>
+    %70 = tosa.mul %68, %global17 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global19 = ml_program.global_load @global19 : tensor<35x197x1024xf32>
+    %71 = tosa.add %global19, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %72 = tosa.add %71, %57 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global20 = ml_program.global_load @global20 : tensor<35x197x1xf32>
+    %73 = tosa.mul %global20, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %74 = tosa.sub %72, %73 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global21 = ml_program.global_load @global21 : tensor<35x197x1xf32>
+    %75 = tosa.mul %global21, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %76 = tosa.add %75, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %77 = tosa.rsqrt %76 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global22 = ml_program.global_load @global22 : tensor<35x197x4096xf32>
+    %78 = tosa.add %global22, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %79 = tosa.mul %78, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %80 = tosa.pow %78, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %81 = tosa.mul %80, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %82 = tosa.add %78, %81 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %83 = tosa.mul %49, %82 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %84 = tosa.tanh %83 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %85 = tosa.add %84, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global23 = ml_program.global_load @global23 : tensor<35x197x1024xf32>
+    %86 = tosa.add %global23, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %87 = tosa.add %72, %86 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global24 = ml_program.global_load @global24 : tensor<35x197x1xf32>
+    %88 = tosa.mul %global24, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %89 = tosa.sub %87, %88 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global25 = ml_program.global_load @global25 : tensor<35x197x1xf32>
+    %90 = tosa.mul %global25, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %91 = tosa.add %90, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %92 = tosa.rsqrt %91 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global26 = ml_program.global_load @global26 : tensor<35x197x1024xf32>
+    %93 = tosa.add %global26, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %94 = tosa.reshape %93 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %95 = tosa.transpose %94, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %96 = tosa.reshape %95 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global27 = ml_program.global_load @global27 : tensor<560x197x197xf32>
+    %97 = tosa.mul %global27, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %98 = tosa.exp %97 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %99 = tosa.reduce_sum %98 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global28 = ml_program.global_load @global28 : tensor<560x197x1xf32>
+    %100 = tosa.mul %98, %global28 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global30 = ml_program.global_load @global30 : tensor<35x197x1024xf32>
+    %101 = tosa.add %global30, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %102 = tosa.add %101, %87 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global31 = ml_program.global_load @global31 : tensor<35x197x1xf32>
+    %103 = tosa.mul %global31, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %104 = tosa.sub %102, %103 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global32 = ml_program.global_load @global32 : tensor<35x197x1xf32>
+    %105 = tosa.mul %global32, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %106 = tosa.add %105, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %107 = tosa.rsqrt %106 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global33 = ml_program.global_load @global33 : tensor<35x197x4096xf32>
+    %108 = tosa.add %global33, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %109 = tosa.mul %108, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %110 = tosa.pow %108, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %111 = tosa.mul %110, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %112 = tosa.add %108, %111 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %113 = tosa.mul %49, %112 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %114 = tosa.tanh %113 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %115 = tosa.add %114, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global34 = ml_program.global_load @global34 : tensor<35x197x1024xf32>
+    %116 = tosa.add %global34, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %117 = tosa.add %102, %116 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global35 = ml_program.global_load @global35 : tensor<35x197x1xf32>
+    %118 = tosa.mul %global35, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %119 = tosa.sub %117, %118 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global36 = ml_program.global_load @global36 : tensor<35x197x1xf32>
+    %120 = tosa.mul %global36, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %121 = tosa.add %120, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %122 = tosa.rsqrt %121 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global37 = ml_program.global_load @global37 : tensor<35x197x1024xf32>
+    %123 = tosa.add %global37, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %124 = tosa.reshape %123 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %125 = tosa.transpose %124, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %126 = tosa.reshape %125 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global38 = ml_program.global_load @global38 : tensor<560x197x197xf32>
+    %127 = tosa.mul %global38, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %128 = tosa.exp %127 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %129 = tosa.reduce_sum %128 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global39 = ml_program.global_load @global39 : tensor<560x197x1xf32>
+    %130 = tosa.mul %128, %global39 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global41 = ml_program.global_load @global41 : tensor<35x197x1024xf32>
+    %131 = tosa.add %global41, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %132 = tosa.add %131, %117 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global42 = ml_program.global_load @global42 : tensor<35x197x1xf32>
+    %133 = tosa.mul %global42, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %134 = tosa.sub %132, %133 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global43 = ml_program.global_load @global43 : tensor<35x197x1xf32>
+    %135 = tosa.mul %global43, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %136 = tosa.add %135, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %137 = tosa.rsqrt %136 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global44 = ml_program.global_load @global44 : tensor<35x197x4096xf32>
+    %138 = tosa.add %global44, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %139 = tosa.mul %138, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %140 = tosa.pow %138, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %141 = tosa.mul %140, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %142 = tosa.add %138, %141 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %143 = tosa.mul %49, %142 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %144 = tosa.tanh %143 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %145 = tosa.add %144, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global45 = ml_program.global_load @global45 : tensor<35x197x1024xf32>
+    %146 = tosa.add %global45, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %147 = tosa.add %132, %146 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global46 = ml_program.global_load @global46 : tensor<35x197x1xf32>
+    %148 = tosa.mul %global46, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %149 = tosa.sub %147, %148 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global47 = ml_program.global_load @global47 : tensor<35x197x1xf32>
+    %150 = tosa.mul %global47, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %151 = tosa.add %150, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %152 = tosa.rsqrt %151 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global48 = ml_program.global_load @global48 : tensor<35x197x1024xf32>
+    %153 = tosa.add %global48, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %154 = tosa.reshape %153 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %155 = tosa.transpose %154, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %156 = tosa.reshape %155 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global49 = ml_program.global_load @global49 : tensor<560x197x197xf32>
+    %157 = tosa.mul %global49, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %158 = tosa.exp %157 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %159 = tosa.reduce_sum %158 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global50 = ml_program.global_load @global50 : tensor<560x197x1xf32>
+    %160 = tosa.mul %158, %global50 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global52 = ml_program.global_load @global52 : tensor<35x197x1024xf32>
+    %161 = tosa.add %global52, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %162 = tosa.add %161, %147 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global53 = ml_program.global_load @global53 : tensor<35x197x1xf32>
+    %163 = tosa.mul %global53, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %164 = tosa.sub %162, %163 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global54 = ml_program.global_load @global54 : tensor<35x197x1xf32>
+    %165 = tosa.mul %global54, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %166 = tosa.add %165, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %167 = tosa.rsqrt %166 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global55 = ml_program.global_load @global55 : tensor<35x197x4096xf32>
+    %168 = tosa.add %global55, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %169 = tosa.mul %168, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %170 = tosa.pow %168, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %171 = tosa.mul %170, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %172 = tosa.add %168, %171 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %173 = tosa.mul %49, %172 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %174 = tosa.tanh %173 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %175 = tosa.add %174, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global56 = ml_program.global_load @global56 : tensor<35x197x1024xf32>
+    %176 = tosa.add %global56, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %177 = tosa.add %162, %176 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global57 = ml_program.global_load @global57 : tensor<35x197x1xf32>
+    %178 = tosa.mul %global57, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %179 = tosa.sub %177, %178 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global58 = ml_program.global_load @global58 : tensor<35x197x1xf32>
+    %180 = tosa.mul %global58, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %181 = tosa.add %180, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %182 = tosa.rsqrt %181 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global59 = ml_program.global_load @global59 : tensor<35x197x1024xf32>
+    %183 = tosa.add %global59, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %184 = tosa.reshape %183 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %185 = tosa.transpose %184, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %186 = tosa.reshape %185 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global60 = ml_program.global_load @global60 : tensor<560x197x197xf32>
+    %187 = tosa.mul %global60, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %188 = tosa.exp %187 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %189 = tosa.reduce_sum %188 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global61 = ml_program.global_load @global61 : tensor<560x197x1xf32>
+    %190 = tosa.mul %188, %global61 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global63 = ml_program.global_load @global63 : tensor<35x197x1024xf32>
+    %191 = tosa.add %global63, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %192 = tosa.add %191, %177 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global64 = ml_program.global_load @global64 : tensor<35x197x1xf32>
+    %193 = tosa.mul %global64, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %194 = tosa.sub %192, %193 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global65 = ml_program.global_load @global65 : tensor<35x197x1xf32>
+    %195 = tosa.mul %global65, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %196 = tosa.add %195, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %197 = tosa.rsqrt %196 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global66 = ml_program.global_load @global66 : tensor<35x197x4096xf32>
+    %198 = tosa.add %global66, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %199 = tosa.mul %198, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %200 = tosa.pow %198, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %201 = tosa.mul %200, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %202 = tosa.add %198, %201 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %203 = tosa.mul %49, %202 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %204 = tosa.tanh %203 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %205 = tosa.add %204, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global67 = ml_program.global_load @global67 : tensor<35x197x1024xf32>
+    %206 = tosa.add %global67, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %207 = tosa.add %192, %206 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global68 = ml_program.global_load @global68 : tensor<35x197x1xf32>
+    %208 = tosa.mul %global68, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %209 = tosa.sub %207, %208 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global69 = ml_program.global_load @global69 : tensor<35x197x1xf32>
+    %210 = tosa.mul %global69, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %211 = tosa.add %210, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %212 = tosa.rsqrt %211 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global70 = ml_program.global_load @global70 : tensor<35x197x1024xf32>
+    %213 = tosa.add %global70, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %214 = tosa.reshape %213 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %215 = tosa.transpose %214, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %216 = tosa.reshape %215 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global71 = ml_program.global_load @global71 : tensor<560x197x197xf32>
+    %217 = tosa.mul %global71, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %218 = tosa.exp %217 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %219 = tosa.reduce_sum %218 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global72 = ml_program.global_load @global72 : tensor<560x197x1xf32>
+    %220 = tosa.mul %218, %global72 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global74 = ml_program.global_load @global74 : tensor<35x197x1024xf32>
+    %221 = tosa.add %global74, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %222 = tosa.add %221, %207 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global75 = ml_program.global_load @global75 : tensor<35x197x1xf32>
+    %223 = tosa.mul %global75, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %224 = tosa.sub %222, %223 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global76 = ml_program.global_load @global76 : tensor<35x197x1xf32>
+    %225 = tosa.mul %global76, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %226 = tosa.add %225, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %227 = tosa.rsqrt %226 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global77 = ml_program.global_load @global77 : tensor<35x197x4096xf32>
+    %228 = tosa.add %global77, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %229 = tosa.mul %228, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %230 = tosa.pow %228, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %231 = tosa.mul %230, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %232 = tosa.add %228, %231 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %233 = tosa.mul %49, %232 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %234 = tosa.tanh %233 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %235 = tosa.add %234, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global78 = ml_program.global_load @global78 : tensor<35x197x1024xf32>
+    %236 = tosa.add %global78, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %237 = tosa.add %222, %236 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global79 = ml_program.global_load @global79 : tensor<35x197x1xf32>
+    %238 = tosa.mul %global79, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %239 = tosa.sub %237, %238 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global80 = ml_program.global_load @global80 : tensor<35x197x1xf32>
+    %240 = tosa.mul %global80, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %241 = tosa.add %240, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %242 = tosa.rsqrt %241 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global81 = ml_program.global_load @global81 : tensor<35x197x1024xf32>
+    %243 = tosa.add %global81, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %244 = tosa.reshape %243 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %245 = tosa.transpose %244, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %246 = tosa.reshape %245 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global82 = ml_program.global_load @global82 : tensor<560x197x197xf32>
+    %247 = tosa.mul %global82, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %248 = tosa.exp %247 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %249 = tosa.reduce_sum %248 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global83 = ml_program.global_load @global83 : tensor<560x197x1xf32>
+    %250 = tosa.mul %248, %global83 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global85 = ml_program.global_load @global85 : tensor<35x197x1024xf32>
+    %251 = tosa.add %global85, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %252 = tosa.add %251, %237 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global86 = ml_program.global_load @global86 : tensor<35x197x1xf32>
+    %253 = tosa.mul %global86, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %254 = tosa.sub %252, %253 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global87 = ml_program.global_load @global87 : tensor<35x197x1xf32>
+    %255 = tosa.mul %global87, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %256 = tosa.add %255, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %257 = tosa.rsqrt %256 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global88 = ml_program.global_load @global88 : tensor<35x197x4096xf32>
+    %258 = tosa.add %global88, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %259 = tosa.mul %258, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %260 = tosa.pow %258, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %261 = tosa.mul %260, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %262 = tosa.add %258, %261 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %263 = tosa.mul %49, %262 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %264 = tosa.tanh %263 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %265 = tosa.add %264, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global89 = ml_program.global_load @global89 : tensor<35x197x1024xf32>
+    %266 = tosa.add %global89, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %267 = tosa.add %252, %266 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global90 = ml_program.global_load @global90 : tensor<35x197x1xf32>
+    %268 = tosa.mul %global90, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %269 = tosa.sub %267, %268 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global91 = ml_program.global_load @global91 : tensor<35x197x1xf32>
+    %270 = tosa.mul %global91, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %271 = tosa.add %270, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %272 = tosa.rsqrt %271 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global92 = ml_program.global_load @global92 : tensor<35x197x1024xf32>
+    %273 = tosa.add %global92, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %274 = tosa.reshape %273 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %275 = tosa.transpose %274, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %276 = tosa.reshape %275 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global93 = ml_program.global_load @global93 : tensor<560x197x197xf32>
+    %277 = tosa.mul %global93, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %278 = tosa.exp %277 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %279 = tosa.reduce_sum %278 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global94 = ml_program.global_load @global94 : tensor<560x197x1xf32>
+    %280 = tosa.mul %278, %global94 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global96 = ml_program.global_load @global96 : tensor<35x197x1024xf32>
+    %281 = tosa.add %global96, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %282 = tosa.add %281, %267 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global97 = ml_program.global_load @global97 : tensor<35x197x1xf32>
+    %283 = tosa.mul %global97, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %284 = tosa.sub %282, %283 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global98 = ml_program.global_load @global98 : tensor<35x197x1xf32>
+    %285 = tosa.mul %global98, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %286 = tosa.add %285, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %287 = tosa.rsqrt %286 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global99 = ml_program.global_load @global99 : tensor<35x197x4096xf32>
+    %288 = tosa.add %global99, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %289 = tosa.mul %288, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %290 = tosa.pow %288, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %291 = tosa.mul %290, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %292 = tosa.add %288, %291 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %293 = tosa.mul %49, %292 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %294 = tosa.tanh %293 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %295 = tosa.add %294, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global100 = ml_program.global_load @global100 : tensor<35x197x1024xf32>
+    %296 = tosa.add %global100, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %297 = tosa.add %282, %296 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global101 = ml_program.global_load @global101 : tensor<35x197x1xf32>
+    %298 = tosa.mul %global101, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %299 = tosa.sub %297, %298 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global102 = ml_program.global_load @global102 : tensor<35x197x1xf32>
+    %300 = tosa.mul %global102, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %301 = tosa.add %300, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %302 = tosa.rsqrt %301 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global103 = ml_program.global_load @global103 : tensor<35x197x1024xf32>
+    %303 = tosa.add %global103, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %304 = tosa.reshape %303 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %305 = tosa.transpose %304, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %306 = tosa.reshape %305 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global104 = ml_program.global_load @global104 : tensor<560x197x197xf32>
+    %307 = tosa.mul %global104, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %308 = tosa.exp %307 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %309 = tosa.reduce_sum %308 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global105 = ml_program.global_load @global105 : tensor<560x197x1xf32>
+    %310 = tosa.mul %308, %global105 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global107 = ml_program.global_load @global107 : tensor<35x197x1024xf32>
+    %311 = tosa.add %global107, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %312 = tosa.add %311, %297 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global108 = ml_program.global_load @global108 : tensor<35x197x1xf32>
+    %313 = tosa.mul %global108, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %314 = tosa.sub %312, %313 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global109 = ml_program.global_load @global109 : tensor<35x197x1xf32>
+    %315 = tosa.mul %global109, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %316 = tosa.add %315, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %317 = tosa.rsqrt %316 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global110 = ml_program.global_load @global110 : tensor<35x197x4096xf32>
+    %318 = tosa.add %global110, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %319 = tosa.mul %318, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %320 = tosa.pow %318, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %321 = tosa.mul %320, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %322 = tosa.add %318, %321 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %323 = tosa.mul %49, %322 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %324 = tosa.tanh %323 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %325 = tosa.add %324, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global111 = ml_program.global_load @global111 : tensor<35x197x1024xf32>
+    %326 = tosa.add %global111, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %327 = tosa.add %312, %326 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global112 = ml_program.global_load @global112 : tensor<35x197x1xf32>
+    %328 = tosa.mul %global112, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %329 = tosa.sub %327, %328 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global113 = ml_program.global_load @global113 : tensor<35x197x1xf32>
+    %330 = tosa.mul %global113, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %331 = tosa.add %330, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %332 = tosa.rsqrt %331 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global114 = ml_program.global_load @global114 : tensor<35x197x1024xf32>
+    %333 = tosa.add %global114, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %334 = tosa.reshape %333 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %335 = tosa.transpose %334, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %336 = tosa.reshape %335 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global115 = ml_program.global_load @global115 : tensor<560x197x197xf32>
+    %337 = tosa.mul %global115, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %338 = tosa.exp %337 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %339 = tosa.reduce_sum %338 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global116 = ml_program.global_load @global116 : tensor<560x197x1xf32>
+    %340 = tosa.mul %338, %global116 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global118 = ml_program.global_load @global118 : tensor<35x197x1024xf32>
+    %341 = tosa.add %global118, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %342 = tosa.add %341, %327 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global119 = ml_program.global_load @global119 : tensor<35x197x1xf32>
+    %343 = tosa.mul %global119, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %344 = tosa.sub %342, %343 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global120 = ml_program.global_load @global120 : tensor<35x197x1xf32>
+    %345 = tosa.mul %global120, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %346 = tosa.add %345, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %347 = tosa.rsqrt %346 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global121 = ml_program.global_load @global121 : tensor<35x197x4096xf32>
+    %348 = tosa.add %global121, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %349 = tosa.mul %348, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %350 = tosa.pow %348, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %351 = tosa.mul %350, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %352 = tosa.add %348, %351 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %353 = tosa.mul %49, %352 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %354 = tosa.tanh %353 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %355 = tosa.add %354, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global122 = ml_program.global_load @global122 : tensor<35x197x1024xf32>
+    %356 = tosa.add %global122, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %357 = tosa.add %342, %356 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global123 = ml_program.global_load @global123 : tensor<35x197x1xf32>
+    %358 = tosa.mul %global123, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %359 = tosa.sub %357, %358 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global124 = ml_program.global_load @global124 : tensor<35x197x1xf32>
+    %360 = tosa.mul %global124, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %361 = tosa.add %360, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %362 = tosa.rsqrt %361 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global125 = ml_program.global_load @global125 : tensor<35x197x1024xf32>
+    %363 = tosa.add %global125, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %364 = tosa.reshape %363 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %365 = tosa.transpose %364, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %366 = tosa.reshape %365 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %global126 = ml_program.global_load @global126 : tensor<560x197x197xf32>
+    %367 = tosa.mul %global126, %35 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<f32>) -> tensor<560x197x197xf32>
+    %368 = tosa.exp %367 : (tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %369 = tosa.reduce_sum %368 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %global127 = ml_program.global_load @global127 : tensor<560x197x1xf32>
+    %370 = tosa.mul %368, %global127 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x1xf32>) -> tensor<560x197x197xf32>
+    %global129 = ml_program.global_load @global129 : tensor<35x197x1024xf32>
+    %371 = tosa.add %global129, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %372 = tosa.add %371, %357 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global130 = ml_program.global_load @global130 : tensor<35x197x1xf32>
+    %373 = tosa.mul %global130, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %374 = tosa.sub %372, %373 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global131 = ml_program.global_load @global131 : tensor<35x197x1xf32>
+    %375 = tosa.mul %global131, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %376 = tosa.add %375, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %377 = tosa.rsqrt %376 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %global132 = ml_program.global_load @global132 : tensor<35x197x4096xf32>
+    %378 = tosa.add %global132, %19 : (tensor<35x197x4096xf32>, tensor<4096xf32>) -> tensor<35x197x4096xf32>
+    %379 = tosa.mul %378, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %380 = tosa.pow %378, %24 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %381 = tosa.mul %380, %23 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %382 = tosa.add %378, %381 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %383 = tosa.mul %49, %382 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %384 = tosa.tanh %383 : (tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %385 = tosa.add %384, %20 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %global133 = ml_program.global_load @global133 : tensor<35x197x1024xf32>
+    %386 = tosa.add %global133, %12 : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %387 = tosa.add %372, %386 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %global134 = ml_program.global_load @global134 : tensor<35x197x1xf32>
+    %388 = tosa.mul %global134, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %389 = tosa.sub %387, %388 : (tensor<35x197x1024xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1024xf32>
+    %global135 = ml_program.global_load @global135 : tensor<35x197x1xf32>
+    %390 = tosa.mul %global135, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %391 = tosa.add %390, %16 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %392 = tosa.rsqrt %391 : (tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %393 = tosa.reshape %arg0 {new_shape = array<i64: 35, 1, 1000>} : (tensor<35x1000xf32>) -> tensor<35x1x1000xf32>
+    %394 = tosa.matmul %393, %11 : (tensor<35x1x1000xf32>, tensor<35x1000x1024xf32>) -> tensor<35x1x1024xf32>
+    %395 = linalg.fill ins(%cst_2 : f32) outs(%cst_1 : tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %inserted_slice = tensor.insert_slice %394 into %395[0, 0, 0] [35, 1, 1024] [35, 1, 1] : tensor<35x1x1024xf32> into tensor<35x197x1024xf32>
+    %396 = tosa.mul %inserted_slice, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %397 = tosa.mul %392, %396 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %398 = tosa.mul %389, %396 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %399 = tosa.reduce_sum %398 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %400 = tosa.pow %391, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %401 = tosa.mul %400, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %402 = tosa.mul %401, %399 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %403 = tosa.mul %402, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %404 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%403 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %405 = tosa.mul %389, %404 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %406 = tosa.add %397, %405 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %407 = tosa.add %406, %405 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %408 = tosa.negate %407 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %409 = tosa.reduce_sum %408 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %410 = tosa.mul %409, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %411 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%410 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %412 = tosa.add %407, %411 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %413 = tosa.matmul %412, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %414 = tosa.mul %385, %413 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %415 = tosa.mul %379, %413 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %416 = tosa.mul %384, %384 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %417 = tosa.sub %7, %416 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %418 = tosa.mul %417, %415 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %419 = tosa.mul %49, %418 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %420 = tosa.pow %378, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %421 = tosa.mul %420, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %422 = tosa.add %419, %421 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %423 = tosa.mul %414, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %424 = tosa.add %422, %423 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %425 = tosa.matmul %424, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %426 = tosa.mul %425, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %427 = tosa.mul %377, %426 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %428 = tosa.mul %374, %426 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %429 = tosa.reduce_sum %428 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %430 = tosa.pow %376, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %431 = tosa.mul %430, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %432 = tosa.mul %431, %429 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %433 = tosa.mul %432, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %434 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%433 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %435 = tosa.mul %374, %434 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %436 = tosa.add %427, %435 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %437 = tosa.add %436, %435 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %438 = tosa.add %412, %437 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %439 = tosa.negate %437 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %440 = tosa.reduce_sum %439 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %441 = tosa.mul %440, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %442 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%441 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %443 = tosa.add %438, %442 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %444 = tosa.matmul %443, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %445 = tosa.reshape %444 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %446 = tosa.transpose %445, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %447 = tosa.reshape %446 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %448 = tosa.transpose %366, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %449 = tosa.matmul %447, %448 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %450 = tosa.transpose %370, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %451 = tosa.matmul %450, %447 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %452 = tosa.mul %global127, %449 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %453 = tosa.mul %368, %449 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %454 = tosa.reduce_sum %453 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %455 = tosa.mul %369, %369 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %456 = tosa.negate %455 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %457 = tosa.reciprocal %456 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %458 = tosa.mul %457, %454 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %459 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%458 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %460 = tosa.add %452, %459 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %461 = tosa.mul %368, %460 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %462 = tosa.mul %35, %461 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %463 = tosa.matmul %462, %366 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %464 = tosa.add %451, %463 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %465 = tosa.matmul %448, %462 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %466 = tosa.transpose %465, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %467 = tosa.add %464, %466 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %468 = tosa.reshape %467 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %469 = tosa.transpose %468, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %470 = tosa.reshape %469 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %471 = tosa.matmul %470, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %472 = tosa.mul %471, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %473 = tosa.mul %362, %472 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %474 = tosa.mul %359, %472 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %475 = tosa.reduce_sum %474 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %476 = tosa.pow %361, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %477 = tosa.mul %476, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %478 = tosa.mul %477, %475 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %479 = tosa.mul %478, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %480 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%479 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %481 = tosa.mul %359, %480 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %482 = tosa.add %473, %481 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %483 = tosa.add %482, %481 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %484 = tosa.add %443, %483 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %485 = tosa.negate %483 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %486 = tosa.reduce_sum %485 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %487 = tosa.mul %486, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %488 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%487 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %489 = tosa.add %484, %488 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %490 = tosa.matmul %489, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %491 = tosa.mul %355, %490 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %492 = tosa.mul %349, %490 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %493 = tosa.mul %354, %354 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %494 = tosa.sub %7, %493 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %495 = tosa.mul %494, %492 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %496 = tosa.mul %49, %495 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %497 = tosa.pow %348, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %498 = tosa.mul %497, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %499 = tosa.add %496, %498 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %500 = tosa.mul %491, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %501 = tosa.add %499, %500 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %502 = tosa.matmul %501, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %503 = tosa.mul %502, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %504 = tosa.mul %347, %503 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %505 = tosa.mul %344, %503 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %506 = tosa.reduce_sum %505 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %507 = tosa.pow %346, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %508 = tosa.mul %507, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %509 = tosa.mul %508, %506 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %510 = tosa.mul %509, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %511 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%510 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %512 = tosa.mul %344, %511 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %513 = tosa.add %504, %512 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %514 = tosa.add %513, %512 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %515 = tosa.add %489, %514 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %516 = tosa.negate %514 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %517 = tosa.reduce_sum %516 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %518 = tosa.mul %517, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %519 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%518 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %520 = tosa.add %515, %519 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %521 = tosa.matmul %520, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %522 = tosa.reshape %521 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %523 = tosa.transpose %522, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %524 = tosa.reshape %523 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %525 = tosa.transpose %336, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %526 = tosa.matmul %524, %525 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %527 = tosa.transpose %340, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %528 = tosa.matmul %527, %524 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %529 = tosa.mul %global116, %526 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %530 = tosa.mul %338, %526 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %531 = tosa.reduce_sum %530 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %532 = tosa.mul %339, %339 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %533 = tosa.negate %532 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %534 = tosa.reciprocal %533 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %535 = tosa.mul %534, %531 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %536 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%535 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %537 = tosa.add %529, %536 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %538 = tosa.mul %338, %537 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %539 = tosa.mul %35, %538 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %540 = tosa.matmul %539, %336 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %541 = tosa.add %528, %540 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %542 = tosa.matmul %525, %539 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %543 = tosa.transpose %542, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %544 = tosa.add %541, %543 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %545 = tosa.reshape %544 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %546 = tosa.transpose %545, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %547 = tosa.reshape %546 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %548 = tosa.matmul %547, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %549 = tosa.mul %548, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %550 = tosa.mul %332, %549 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %551 = tosa.mul %329, %549 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %552 = tosa.reduce_sum %551 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %553 = tosa.pow %331, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %554 = tosa.mul %553, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %555 = tosa.mul %554, %552 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %556 = tosa.mul %555, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %557 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%556 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %558 = tosa.mul %329, %557 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %559 = tosa.add %550, %558 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %560 = tosa.add %559, %558 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %561 = tosa.add %520, %560 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %562 = tosa.negate %560 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %563 = tosa.reduce_sum %562 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %564 = tosa.mul %563, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %565 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%564 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %566 = tosa.add %561, %565 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %567 = tosa.matmul %566, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %568 = tosa.mul %325, %567 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %569 = tosa.mul %319, %567 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %570 = tosa.mul %324, %324 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %571 = tosa.sub %7, %570 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %572 = tosa.mul %571, %569 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %573 = tosa.mul %49, %572 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %574 = tosa.pow %318, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %575 = tosa.mul %574, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %576 = tosa.add %573, %575 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %577 = tosa.mul %568, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %578 = tosa.add %576, %577 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %579 = tosa.matmul %578, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %580 = tosa.mul %579, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %581 = tosa.mul %317, %580 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %582 = tosa.mul %314, %580 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %583 = tosa.reduce_sum %582 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %584 = tosa.pow %316, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %585 = tosa.mul %584, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %586 = tosa.mul %585, %583 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %587 = tosa.mul %586, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %588 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%587 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %589 = tosa.mul %314, %588 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %590 = tosa.add %581, %589 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %591 = tosa.add %590, %589 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %592 = tosa.add %566, %591 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %593 = tosa.negate %591 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %594 = tosa.reduce_sum %593 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %595 = tosa.mul %594, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %596 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%595 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %597 = tosa.add %592, %596 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %598 = tosa.matmul %597, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %599 = tosa.reshape %598 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %600 = tosa.transpose %599, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %601 = tosa.reshape %600 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %602 = tosa.transpose %306, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %603 = tosa.matmul %601, %602 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %604 = tosa.transpose %310, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %605 = tosa.matmul %604, %601 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %606 = tosa.mul %global105, %603 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %607 = tosa.mul %308, %603 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %608 = tosa.reduce_sum %607 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %609 = tosa.mul %309, %309 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %610 = tosa.negate %609 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %611 = tosa.reciprocal %610 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %612 = tosa.mul %611, %608 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %613 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%612 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %614 = tosa.add %606, %613 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %615 = tosa.mul %308, %614 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %616 = tosa.mul %35, %615 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %617 = tosa.matmul %616, %306 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %618 = tosa.add %605, %617 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %619 = tosa.matmul %602, %616 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %620 = tosa.transpose %619, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %621 = tosa.add %618, %620 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %622 = tosa.reshape %621 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %623 = tosa.transpose %622, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %624 = tosa.reshape %623 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %625 = tosa.matmul %624, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %626 = tosa.mul %625, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %627 = tosa.mul %302, %626 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %628 = tosa.mul %299, %626 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %629 = tosa.reduce_sum %628 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %630 = tosa.pow %301, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %631 = tosa.mul %630, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %632 = tosa.mul %631, %629 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %633 = tosa.mul %632, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %634 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%633 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %635 = tosa.mul %299, %634 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %636 = tosa.add %627, %635 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %637 = tosa.add %636, %635 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %638 = tosa.add %597, %637 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %639 = tosa.negate %637 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %640 = tosa.reduce_sum %639 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %641 = tosa.mul %640, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %642 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%641 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %643 = tosa.add %638, %642 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %644 = tosa.matmul %643, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %645 = tosa.mul %295, %644 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %646 = tosa.mul %289, %644 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %647 = tosa.mul %294, %294 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %648 = tosa.sub %7, %647 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %649 = tosa.mul %648, %646 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %650 = tosa.mul %49, %649 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %651 = tosa.pow %288, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %652 = tosa.mul %651, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %653 = tosa.add %650, %652 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %654 = tosa.mul %645, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %655 = tosa.add %653, %654 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %656 = tosa.matmul %655, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %657 = tosa.mul %656, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %658 = tosa.mul %287, %657 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %659 = tosa.mul %284, %657 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %660 = tosa.reduce_sum %659 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %661 = tosa.pow %286, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %662 = tosa.mul %661, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %663 = tosa.mul %662, %660 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %664 = tosa.mul %663, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %665 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%664 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %666 = tosa.mul %284, %665 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %667 = tosa.add %658, %666 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %668 = tosa.add %667, %666 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %669 = tosa.add %643, %668 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %670 = tosa.negate %668 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %671 = tosa.reduce_sum %670 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %672 = tosa.mul %671, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %673 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%672 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %674 = tosa.add %669, %673 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %675 = tosa.matmul %674, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %676 = tosa.reshape %675 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %677 = tosa.transpose %676, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %678 = tosa.reshape %677 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %679 = tosa.transpose %276, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %680 = tosa.matmul %678, %679 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %681 = tosa.transpose %280, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %682 = tosa.matmul %681, %678 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %683 = tosa.mul %global94, %680 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %684 = tosa.mul %278, %680 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %685 = tosa.reduce_sum %684 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %686 = tosa.mul %279, %279 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %687 = tosa.negate %686 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %688 = tosa.reciprocal %687 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %689 = tosa.mul %688, %685 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %690 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%689 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %691 = tosa.add %683, %690 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %692 = tosa.mul %278, %691 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %693 = tosa.mul %35, %692 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %694 = tosa.matmul %693, %276 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %695 = tosa.add %682, %694 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %696 = tosa.matmul %679, %693 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %697 = tosa.transpose %696, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %698 = tosa.add %695, %697 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %699 = tosa.reshape %698 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %700 = tosa.transpose %699, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %701 = tosa.reshape %700 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %702 = tosa.matmul %701, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %703 = tosa.mul %702, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %704 = tosa.mul %272, %703 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %705 = tosa.mul %269, %703 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %706 = tosa.reduce_sum %705 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %707 = tosa.pow %271, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %708 = tosa.mul %707, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %709 = tosa.mul %708, %706 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %710 = tosa.mul %709, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %711 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%710 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %712 = tosa.mul %269, %711 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %713 = tosa.add %704, %712 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %714 = tosa.add %713, %712 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %715 = tosa.add %674, %714 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %716 = tosa.negate %714 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %717 = tosa.reduce_sum %716 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %718 = tosa.mul %717, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %719 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%718 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %720 = tosa.add %715, %719 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %721 = tosa.matmul %720, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %722 = tosa.mul %265, %721 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %723 = tosa.mul %259, %721 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %724 = tosa.mul %264, %264 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %725 = tosa.sub %7, %724 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %726 = tosa.mul %725, %723 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %727 = tosa.mul %49, %726 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %728 = tosa.pow %258, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %729 = tosa.mul %728, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %730 = tosa.add %727, %729 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %731 = tosa.mul %722, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %732 = tosa.add %730, %731 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %733 = tosa.matmul %732, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %734 = tosa.mul %733, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %735 = tosa.mul %257, %734 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %736 = tosa.mul %254, %734 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %737 = tosa.reduce_sum %736 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %738 = tosa.pow %256, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %739 = tosa.mul %738, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %740 = tosa.mul %739, %737 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %741 = tosa.mul %740, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %742 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%741 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %743 = tosa.mul %254, %742 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %744 = tosa.add %735, %743 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %745 = tosa.add %744, %743 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %746 = tosa.add %720, %745 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %747 = tosa.negate %745 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %748 = tosa.reduce_sum %747 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %749 = tosa.mul %748, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %750 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%749 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %751 = tosa.add %746, %750 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %752 = tosa.matmul %751, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %753 = tosa.reshape %752 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %754 = tosa.transpose %753, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %755 = tosa.reshape %754 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %756 = tosa.transpose %246, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %757 = tosa.matmul %755, %756 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %758 = tosa.transpose %250, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %759 = tosa.matmul %758, %755 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %760 = tosa.mul %global83, %757 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %761 = tosa.mul %248, %757 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %762 = tosa.reduce_sum %761 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %763 = tosa.mul %249, %249 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %764 = tosa.negate %763 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %765 = tosa.reciprocal %764 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %766 = tosa.mul %765, %762 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %767 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%766 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %768 = tosa.add %760, %767 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %769 = tosa.mul %248, %768 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %770 = tosa.mul %35, %769 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %771 = tosa.matmul %770, %246 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %772 = tosa.add %759, %771 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %773 = tosa.matmul %756, %770 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %774 = tosa.transpose %773, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %775 = tosa.add %772, %774 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %776 = tosa.reshape %775 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %777 = tosa.transpose %776, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %778 = tosa.reshape %777 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %779 = tosa.matmul %778, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %780 = tosa.mul %779, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %781 = tosa.mul %242, %780 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %782 = tosa.mul %239, %780 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %783 = tosa.reduce_sum %782 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %784 = tosa.pow %241, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %785 = tosa.mul %784, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %786 = tosa.mul %785, %783 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %787 = tosa.mul %786, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %788 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%787 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %789 = tosa.mul %239, %788 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %790 = tosa.add %781, %789 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %791 = tosa.add %790, %789 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %792 = tosa.add %751, %791 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %793 = tosa.negate %791 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %794 = tosa.reduce_sum %793 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %795 = tosa.mul %794, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %796 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%795 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %797 = tosa.add %792, %796 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %798 = tosa.matmul %797, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %799 = tosa.mul %235, %798 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %800 = tosa.mul %229, %798 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %801 = tosa.mul %234, %234 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %802 = tosa.sub %7, %801 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %803 = tosa.mul %802, %800 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %804 = tosa.mul %49, %803 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %805 = tosa.pow %228, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %806 = tosa.mul %805, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %807 = tosa.add %804, %806 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %808 = tosa.mul %799, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %809 = tosa.add %807, %808 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %810 = tosa.matmul %809, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %811 = tosa.mul %810, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %812 = tosa.mul %227, %811 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %813 = tosa.mul %224, %811 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %814 = tosa.reduce_sum %813 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %815 = tosa.pow %226, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %816 = tosa.mul %815, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %817 = tosa.mul %816, %814 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %818 = tosa.mul %817, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %819 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%818 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %820 = tosa.mul %224, %819 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %821 = tosa.add %812, %820 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %822 = tosa.add %821, %820 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %823 = tosa.add %797, %822 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %824 = tosa.negate %822 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %825 = tosa.reduce_sum %824 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %826 = tosa.mul %825, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %827 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%826 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %828 = tosa.add %823, %827 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %829 = tosa.matmul %828, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %830 = tosa.reshape %829 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %831 = tosa.transpose %830, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %832 = tosa.reshape %831 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %833 = tosa.transpose %216, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %834 = tosa.matmul %832, %833 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %835 = tosa.transpose %220, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %836 = tosa.matmul %835, %832 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %837 = tosa.mul %global72, %834 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %838 = tosa.mul %218, %834 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %839 = tosa.reduce_sum %838 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %840 = tosa.mul %219, %219 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %841 = tosa.negate %840 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %842 = tosa.reciprocal %841 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %843 = tosa.mul %842, %839 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %844 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%843 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %845 = tosa.add %837, %844 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %846 = tosa.mul %218, %845 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %847 = tosa.mul %35, %846 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %848 = tosa.matmul %847, %216 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %849 = tosa.add %836, %848 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %850 = tosa.matmul %833, %847 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %851 = tosa.transpose %850, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %852 = tosa.add %849, %851 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %853 = tosa.reshape %852 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %854 = tosa.transpose %853, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %855 = tosa.reshape %854 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %856 = tosa.matmul %855, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %857 = tosa.mul %856, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %858 = tosa.mul %212, %857 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %859 = tosa.mul %209, %857 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %860 = tosa.reduce_sum %859 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %861 = tosa.pow %211, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %862 = tosa.mul %861, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %863 = tosa.mul %862, %860 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %864 = tosa.mul %863, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %865 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%864 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %866 = tosa.mul %209, %865 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %867 = tosa.add %858, %866 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %868 = tosa.add %867, %866 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %869 = tosa.add %828, %868 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %870 = tosa.negate %868 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %871 = tosa.reduce_sum %870 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %872 = tosa.mul %871, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %873 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%872 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %874 = tosa.add %869, %873 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %875 = tosa.matmul %874, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %876 = tosa.mul %205, %875 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %877 = tosa.mul %199, %875 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %878 = tosa.mul %204, %204 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %879 = tosa.sub %7, %878 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %880 = tosa.mul %879, %877 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %881 = tosa.mul %49, %880 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %882 = tosa.pow %198, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %883 = tosa.mul %882, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %884 = tosa.add %881, %883 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %885 = tosa.mul %876, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %886 = tosa.add %884, %885 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %887 = tosa.matmul %886, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %888 = tosa.mul %887, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %889 = tosa.mul %197, %888 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %890 = tosa.mul %194, %888 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %891 = tosa.reduce_sum %890 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %892 = tosa.pow %196, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %893 = tosa.mul %892, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %894 = tosa.mul %893, %891 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %895 = tosa.mul %894, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %896 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%895 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %897 = tosa.mul %194, %896 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %898 = tosa.add %889, %897 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %899 = tosa.add %898, %897 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %900 = tosa.add %874, %899 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %901 = tosa.negate %899 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %902 = tosa.reduce_sum %901 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %903 = tosa.mul %902, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %904 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%903 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %905 = tosa.add %900, %904 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %906 = tosa.matmul %905, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %907 = tosa.reshape %906 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %908 = tosa.transpose %907, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %909 = tosa.reshape %908 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %910 = tosa.transpose %186, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %911 = tosa.matmul %909, %910 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %912 = tosa.transpose %190, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %913 = tosa.matmul %912, %909 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %914 = tosa.mul %global61, %911 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %915 = tosa.mul %188, %911 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %916 = tosa.reduce_sum %915 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %917 = tosa.mul %189, %189 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %918 = tosa.negate %917 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %919 = tosa.reciprocal %918 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %920 = tosa.mul %919, %916 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %921 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%920 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %922 = tosa.add %914, %921 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %923 = tosa.mul %188, %922 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %924 = tosa.mul %35, %923 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %925 = tosa.matmul %924, %186 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %926 = tosa.add %913, %925 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %927 = tosa.matmul %910, %924 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %928 = tosa.transpose %927, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %929 = tosa.add %926, %928 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %930 = tosa.reshape %929 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %931 = tosa.transpose %930, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %932 = tosa.reshape %931 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %933 = tosa.matmul %932, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %934 = tosa.mul %933, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %935 = tosa.mul %182, %934 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %936 = tosa.mul %179, %934 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %937 = tosa.reduce_sum %936 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %938 = tosa.pow %181, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %939 = tosa.mul %938, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %940 = tosa.mul %939, %937 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %941 = tosa.mul %940, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %942 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%941 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %943 = tosa.mul %179, %942 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %944 = tosa.add %935, %943 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %945 = tosa.add %944, %943 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %946 = tosa.add %905, %945 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %947 = tosa.negate %945 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %948 = tosa.reduce_sum %947 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %949 = tosa.mul %948, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %950 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%949 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %951 = tosa.add %946, %950 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %952 = tosa.matmul %951, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %953 = tosa.mul %175, %952 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %954 = tosa.mul %169, %952 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %955 = tosa.mul %174, %174 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %956 = tosa.sub %7, %955 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %957 = tosa.mul %956, %954 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %958 = tosa.mul %49, %957 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %959 = tosa.pow %168, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %960 = tosa.mul %959, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %961 = tosa.add %958, %960 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %962 = tosa.mul %953, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %963 = tosa.add %961, %962 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %964 = tosa.matmul %963, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %965 = tosa.mul %964, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %966 = tosa.mul %167, %965 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %967 = tosa.mul %164, %965 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %968 = tosa.reduce_sum %967 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %969 = tosa.pow %166, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %970 = tosa.mul %969, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %971 = tosa.mul %970, %968 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %972 = tosa.mul %971, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %973 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%972 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %974 = tosa.mul %164, %973 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %975 = tosa.add %966, %974 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %976 = tosa.add %975, %974 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %977 = tosa.add %951, %976 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %978 = tosa.negate %976 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %979 = tosa.reduce_sum %978 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %980 = tosa.mul %979, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %981 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%980 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %982 = tosa.add %977, %981 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %983 = tosa.matmul %982, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %984 = tosa.reshape %983 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %985 = tosa.transpose %984, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %986 = tosa.reshape %985 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %987 = tosa.transpose %156, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %988 = tosa.matmul %986, %987 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %989 = tosa.transpose %160, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %990 = tosa.matmul %989, %986 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %991 = tosa.mul %global50, %988 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %992 = tosa.mul %158, %988 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %993 = tosa.reduce_sum %992 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %994 = tosa.mul %159, %159 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %995 = tosa.negate %994 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %996 = tosa.reciprocal %995 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %997 = tosa.mul %996, %993 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %998 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%997 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %999 = tosa.add %991, %998 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1000 = tosa.mul %158, %999 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1001 = tosa.mul %35, %1000 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1002 = tosa.matmul %1001, %156 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1003 = tosa.add %990, %1002 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1004 = tosa.matmul %987, %1001 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %1005 = tosa.transpose %1004, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %1006 = tosa.add %1003, %1005 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1007 = tosa.reshape %1006 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %1008 = tosa.transpose %1007, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %1009 = tosa.reshape %1008 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %1010 = tosa.matmul %1009, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %1011 = tosa.mul %1010, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %1012 = tosa.mul %152, %1011 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1013 = tosa.mul %149, %1011 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1014 = tosa.reduce_sum %1013 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1015 = tosa.pow %151, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1016 = tosa.mul %1015, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1017 = tosa.mul %1016, %1014 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %1018 = tosa.mul %1017, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1019 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1018 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1020 = tosa.mul %149, %1019 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1021 = tosa.add %1012, %1020 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1022 = tosa.add %1021, %1020 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1023 = tosa.add %982, %1022 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1024 = tosa.negate %1022 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1025 = tosa.reduce_sum %1024 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1026 = tosa.mul %1025, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1027 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1026 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1028 = tosa.add %1023, %1027 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1029 = tosa.matmul %1028, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %1030 = tosa.mul %145, %1029 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1031 = tosa.mul %139, %1029 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1032 = tosa.mul %144, %144 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1033 = tosa.sub %7, %1032 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1034 = tosa.mul %1033, %1031 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1035 = tosa.mul %49, %1034 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1036 = tosa.pow %138, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1037 = tosa.mul %1036, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1038 = tosa.add %1035, %1037 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1039 = tosa.mul %1030, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1040 = tosa.add %1038, %1039 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1041 = tosa.matmul %1040, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %1042 = tosa.mul %1041, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %1043 = tosa.mul %137, %1042 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1044 = tosa.mul %134, %1042 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1045 = tosa.reduce_sum %1044 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1046 = tosa.pow %136, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1047 = tosa.mul %1046, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1048 = tosa.mul %1047, %1045 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %1049 = tosa.mul %1048, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1050 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1049 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1051 = tosa.mul %134, %1050 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1052 = tosa.add %1043, %1051 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1053 = tosa.add %1052, %1051 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1054 = tosa.add %1028, %1053 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1055 = tosa.negate %1053 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1056 = tosa.reduce_sum %1055 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1057 = tosa.mul %1056, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1058 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1057 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1059 = tosa.add %1054, %1058 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1060 = tosa.matmul %1059, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %1061 = tosa.reshape %1060 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %1062 = tosa.transpose %1061, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %1063 = tosa.reshape %1062 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %1064 = tosa.transpose %126, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %1065 = tosa.matmul %1063, %1064 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %1066 = tosa.transpose %130, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %1067 = tosa.matmul %1066, %1063 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1068 = tosa.mul %global39, %1065 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1069 = tosa.mul %128, %1065 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1070 = tosa.reduce_sum %1069 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %1071 = tosa.mul %129, %129 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1072 = tosa.negate %1071 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1073 = tosa.reciprocal %1072 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1074 = tosa.mul %1073, %1070 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1075 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1074 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %1076 = tosa.add %1068, %1075 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1077 = tosa.mul %128, %1076 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1078 = tosa.mul %35, %1077 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1079 = tosa.matmul %1078, %126 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1080 = tosa.add %1067, %1079 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1081 = tosa.matmul %1064, %1078 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %1082 = tosa.transpose %1081, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %1083 = tosa.add %1080, %1082 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1084 = tosa.reshape %1083 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %1085 = tosa.transpose %1084, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %1086 = tosa.reshape %1085 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %1087 = tosa.matmul %1086, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %1088 = tosa.mul %1087, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %1089 = tosa.mul %122, %1088 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1090 = tosa.mul %119, %1088 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1091 = tosa.reduce_sum %1090 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1092 = tosa.pow %121, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1093 = tosa.mul %1092, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1094 = tosa.mul %1093, %1091 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %1095 = tosa.mul %1094, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1096 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1095 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1097 = tosa.mul %119, %1096 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1098 = tosa.add %1089, %1097 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1099 = tosa.add %1098, %1097 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1100 = tosa.add %1059, %1099 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1101 = tosa.negate %1099 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1102 = tosa.reduce_sum %1101 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1103 = tosa.mul %1102, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1104 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1103 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1105 = tosa.add %1100, %1104 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1106 = tosa.matmul %1105, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %1107 = tosa.mul %115, %1106 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1108 = tosa.mul %109, %1106 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1109 = tosa.mul %114, %114 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1110 = tosa.sub %7, %1109 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1111 = tosa.mul %1110, %1108 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1112 = tosa.mul %49, %1111 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1113 = tosa.pow %108, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1114 = tosa.mul %1113, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1115 = tosa.add %1112, %1114 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1116 = tosa.mul %1107, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1117 = tosa.add %1115, %1116 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1118 = tosa.matmul %1117, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %1119 = tosa.mul %1118, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %1120 = tosa.mul %107, %1119 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1121 = tosa.mul %104, %1119 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1122 = tosa.reduce_sum %1121 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1123 = tosa.pow %106, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1124 = tosa.mul %1123, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1125 = tosa.mul %1124, %1122 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %1126 = tosa.mul %1125, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1127 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1126 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1128 = tosa.mul %104, %1127 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1129 = tosa.add %1120, %1128 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1130 = tosa.add %1129, %1128 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1131 = tosa.add %1105, %1130 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1132 = tosa.negate %1130 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1133 = tosa.reduce_sum %1132 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1134 = tosa.mul %1133, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1135 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1134 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1136 = tosa.add %1131, %1135 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1137 = tosa.matmul %1136, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %1138 = tosa.reshape %1137 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %1139 = tosa.transpose %1138, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %1140 = tosa.reshape %1139 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %1141 = tosa.transpose %96, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %1142 = tosa.matmul %1140, %1141 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %1143 = tosa.transpose %100, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %1144 = tosa.matmul %1143, %1140 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1145 = tosa.mul %global28, %1142 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1146 = tosa.mul %98, %1142 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1147 = tosa.reduce_sum %1146 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %1148 = tosa.mul %99, %99 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1149 = tosa.negate %1148 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1150 = tosa.reciprocal %1149 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1151 = tosa.mul %1150, %1147 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1152 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1151 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %1153 = tosa.add %1145, %1152 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1154 = tosa.mul %98, %1153 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1155 = tosa.mul %35, %1154 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1156 = tosa.matmul %1155, %96 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1157 = tosa.add %1144, %1156 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1158 = tosa.matmul %1141, %1155 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %1159 = tosa.transpose %1158, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %1160 = tosa.add %1157, %1159 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1161 = tosa.reshape %1160 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %1162 = tosa.transpose %1161, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %1163 = tosa.reshape %1162 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %1164 = tosa.matmul %1163, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %1165 = tosa.mul %1164, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %1166 = tosa.mul %92, %1165 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1167 = tosa.mul %89, %1165 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1168 = tosa.reduce_sum %1167 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1169 = tosa.pow %91, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1170 = tosa.mul %1169, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1171 = tosa.mul %1170, %1168 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %1172 = tosa.mul %1171, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1173 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1172 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1174 = tosa.mul %89, %1173 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1175 = tosa.add %1166, %1174 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1176 = tosa.add %1175, %1174 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1177 = tosa.add %1136, %1176 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1178 = tosa.negate %1176 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1179 = tosa.reduce_sum %1178 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1180 = tosa.mul %1179, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1181 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1180 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1182 = tosa.add %1177, %1181 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1183 = tosa.matmul %1182, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %1184 = tosa.mul %85, %1183 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1185 = tosa.mul %79, %1183 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1186 = tosa.mul %84, %84 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1187 = tosa.sub %7, %1186 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1188 = tosa.mul %1187, %1185 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1189 = tosa.mul %49, %1188 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1190 = tosa.pow %78, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1191 = tosa.mul %1190, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1192 = tosa.add %1189, %1191 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1193 = tosa.mul %1184, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1194 = tosa.add %1192, %1193 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1195 = tosa.matmul %1194, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %1196 = tosa.mul %1195, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %1197 = tosa.mul %77, %1196 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1198 = tosa.mul %74, %1196 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1199 = tosa.reduce_sum %1198 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1200 = tosa.pow %76, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1201 = tosa.mul %1200, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1202 = tosa.mul %1201, %1199 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %1203 = tosa.mul %1202, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1204 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1203 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1205 = tosa.mul %74, %1204 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1206 = tosa.add %1197, %1205 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1207 = tosa.add %1206, %1205 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1208 = tosa.add %1182, %1207 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1209 = tosa.negate %1207 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1210 = tosa.reduce_sum %1209 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1211 = tosa.mul %1210, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1212 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1211 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1213 = tosa.add %1208, %1212 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1214 = tosa.matmul %1213, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %1215 = tosa.reshape %1214 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %1216 = tosa.transpose %1215, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %1217 = tosa.reshape %1216 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %1218 = tosa.transpose %66, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %1219 = tosa.matmul %1217, %1218 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %1220 = tosa.transpose %70, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %1221 = tosa.matmul %1220, %1217 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1222 = tosa.mul %global17, %1219 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1223 = tosa.mul %68, %1219 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1224 = tosa.reduce_sum %1223 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %1225 = tosa.mul %69, %69 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1226 = tosa.negate %1225 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1227 = tosa.reciprocal %1226 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1228 = tosa.mul %1227, %1224 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1229 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1228 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %1230 = tosa.add %1222, %1229 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1231 = tosa.mul %68, %1230 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1232 = tosa.mul %35, %1231 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1233 = tosa.matmul %1232, %66 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1234 = tosa.add %1221, %1233 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1235 = tosa.matmul %1218, %1232 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %1236 = tosa.transpose %1235, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %1237 = tosa.add %1234, %1236 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1238 = tosa.reshape %1237 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %1239 = tosa.transpose %1238, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %1240 = tosa.reshape %1239 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %1241 = tosa.matmul %1240, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %1242 = tosa.mul %1241, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %1243 = tosa.mul %62, %1242 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1244 = tosa.mul %59, %1242 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1245 = tosa.reduce_sum %1244 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1246 = tosa.pow %61, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1247 = tosa.mul %1246, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1248 = tosa.mul %1247, %1245 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %1249 = tosa.mul %1248, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1250 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1249 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1251 = tosa.mul %59, %1250 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1252 = tosa.add %1243, %1251 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1253 = tosa.add %1252, %1251 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1254 = tosa.add %1213, %1253 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1255 = tosa.negate %1253 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1256 = tosa.reduce_sum %1255 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1257 = tosa.mul %1256, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1258 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1257 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1259 = tosa.add %1254, %1258 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1260 = tosa.matmul %1259, %8 : (tensor<35x197x1024xf32>, tensor<35x1024x4096xf32>) -> tensor<35x197x4096xf32>
+    %1261 = tosa.mul %55, %1260 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1262 = tosa.mul %48, %1260 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1263 = tosa.mul %54, %54 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1264 = tosa.sub %7, %1263 : (tensor<f32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1265 = tosa.mul %1264, %1262 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1266 = tosa.mul %49, %1265 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1267 = tosa.pow %47, %6 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1268 = tosa.mul %1267, %24 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1269 = tosa.add %1266, %1268 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1270 = tosa.mul %1261, %21 {shift = 0 : i8} : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1271 = tosa.add %1269, %1270 : (tensor<35x197x4096xf32>, tensor<35x197x4096xf32>) -> tensor<35x197x4096xf32>
+    %1272 = tosa.matmul %1271, %5 : (tensor<35x197x4096xf32>, tensor<35x4096x1024xf32>) -> tensor<35x197x1024xf32>
+    %1273 = tosa.mul %1272, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %1274 = tosa.mul %46, %1273 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1275 = tosa.mul %43, %1273 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1276 = tosa.reduce_sum %1275 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1277 = tosa.pow %45, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1278 = tosa.mul %1277, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1279 = tosa.mul %1278, %1276 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %1280 = tosa.mul %1279, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1281 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1280 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1282 = tosa.mul %43, %1281 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1283 = tosa.add %1274, %1282 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1284 = tosa.add %1283, %1282 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1285 = tosa.add %1259, %1284 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1286 = tosa.negate %1284 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1287 = tosa.reduce_sum %1286 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1288 = tosa.mul %1287, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1289 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1288 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1290 = tosa.add %1285, %1289 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1291 = tosa.matmul %1290, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %1292 = tosa.reshape %1291 {new_shape = array<i64: 35, 197, 16, 64>} : (tensor<35x197x1024xf32>) -> tensor<35x197x16x64xf32>
+    %1293 = tosa.transpose %1292, %17 : (tensor<35x197x16x64xf32>, tensor<4xi64>) -> tensor<35x16x197x64xf32>
+    %1294 = tosa.reshape %1293 {new_shape = array<i64: 560, 197, 64>} : (tensor<35x16x197x64xf32>) -> tensor<560x197x64xf32>
+    %1295 = tosa.transpose %34, %3 : (tensor<560x197x64xf32>, tensor<3xi32>) -> tensor<560x64x197xf32>
+    %1296 = tosa.matmul %1294, %1295 : (tensor<560x197x64xf32>, tensor<560x64x197xf32>) -> tensor<560x197x197xf32>
+    %1297 = tosa.transpose %39, %3 : (tensor<560x197x197xf32>, tensor<3xi32>) -> tensor<560x197x197xf32>
+    %1298 = tosa.matmul %1297, %1294 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1299 = tosa.mul %global6, %1296 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1300 = tosa.mul %37, %1296 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1301 = tosa.reduce_sum %1300 {axis = 2 : i32} : (tensor<560x197x197xf32>) -> tensor<560x197x1xf32>
+    %1302 = tosa.mul %38, %38 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1303 = tosa.negate %1302 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1304 = tosa.reciprocal %1303 : (tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1305 = tosa.mul %1304, %1301 {shift = 0 : i8} : (tensor<560x197x1xf32>, tensor<560x197x1xf32>) -> tensor<560x197x1xf32>
+    %1306 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1305 : tensor<560x197x1xf32>) outs(%cst_0 : tensor<560x197x197xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<560x197x197xf32>
+    %1307 = tosa.add %1299, %1306 : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1308 = tosa.mul %37, %1307 {shift = 0 : i8} : (tensor<560x197x197xf32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1309 = tosa.mul %35, %1308 {shift = 0 : i8} : (tensor<f32>, tensor<560x197x197xf32>) -> tensor<560x197x197xf32>
+    %1310 = tosa.matmul %1309, %34 : (tensor<560x197x197xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1311 = tosa.add %1298, %1310 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1312 = tosa.matmul %1295, %1309 : (tensor<560x64x197xf32>, tensor<560x197x197xf32>) -> tensor<560x64x197xf32>
+    %1313 = tosa.transpose %1312, %13 : (tensor<560x64x197xf32>, tensor<3xi64>) -> tensor<560x197x64xf32>
+    %1314 = tosa.add %1311, %1313 : (tensor<560x197x64xf32>, tensor<560x197x64xf32>) -> tensor<560x197x64xf32>
+    %1315 = tosa.reshape %1314 {new_shape = array<i64: 35, 16, 197, 64>} : (tensor<560x197x64xf32>) -> tensor<35x16x197x64xf32>
+    %1316 = tosa.transpose %1315, %17 : (tensor<35x16x197x64xf32>, tensor<4xi64>) -> tensor<35x197x16x64xf32>
+    %1317 = tosa.reshape %1316 {new_shape = array<i64: 35, 197, 1024>} : (tensor<35x197x16x64xf32>) -> tensor<35x197x1024xf32>
+    %1318 = tosa.matmul %1317, %4 : (tensor<35x197x1024xf32>, tensor<35x1024x1024xf32>) -> tensor<35x197x1024xf32>
+    %1319 = tosa.mul %1318, %12 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<1024xf32>) -> tensor<35x197x1024xf32>
+    %1320 = tosa.mul %30, %1319 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1321 = tosa.mul %27, %1319 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1322 = tosa.reduce_sum %1321 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1323 = tosa.pow %29, %9 : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1324 = tosa.mul %1323, %10 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1325 = tosa.mul %1324, %1322 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<35x197x1xf32>) -> tensor<35x197x1xf32>
+    %1326 = tosa.mul %1325, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1327 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1326 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1328 = tosa.mul %27, %1327 {shift = 0 : i8} : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1329 = tosa.add %1320, %1328 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1330 = tosa.add %1329, %1328 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1331 = tosa.add %1290, %1330 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1332 = tosa.negate %1330 : (tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %1333 = tosa.reduce_sum %1332 {axis = 2 : i32} : (tensor<35x197x1024xf32>) -> tensor<35x197x1xf32>
+    %1334 = tosa.mul %1333, %15 {shift = 0 : i8} : (tensor<35x197x1xf32>, tensor<f32>) -> tensor<35x197x1xf32>
+    %1335 = linalg.generic {indexing_maps = [#map, #map1], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%1334 : tensor<35x197x1xf32>) outs(%cst_1 : tensor<35x197x1024xf32>) {
+    ^bb0(%in: f32, %out: f32):
+      linalg.yield %in : f32
+    } -> tensor<35x197x1024xf32>
+    %1336 = tosa.add %1331, %1335 : (tensor<35x197x1024xf32>, tensor<35x197x1024xf32>) -> tensor<35x197x1024xf32>
+    %extracted_slice = tensor.extract_slice %1336[0, 1, 0] [35, 196, 1024] [35, 1, 1] : tensor<35x197x1024xf32> to tensor<35x196x1024xf32>
+    %1337 = tosa.transpose %extracted_slice, %13 : (tensor<35x196x1024xf32>, tensor<3xi64>) -> tensor<35x1024x196xf32>
+    %1338 = tosa.reshape %1337 {new_shape = array<i64: 35, 1024, 14, 14>} : (tensor<35x1024x196xf32>) -> tensor<35x1024x14x14xf32>
+    %1339 = tosa.transpose %1338, %2 : (tensor<35x1024x14x14xf32>, tensor<4xi64>) -> tensor<35x14x14x1024xf32>
+    %1340 = tosa.transpose_conv2d %1339, %1, %cst {out_pad = array<i64: 0, 0, 0, 0>, out_shape = array<i64: 35, 224, 224, 3>, stride = array<i64: 16, 16>} : (tensor<35x14x14x1024xf32>, tensor<3x16x16x1024xf32>, tensor<3xf32>) -> tensor<35x224x224x3xf32>
+    %1341 = tosa.transpose %1340, %0 : (tensor<35x224x224x3xf32>, tensor<4xi64>) -> tensor<35x3x224x224xf32>
+    return %1341 : tensor<35x3x224x224xf32>
+  }
+}
+

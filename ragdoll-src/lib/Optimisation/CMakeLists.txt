@@ -2,6 +2,7 @@
 add_mlir_conversion_library(RagdollOptimisation
   # TosaExt/TosaExtLowerings.cpp
   Autodiff/IdenticalTransposeRemoval.cpp
+  Autodiff/ForwardFuncRemoval.cpp
   Autodiff/AutodiffInline.cpp
   Autodiff/AutodiffOptimise.cpp
   Autodiff/AutodiffPrepareBatchSize.cpp

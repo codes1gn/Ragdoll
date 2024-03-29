@@ -1,0 +1,16 @@
+,time,pass,item,acceleration
+0,0.872708721594377,Forward,Torch Dynamo at batch-size = 1,2.6487210767745877
+0,0.9648453613573854,Forward,Torch Dynamo at batch-size = 2,2.3957849385522554
+0,1.1973410336808725,Forward,Torch Dynamo at batch-size = 4,1.9305794420707485
+0,1.5677617354826494,Forward,Torch Dynamo at batch-size = 8,1.474434496298251
+0,2.311561984772032,Forward,Torch Dynamo at batch-size = 16,1.0
+0,1.7510944977402687,Backward,Torch Dynamo at batch-size = 1,2.8799333390625046
+0,2.1023744717240334,Backward,Torch Dynamo at batch-size = 2,2.398733190360524
+0,2.4453406137498943,Backward,Torch Dynamo at batch-size = 4,2.0623038751880416
+0,3.5223122516816314,Backward,Torch Dynamo at batch-size = 8,1.4317400229021298
+0,5.043035423891111,Backward,Torch Dynamo at batch-size = 16,1.0
+0,2.6238032193346457,Full,Torch Dynamo at batch-size = 1,2.8030293409458316
+0,3.0672198330814187,Full,Torch Dynamo at batch-size = 2,2.397805768383579
+0,3.642681647430767,Full,Torch Dynamo at batch-size = 4,2.019006358639779
+0,5.090073987164281,Full,Torch Dynamo at batch-size = 8,1.444890079635256
+0,7.354597408663143,Full,Torch Dynamo at batch-size = 16,1.0

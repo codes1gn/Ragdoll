@@ -40,7 +40,7 @@
 using namespace mlir;
 using namespace mlir::ragdoll::autodiff;
 
-#define DEBUG_TYPE "ragdoll-autodiff-vjp"
+#define DEBUG_TYPE "autodiff-vjp"
 
 namespace mlir {
 namespace ragdoll {
@@ -263,7 +263,7 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
 
     // 前向保存
     rewriter.setInsertionPointAfterValue(v1);
-    rewriter.create<ml_program::GlobalStoreOp>(rewriter.getUnknownLoc(),
+    auto store = rewriter.create<ml_program::GlobalStoreOp>(rewriter.getUnknownLoc(),
                                                symbolRef, v1);
 
     // 反向读取
@@ -271,6 +271,14 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
     auto load = rewriter.create<ml_program::GlobalLoadOp>(
         rewriter.getUnknownLoc(), v2.getType(), symbolRef);
     v2.replaceAllUsesWith(load);
+
+    // llvm::errs() << "create ckpt at: \n";
+    // v1.dump();
+    // v2.dump();
+    // llvm::errs() << "store op = ";
+    // store.dump();
+    // llvm::errs() << "load op = ";
+    // load.dump();
   }
 
   /**
@@ -322,6 +330,123 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
     }
   }
 
+  // WIP
+  auto ragdoll(func::FuncOp forward, func::FuncOp vjp,
+                 PatternRewriter& rewriter) const -> void {
+    // llvm::errs() << "lucky\n";
+    auto module = forward->getParentOfType<ModuleOp>();
+    auto& fBlock = *forward.getBody().begin();
+    auto& vBlock = *vjp.getBody().begin();
+
+    // 保存函数参数
+    for (auto [fArg, vArg] :
+         llvm::zip(forward.getArguments(), vjp.getArguments())) {
+      createCheckpoint(fArg, vArg, module, rewriter);
+    }
+
+    // 修改函数签名
+    for (auto i = 0U; i < forward.getNumArguments(); ++i) {
+      vjp.eraseArgument(0);
+    }
+
+    // if isa<tosa::MatMulOp>(op) ||
+    // 27ms -> 45ms
+    // we should keep lightweight op here
+    static auto isComputeCostly = [](Operation* op) -> bool {
+      if (isa<tosa::ReshapeOp>(op) ||
+          isa<tosa::ConstOp>(op) ||
+          isa<tensor::EmptyOp>(op) ||
+          isa<tosa::TransposeOp>(op) ||
+          isa<ml_program::GlobalStoreOp>(op) ||
+          isa<ml_program::GlobalLoadOp>(op) ||
+          isa<tosa::ClampOp>(op) || 
+          isa<tosa::RsqrtOp>(op) ||
+          isa<tosa::TanhOp>(op) ||
+          isa<tosa::ExpOp>(op) ||
+          isa<tosa::ConcatOp>(op)) {
+        return false;
+      }
+
+
+      if (isa<tosa::AddOp>(op) || 
+          isa<tosa::SubOp>(op) ||
+          isa<tosa::MulOp>(op) ||
+          isa<tosa::PowOp>(op)) {
+        return false;
+      }
+
+      return true;
+    };
+
+    static auto isNextComputeCostly = [](Operation* op) -> bool {
+
+      // 不缓存变形
+      // if (isa<tosa::ReshapeOp>(op) ||
+          // isa<tosa::TransposeOp>(op) ||
+          // isa<tosa::ConcatOp>(op)) {
+        // return false;
+      // }
+
+      // 不缓存 elemwise unary
+      if (isa<tosa::ClampOp>(op) || 
+          isa<tosa::RsqrtOp>(op) ||
+          isa<tosa::ReshapeOp>(op) ||
+          isa<tosa::ExpOp>(op)) {
+        return false;
+      }
+
+      if (isa<tosa::AddOp>(op) ||
+          isa<tosa::MulOp>(op) ||
+          // isa<tosa::MatMulOp>(op) ||
+          // isa<tosa::Conv2DOp>(op) ||
+          // isa<tosa::PowOp>(op) ||
+          isa<tosa::SubOp>(op)) {
+        return false;
+      }
+
+      return true;
+    };
+
+
+    // 保存前向 op
+    for (auto [fOp, vOp] : llvm::zip(fBlock, vBlock)) {
+      if (isa<func::ReturnOp>(fOp)) {
+        continue;
+      }
+      // llvm::errs() << "fOp = ";
+      // fOp.dump();
+      // llvm::errs() << "vOp = ";
+      // vOp.dump();
+      // llvm::errs() << "\n";
+
+      if (isComputeCostly(&fOp)) {
+        // llvm::errs() << "fOp is stateful value, can store and load\n";
+        for (auto [fRes, vRes] :
+             llvm::zip(fOp.getResults(), vOp.getResults())) {
+
+          bool worth_or_not = false;
+          for (auto &use : fRes.getUses()) {
+              // 获取使用`value`的操作
+              mlir::Operation *userOp = use.getOwner();
+              
+              // 打印操作的名称
+              // 注意：getOperationName()返回的是mlir::Identifier，可以直接转换为std::string打印
+              std::string opName = userOp->getName().getStringRef().str();
+              // llvm::errs() << "user to this value: " << opName << "\n";
+              if (!isNextComputeCostly(userOp)) {
+                // llvm::errs() << "this user is compute-costly, worthy staging\n";
+                worth_or_not = true;
+                break;
+              }
+          }
+          if (worth_or_not) createCheckpoint(fRes, vRes, module, rewriter);
+          // createCheckpoint(fRes, vRes, module, rewriter);
+        }
+      }
+
+    }
+  }
+
   /**
    * @brief 启发式方法构造检查点
    *
@@ -329,63 +454,6 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
    * @param vjp
    * @param rewriter
    */
-  // auto heuristic(func::FuncOp forward, func::FuncOp vjp,
-  //                PatternRewriter& rewriter) const -> void {
-  //   auto module = forward->getParentOfType<ModuleOp>();
-  //   auto& fBlock = *forward.getBody().begin();
-  //   auto& vBlock = *vjp.getBody().begin();
-  //
-  //   // 保存函数参数
-  //   for (auto [fArg, vArg] :
-  //        llvm::zip(forward.getArguments(), vjp.getArguments())) {
-  //     createCheckpoint(fArg, vArg, module, rewriter);
-  //   }
-  //
-  //   // 修改函数签名
-  //   for (auto i = 0U; i < forward.getNumArguments(); ++i) {
-  //     vjp.eraseArgument(0);
-  //   }
-  //
-  //   /**
-  //    * @brief 判断某个 operation 是否值得缓存
-  //    *
-  //    */
-  //   // TODO(ccy): 重构为优先级
-  //   static auto isWorthyStoring = [](Operation* op) -> bool {
-  //     // 不缓存常量
-  //     if (isa<tosa::ConstOp>(op)) {
-  //       return false;
-  //     }
-  //
-  //     // 不缓存变形
-  //     // if (isa<tosa::ReshapeOp>(op) || isa<tosa::TransposeOp>(op) ||
-  //     //     isa<tosa::ConcatOp>(op)) {
-  //     //   return false;
-  //     // }
-  //
-  //     // 不缓存 elemwise unary
-  //     // if (isa<tosa::ClampOp>(op) || isa<tosa::RsqrtOp>(op)) {
-  //     //   return false;
-  //     // }
-  //
-  //     // TODO(ccy): elemwise binary 与 shape 相关
-  //     return true;
-  //   };
-  //
-  //   // 保存前向 op
-  //   for (auto [fOp, vOp] : llvm::zip(fBlock, vBlock)) {
-  //     if (isa<func::ReturnOp>(fOp)) {
-  //       continue;
-  //     }
-  //
-  //     if (isWorthyStoring(&fOp)) {
-  //       for (auto [fRes, vRes] :
-  //            llvm::zip(fOp.getResults(), vOp.getResults())) {
-  //         createCheckpoint(fRes, vRes, module, rewriter);
-  //       }
-  //     }
-  //   }
-  // }
   auto heuristic(func::FuncOp forward, func::FuncOp vjp,
                  PatternRewriter& rewriter) const -> void {
     auto module = forward->getParentOfType<ModuleOp>();
@@ -414,11 +482,11 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
         return false;
       }
 
-      // 不缓存变形 new
-      if (isa<tosa::ReshapeOp>(op) || isa<tosa::TransposeOp>(op) ||
-          isa<tosa::ConcatOp>(op)) {
-        return false;
-      }
+      // 不缓存变形
+      // if (isa<tosa::ReshapeOp>(op) || isa<tosa::TransposeOp>(op) ||
+      //     isa<tosa::ConcatOp>(op)) {
+      //   return false;
+      // }
 
       // 不缓存 elemwise unary
       // if (isa<tosa::ClampOp>(op) || isa<tosa::RsqrtOp>(op)) {
@@ -450,6 +518,27 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
     auto module = forward->getParentOfType<ModuleOp>();
     auto& fBlock = *forward.getBody().begin();
     auto& vBlock = *vjp.getBody().begin();
+    // TODO(ccy): 重构为优先级
+    static auto isWorthyStoring = [](Operation* op) -> bool {
+      // 不缓存常量
+      if (isa<tosa::ConstOp>(op)) {
+        return false;
+      }
+
+      // 不缓存变形
+      // if (isa<tosa::ReshapeOp>(op) || isa<tosa::TransposeOp>(op) ||
+      //     isa<tosa::ConcatOp>(op)) {
+      //   return false;
+      // }
+
+      // 不缓存 elemwise unary
+      // if (isa<tosa::ClampOp>(op) || isa<tosa::RsqrtOp>(op)) {
+      //   return false;
+      // }
+
+      // TODO(ccy): elemwise binary 与 shape 相关
+      return true;
+    };
 
     // 保存函数参数
     for (auto [fArg, vArg] :
@@ -468,8 +557,10 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
         continue;
       }
 
-      for (auto [fRes, vRes] : llvm::zip(fOp.getResults(), vOp.getResults())) {
-        createCheckpoint(fRes, vRes, module, rewriter);
+      if (isWorthyStoring(&fOp)) {
+        for (auto [fRes, vRes] : llvm::zip(fOp.getResults(), vOp.getResults())) {
+          createCheckpoint(fRes, vRes, module, rewriter);
+        }
       }
     }
   }
@@ -542,6 +633,8 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
 
     auto primalFunc = cast<func::FuncOp>(primalOp);
     auto vjpFunc = cast<func::FuncOp>(rewriter.clone(*primalFunc));
+    // llvm::errs() << "#1\n";
+    // primalFunc.dump();
 
     vjp(vjpFunc, rewriter);
     auto argnumsAttr = op->getAttrOfType<ArrayAttr>("argnums");
@@ -572,12 +665,16 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
 
     rewriter.setInsertionPoint(op);
 
+    // llvm::errs() << "#2\n";
+    // vjpFunc.dump();
     switch (op.getStrategy()) {
     case VjpStrategyFlags::heuristic: // TODO(ccy): 实现 heuristic
-      heuristic(primalFunc, vjpFunc, rewriter);
+      // heuristic(primalFunc, vjpFunc, rewriter);
+      ragdoll(primalFunc, vjpFunc, rewriter);
       break;
     case VjpStrategyFlags::storeall:
       createDistanceNCheckpoints(primalFunc, vjpFunc, rewriter, 1);
+      // storeall(primalFunc, vjpFunc, rewriter);
       break;
     case VjpStrategyFlags::checkpoint: {
       auto n = std::distance(primalFunc.getBody().begin()->begin(),
@@ -601,6 +698,7 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
     rewriter.replaceOpWithNewOp<func::CallOp>(
         op, vjpFunc, op.getInputs().take_back(vjpFunc.getNumArguments()));
 
+    // vjpFunc.dump();
     return success();
   }
 };
@@ -610,8 +708,6 @@ class VjpTransformation : public OpRewritePattern<VjpOp> {
 class AutodiffVjp : public impl::AutodiffVjpBase<AutodiffVjp> {
   void runOnOperation() override {
     OpBuilder builder{&getContext()};
-
-    // TODO: temp impl to remove unworked transpose
 
     getOperation()->walk([&](func::FuncOp func) {
       if (!func->hasAttr("autodiff_vjp")) {
@@ -659,11 +755,13 @@ class AutodiffVjp : public impl::AutodiffVjpBase<AutodiffVjp> {
     });
 
     RewritePatternSet pattern{&getContext()};
+    // pattern.add<VjpTransformation>(&getContext());
     pattern.add<VjpTransformation, RemoveUnusedGlobals>(&getContext());
     (void)applyPatternsAndFoldGreedily(getOperation(), std::move(pattern));
   }
 };
 
+// TODO: should be move to mlir::ragdoll
 std::unique_ptr<Pass> createAutodiffVjpPass() {
   return std::make_unique<AutodiffVjp>();
 }

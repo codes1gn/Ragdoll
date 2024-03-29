@@ -44,12 +44,12 @@ def torch_model_benchmark(
         results += timer.timeit(repetitions).times
 
     # from 's' to 'ms'
-    results = [1000.0 * result for result in results]
+    results = [1000.0 * result / repetitions for result in results]
     # get rid of warmup period measures
     if warmups == 0:
         return results
     else:
-        return results[:-warmups]
+        return results[warmups:-1]
 
 # TODO(albert): annotate types
 # TODO(albert): support dtype selection
@@ -60,7 +60,6 @@ def torch_model_benchmark(
 def torch_op_benchmark(
     operator, operands_shape, warmups=0, repetitions=1, measure_count=1, device="cpu"
 ):
-    print("benchmarking pytorch on operator@" + operator)
     # TODO: move this into ragdoll.utils.get_gpu_device
     if device == "cpu":
         _device = torch.device("cpu")
@@ -78,18 +77,30 @@ def torch_op_benchmark(
         rhs_data = np.random.randn(*operands_shape[1]).astype(np.float32)
         lhs, rhs = [torch.from_numpy(i).to(_device)
                     for i in [lhs_data, rhs_data]]
+
+        def bench_func(lhs, rhs):
+            return torch.matmul(lhs, rhs)
         timer = benchmark.Timer(
             stmt="torch.matmul(lhs, rhs)", globals={"lhs": lhs, "rhs": rhs}
         )
+        # timer = benchmark.Timer(
+        #     stmt="_lhs = lhs.to(_device);_rhs = rhs.to(_device);torch.bmm(_lhs, _rhs)", globals={"lhs": lhs, "rhs": rhs, "_device": _device}
+        # )
     elif operator == "batch-matmul":
         assert len(operands_shape) == 2
         lhs_data = np.random.randn(*operands_shape[0]).astype(np.float32)
         rhs_data = np.random.randn(*operands_shape[1]).astype(np.float32)
         lhs, rhs = [torch.from_numpy(i).to(_device)
                     for i in [lhs_data, rhs_data]]
+
+        def bench_func(lhs, rhs):
+            return torch.bmm(lhs, rhs)
         timer = benchmark.Timer(
-            stmt="torch.bmm(lhs, rhs)", globals={"lhs": lhs, "rhs": rhs}
+            stmt="torch.matmul(lhs, rhs)", globals={"lhs": lhs, "rhs": rhs}
         )
+        # timer = benchmark.Timer(
+        #     stmt="_lhs = lhs.to(_device);_rhs = rhs.to(_device);torch.bmm(_lhs, _rhs)", globals={"lhs": lhs, "rhs": rhs, "_device": _device}
+        # )
     else:
         # TODO: make this assert more reasonable, for unhandled ops
         assert 0, "To benchmark unknown operator"
@@ -99,18 +110,27 @@ def torch_op_benchmark(
     for i in range(measure_count):
         results += timer.timeit(repetitions).times
 
+    results = [val * 1000.0 for val in results]
+    # for _ in range(measure_count):
+    #     start_time = time.time()
+    #     for _a in range(repetitions):
+    #         bench_func(lhs, rhs)
+    #     end_time = time.time()
+    #     avg_time = end_time - start_time
+    #     results.append(avg_time / float(repetitions) * 1000.0)
+    # results = [val * 1000.0 / repetitions for val in results]
+
     # get rid of warmup period measures
     if warmups == 0:
         return results
     else:
-        return results[:-warmups]
+        return results[warmups:-1]
 
 
 def tf_op_benchmark(
     operator, operands_shape, warmups=0, repetitions=1, measure_count=1, device="cpu"
 ):
     import tensorflow as tf
-    print("benchmarking tensorflow on operator@" + operator)
 
     if device == "cpu":
         _device = tf.device("/CPU:0")
@@ -128,6 +148,15 @@ def tf_op_benchmark(
         def bench_func(lhs, rhs):
             with _device:
                 return tf.matmul(lhs, rhs)
+    elif operator == "batch-matmul":
+        assert len(operands_shape) == 2
+        with _device:
+            lhs_data = tf.random.normal(operands_shape[0], dtype=tf.float32)
+            rhs_data = tf.random.normal(operands_shape[1], dtype=tf.float32)
+
+        def bench_func(lhs, rhs):
+            with _device:
+                return tf.batch_matmul(lhs, rhs)
 
     else:
         assert 0, "Unsupported operator in tensorflow_benchmark"
@@ -139,14 +168,14 @@ def tf_op_benchmark(
             bench_func(lhs_data, rhs_data)
         end_time = time.time()
         avg_time = end_time - start_time
-        results.append(avg_time)
+        results.append(avg_time / float(repetitions) * 1000.0)
     if warmups == 0:
         return results
     else:
-        return results[0:-warmups]
+        return results[warmups:-1]
 
 
-def ragdoll_op_benchmark(oppath_vmfb, operands_shape, warmups=0, repetitions=1, measure_count=1, device='cpu'):
+def ragdoll_op_benchmark(oppath_vmfb, operands_shape, warmups=0, repetitions=1, measure_count=1, device='cpu', verbose=False):
     from ragdoll.utils import destringify, stringify_tensor
 
     if device == "cpu":
@@ -176,19 +205,19 @@ def ragdoll_op_benchmark(oppath_vmfb, operands_shape, warmups=0, repetitions=1, 
             benchmark_repetitions=measure_count,
             batch_concurrency=1,
             benchmark_min_time="1s",
-            print_statistics=False
+            print_statistics=verbose
         )
 
     bench_result = bench_func()
     if measure_count > 1:
-        forward_timecost = [destringify(measure.time, unit='s')
+        forward_timecost = [destringify(measure.time, unit='ms')
                             for measure in bench_result[0:measure_count]]
     else:
-        forward_timecost = [destringify(bench_result[0].time, unit='s')]
+        forward_timecost = [destringify(bench_result[0].time, unit='ms')]
     return forward_timecost
 
 
-def ragdoll_model_benchmark(oppath_vmfb, entry_func, operands_shape, warmups=0, repetitions=1, measure_count=1, device='cpu'):
+def ragdoll_model_benchmark(oppath_vmfb, entry_func, operands_shape, warmups=0, repetitions=1, measure_count=1, device='cpu', verbose=False):
     from ragdoll.utils import destringify, stringify_tensor
 
     if device == "cpu":
@@ -206,9 +235,9 @@ def ragdoll_model_benchmark(oppath_vmfb, entry_func, operands_shape, warmups=0, 
 
     input_data = []
     for operand_shape in operands_shape:
-        print(operand_shape)
+        # print(operand_shape)
         input_data.append(stringify_tensor(operand_shape))
-        print(input_data)
+        # print(input_data)
 
     def bench_func():
         return iree.runtime.benchmark_module(
@@ -220,7 +249,7 @@ def ragdoll_model_benchmark(oppath_vmfb, entry_func, operands_shape, warmups=0, 
             benchmark_repetitions=measure_count,
             batch_concurrency=1,
             benchmark_min_time="1s",
-            print_statistics=False
+            print_statistics=verbose
         )
 
     bench_result = bench_func()

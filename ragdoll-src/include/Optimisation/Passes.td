@@ -92,6 +92,12 @@ def IdenticalTransposeRemoval : Pass<"ragdoll-identical-transpose-removal"> {
   let constructor = "mlir::ragdoll::autodiff::createIdenticalTransposeRemovalPass()";
 }
 
+// TODO(albert): move this util opt to common
+def ForwardFuncRemoval : Pass<"ragdoll-forward-func-removal"> {
+  let summary = "remove forward 'func' for testing vjp";
+  let constructor = "mlir::ragdoll::autodiff::createForwardFuncRemovalPass()";
+}
+
 // --------------------------------------------------------------------------
 // FUNCTION: package vjp func to public entry func for export
 // --------------------------------------------------------------------------
