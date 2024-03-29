@@ -217,7 +217,7 @@ def ragdoll_op_benchmark(oppath_vmfb, operands_shape, warmups=0, repetitions=1, 
     return forward_timecost
 
 
-def ragdoll_model_benchmark(oppath_vmfb, entry_func, operands_shape, warmups=0, repetitions=1, measure_count=1, device='cpu', verbose=False):
+def ragdoll_model_benchmark(oppath_vmfb, entry_func, operands_shape, warmups=0, repetitions=1, measure_count=1, device='cpu', record_mem=False, verbose=False):
     from ragdoll.utils import destringify, stringify_tensor
 
     if device == "cpu":
@@ -253,9 +253,13 @@ def ragdoll_model_benchmark(oppath_vmfb, entry_func, operands_shape, warmups=0, 
         )
 
     bench_result = bench_func()
+    print(bench_result)
     if measure_count > 1:
         forward_timecost = [destringify(measure.time, unit='ms')
                             for measure in bench_result[0:measure_count]]
     else:
         forward_timecost = [destringify(bench_result[0].time, unit='ms')]
-    return forward_timecost
+    if record_mem:
+        return forward_timecost
+    else:
+        return forward_timecost
