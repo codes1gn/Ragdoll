@@ -1,0 +1,40 @@
+#map = affine_map<(d0, d1, d2, d3) -> (d0, d3, d2)>
+#map1 = affine_map<(d0, d1, d2, d3) -> (d0, d1, d2)>
+#map2 = affine_map<(d0, d1, d2, d3) -> (d0, d1, d3)>
+module {
+  ml_program.global private mutable @global1 : tensor<2x31x30xf32>
+  ml_program.global private mutable @global0 : tensor<2x32x31xf32>
+  func.func @matmul(%arg0: tensor<2x32x31xf32>, %arg1: tensor<2x31x30xf32>) -> tensor<2x32x30xf32> {
+    %cst = arith.constant 0.000000e+00 : f32
+    ml_program.global_store @global1 = %arg1 : tensor<2x31x30xf32>
+    ml_program.global_store @global0 = %arg0 : tensor<2x32x31xf32>
+    %0 = tensor.empty() : tensor<2x32x30xf32>
+    %1 = linalg.fill ins(%cst : f32) outs(%0 : tensor<2x32x30xf32>) -> tensor<2x32x30xf32>
+    %2 = linalg.batch_matmul ins(%arg0, %arg1 : tensor<2x32x31xf32>, tensor<2x31x30xf32>) outs(%1 : tensor<2x32x30xf32>) -> tensor<2x32x30xf32>
+    return %2 : tensor<2x32x30xf32>
+  }
+  func.func @dmatmul(%arg0: tensor<2x32x30xf32>) -> (tensor<2x32x31xf32>, tensor<2x31x30xf32>) {
+    %0:2 = call @matmul_vjp(%arg0) : (tensor<2x32x30xf32>) -> (tensor<2x32x31xf32>, tensor<2x31x30xf32>)
+    return %0#0, %0#1 : tensor<2x32x31xf32>, tensor<2x31x30xf32>
+  }
+  func.func private @matmul_vjp(%arg0: tensor<2x32x30xf32>) -> (tensor<2x32x31xf32>, tensor<2x31x30xf32>) {
+    %global1 = ml_program.global_load @global1 : tensor<2x31x30xf32>
+    %global0 = ml_program.global_load @global0 : tensor<2x32x31xf32>
+    %0 = tensor.empty() : tensor<2x32x31xf32>
+    %1 = linalg.generic {indexing_maps = [#map, #map1, #map2], iterator_types = ["parallel", "parallel", "reduction", "parallel"]} ins(%global1, %arg0 : tensor<2x31x30xf32>, tensor<2x32x30xf32>) outs(%0 : tensor<2x32x31xf32>) {
+    ^bb0(%in: f32, %in_0: f32, %out: f32):
+      %4 = arith.mulf %in, %in_0 : f32
+      %5 = arith.addf %4, %out : f32
+      linalg.yield %5 : f32
+    } -> tensor<2x32x31xf32>
+    %2 = tensor.empty() : tensor<2x31x30xf32>
+    %3 = linalg.generic {indexing_maps = [#map2, #map1, #map], iterator_types = ["parallel", "reduction", "parallel", "parallel"]} ins(%global0, %arg0 : tensor<2x32x31xf32>, tensor<2x32x30xf32>) outs(%2 : tensor<2x31x30xf32>) {
+    ^bb0(%in: f32, %in_0: f32, %out: f32):
+      %4 = arith.mulf %in, %in_0 : f32
+      %5 = arith.addf %4, %out : f32
+      linalg.yield %5 : f32
+    } -> tensor<2x31x30xf32>
+    return %1, %3 : tensor<2x32x31xf32>, tensor<2x31x30xf32>
+  }
+}
+

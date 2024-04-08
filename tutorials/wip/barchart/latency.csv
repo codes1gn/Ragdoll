@@ -1,0 +1,121 @@
+﻿Time,Pass,Model,Framework
+0.8345,Forward,AlexNet,TorchDynamo
+0.8473,Forward,AlexNet,TorchScript
+0.2423,Forward,AlexNet,Nabla (Recompute)
+0.3019,Forward,AlexNet,Nabla (Storeall)
+0.2463,Forward,AlexNet,Nabla Optim
+1.681,Gradient,AlexNet,TorchDynamo
+0.9453,Gradient,AlexNet,TorchScript
+1.17424,Gradient,AlexNet,Nabla (Recompute)
+2.884,Gradient,AlexNet,Nabla (Storeall)
+0.85,Gradient,AlexNet,Nabla Optim
+2.5155,Total,AlexNet,TorchDynamo
+1.7958,Total,AlexNet,TorchScript
+1.31654,Total,AlexNet,Nabla (Recompute)
+3.1859,Total,AlexNet,Nabla (Storeall)
+1.0963,Total,AlexNet,Nabla Optim
+12.393604,Forward,ResNet152,TorchDynamo
+11.58933,Forward,ResNet152,TorchScript
+5.54052,Forward,ResNet152,Nabla (Recompute)
+7.724,Forward,ResNet152,Nabla (Storeall)
+6.0652,Forward,ResNet152,Nabla Optim
+12.51123,Gradient,ResNet152,TorchDynamo
+8.7256,Gradient,ResNet152,TorchScript
+16.2705,Gradient,ResNet152,Nabla (Recompute)
+19.30266,Gradient,ResNet152,Nabla (Storeall)
+12.2958,Gradient,ResNet152,Nabla Optim
+24.904834,Total,ResNet152,TorchDynamo
+20.36189,Total,ResNet152,TorchScript
+21.81102,Total,ResNet152,Nabla (Recompute)
+27.02666,Total,ResNet152,Nabla (Storeall)
+18.361,Total,ResNet152,Nabla Optim
+10.8933,Forward,ResNet101,TorchDynamo
+8.4436,Forward,ResNet101,TorchScript
+3.75067,Forward,ResNet101,Nabla (Recompute)
+4.18496,Forward,ResNet101,Nabla (Storeall)
+4.15615,Forward,ResNet101,Nabla Optim
+8.72569,Gradient,ResNet101,TorchDynamo
+8.5112,Gradient,ResNet101,TorchScript
+21.4952,Gradient,ResNet101,Nabla (Recompute)
+15.24469,Gradient,ResNet101,Nabla (Storeall)
+10.116488,Gradient,ResNet101,Nabla Optim
+19.61899,Total,ResNet101,TorchDynamo
+16.9048,Total,ResNet101,TorchScript
+25.24587,Total,ResNet101,Nabla (Recompute)
+19.42965,Total,ResNet101,Nabla (Storeall)
+14.272638,Total,ResNet101,Nabla Optim
+8.6014,Forward,WideResNet101,TorchDynamo
+8.5278,Forward,WideResNet101,TorchScript
+8.2393,Forward,WideResNet101,Nabla (Recompute)
+8.6809,Forward,WideResNet101,Nabla (Storeall)
+8.522,Forward,WideResNet101,Nabla Optim
+15.13081,Gradient,WideResNet101,TorchDynamo
+14.5941,Gradient,WideResNet101,TorchScript
+34.3694,Gradient,WideResNet101,Nabla (Recompute)
+17.83226,Gradient,WideResNet101,Nabla (Storeall)
+15.326488,Gradient,WideResNet101,Nabla Optim
+23.7323921,Total,WideResNet101,TorchDynamo
+23.1219836,Total,WideResNet101,TorchScript
+42.6087,Total,WideResNet101,Nabla (Recompute)
+26.51316,Total,WideResNet101,Nabla (Storeall)
+23.848488,Total,WideResNet101,Nabla Optim
+4.55078,Forward,VGG16,TorchDynamo
+4.73005,Forward,VGG16,TorchScript
+4.14505,Forward,VGG16,Nabla (Recompute)
+4.3923,Forward,VGG16,Nabla (Storeall)
+4.0751,Forward,VGG16,Nabla Optim
+8.898246,Gradient,VGG16,TorchDynamo
+4.92727,Gradient,VGG16,TorchScript
+12.605,Gradient,VGG16,Nabla (Recompute)
+8.91975,Gradient,VGG16,Nabla (Storeall)
+6.814,Gradient,VGG16,Nabla Optim
+13.449026,Total,VGG16,TorchDynamo
+9.65732,Total,VGG16,TorchScript
+16.75005,Total,VGG16,Nabla (Recompute)
+13.31205,Total,VGG16,Nabla (Storeall)
+10.8891,Total,VGG16,Nabla Optim
+8.46803,Forward,Inception-v3,TorchDynamo
+7.42129,Forward,Inception-v3,TorchScript
+6.38499,Forward,Inception-v3,Nabla (Recompute)
+5.77922,Forward,Inception-v3,Nabla (Storeall)
+5.7589,Forward,Inception-v3,Nabla Optim
+8.1918,Gradient,Inception-v3,TorchDynamo
+5.567118,Gradient,Inception-v3,TorchScript
+13.37614,Gradient,Inception-v3,Nabla (Recompute)
+9.04548,Gradient,Inception-v3,Nabla (Storeall)
+6.37,Gradient,Inception-v3,Nabla Optim
+16.65483,Total,Inception-v3,TorchDynamo
+12.988408,Total,Inception-v3,TorchScript
+17.76113,Total,Inception-v3,Nabla (Recompute)
+14.8247,Total,Inception-v3,Nabla (Storeall)
+12.1389,Total,Inception-v3,Nabla Optim
+5.85884,Forward,VisionTransformer-Base-16,TorchDynamo
+5.587994,Forward,VisionTransformer-Base-16,TorchScript
+6.38499,Forward,VisionTransformer-Base-16,Nabla (Recompute)
+4.89,Forward,VisionTransformer-Base-16,Nabla (Storeall)
+4.52285,Forward,VisionTransformer-Base-16,Nabla Optim
+17.821954,Gradient,VisionTransformer-Base-16,TorchDynamo
+10.961814,Gradient,VisionTransformer-Base-16,TorchScript
+13.37614,Gradient,VisionTransformer-Base-16,Nabla (Recompute)
+10.2548,Gradient,VisionTransformer-Base-16,Nabla (Storeall)
+9.544548,Gradient,VisionTransformer-Base-16,Nabla Optim
+23.687838,Total,VisionTransformer-Base-16,TorchDynamo
+16.546134,Total,VisionTransformer-Base-16,TorchScript
+19.76113,Total,VisionTransformer-Base-16,Nabla (Recompute)
+15.2247,Total,VisionTransformer-Base-16,Nabla (Storeall)
+13.96833,Total,VisionTransformer-Base-16,Nabla Optim
+17.1485,Forward,VisionTransformer-Large-16 (bs2),TorchDynamo
+16.9769,Forward,VisionTransformer-Large-16 (bs2),TorchScript
+14.7984597,Forward,VisionTransformer-Large-16 (bs2),Nabla (Recompute)
+15.95373,Forward,VisionTransformer-Large-16 (bs2),Nabla (Storeall)
+14.5373,Forward,VisionTransformer-Large-16 (bs2),Nabla Optim
+57.06751273,Gradient,VisionTransformer-Large-16 (bs2),TorchDynamo
+48.41524,Gradient,VisionTransformer-Large-16 (bs2),TorchScript
+66.7975,Gradient,VisionTransformer-Large-16 (bs2),Nabla (Recompute)
+52.234,Gradient,VisionTransformer-Large-16 (bs2),Nabla (Storeall)
+42.60123222,Gradient,VisionTransformer-Large-16 (bs2),Nabla Optim
+74.21566123,Total,VisionTransformer-Large-16 (bs2),TorchDynamo
+65.3921,Total,VisionTransformer-Large-16 (bs2),TorchScript
+81.597,Total,VisionTransformer-Large-16 (bs2),Nabla (Recompute)
+68.1842,Total,VisionTransformer-Large-16 (bs2),Nabla (Storeall)
+57.13916952,Total,VisionTransformer-Large-16 (bs2),Nabla Optim
