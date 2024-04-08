@@ -11,6 +11,8 @@ cmake-build-debug/
 cmake-build-release/
 dist/
 *.vmfb
+*.pyc
+*__pycache__*
 
 compile_commands.json
 *.ipynb_checkpoints*
