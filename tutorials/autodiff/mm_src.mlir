@@ -1,9 +1,9 @@
 module {
-      func.func @matmul(%arg0: tensor<2x32x31xf32>, %arg1: tensor<2x31x30xf32>) -> tensor<2x32x30xf32> {
+      func.func @matmul(%arg0: tensor<32x3x3x64xf32>, %arg1: tensor<128x1x1x64xf32>) -> tensor<32x3x3x128xf32> {
         %cst = arith.constant 0.000000e+00 : f32
-        %0 = tensor.empty() : tensor<2x32x30xf32>
-        %1 = linalg.fill ins(%cst : f32) outs(%0 : tensor<2x32x30xf32>) -> tensor<2x32x30xf32>
-        %2 = linalg.batch_matmul ins(%arg0, %arg1 : tensor<2x32x31xf32>, tensor<2x31x30xf32>) outs(%1 : tensor<2x32x30xf32>) -> tensor<2x32x30xf32>
-        return %2 : tensor<2x32x30xf32>
+        %0 = tensor.empty() : tensor<128xf32>
+        %1 = linalg.fill ins(%cst : f32) outs(%0 : tensor<128xf32>) -> tensor<128xf32>
+        %2 = tosa.conv2d %arg0, %arg1, %1 {dilation = array<i64: 1, 1>, pad = array<i64: 0, 0, 0, 0>, stride = array<i64: 1, 1>} : (tensor<32x3x3x64xf32>, tensor<128x1x1x64xf32>, tensor<128xf32>) -> tensor<32x3x3x128xf32>
+        return %2 : tensor<32x3x3x128xf32>
       }
     }
