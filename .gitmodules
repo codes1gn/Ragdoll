@@ -4,3 +4,6 @@
 [submodule "third_party/ragdoll-llvm-project"]
 	path = third_party/ragdoll-llvm-project
 	url = git@github.com:codes1gn/ragdoll-llvm-project.git
+[submodule "third_party/omni-toolkits"]
+	path = third_party/omni-toolkits
+	url = git@github.com:codes1gn/Atlantis.git
