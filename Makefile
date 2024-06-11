@@ -10,16 +10,27 @@ help:
 	@echo "  make bootstrap | boot                   ; bootstrap atlantis dependencies"
 	@echo "You can specify python version with cmd in form of: PYVERSION=py38 | py310"
 
+.PHONY: enter
+enter:
+	cd third_party/omni-toolkits/ && make enter
+
+.PHONY: verify-iree
+verify-iree:
+	./tools/scripts/build_helper.sh test_iree
+	python -c "from iree import runtime as ireert; from iree import compiler as ireec"
+
+
 .PHONY: bootstrap build unittest test format debug clean clean-backend jupyter jupyter-stop install gpu-restart
 
 bootstrap:
-	./scripts/bootstrap_ragdoll_codegen.sh && \
-		./scripts/byo_llvm.sh build_llvm && \
-		./scripts/byo_llvm.sh build_mlir && \
-		./scripts/byo_llvm.sh build_iree
+	./tools/scripts/update_submodules.sh && \
+		./tools/scripts/build_helper.sh build_llvm && \
+		./tools/scripts/build_helper.sh build_mlir && \
+		./tools/scripts/build_helper.sh build_iree && \
+		. ./tools/config-miscs/.env
 
 build:
-	./scripts/build_ragdoll.sh
+	./tools/scripts/build_ragdoll.sh
 
 install:
 	poetry install
@@ -31,11 +42,11 @@ unittest:
 	@python -c "print('hello')"
 
 format:
-	./scripts/format_code.sh &&\
+	./tools/scripts/format_code.sh &&\
 		black ./ragdoll/
 
 debug:
-	./scripts/debug.sh
+	./tools/scripts/debug.sh
 
 clean:
 	rm -rf build
@@ -44,10 +55,10 @@ clean-backend:
 	rm -rf codegen_tools_build && rm -rf codegen_tools_install
 
 jupyter:
-	./scripts/serving_notebook.sh
+	./tools/scripts/serving_notebook.sh
 
 jupyter-stop:
-	./scripts/clean_notebook_servers.sh
+	./tools/scripts/clean_notebook_servers.sh
 
 gpu-restart:
 	rmmod nvidia_uvm nvidia_drm nvidia_modeset nvidia && modprobe nvidia

@@ -29,7 +29,7 @@
 # required for full functionality of all backends.
 
 TD="$(cd $(dirname $0) && pwd)"
-REPO_ROOT="$(cd $TD/../third_party/ragdoll-codegen && pwd)"
+REPO_ROOT="$(cd $TD/../../third_party/ragdoll-codegen && pwd)"
 ORIGINAL_TD=$REPO_ROOT"/build_tools/llvm"
 
 LLVM_SOURCE_DIR="${LLVM_SOURCE_DIR:-${REPO_ROOT}/../ragdoll-llvm-project}"
@@ -186,6 +186,10 @@ do_build_iree() {
   echo "*********************** BUILDING IREE *********************************"
   iree_build_dir="${IREE_BYOLLVM_BUILD_DIR}/iree"
   iree_install_dir="${IREE_BYOLLVM_INSTALL_DIR}/iree"
+
+  # export .env shell for python env management
+  echo "PYTHONPATH=${iree_build_dir}/compiler/bindings/python:${iree_build_dir}/runtime/bindings/python" > ${IREE_BYOLLVM_BUILD_DIR}/../tools/config-miscs/.env
+
 
   cmake_options="$(print_iree_config)"
   cmake_options="${cmake_options} -DPython3_EXECUTABLE='$(which $python3_command)'"

@@ -3,7 +3,7 @@
 set -x
 
 SCRIPT_DIR=`dirname $0`
-WORKSPACE_DIR=`realpath $SCRIPT_DIR"/.."`
+WORKSPACE_DIR=`realpath $SCRIPT_DIR"/../.."`
 
 MLIR_NAME="ragdoll-llvm-project"
 IREE_NAME="ragdoll-codegen"
