@@ -14,10 +14,14 @@ help:
 enter:
 	cd third_party/omni-toolkits/ && make enter
 
-.PHONY: verify-iree
-verify-iree:
+.PHONY: test-iree
+test-iree: verify-iree-bindings
 	./tools/scripts/build_helper.sh test_iree
+
+.PHONY: verify-iree-bindings
+verify-iree-bindings:
 	python -c "from iree import runtime as ireert; from iree import compiler as ireec"
+	#. ./tools/config-miscs/.env && python -c "from iree import runtime as ireert; from iree import compiler as ireec"
 
 
 .PHONY: bootstrap build unittest test format debug clean clean-backend jupyter jupyter-stop install gpu-restart
@@ -33,6 +37,7 @@ build:
 	./tools/scripts/build_ragdoll.sh
 
 install:
+	cp ./tools/config-miscs/.env .env
 	poetry install
 
 test:

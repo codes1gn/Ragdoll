@@ -3,7 +3,7 @@
 # you can adjust this dep as you need
 
 SCRIPT_DIR=`dirname $0`
-RAGDOLL_SOURCE_DIR=`realpath $SCRIPT_DIR"/.."`
+RAGDOLL_SOURCE_DIR=`realpath $SCRIPT_DIR"/../.."`
 CODEGEN_INSTALL_DIR=$RAGDOLL_SOURCE_DIR"/codegen_tools_install/"
 CODEGEN_BUILD_DIR=$RAGDOLL_SOURCE_DIR"/codegen_tools_build"
 RAGDOLL_BUILD_DIR=$RAGDOLL_SOURCE_DIR"/build"

@@ -188,7 +188,7 @@ do_build_iree() {
   iree_install_dir="${IREE_BYOLLVM_INSTALL_DIR}/iree"
 
   # export .env shell for python env management
-  echo "PYTHONPATH=${iree_build_dir}/compiler/bindings/python:${iree_build_dir}/runtime/bindings/python" > ${IREE_BYOLLVM_BUILD_DIR}/../tools/config-miscs/.env
+  echo "set PYTHONPATH ${iree_build_dir}/compiler/bindings/python:${iree_build_dir}/runtime/bindings/python" > ${IREE_BYOLLVM_BUILD_DIR}/../tools/config-miscs/.env
 
 
   cmake_options="$(print_iree_config)"

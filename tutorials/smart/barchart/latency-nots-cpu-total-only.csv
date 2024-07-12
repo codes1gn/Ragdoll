@@ -1,0 +1,16 @@
+﻿503.8,Total,ResNet152,TorchDynamo
+555.81102,Total,ResNet152,TF-XLA
+435.8,Total,ResNet152,JAX
+286.61,Total,ResNet152,SMART
+348.46,Total,ResNet101,TorchDynamo
+383.24587,Total,ResNet101,TF-XLA
+322.37,Total,ResNet101,JAX
+226.73,Total,ResNet101,SMART
+195.97,Total,ResNet50,TorchDynamo
+213.24587,Total,ResNet50,TF-XLA
+211.63,Total,ResNet50,JAX
+171.64,Total,ResNet50,SMART
+69.97,Total,ResNet34,TorchDynamo
+165.24587,Total,ResNet34,TF-XLA
+88.63,Total,ResNet34,JAX
+55.64,Total,ResNet34,SMART

@@ -13,6 +13,7 @@ dist/
 *.vmfb
 *.pyc
 *__pycache__*
+*.env
 
 compile_commands.json
 *.ipynb_checkpoints*

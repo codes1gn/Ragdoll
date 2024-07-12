@@ -17,9 +17,6 @@ python = "^3.9"
 [[tool.poetry.packages]] 
 include = "ragdoll"
 
-[[tool.poetry.packages]] 
-include = "atlantis"
-
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.2.0"

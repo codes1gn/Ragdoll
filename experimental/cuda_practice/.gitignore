@@ -1,0 +1,6 @@
+# omit profiling cache
+*.nsys-rep
+*.sqlite
+
+# omit binaries
+*.cubin
