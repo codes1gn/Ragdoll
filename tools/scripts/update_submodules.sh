@@ -5,8 +5,11 @@ set -x
 SCRIPT_DIR=`dirname $0`
 WORKSPACE_DIR=`realpath $SCRIPT_DIR"/../.."`
 
+
 MLIR_NAME="ragdoll-llvm-project"
 IREE_NAME="ragdoll-codegen"
+git clone git@git.enflame.cn:heng.shi/ragdoll-llvm-projects.git third_party/$MLIR_NAME
+git clone git@git.enflame.cn:heng.shi/ragdoll-codegen.git third_party/$IREE_NAME
 git submodule update --init -- third_party/$MLIR_NAME
 git submodule update --init -- third_party/$IREE_NAME
 
