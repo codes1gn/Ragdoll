@@ -4,7 +4,7 @@ import iree
 import iree.compiler
 import iree.runtime
 
-from ragdoll.utils import change_mlir_suffix
+from ragdoll.common import change_mlir_suffix
 
 __all__ = ["compile", "compile_src_to_binary", "compile_file"]
 

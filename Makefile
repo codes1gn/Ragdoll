@@ -27,28 +27,33 @@ verify-iree-bindings:
 .PHONY: bootstrap build unittest test format debug clean clean-backend jupyter jupyter-stop install gpu-restart
 
 bootstrap:
-	./tools/scripts/update_submodules.sh && \
-		./tools/scripts/build_helper.sh build_llvm && \
-		./tools/scripts/build_helper.sh build_mlir && \
-		./tools/scripts/build_helper.sh build_iree && \
-		. ./tools/config-miscs/.env
+	@poetry install --no-root
+	@poetry shell
+	@echo "set -x PYTHONPATH $(CURDIR)/codegen_tools_build/iree/compiler/bindings/python:$(CURDIR)/codegen_tools_build/iree/runtime/bindings/python:$(CURDIR)/codegen_tools_install/iree/python_packages/iree_compiler:$(CURDIR)/codegen_tools_install/iree/python_packages/iree_runtime" > $(CURDIR)/tools/config-miscs/.env
+
+setup: 
+	@./tools/scripts/update_submodules.sh
+	@./tools/scripts/build_helper.sh build_llvm
+	@./tools/scripts/build_helper.sh build_mlir 
+	@./tools/scripts/build_helper.sh build_iree
 
 build:
 	./tools/scripts/build_ragdoll.sh
+	@. ./tools/config-miscs/.env
 
 install:
-	cp ./tools/config-miscs/.env .env
+	@. ./tools/config-miscs/.env
 	poetry install
 
-test:
-	cd build && ninja check-ragdoll
+test: unittest
+	@. ./tools/config-miscs/.env
+	@cd build && ninja check-ragdoll
 
 unittest:
 	@python -c "print('hello')"
 
 format:
-	./tools/scripts/format_code.sh &&\
-		black ./ragdoll/
+	./tools/scripts/format_code.sh
 
 debug:
 	./tools/scripts/debug.sh

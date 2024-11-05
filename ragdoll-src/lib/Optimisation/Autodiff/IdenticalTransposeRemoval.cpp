@@ -34,32 +34,29 @@
 #include "llvm/Support/Debug.h"
 #include <optional>
 
-#include "mlir/Dialect/Tosa/Transforms/Passes.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/Dialect/Tosa/IR/TosaOps.h"
-#include "mlir/Dialect/Tosa/Utils/ShapeUtils.h"
-#include "mlir/IR/Builders.h"
-#include "mlir/IR/BuiltinOps.h"
-#include "mlir/IR/IRMapping.h"
-#include "mlir/IR/Matchers.h"
-#include "mlir/Interfaces/InferTypeOpInterface.h"
-#include "mlir/Pass/Pass.h"
-#include "mlir/Transforms/DialectConversion.h"
-#include "mlir/Transforms/GreedyPatternRewriteDriver.h"
-#include "llvm/Support/FormatVariadic.h"
+#include "mlir/Dialect/Tosa/Transforms/Passes.h"
 #include "mlir/Dialect/Tosa/Utils/ShapeUtils.h"
 #include "mlir/Dialect/Utils/IndexingUtils.h"
+#include "mlir/IR/Builders.h"
+#include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/DialectImplementation.h"
+#include "mlir/IR/IRMapping.h"
 #include "mlir/IR/Matchers.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/IR/TypeUtilities.h"
 #include "mlir/Interfaces/InferTypeOpInterface.h"
+#include "mlir/Pass/Pass.h"
+#include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "mlir/Transforms/InliningUtils.h"
 #include "llvm/ADT/APFloat.h"
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "llvm/Support/FormatVariadic.h"
 
 namespace mlir {
 namespace tosa {
@@ -85,18 +82,20 @@ namespace autodiff {
 #define GEN_PASS_DEF_IDENTICALTRANSPOSEREMOVAL
 #include "Optimisation/Passes.h.inc"
 
-
 class IdenticalTransposeRemoval
     : public impl::IdenticalTransposeRemovalBase<IdenticalTransposeRemoval> {
   void runOnOperation() override {
     // 遍历funcOp中的每个TransposeOp
     getOperation()->walk([&](tosa::TransposeOp transposeOp) {
       // 获取输入和输出的RankedTensorType
-      auto inputType = transposeOp.getOperand(0).getType().dyn_cast<RankedTensorType>();
-      auto outputType = transposeOp.getResult().getType().dyn_cast<RankedTensorType>();
+      auto inputType =
+          transposeOp.getOperand(0).getType().dyn_cast<RankedTensorType>();
+      auto outputType =
+          transposeOp.getResult().getType().dyn_cast<RankedTensorType>();
 
       // 如果输入或输出不是RankedTensorType，则跳过
-      if (!inputType || !outputType) return;
+      if (!inputType || !outputType)
+        return;
 
       // 比较输入和输出的形状
       if (inputType.getShape() == outputType.getShape()) {
@@ -104,8 +103,6 @@ class IdenticalTransposeRemoval
         transposeOp->erase();
       }
     });
-
-
   }
 };
 

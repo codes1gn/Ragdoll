@@ -34,32 +34,29 @@
 #include "llvm/Support/Debug.h"
 #include <optional>
 
-#include "mlir/Dialect/Tosa/Transforms/Passes.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/Dialect/Tosa/IR/TosaOps.h"
-#include "mlir/Dialect/Tosa/Utils/ShapeUtils.h"
-#include "mlir/IR/Builders.h"
-#include "mlir/IR/BuiltinOps.h"
-#include "mlir/IR/IRMapping.h"
-#include "mlir/IR/Matchers.h"
-#include "mlir/Interfaces/InferTypeOpInterface.h"
-#include "mlir/Pass/Pass.h"
-#include "mlir/Transforms/DialectConversion.h"
-#include "mlir/Transforms/GreedyPatternRewriteDriver.h"
-#include "llvm/Support/FormatVariadic.h"
+#include "mlir/Dialect/Tosa/Transforms/Passes.h"
 #include "mlir/Dialect/Tosa/Utils/ShapeUtils.h"
 #include "mlir/Dialect/Utils/IndexingUtils.h"
+#include "mlir/IR/Builders.h"
+#include "mlir/IR/BuiltinOps.h"
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/DialectImplementation.h"
+#include "mlir/IR/IRMapping.h"
 #include "mlir/IR/Matchers.h"
 #include "mlir/IR/PatternMatch.h"
 #include "mlir/IR/TypeUtilities.h"
 #include "mlir/Interfaces/InferTypeOpInterface.h"
+#include "mlir/Pass/Pass.h"
+#include "mlir/Transforms/DialectConversion.h"
+#include "mlir/Transforms/GreedyPatternRewriteDriver.h"
 #include "mlir/Transforms/InliningUtils.h"
 #include "llvm/ADT/APFloat.h"
 #include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/TypeSwitch.h"
+#include "llvm/Support/FormatVariadic.h"
 
 namespace mlir {
 namespace tosa {
@@ -90,19 +87,21 @@ namespace autodiff {
 // during inference. This information is used to introduce casts
 // back to the type expected by the operand after inference.
 struct TypeRewriteInfo {
-  OpOperand *operand;
+  OpOperand* operand;
   Type oldType;
 };
 
-void printShapedTypeComponents(const SmallVector<ShapedTypeComponents> &components) {
-  for (const auto &component : components) {
+void printShapedTypeComponents(
+    const SmallVector<ShapedTypeComponents>& components) {
+  for (const auto& component : components) {
     // 打印张量的形状
     llvm::errs() << "Shape: [";
     if (component.hasRank()) {
       auto shape = component.getDims();
       for (size_t i = 0, e = shape.size(); i < e; ++i) {
         llvm::errs() << shape[i];
-        if (i < e - 1) llvm::errs() << ", ";
+        if (i < e - 1)
+          llvm::errs() << ", ";
       }
     } else {
       llvm::errs() << "Unranked";
@@ -122,7 +121,7 @@ void printShapedTypeComponents(const SmallVector<ShapedTypeComponents> &componen
   }
 }
 
-void propagateShapesInRegion(Region &region, int32_t batch_size) {
+void propagateShapesInRegion(Region& region, int32_t batch_size) {
   // // Check whether this use case is replaceable. We define an op as
   // // being replaceable if it is used by a TosaOp, or an op with a
   // // type-inference related interface.
@@ -136,14 +135,17 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
   region.walk([&](mlir::arith::ConstantOp constOp) {
     mlir::OpBuilder builder(constOp.getContext());
     builder.setInsertionPoint(constOp);
-    auto resultType = constOp.getResult().getType().dyn_cast<mlir::RankedTensorType>();
+    auto resultType =
+        constOp.getResult().getType().dyn_cast<mlir::RankedTensorType>();
     // 确保结果是RankedTensorType且至少有一个维度
-    if (!resultType || resultType.getRank() == 0) return;
-    
+    if (!resultType || resultType.getRank() == 0)
+      return;
+
     auto shape = resultType.getShape();
     // 如果第一个维度不为1，不做修改
-    if (shape[0] != 1) return;
-    
+    if (shape[0] != 1)
+      return;
+
     // 修改第一个维度为batchSize
     SmallVector<int64_t, 4> newShape(shape.begin(), shape.end());
     newShape[0] = batch_size;
@@ -153,17 +155,19 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
     for (auto value : originalAttr.getValues<Attribute>()) {
       newData.push_back(value);
     }
-    
+
     // 创建新的结果类型
-    auto newResultType = mlir::RankedTensorType::get(newShape, resultType.getElementType());
+    auto newResultType =
+        mlir::RankedTensorType::get(newShape, resultType.getElementType());
     auto newAttr = mlir::DenseElementsAttr::get(newResultType, newData);
-    auto newConstOp = builder.create<mlir::tosa::ConstOp>(constOp.getLoc(), newResultType, newAttr);
-    
+    auto newConstOp = builder.create<mlir::tosa::ConstOp>(
+        constOp.getLoc(), newResultType, newAttr);
+
     // constOp.dump();
     // 替换所有对原操作的使用为新操作
     constOp.getResult().replaceAllUsesWith(newConstOp.getResult());
     // newConstOp.dump();
-    
+
     // 删除原操作
     constOp.erase();
   });
@@ -172,14 +176,17 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
   region.walk([&](mlir::tosa::ConstOp constOp) {
     mlir::OpBuilder builder(constOp.getContext());
     builder.setInsertionPoint(constOp);
-    auto resultType = constOp.getResult().getType().dyn_cast<mlir::RankedTensorType>();
+    auto resultType =
+        constOp.getResult().getType().dyn_cast<mlir::RankedTensorType>();
     // 确保结果是RankedTensorType且至少有一个维度
-    if (!resultType || resultType.getRank() == 0) return;
-    
+    if (!resultType || resultType.getRank() == 0)
+      return;
+
     auto shape = resultType.getShape();
     // 如果第一个维度不为1，不做修改
-    if (shape[0] != 1) return;
-    
+    if (shape[0] != 1)
+      return;
+
     // 修改第一个维度为batchSize
     SmallVector<int64_t, 4> newShape(shape.begin(), shape.end());
     newShape[0] = batch_size;
@@ -189,29 +196,32 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
     for (auto value : originalAttr.getValues<Attribute>()) {
       newData.push_back(value);
     }
-    
+
     // 创建新的结果类型
-    auto newResultType = mlir::RankedTensorType::get(newShape, resultType.getElementType());
+    auto newResultType =
+        mlir::RankedTensorType::get(newShape, resultType.getElementType());
     auto newAttr = mlir::DenseElementsAttr::get(newResultType, newData);
-    auto newConstOp = builder.create<mlir::tosa::ConstOp>(constOp.getLoc(), newResultType, newAttr);
-    
+    auto newConstOp = builder.create<mlir::tosa::ConstOp>(
+        constOp.getLoc(), newResultType, newAttr);
+
     // constOp.dump();
     // 替换所有对原操作的使用为新操作
     constOp.getResult().replaceAllUsesWith(newConstOp.getResult());
     // newConstOp.dump();
-    
+
     // 删除原操作
     constOp.erase();
   });
 
   llvm::SmallVector<Operation*, 16> opsToErase;
-  for (auto &block : region) {
-    for (Operation &op : block) {
-      // ALBERT: I muted this skill logic, since we are not doing tosa-only shape ifnerence
-      // we need to handle special ops emerges in model
-      // like tensor.insert_slice and tensor.extract_slice in vision transformers
+  for (auto& block : region) {
+    for (Operation& op : block) {
+      // ALBERT: I muted this skill logic, since we are not doing tosa-only
+      // shape ifnerence we need to handle special ops emerges in model like
+      // tensor.insert_slice and tensor.extract_slice in vision transformers
       //
-      // if (op.getDialect()->getNamespace() != TosaDialect::getDialectNamespace())
+      // if (op.getDialect()->getNamespace() !=
+      // TosaDialect::getDialectNamespace())
       //   continue;
       // op.dump();
 
@@ -219,7 +229,7 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
       if (auto reshapeOp = llvm::dyn_cast<tosa::ReshapeOp>(op)) {
         // 获取newshape的attribute
         auto newShapeAttr = reshapeOp.getNewShape();
-        
+
         // 将Attribute转换为具体的数组
         SmallVector<int64_t, 4> newShapeValues;
         for (int64_t dim : newShapeAttr) {
@@ -234,15 +244,15 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
           } else {
             // 否则，查找并修改第一个为1的维度
             bool expand_dim_0 = false;
-            for (auto &dim : newShapeValues) {
+            for (auto& dim : newShapeValues) {
               if (dim == 1) {
                 expand_dim_0 = true;
                 dim = batch_size;
                 break; // 修改后退出循环
               }
             }
-            // for shape like 12, 197, 768; batchsize dim is not seperately pointed
-            // use first dim to contains
+            // for shape like 12, 197, 768; batchsize dim is not seperately
+            // pointed use first dim to contains
             if (!expand_dim_0) {
               newShapeValues[0] = batch_size * newShapeValues[0];
             }
@@ -251,21 +261,22 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
 
         // deprecated api: 创建新的newshape attribute
         // auto newNewShapeAttr = mlir::DenseIntElementsAttr::get(
-        //   mlir::RankedTensorType::get(newShapeValues.size(), mlir::IntegerType::get(op.getContext(), 64)),
-        //   newShapeValues);
+        //   mlir::RankedTensorType::get(newShapeValues.size(),
+        //   mlir::IntegerType::get(op.getContext(), 64)), newShapeValues);
 
         // 更新ReshapeOp的newshape attribute
         reshapeOp.setNewShape(newShapeValues);
       }
 
       // ALBERT: special treatment for tensor.insert_slice
-      if (auto extractSliceOp = llvm::dyn_cast<mlir::tensor::ExtractSliceOp>(op)) {
+      if (auto extractSliceOp =
+              llvm::dyn_cast<mlir::tensor::ExtractSliceOp>(op)) {
         mlir::OpBuilder builder(op.getContext());
         builder.setInsertionPoint(extractSliceOp);
         // 获取sizes属性
         auto sizesAttr = extractSliceOp.getStaticSizes();
         auto stridesAttr = extractSliceOp.getStaticStrides();
-        
+
         // 将sizes属性转换为vector以便修改
         SmallVector<int64_t, 4> newSizes;
         for (auto size : sizesAttr) {
@@ -294,18 +305,18 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
         extractSliceOp.setStaticStridesAttr(newStridesAttr);
 
         auto newExtractSliceOp = builder.create<mlir::tensor::ExtractSliceOp>(
-          extractSliceOp.getLoc(),
-          extractSliceOp.getSource(),
-          extractSliceOp.getMixedOffsets(),
-          extractSliceOp.getMixedSizes(),
-          extractSliceOp.getMixedStrides());
+            extractSliceOp.getLoc(), extractSliceOp.getSource(),
+            extractSliceOp.getMixedOffsets(), extractSliceOp.getMixedSizes(),
+            extractSliceOp.getMixedStrides());
 
-        extractSliceOp.getResult().replaceAllUsesWith(newExtractSliceOp.getResult());
+        extractSliceOp.getResult().replaceAllUsesWith(
+            newExtractSliceOp.getResult());
         // emptyOp.erase();
         opsToErase.push_back(extractSliceOp.getOperation());
         // newExtractSliceOp.dump();
       }
-      if (auto insertSliceOp = llvm::dyn_cast<mlir::tensor::InsertSliceOp>(op)) {
+      if (auto insertSliceOp =
+              llvm::dyn_cast<mlir::tensor::InsertSliceOp>(op)) {
         mlir::OpBuilder builder(op.getContext());
         // mlir::OpBuilder::InsertionGuard guard{builder};
         builder.setInsertionPoint(insertSliceOp);
@@ -314,7 +325,7 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
         // 获取sizes属性
         auto sizesAttr = insertSliceOp.getStaticSizes();
         auto stridesAttr = insertSliceOp.getStaticStrides();
-        
+
         // 将sizes属性转换为vector以便修改
         SmallVector<int64_t, 4> newSizes;
         for (auto size : sizesAttr) {
@@ -345,20 +356,21 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
         insertSliceOp.setStaticStridesAttr(newStridesAttr);
         // insertSliceOp.dump();
 
-        // SmallVector<int64_t, 4> newShape(originalResultType.getShape().begin(), originalResultType.getShape().end());
-        // newShape[1] = batch_size;
-        // auto newResultType = mlir::RankedTensorType::get(newShape, originalResultType.getElementType());
+        // SmallVector<int64_t, 4>
+        // newShape(originalResultType.getShape().begin(),
+        // originalResultType.getShape().end()); newShape[1] = batch_size; auto
+        // newResultType = mlir::RankedTensorType::get(newShape,
+        // originalResultType.getElementType());
 
         auto newInsertSliceOp = builder.create<mlir::tensor::InsertSliceOp>(
-          insertSliceOp.getLoc(),
-          // newResultType,
-          insertSliceOp.getSource(),
-          insertSliceOp.getDest(),
-          insertSliceOp.getMixedOffsets(),
-          insertSliceOp.getMixedSizes(),
-          insertSliceOp.getMixedStrides());
+            insertSliceOp.getLoc(),
+            // newResultType,
+            insertSliceOp.getSource(), insertSliceOp.getDest(),
+            insertSliceOp.getMixedOffsets(), insertSliceOp.getMixedSizes(),
+            insertSliceOp.getMixedStrides());
 
-        insertSliceOp.getResult().replaceAllUsesWith(newInsertSliceOp.getResult());
+        insertSliceOp.getResult().replaceAllUsesWith(
+            newInsertSliceOp.getResult());
         // emptyOp.erase();
         opsToErase.push_back(insertSliceOp.getOperation());
         // newInsertSliceOp.dump();
@@ -379,27 +391,32 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
         // mlir::OpBuilder builder(op.getContext());
         // auto newSizesAttr = builder.getI64ArrayAttr(newSizes);
         // emptyOp.setStaticSizes(newSizesAttr);
-        // auto newEmptyOp = builder.create<tensor::EmptyOp>(emptyOp.getLoc(), newSizesAttr, emptyOp.getType(), ValueRange{}).getResult();
+        // auto newEmptyOp = builder.create<tensor::EmptyOp>(emptyOp.getLoc(),
+        // newSizesAttr, emptyOp.getType(), ValueRange{}).getResult();
         // emptyOp.replaceAllUsesWith(newEmptyOp);
         // emptyOp.erase();
         mlir::OpBuilder builder(op.getContext());
         // mlir::OpBuilder::InsertionGuard guard{builder};
         builder.setInsertionPoint(emptyOp);
-        auto originalType = emptyOp.getType().dyn_cast<mlir::RankedTensorType>();
-        if (!originalType) return; // 只处理RankedTensorType
+        auto originalType =
+            emptyOp.getType().dyn_cast<mlir::RankedTensorType>();
+        if (!originalType)
+          return; // 只处理RankedTensorType
 
         // 构建新的形状尺寸
-        SmallVector<int64_t, 4> newShape(originalType.getShape().begin(), originalType.getShape().end());
+        SmallVector<int64_t, 4> newShape(originalType.getShape().begin(),
+                                         originalType.getShape().end());
         if (!newShape.empty()) {
-          newShape[0] = batch_size;  // 修改第一个维度的大小
+          newShape[0] = batch_size; // 修改第一个维度的大小
         }
 
         // 创建新的结果类型
-        auto newType = mlir::RankedTensorType::get(newShape, originalType.getElementType());
+        auto newType = mlir::RankedTensorType::get(
+            newShape, originalType.getElementType());
 
         // 使用新类型创建一个新的tensor.empty操作
         auto newEmptyOp = builder.create<mlir::tensor::EmptyOp>(
-          emptyOp.getLoc(), newType, emptyOp.getDynamicSizes());
+            emptyOp.getLoc(), newType, emptyOp.getDynamicSizes());
         // newEmptyOp.dump();
         emptyOp.getResult().replaceAllUsesWith(newEmptyOp.getResult());
         // emptyOp.erase();
@@ -447,7 +464,6 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
           // Set new type
           result.setType(inferredKnowledge.getType());
           // op.dump();
-
         }
       }
       // op.dump();
@@ -456,8 +472,6 @@ void propagateShapesInRegion(Region &region, int32_t batch_size) {
   for (auto opToErase : opsToErase) {
     opToErase->erase();
   }
-
-
 }
 
 class AutodiffPrepareBatchSize
@@ -467,8 +481,8 @@ class AutodiffPrepareBatchSize
     OpBuilder::InsertionGuard guard{builder};
     // llvm::errs() << "albert\n";
 
-
-    // TODO(albert): refactor this change shape and gen to other place and use option to set batchsize
+    // TODO(albert): refactor this change shape and gen to other place and use
+    // option to set batchsize
     int32_t batch_size = this->batchsize;
     getOperation()->walk([&](func::FuncOp funcOp) {
       FunctionType funcType = funcOp.getFunctionType();
@@ -483,9 +497,11 @@ class AutodiffPrepareBatchSize
         // if this is a input tensor, do modification
         if (auto tensorType = inputType.dyn_cast<RankedTensorType>()) {
           if (tensorType.getRank() == 4) {
-            SmallVector<int64_t, 4> newShape(tensorType.getShape().begin(), tensorType.getShape().end());
+            SmallVector<int64_t, 4> newShape(tensorType.getShape().begin(),
+                                             tensorType.getShape().end());
             newShape[0] = batch_size;
-            auto newTensorType = RankedTensorType::get(newShape, tensorType.getElementType());
+            auto newTensorType =
+                RankedTensorType::get(newShape, tensorType.getElementType());
             newInputTypes.push_back(newTensorType);
             continue;
           }
@@ -493,16 +509,19 @@ class AutodiffPrepareBatchSize
         // fallback for non-modification
         newInputTypes.push_back(inputType);
       }
-      // auto newFuncType = FunctionType::get(funcOp.getContext(), newInputTypes, funcType.getResults());
+      // auto newFuncType = FunctionType::get(funcOp.getContext(),
+      // newInputTypes, funcType.getResults());
 
       // handle results
       for (Type resultType : funcType.getResults()) {
         // if has bs in dims, modify it
         if (auto tensorType = resultType.dyn_cast<RankedTensorType>()) {
           if (tensorType.getRank() >= 1) { // 确保至少有一个维度可以修改
-            SmallVector<int64_t, 4> newShape(tensorType.getShape().begin(), tensorType.getShape().end());
+            SmallVector<int64_t, 4> newShape(tensorType.getShape().begin(),
+                                             tensorType.getShape().end());
             newShape[0] = batch_size; // 修改第一个维度
-            auto newTensorType = RankedTensorType::get(newShape, tensorType.getElementType());
+            auto newTensorType =
+                RankedTensorType::get(newShape, tensorType.getElementType());
             newResultTypes.push_back(newTensorType);
             continue;
           }
@@ -511,21 +530,25 @@ class AutodiffPrepareBatchSize
         newResultTypes.push_back(resultType);
       }
 
-      auto newFuncType = FunctionType::get(funcOp.getContext(), newInputTypes, newResultTypes);
+      auto newFuncType =
+          FunctionType::get(funcOp.getContext(), newInputTypes, newResultTypes);
       funcOp.setType(newFuncType);
 
       // Assuming the first input's type is modified, find and update all uses.
-      if (!newInputTypes.empty() && newInputTypes.front() != funcType.getInput(0)) {
+      if (!newInputTypes.empty() &&
+          newInputTypes.front() != funcType.getInput(0)) {
         Block& entryBlock = funcOp.getBody().front();
         BlockArgument oldArg = entryBlock.getArgument(0);
-        BlockArgument newArg = entryBlock.addArgument(newInputTypes.front(), oldArg.getLoc());
+        BlockArgument newArg =
+            entryBlock.addArgument(newInputTypes.front(), oldArg.getLoc());
 
         oldArg.replaceAllUsesWith(newArg);
 
-        // Now, you need to adjust all operations within the function that used this argument,
-        // This may involve creating new operations or updating existing ones to reflect the change.
-        // The specific adjustments will depend on how the argument is used in each operation.
-        
+        // Now, you need to adjust all operations within the function that used
+        // this argument, This may involve creating new operations or updating
+        // existing ones to reflect the change. The specific adjustments will
+        // depend on how the argument is used in each operation.
+
         // After updating all uses, remove the old argument.
         entryBlock.eraseArgument(0);
       }
@@ -543,7 +566,8 @@ class AutodiffPrepareBatchSize
       //     // replace outTy if require update
       //     if (addOp.getType() != inputType) {
       //       auto loc = addOp.getLoc();
-      //       auto newAddOp = builder.create<tosa::AddOp>(loc, inputType, addOp.getOperand(0), addOp.getOperand(1));
+      //       auto newAddOp = builder.create<tosa::AddOp>(loc, inputType,
+      //       addOp.getOperand(0), addOp.getOperand(1));
       //       addOp.getResult().replaceAllUsesWith(newAddOp.getResult());
       //       addOp.erase();
       //     }
@@ -551,11 +575,12 @@ class AutodiffPrepareBatchSize
       //
       //   // tosa::TransposeOp
       //   if (auto transposeOp = dyn_cast<tosa::TransposeOp>(op)) {
-      //     auto inputType = transposeOp.getOperand(0).getType().cast<RankedTensorType>();
+      //     auto inputType =
+      //     transposeOp.getOperand(0).getType().cast<RankedTensorType>();
       //     ShapeAdaptor inputShape(transposeOp.getInput1().getType());
       //     ShapeAdaptor permsShape(transposeOp.getPerms().getType());
       //     auto permsAttr = transposeOp.getPerms();
-      //     
+      //
       //     SmallVector<int64_t, 4> newShape(inputShape.getRank());
       //     inputShape.dump();
       //     permsShape.dump();
@@ -564,14 +589,16 @@ class AutodiffPrepareBatchSize
       //       // newShape[i] = inputType.getShape()[perm];
       //       newShape[i] = inputShape.getDimSize(perm);
       //     }
-      //     
-      //     auto newOutputType = RankedTensorType::get(newShape, inputType.getElementType());
-      //     newOutputType.dump();
+      //
+      //     auto newOutputType = RankedTensorType::get(newShape,
+      //     inputType.getElementType()); newOutputType.dump();
       //
       //     if (transposeOp.getResult().getType() != newOutputType) {
       //       builder.setInsertionPoint(transposeOp);
       //       auto loc = transposeOp.getLoc();
-      //       auto newTransposeOp = builder.create<tosa::TransposeOp>(loc, newOutputType, transposeOp.getOperand(0), transposeOp.getPerms());
+      //       auto newTransposeOp = builder.create<tosa::TransposeOp>(loc,
+      //       newOutputType, transposeOp.getOperand(0),
+      //       transposeOp.getPerms());
       //       transposeOp.getResult().replaceAllUsesWith(newTransposeOp.getResult());
       //       transposeOp.erase();
       //     }
@@ -580,9 +607,6 @@ class AutodiffPrepareBatchSize
       // });
       //
     });
-
-
-
   }
 };
 
