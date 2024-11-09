@@ -1,4 +1,3 @@
-*.log
 build/
 codegen_tools_build/
 codegen_tools_install/
@@ -6,14 +5,13 @@ codegen_tools_install/
 .cache/
 .vscode/
 .idea/
-*ragdoll/*__pycache__*
 cmake-build-debug/
 cmake-build-release/
 dist/
-*.vmfb
-*.pyc
-*__pycache__*
-*.env
+**/*.vmfb
+**/*.pyc
+**/*.env
+sandbox/
 
 compile_commands.json
 *.ipynb_checkpoints*

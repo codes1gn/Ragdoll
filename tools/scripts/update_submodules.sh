@@ -9,16 +9,11 @@ WORKSPACE_DIR=`realpath $SCRIPT_DIR"/../.."`
 MLIR_NAME="ragdoll-llvm-project"
 IREE_NAME="ragdoll-codegen"
 MLIR_FOR_IREE="llvm-project"
-git clone git@git.enflame.cn:heng.shi/ragdoll-llvm-projects.git third_party/$MLIR_NAME
-git clone git@git.enflame.cn:heng.shi/ragdoll-llvm-projects.git third_party/$MLIR_FOR_IREE
 git submodule update --init -- third_party/$MLIR_NAME
-cd third_party/$MLIR_FOR_IREE && git submodule update --init && cd $WORKSPACE_DIR
-
 git submodule update --init -- third_party/$IREE_NAME
 
 MLIR_SOURCE_DIR=$WORKSPACE_DIR"/third_party/$MLIR_NAME/llvm"
 IREE_SOURCE_DIR=$WORKSPACE_DIR"/third_party/$IREE_NAME"
-# IREE_BUILD_DIR=$WORKSPACE_DIR"/codegen_tools_build"
 cd $IREE_SOURCE_DIR
 git submodule update --init -- third_party/googletest
 git submodule update --init -- third_party/vulkan_headers

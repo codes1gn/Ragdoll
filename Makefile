@@ -27,11 +27,12 @@ verify-iree-bindings:
 .PHONY: bootstrap build unittest test format debug clean clean-backend jupyter jupyter-stop install gpu-restart
 
 bootstrap:
-	@poetry install --no-root
-	@poetry shell
-	@echo "set -x PYTHONPATH $(CURDIR)/codegen_tools_build/iree/compiler/bindings/python:$(CURDIR)/codegen_tools_build/iree/runtime/bindings/python:$(CURDIR)/codegen_tools_install/iree/python_packages/iree_compiler:$(CURDIR)/codegen_tools_install/iree/python_packages/iree_runtime" > $(CURDIR)/tools/config-miscs/.env
+	python3.9 -m venv sandbox
 
 setup: 
+	@poetry config virtualenvs.create false
+	@poetry install --no-root
+	@echo "set -x PYTHONPATH $(CURDIR)/codegen_tools_build/iree/compiler/bindings/python:$(CURDIR)/codegen_tools_build/iree/runtime/bindings/python:$(CURDIR)/codegen_tools_install/iree/python_packages/iree_compiler:$(CURDIR)/codegen_tools_install/iree/python_packages/iree_runtime" > $(CURDIR)/.env
 	@./tools/scripts/update_submodules.sh
 	@./tools/scripts/build_helper.sh build_llvm
 	@./tools/scripts/build_helper.sh build_mlir 
@@ -39,14 +40,14 @@ setup:
 
 build:
 	./tools/scripts/build_ragdoll.sh
-	@. ./tools/config-miscs/.env
+	@. $(CURDIR)/.env
 
 install:
-	@. ./tools/config-miscs/.env
+	@. $(CURDIR)/.env
 	poetry install
 
 test: unittest
-	@. ./tools/config-miscs/.env
+	@. $(CURDIR)/.env
 	@cd build && ninja check-ragdoll
 
 unittest:
