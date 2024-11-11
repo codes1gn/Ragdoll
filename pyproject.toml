@@ -7,6 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.9,<3.12"
+protobuf = "3.20.3"
 
 [tool.poetry.dev-dependencies]
 numpy = "1.23.4"

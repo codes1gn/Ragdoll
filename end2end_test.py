@@ -9,6 +9,7 @@ import numpy as np
 # import iree.runtime
 
 from ragdoll import benchmarking
+from ragdoll.benchmarking import timer 
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -59,8 +60,8 @@ def get_dataframe(forward, backward, item):
         }, index=[0]),
     ])
 
-def timeit(stmt, n=10):
-    return ti(stmt, globals=globals(), number=n) * 1000 / n
+
+    # 运行计时测试
 
 print("hello")
 
@@ -79,8 +80,12 @@ grad_np = grad.numpy()
 
 df = pd.DataFrame()
 
-baseline_f = timeit("model(image)")
-baseline_b = timeit("torch.autograd.grad(output, [image], grad, retain_graph=True)")
+func_f = model
+func_b = torch.autograd.grad
+
+_timer = timer.TimerBuilder.create_timer("py_timer", repeat_samples=10, warmup_samples=2)
+baseline_f = _timer.run(func_f, image).mean_time("ms")
+baseline_b = _timer.run(func_b, output, [image], grad, retain_graph=True).mean_time("ms")
 df = pd.concat([df, get_dataframe(baseline_f, baseline_b, "Torch Dynamo")])
 
 print(df)

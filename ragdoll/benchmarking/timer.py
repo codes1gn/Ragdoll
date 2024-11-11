@@ -45,42 +45,54 @@ class TimerBase:
             self.start()
             func(*args, **kwargs)
             self.stop()
+        return self
 
-    def mean_time(self) -> float:
-        return np.mean(self.times)
+    def convert_unit(self, time, unit):
+        """Convert time to the specified unit."""
+        if unit == 'ms':
+            return time * 1000
+        elif unit == 'us':
+            return time * 1_000_000
+        elif unit == 'sec':
+            return time
+        else:
+            raise ValueError("Unsupported unit. Use 'sec', 'ms', or 'us'.")
 
-    def median_time(self) -> float:
-        return np.median(self.times)
+    def mean_time(self, unit='sec'):
+        return self.convert_unit(np.mean(self.times), unit)
 
-    def min_time(self) -> float:
-        return np.min(self.times)
+    def median_time(self, unit='sec'):
+        return self.convert_unit(np.median(self.times), unit)
 
-    def max_time(self) -> float:
-        return np.max(self.times)
+    def min_time(self, unit='sec'):
+        return self.convert_unit(np.min(self.times), unit)
 
-    def std_dev(self) -> float:
-        return np.std(self.times, ddof=1)
+    def max_time(self, unit='sec'):
+        return self.convert_unit(np.max(self.times), unit)
 
-    def confidence_interval(self, confidence=0.95) -> tuple:
+    def std_dev(self, unit='sec'):
+        return self.convert_unit(np.std(self.times, ddof=1), unit)
+
+    def confidence_interval(self, confidence=0.95, unit='sec'):
         """Calculate the confidence interval of the recorded times."""
         n = len(self.times)
         if n < 2:
-            return (self.mean_time(), self.mean_time())
-        
-        mean = self.mean_time()
-        std_err = self.std_dev() / np.sqrt(n)
-        h = std_err * 1.96  # For 95% confidence level
-        return mean - h, mean + h
+            return (self.convert_unit(self.mean_time(unit), unit), self.convert_unit(self.mean_time(unit), unit))
 
-    def run_summary(self) -> dict:
+        mean = self.mean_time(unit)
+        std_err = self.std_dev(unit) / np.sqrt(n)
+        h = std_err * 1.96  # For 95% confidence level
+        return (mean - h, mean + h)
+
+    def summary(self, unit='sec'):
         """Generate a summary of the run statistics."""
         return {
-            "mean_time": self.mean_time(),
-            "median_time": self.median_time(),
-            "min_time": self.min_time(),
-            "max_time": self.max_time(),
-            "std_dev": self.std_dev(),
-            "confidence_interval": self.confidence_interval(),
+            "mean_time": self.mean_time(unit),
+            "median_time": self.median_time(unit),
+            "min_time": self.min_time(unit),
+            "max_time": self.max_time(unit),
+            "std_dev": self.std_dev(unit),
+            "confidence_interval": self.confidence_interval(unit),
             "samples": len(self.times),
         }
 
