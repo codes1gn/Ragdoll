@@ -7,10 +7,7 @@ from torch.utils.data import DataLoader
 from tensorflow.data import Dataset as tfDataset
 from enum import Enum
 
-class FrameworkType(Enum):
-    TORCH = "torch"
-    TENSORFLOW = "tensorflow"
-    IREE = "iree"  # Placeholder for future IREE support
+from ragdoll.common.enum import * 
 
 class DataProviderBase:
     """Base class for data providers, with framework-specific implementations."""
@@ -114,12 +111,12 @@ class DataProviderFactory:
     """Factory to create DataProvider instances based on framework type."""
 
     @staticmethod
-    def create_data_provider(framework_type: FrameworkType, batch_size=32, input_shape=(3, 224, 224), data_type=np.float32) -> DataProviderBase:
-        if framework_type == FrameworkType.TORCH:
+    def create_data_provider(framework_type: ExecutorType, batch_size=32, input_shape=(3, 224, 224), data_type=np.float32) -> DataProviderBase:
+        if framework_type == ExecutorType.TORCH:
             return TorchDataProvider(batch_size, input_shape, data_type)
-        elif framework_type == FrameworkType.TENSORFLOW:
+        elif framework_type == ExecutorType.TENSORFLOW:
             return TensorFlowDataProvider(batch_size, input_shape, data_type)
-        elif framework_type == FrameworkType.IREE:
+        elif framework_type == ExecutorType.IREE:
             return IREEDataProvider(batch_size, input_shape, data_type)
         else:
             raise ValueError(f"Unsupported framework type: {framework_type}")
@@ -128,14 +125,14 @@ class DataProviderBuilder:
     """Builds a DataProvider instance based on a string keyword, with a default to TorchDataProvider."""
 
     _keyword_to_framework_type = {
-        "torch": FrameworkType.TORCH,
-        "tensorflow": FrameworkType.TENSORFLOW,
-        "tf": FrameworkType.TENSORFLOW,
-        "iree": FrameworkType.IREE
+        "torch": ExecutorType.TORCH,
+        "tensorflow": ExecutorType.TENSORFLOW,
+        "tf": ExecutorType.TENSORFLOW,
+        "iree": ExecutorType.IREE
     }
 
     @staticmethod
     def build(keyword: str, batch_size=32, input_shape=(3, 224, 224), data_type=np.float32) -> DataProviderBase:
-        framework_type = DataProviderBuilder._keyword_to_framework_type.get(keyword.lower(), FrameworkType.TORCH)
+        framework_type = DataProviderBuilder._keyword_to_framework_type.get(keyword.lower(), ExecutorType.TORCH)
         return DataProviderFactory.create_data_provider(framework_type, batch_size, input_shape, data_type)
 

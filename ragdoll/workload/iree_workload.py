@@ -1,10 +1,11 @@
 
-from .workload_base import *
+from ragdoll.workload.workload_base import *
+from ragdoll.common.enum import * 
 
 class IREEWorkload(WorkloadBase):
     """Defines an IREE workload, supporting operator, model, and fused_operator granularity."""
 
-    def __init__(self, granularity: GranularityLevel):
+    def __init__(self, granularity: GranularityLevel = GranularityLevel.MODEL):
         super().__init__(granularity)
         self.model = None
 

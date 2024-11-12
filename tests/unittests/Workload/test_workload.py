@@ -5,7 +5,7 @@ import pytest
 import torch
 import tensorflow as tf
 import numpy as np
-from ragdoll.workload import WorkloadBase, PyTorchWorkload, TensorFlowWorkload, RunMode, GranularityLevel
+from ragdoll.workload import WorkloadBase, TorchWorkload, TFWorkload, RunMode, GranularityLevel
 from ragdoll.data_utils.data_provider import DataProviderBuilder
 
 @pytest.fixture
@@ -21,14 +21,14 @@ def tf_data_provider():
 @pytest.fixture
 def pytorch_workload(torch_data_provider):
     # Initialize PyTorch workload with synthetic data
-    workload = PyTorchWorkload(GranularityLevel.MODEL)
+    workload = TorchWorkload(GranularityLevel.MODEL)
     workload.set_data_provider(torch_data_provider)
     return workload
 
 @pytest.fixture
 def tensorflow_workload(tf_data_provider):
     # Initialize TensorFlow workload with synthetic data
-    workload = TensorFlowWorkload(GranularityLevel.MODEL)
+    workload = TFWorkload(GranularityLevel.MODEL)
     workload.set_data_provider(tf_data_provider)
     return workload
 

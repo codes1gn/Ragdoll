@@ -1,11 +1,12 @@
 import tensorflow as tf
 
-from .workload_base import * 
+from ragdoll.workload.workload_base import *
+from ragdoll.common.enum import * 
 
-class TensorFlowWorkload(WorkloadBase):
+class TFWorkload(WorkloadBase):
     """Defines a TensorFlow workload, supporting operator, model, and fused_operator granularity."""
 
-    def __init__(self, granularity: GranularityLevel):
+    def __init__(self, granularity: GranularityLevel = GranularityLevel.MODEL):
         super().__init__(granularity)
         self.model = None
 

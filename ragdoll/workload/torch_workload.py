@@ -2,12 +2,13 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 
-from .workload_base import *
+from ragdoll.workload.workload_base import *
+from ragdoll.common.enum import * 
 
-class PyTorchWorkload(WorkloadBase):
+class TorchWorkload(WorkloadBase):
     """Defines a PyTorch workload, supporting operator, model, and fused_operator granularity."""
 
-    def __init__(self, granularity: GranularityLevel):
+    def __init__(self, granularity: GranularityLevel = GranularityLevel.MODEL):
         super().__init__(granularity)
         self.model = None
 

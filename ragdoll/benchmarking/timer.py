@@ -3,10 +3,7 @@ import torch
 import numpy as np
 from enum import Enum
 
-class TimerType(Enum):
-    PY_TIMER = "py_timer"
-    PYTORCH_TIMER = "pytorch_timer"
-    IREE_TIMER = "iree_timer"  # 假设将来可能支持 IREE 计时器
+from ragdoll.common.enum import * 
 
 class TimerBase:
     """Base class for Timer implementations with statistical features."""

@@ -1,20 +1,13 @@
+# executor/executor.py
+
 from abc import ABC, abstractmethod
 from enum import Enum
 
+from ragdoll.common.enum import * 
+
 __all__ = [
-    'RunMode',
-    'GranularityLevel',
     'WorkloadBase',
 ]
-
-class RunMode(Enum):
-    INFERENCE = "inference"
-    TRAINING = "training"
-
-class GranularityLevel(Enum):
-    OPERATOR = "operator"
-    MODEL = "model"
-    FUSED_OPERATOR = "fused_operator"
 
 class WorkloadBase(ABC):
     """Abstract base class for defining different workload types across platforms."""
