@@ -12,6 +12,7 @@ dist/
 **/*.pyc
 **/*.env
 sandbox/
+**/__pycache__/*
 
 compile_commands.json
 *.ipynb_checkpoints*

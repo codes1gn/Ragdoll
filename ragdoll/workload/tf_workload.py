@@ -25,9 +25,9 @@ class TensorFlowWorkload(WorkloadBase):
         
         input_data = next(iter(self.data_provider))
         
-        if self.run_mode == RunMode.INFERENCE:
+        if self._run_mode == RunMode.INFERENCE:
             return self.model(input_data, training=False)
-        elif self.run_mode == RunMode.TRAINING:
+        elif self._run_mode == RunMode.TRAINING:
             self.model.trainable = True
             with tf.GradientTape() as tape:
                 output = self.model(input_data, training=True)

@@ -22,7 +22,14 @@ class WorkloadBase(ABC):
     def __init__(self, granularity: GranularityLevel):
         self._granularity = granularity
         self.data_provider = None
-        self.run_mode = RunMode.INFERENCE  # Default to inference mode
+        self._run_mode = RunMode.INFERENCE  # Default to inference mode
+    @property
+    def mode(self):
+        return self._run_mode
+
+    @mode.setter
+    def mode(self, run_mode: RunMode):
+        self._run_mode = run_mode
 
     @property
     def granularity(self):
@@ -38,7 +45,7 @@ class WorkloadBase(ABC):
 
     def set_run_mode(self, mode: RunMode):
         """Set the mode to either inference or training."""
-        self.run_mode = mode
+        self._run_mode = mode
 
     @abstractmethod
     def load_model(self, model_name: str):

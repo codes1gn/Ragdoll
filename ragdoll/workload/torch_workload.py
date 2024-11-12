@@ -28,11 +28,11 @@ class PyTorchWorkload(WorkloadBase):
         # Retrieve data from the provider
         input_data = next(iter(self.data_provider))
         
-        if self.run_mode == RunMode.INFERENCE:
+        if self._run_mode == RunMode.INFERENCE:
             self.model.eval()
             with torch.no_grad():
                 return self.model(input_data)
-        elif self.run_mode == RunMode.TRAINING:
+        elif self._run_mode == RunMode.TRAINING:
             self.model.train()
             output = self.model(input_data)
             # Assume a simple loss function and optimizer for training purposes
