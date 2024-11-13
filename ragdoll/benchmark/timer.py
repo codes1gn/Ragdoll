@@ -3,7 +3,7 @@ import torch
 import numpy as np
 from enum import Enum
 
-from ragdoll.common.enum import * 
+from ragdoll.common import * 
 
 class TimerBase:
     """Base class for Timer implementations with statistical features."""
@@ -123,47 +123,60 @@ class PyTorchTimer(TimerBase):
 # Placeholder for IREE timer - you can implement this when IREE is available
 class IREETimer(TimerBase):
     """Placeholder Timer for IREE framework timing (not implemented)."""
+    def __init__(self, repeat_samples, warmup_samples):
+        pass
 
     def observe(self):
         raise NotImplementedError("IREE timer is not implemented yet")
+
+class TensorFlowTimer(TimerBase):
+    """Placeholder Timer for TF framework timing (not implemented)."""
+    def __init__(self, repeat_samples, warmup_samples):
+        pass
+
+    def observe(self):
+        raise NotImplementedError("IREE timer is not implemented yet")
+
+class TVMTimer(TimerBase):
+    """Placeholder Timer for TVM framework timing (not implemented)."""
+    def __init__(self, repeat_samples, warmup_samples):
+        pass
+
+    def observe(self):
+        raise NotImplementedError("IREE timer is not implemented yet")
+
 
 class TimerFactory:
     @staticmethod
     def create_timer(timer_type: TimerType, repeat_samples=10, warmup_samples=2) -> TimerBase:
         """Factory method to create a timer based on the given TimerType."""
-        if timer_type == TimerType.PY_TIMER:
+        if timer_type == TimerType.PYTHON:
             return PyTimer(repeat_samples, warmup_samples)
-        elif timer_type == TimerType.PYTORCH_TIMER:
+        elif timer_type == TimerType.TORCH:
             return PyTorchTimer(repeat_samples, warmup_samples)
-        elif timer_type == TimerType.IREE_TIMER:
+        elif timer_type == TimerType.TENSORFLOW:
+            return TensorFlowTimer(repeat_samples, warmup_samples)
+        elif timer_type == TimerType.IREE:
             return IREETimer(repeat_samples, warmup_samples)
+        elif timer_type == TimerType.TVM:
+            return TVMTimer(repeat_samples, warmup_samples)
         else:
             raise ValueError(f"Unsupported Timer type: {timer_type}")
 
-class TimerBuilder:
-    """Builds a Timer instance based on a string keyword, with a default to PyTimer."""
 
-    _keyword_to_timer_type = {
-        "py_timer": TimerType.PY_TIMER,
-        "python": TimerType.PY_TIMER,
-        "pytorch_timer": TimerType.PYTORCH_TIMER,
-        "torch": TimerType.PYTORCH_TIMER,
-        "iree_timer": TimerType.IREE_TIMER,
-        "iree": TimerType.IREE_TIMER
-    }
+class TimerBuilder:
+    """Builds a Timer instance based on a TimerType enum, with a default to PyTimer."""
 
     @staticmethod
-    def create_timer(keyword: str, repeat_samples=10, warmup_samples=2) -> TimerBase:
-        """Creates a Timer based on a string keyword, defaults to PyTimer if unknown.
-        
+    def build(timer_type: TimerType, repeat_samples=10, warmup_samples=2) -> TimerBase:
+        """Creates a Timer based on the TimerType enum.
+
         Args:
-            keyword (str): The keyword to specify which Timer to create.
+            timer_type (TimerType): The TimerType enum to specify which Timer to create.
             repeat_samples (int): Number of repeat samples for timing.
             warmup_samples (int): Number of warmup runs before timing.
-        
+
         Returns:
             TimerBase: An instance of a Timer subclass.
         """
-        timer_type = TimerBuilder._keyword_to_timer_type.get(keyword.lower(), TimerType.PY_TIMER)
         return TimerFactory.create_timer(timer_type, repeat_samples, warmup_samples)
-

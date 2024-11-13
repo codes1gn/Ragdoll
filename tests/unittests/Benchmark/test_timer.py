@@ -3,7 +3,7 @@
 import pytest
 import torch
 import numpy as np
-from ragdoll.benchmarking import timer 
+from ragdoll.benchmark.timer import *
 
 def dummy_function():
     """A simple dummy function that simulates workload."""
@@ -16,8 +16,8 @@ def one_pos_function(inp0):
         pass
 
 @pytest.mark.parametrize("timer_type, repeat_samples, warmup_samples", [
-    ("py_timer", 10, 3),
-    ("pytorch_timer", 10, 3) if torch.cuda.is_available() else pytest.param("pytorch_timer", 10, 3, marks=pytest.mark.skip(reason="CUDA not available"))
+    (TimerType.PYTHON, 10, 3),
+    (TimerType.TORCH, 10, 3) if torch.cuda.is_available() else pytest.param("pytorch_timer", 10, 3, marks=pytest.mark.skip(reason="CUDA not available"))
 ])
 def test_timer(timer_type, repeat_samples, warmup_samples):
     """
@@ -29,7 +29,7 @@ def test_timer(timer_type, repeat_samples, warmup_samples):
         warmup_samples (int): Number of warmup runs before timing.
     """
     # 创建 Timer 实例
-    _timer = timer.TimerBuilder.create_timer(timer_type, repeat_samples=repeat_samples, warmup_samples=warmup_samples)
+    _timer = TimerBuilder.build(timer_type, repeat_samples=repeat_samples, warmup_samples=warmup_samples)
 
     # 运行计时测试
     _timer.run(dummy_function)
@@ -56,8 +56,8 @@ def test_timer(timer_type, repeat_samples, warmup_samples):
 
 
 @pytest.mark.parametrize("timer_type, repeat_samples, warmup_samples", [
-    ("py_timer", 10, 3),
-    ("pytorch_timer", 10, 3) if torch.cuda.is_available() else pytest.param("pytorch_timer", 10, 3, marks=pytest.mark.skip(reason="CUDA not available"))
+    (TimerType.PYTHON, 10, 3),
+    (TimerType.TORCH, 10, 3) if torch.cuda.is_available() else pytest.param("pytorch_timer", 10, 3, marks=pytest.mark.skip(reason="CUDA not available"))
 ])
 def test_timer_one_arg(timer_type, repeat_samples, warmup_samples):
     """
@@ -69,7 +69,7 @@ def test_timer_one_arg(timer_type, repeat_samples, warmup_samples):
         warmup_samples (int): Number of warmup runs before timing.
     """
     # 创建 Timer 实例
-    _timer = timer.TimerBuilder.create_timer(timer_type, repeat_samples=repeat_samples, warmup_samples=warmup_samples)
+    _timer = TimerBuilder.build(timer_type, repeat_samples=repeat_samples, warmup_samples=warmup_samples)
 
     # 运行计时测试
     _timer.run(one_pos_function, 0)

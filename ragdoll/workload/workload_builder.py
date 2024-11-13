@@ -8,7 +8,7 @@ from ragdoll.workload.workload_base import WorkloadBase
 
 class WorkloadBuilder:
     @staticmethod
-    def create_workload(workload_type: WorkloadType) -> WorkloadBase:
+    def build(workload_type: WorkloadType) -> WorkloadBase:
         """Create a workload instance based on the specified type."""
         if workload_type == WorkloadType.TORCH:
             return TorchWorkload()

@@ -1,3 +1,4 @@
+
 # common/enum.py
 
 from enum import Enum
@@ -23,11 +24,13 @@ class WorkloadType(Enum):
     IREE = "iree_workload"
 
 class TimerType(Enum):
-    PY_TIMER = "py_timer"
-    PYTORCH_TIMER = "pytorch_timer"
-    IREE_TIMER = "iree_timer"
+    PYTHON = "py_timer"
+    TORCH = "pytorch_timer"
+    TENSORFLOW = "tensorflow_timer"
+    IREE = "iree_timer"
+    TVM = "tvm_timer"
 
-class DataProviderType(Enum):
+class DatasetType(Enum):
     SYNTHETIC = "synthetic"
     CIFAR10 = "cifar10"
     MNIST = "mnist"

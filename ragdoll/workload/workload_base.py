@@ -2,51 +2,24 @@
 
 from abc import ABC, abstractmethod
 from enum import Enum
+from dataclasses import dataclass, field
+from typing import Optional, Any
 
-from ragdoll.common.enum import * 
+from ragdoll.common import * 
+from ragdoll.data_utils import *
 
 __all__ = [
     'WorkloadBase',
 ]
 
+@dataclass
 class WorkloadBase(ABC):
     """Abstract base class for defining different workload types across platforms."""
-
-    def __init__(self, granularity: GranularityLevel):
-        self._granularity = granularity
-        self.data_provider = None
-        self._run_mode = RunMode.INFERENCE  # Default to inference mode
-    @property
-    def mode(self):
-        return self._run_mode
-
-    @mode.setter
-    def mode(self, run_mode: RunMode):
-        self._run_mode = run_mode
-
-    @property
-    def granularity(self):
-        return self._granularity
-
-    @granularity.setter
-    def granularity(self, level: GranularityLevel):
-        self._granularity = level
-
-    def set_data_provider(self, data_provider):
-        """Attach a data provider for loading input data."""
-        self.data_provider = data_provider
-
-    def set_run_mode(self, mode: RunMode):
-        """Set the mode to either inference or training."""
-        self._run_mode = mode
+    granularity: GranularityLevel = GranularityLevel.MODEL
+    mode: RunMode = RunMode.INFERENCE
 
     @abstractmethod
     def load_model(self, model_name: str):
         """Load a model by name specific to each platform."""
-        pass
-
-    @abstractmethod
-    def run(self):
-        """Execute the workload based on the current run mode and data from the data provider."""
         pass
 

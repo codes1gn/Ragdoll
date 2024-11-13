@@ -16,3 +16,4 @@ sandbox/
 
 compile_commands.json
 *.ipynb_checkpoints*
+data/

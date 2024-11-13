@@ -2,8 +2,8 @@
 
 import tensorflow as tf
 from dataclasses import dataclass
-from ragdoll.executor.executor import ExecutorBase
-from ragdoll.common.enum import DeviceType, RunMode
+from .executor_base import ExecutorBase
+from ragdoll.common import DeviceType, RunMode
 
 @dataclass
 class TFExecutor(ExecutorBase):

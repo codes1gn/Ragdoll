@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from ragdoll.common.enum import DeviceType, RunMode, ExecutorType
+from ragdoll.common import DeviceType, RunMode, ExecutorType
 from ragdoll.workload import WorkloadBase
-from ragdoll.data_utils.data_provider import DataProviderBase
+from ragdoll.data_utils import DataProviderBase
 
 @dataclass
 class ExecutorBase(ABC):
