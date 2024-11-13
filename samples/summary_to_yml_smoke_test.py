@@ -27,11 +27,11 @@ yaml.add_constructor('tag:yaml.org,2002:seq', numpy_array_constructor)
 # 示例数据，包含numpy类型
 data = {
     'mean_time': np.float64(0.006475116917863488),
-    'std_dev': np.float64(8.643302673158849e-05),
-    'summary': {
-        'mean_time': np.float64(0.006475116917863488),
-        'samples': np.int32(10)
-    }
+    # 'std_dev': np.float64(8.643302673158849e-05),
+    # 'summary': {
+    #     'mean_time': np.float64(0.006475116917863488),
+    #     'samples': np.int32(10)
+    # }
 }
 
 # 保存数据到YAML文件
