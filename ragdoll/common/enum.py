@@ -41,9 +41,9 @@ class ExecutorType(Enum, metaclass=EnumWithFromStringMeta):
 
 class WorkloadType(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
-    TORCH = "torch_workload"
-    TENSORFLOW = "tensorflow_workload"
-    IREE = "iree_workload"
+    TORCH = "torch"
+    TENSORFLOW = "tensorflow"
+    IREE = "iree"
 
 class TimerType(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"

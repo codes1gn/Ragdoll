@@ -1,0 +1,8 @@
+executor: torch
+run_mode: training
+workload: torch  # updated from 'torch_workload' to 'torch'
+dataset: mnist
+device: gpu
+granularity: model
+timer: torch
+

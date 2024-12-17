@@ -63,3 +63,28 @@ def test_timer_type_from_string():
     # Case insensitivity
     assert TimerType.from_string("PYTHON") == TimerType.PYTHON
     assert TimerType.from_string("Iree") == TimerType.IREE
+
+# Helper function to test the enums' from_string method for various valid and invalid values
+@pytest.mark.parametrize(
+    "enum_class, valid_values, invalid_value",
+    [
+        (RunMode, ["inference", "training"], "unknown"),
+        (GranularityLevel, ["operator", "model", "fused_operator"], "unknown"),
+        (ExecutorType, ["torch", "tensorflow", "tvm", "iree"], "unknown"),
+        (WorkloadType, ["torch", "tensorflow", "iree"], "unknown"),
+        (TimerType, ["python", "torch", "tensorflow", "iree", "tvm"], "unknown"),
+        (DatasetType, ["synthetic", "cifar10", "mnist"], "unknown"),
+        (DeviceType, ["cpu", "gpu", "tpu"], "unknown"),
+    ]
+)
+def test_enum_from_string(enum_class, valid_values, invalid_value):
+    """Test the from_string method for a given enum class."""
+    # Test valid values
+    for value in valid_values:
+        assert enum_class.from_string(value) != enum_class.UNKNOWN
+        assert isinstance(enum_class.from_string(value), enum_class)
+
+    # Test invalid value
+    assert enum_class.from_string(invalid_value) == enum_class.UNKNOWN
+
+
