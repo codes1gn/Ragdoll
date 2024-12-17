@@ -9,6 +9,9 @@ license = "MIT"
 python = "^3.9,<3.12"
 protobuf = "3.20.3"
 pyyaml = "^6.0.2"
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.5.49"
+mkdocs-markdownextradata-plugin = "^0.2.6"
 
 [tool.poetry.dev-dependencies]
 numpy = "1.23.4"

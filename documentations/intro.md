@@ -18,5 +18,3 @@ We hereby present Ragdoll, representing an assembled language layer for Domain-s
  -  (WIP) Cache Reuse Optimisations
  -  (WIP) High abstraction level symbolic optimisations
  -  (WIP) Leverage the kernel generation with IREE system
-
-Details of programming guide and user manual please refer to the Documentation: [Ragdoll Manuals](10.12.114.217:8008)
