@@ -1,42 +1,68 @@
 
 # common/enum.py
 
-from enum import Enum
+from dataclasses import dataclass
+import yaml
+from typing import Optional
+from enum import Enum, EnumMeta
 
-class RunMode(Enum):
+class EnumWithFromStringMeta(EnumMeta):
+    """Metaclass that adds a from_string method to any Enum class."""
+
+    def __new__(cls, name, bases, dct):
+        # Add the from_string method to the class
+        def from_string(cls, value: str):
+            try:
+                return cls[value.upper()]
+            except KeyError:
+                return cls.UNKNOWN  # Default to UNKNOWN if value is invalid
+
+        # Add the method to the class
+        dct["from_string"] = classmethod(from_string)
+        return super().__new__(cls, name, bases, dct)
+
+class RunMode(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
     INFERENCE = "inference"
     TRAINING = "training"
 
-class GranularityLevel(Enum):
+class GranularityLevel(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
     OPERATOR = "operator"
     MODEL = "model"
     FUSED_OPERATOR = "fused_operator"
 
-class ExecutorType(Enum):
+class ExecutorType(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
     TORCH = "torch"
     TENSORFLOW = "tensorflow"
     TVM = "tvm"
     IREE = "iree"
 
-class WorkloadType(Enum):
+class WorkloadType(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
     TORCH = "torch_workload"
     TENSORFLOW = "tensorflow_workload"
     IREE = "iree_workload"
 
-class TimerType(Enum):
-    PYTHON = "py_timer"
-    TORCH = "pytorch_timer"
-    TENSORFLOW = "tensorflow_timer"
-    IREE = "iree_timer"
-    TVM = "tvm_timer"
+class TimerType(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
+    PYTHON = "python"
+    TORCH = "torch"
+    TENSORFLOW = "tensorflow"
+    IREE = "iree"
+    TVM = "tvm"
 
-class DatasetType(Enum):
+class DatasetType(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
     SYNTHETIC = "synthetic"
     CIFAR10 = "cifar10"
     MNIST = "mnist"
 
 # TODO: be more accurate
-class DeviceType(Enum):
+class DeviceType(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
     CPU = "cpu"
     GPU = "gpu"
     TPU = "tpu"
+

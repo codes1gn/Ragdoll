@@ -1,5 +1,5 @@
 
-# RUN: python -m pytest -q --tb=short %s
+# RUN: python -m pytest -q -v --tb=short %s
 
 import pytest
 import torch
