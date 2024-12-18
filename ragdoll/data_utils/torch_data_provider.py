@@ -14,7 +14,7 @@ from .data_provider_base import *
 class TorchDataProvider(DataProviderBase):
     """Data provider for PyTorch, using torch DataLoader and common datasets."""
 
-    def load_dataset(self):
+    def load_dataset(self, config: Config):
         """Load a PyTorch dataset with DataLoader support."""
         if self.dataset_type == DatasetType.SYNTHETIC:
             # Use synthetic data

@@ -6,3 +6,7 @@ device: gpu
 granularity: model
 timer: torch
 
+batch_size: 32
+input_shape: (3, 224, 224)
+dtype: np.float32
+

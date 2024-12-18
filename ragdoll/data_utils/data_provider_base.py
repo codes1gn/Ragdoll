@@ -21,12 +21,15 @@ class DataProviderBase(ABC):
     dataset_type: DatasetType = DatasetType.SYNTHETIC
     dataset: any = field(init=False)
     
-    def __init__(self, dataset_type: DatasetType):
-        self.dataset_type = dataset_type
-        self.load_dataset()
+    def __init__(self, config: Config):
+        self.batch_size = config.batch_size
+        self.input_shape = config.input_shape
+        self.data_type = config.dtype
+        self.dataset_type = config.dataset
+        self.load_dataset(config)
 
     @abstractmethod
-    def load_dataset(self):
+    def load_dataset(self, config: Config):
         """Load the specified dataset."""
         pass
 

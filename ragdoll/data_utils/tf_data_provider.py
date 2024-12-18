@@ -14,7 +14,7 @@ from .data_provider_base import *
 class TensorFlowDataProvider(DataProviderBase):
     """Data provider for TensorFlow framework, using tf.data.Dataset for common datasets."""
 
-    def load_dataset(self):
+    def load_dataset(self, config: Config):
         """Load a TensorFlow dataset with tf.data.Dataset support."""
         if self.dataset_type == DatasetType.SYNTHETIC:
             # Use synthetic data

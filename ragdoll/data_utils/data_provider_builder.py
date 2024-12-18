@@ -17,17 +17,17 @@ class DataProviderBuilder:
     """Builds a DataProvider instance based on a string keyword, with a default to TorchDataProvider."""
 
     @staticmethod
-    def build(framework_type: ExecutorType, dataset_type: DatasetType = DatasetType.SYNTHETIC) -> DataProviderBase:
-        if framework_type == ExecutorType.TORCH:
-            return TorchDataProvider(dataset_type)
-        elif framework_type == ExecutorType.TENSORFLOW:
-            return TensorFlowDataProvider(dataset_type)
+    def build(config: Config) -> DataProviderBase:
+        if config.executor == ExecutorType.TORCH:
+            return TorchDataProvider(config)
+        elif config.executor == ExecutorType.TENSORFLOW:
+            return TensorFlowDataProvider(config)
             
         # elif framework_type == ExecutorType.IREE:
         #     dataprod = IREEDataProvider(batch_size, input_shape, data_type)
         #     dataprod.dataset_type = dataset_type
         #     return dataprod
         else:
-            raise ValueError(f"Unsupported framework type: {framework_type}, and dataset: {dataset_type}")
+            raise ValueError(f"Unsupported framework type: {config.executor}, and dataset: {config.dataset}")
 
 
