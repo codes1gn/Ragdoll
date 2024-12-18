@@ -24,6 +24,9 @@ class TFExecutor(ExecutorBase):
                 "model": "CPU",
             }
 
+    def get_device_info(self):
+        return self.device_info
+
     def execute(self):
         """Execute the workload using data from the data provider."""
         if not self.workload or not self.data_provider:

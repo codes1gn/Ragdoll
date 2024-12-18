@@ -1,6 +1,6 @@
 # workload/workload_builder.py
 
-from ragdoll.common.enum import WorkloadType
+from ragdoll.common import *
 from ragdoll.workload.torch_workload import TorchWorkload
 from ragdoll.workload.tf_workload import TFWorkload
 from ragdoll.workload.iree_workload import IREEWorkload
@@ -8,14 +8,14 @@ from ragdoll.workload.workload_base import WorkloadBase
 
 class WorkloadBuilder:
     @staticmethod
-    def build(workload_type: WorkloadType) -> WorkloadBase:
+    def build(config: Config) -> WorkloadBase:
         """Create a workload instance based on the specified type."""
-        if workload_type == WorkloadType.TORCH:
+        if config.workload == WorkloadType.TORCH:
             return TorchWorkload()
-        elif workload_type == WorkloadType.TENSORFLOW:
+        elif config.workload == WorkloadType.TENSORFLOW:
             return TFWorkload()
-        elif workload_type == WorkloadType.IREE:
+        elif config.workload == WorkloadType.IREE:
             return IREEWorkload()
         else:
-            raise ValueError(f"Unsupported workload type: {workload_type}")
+            raise ValueError(f"Unsupported workload type: {config.workload}")
 

@@ -1,5 +1,6 @@
 
 import yaml
+import json
 import os
 from ragdoll.common import TimerType
 from ragdoll.executor import ExecutorBase, ExecutorType
@@ -7,19 +8,37 @@ from ragdoll.workload import WorkloadBase, RunMode
 from ragdoll.data_utils import DataProviderBase
 from ragdoll.benchmark import PyTimer, TimerBuilder
 from dataclasses import dataclass, field
+from .timer import *
+
+def numpy_serializer(obj):
+    """序列化 NumPy 类型"""
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()  # 将 NumPy 数组转换为列表
+    elif isinstance(obj, np.generic):
+        return obj.item()  # 将 NumPy 标量转换为 Python 标量
+    raise TypeError(f"Type {type(obj)} not serializable")
 
 
 @dataclass
 class Benchmark:
-    executor: ExecutorBase
-    workload: WorkloadBase
-    data_provider: DataProviderBase
+    executor: ExecutorBase = None
+    workload: WorkloadBase = None
+    data_provider: DataProviderBase = None
     timer_type: TimerType = TimerType.PYTHON
     results: dict = field(default_factory=dict)
+    timer: TimerBase = None
 
-    def __post_init__(self):
+    def __init__(self, 
+                 executor: ExecutorBase, 
+                 timer: TimerBase, 
+                 workload: WorkloadBase,
+                 data_provider: DataProviderBase):
         """After initialization, set up the timer based on the type."""
-        self.timer = TimerBuilder.build(self.timer_type)
+        self.timer = timer
+        self.executor = executor
+        self.workload = workload
+        self.data_provider = data_provider 
+        self.results = {}
 
     def run(self, num_iterations: int = 10):
         """
@@ -52,20 +71,17 @@ class Benchmark:
         print(self.results)
 
         # Save the results to a YAML file
-        self._save_to_yaml()
+        self._save_to_json()
 
-    def _save_to_yaml(self):
-        """
-        Save the benchmark results to a YAML file in the 'build/results' directory.
-        """
-        result_file = 'build/results/benchmark_results.yml'
-        
-        # Ensure directory exists
+    def _save_to_json(self):
+        result_file = 'build/results/benchmark_results.json'
+
         os.makedirs(os.path.dirname(result_file), exist_ok=True)
 
-        # Save results to YML file
         with open(result_file, 'w') as file:
-            yaml.dump(self.results, file, default_flow_style=False)
+            json.dump(self.results, file, default=numpy_serializer, indent=4, ensure_ascii=False)
 
         print(f"Benchmark results saved to {result_file}")
 
+    def get_results(self):
+        return self.results

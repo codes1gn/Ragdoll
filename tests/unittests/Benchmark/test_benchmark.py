@@ -3,22 +3,43 @@
 import pytest
 import numpy as np
 import yaml
+import json
+import torch
+import tensorflow as tf
 from ragdoll.benchmark import Benchmark, TimerBuilder, TimerType
-from ragdoll.common import RunMode, ExecutorType, DatasetType
+from ragdoll.common import *
 from ragdoll.executor import ExecutorBuilder
 from ragdoll.data_utils import DataProviderBuilder
 from ragdoll.workload import WorkloadBuilder, WorkloadType
 
 @pytest.fixture
-def benchmark_setup():
+def config():
+    # Load the configuration from a YAML file or directly create a config object
+    # For testing purposes, you can create a config instance directly or load it from YAML.
+    # Example: return Config.from_yaml("config.yaml")
+    return Config(
+        executor=ExecutorType.TORCH,
+        run_mode=RunMode.INFERENCE,
+        workload=WorkloadType.TORCH,  # This assumes WorkloadType.TORCH is available in your WorkloadBuilder
+        dataset=DatasetType.CIFAR10,
+        device=DeviceType.GPU,
+        granularity=GranularityLevel.MODEL, 
+        timer=TimerType.PYTHON, 
+        batch_size=32,
+        input_shape=(3, 224, 224),
+        dtype=torch.float32
+    )
+
+@pytest.fixture
+def benchmark_setup(config):
     """Fixture to set up the basic benchmark environment."""
     
     # 设置 Executor（这里假设是Torch Executor）
     executor = ExecutorBuilder.build(ExecutorType.TORCH)
     
     # 设置 Workload 和数据提供者
-    workload = WorkloadBuilder.build(WorkloadType.TORCH)
-    data_provider = DataProviderBuilder.build(ExecutorType.TORCH, DatasetType.CIFAR10)
+    workload = WorkloadBuilder.build(config)
+    data_provider = DataProviderBuilder.build(config)
     
     workload.load_model("resnet18")
     executor.set_workload(workload)
@@ -27,9 +48,9 @@ def benchmark_setup():
     return executor, workload, data_provider
 
 @pytest.fixture
-def timer():
+def timer(config):
     """Fixture to set up the Timer."""
-    return TimerBuilder.build(TimerType.PYTHON)
+    return TimerBuilder.build(config.timer)
 
 def test_benchmark_execute_inference(benchmark_setup, timer):
     """Test the benchmark execution in inference mode and output results."""
@@ -38,18 +59,11 @@ def test_benchmark_execute_inference(benchmark_setup, timer):
     executor.run_mode = RunMode.INFERENCE
     
     # Initialize the benchmark
-    benchmark = Benchmark(executor=executor, timer=timer)
+    benchmark = Benchmark(executor, timer, workload, data_provider)
     
     # Execute the benchmark
     benchmark.run()
-    
-    # Check if the result is saved to a YAML file (it should be in 'benchmark_results.yml')
-    result_file = 'benchmark_results.yml'
-    assert os.path.exists(result_file), f"Result file {result_file} does not exist!"
-    
-    # Load the results from YAML file
-    with open(result_file, 'r') as file:
-        results = yaml.load(file, Loader=yaml.FullLoader)
+    results = benchmark.get_results()
         
     # Assert that the results contain the expected keys
     assert 'mean_time' in results
@@ -62,8 +76,6 @@ def test_benchmark_execute_inference(benchmark_setup, timer):
     assert isinstance(results['std_dev'], float)
     assert isinstance(results['summary']['mean_time'], float)
     assert isinstance(results['summary']['samples'], int)
-    
-    # Optionally, check the summary statistics (e.g., confidence interval)
     assert isinstance(results['summary']['confidence_interval'], tuple)
     assert len(results['summary']['confidence_interval']) == 2
     assert isinstance(results['summary']['confidence_interval'][0], float)
@@ -76,18 +88,11 @@ def test_benchmark_execute_training(benchmark_setup, timer):
     executor.run_mode = RunMode.TRAINING
     
     # Initialize the benchmark
-    benchmark = Benchmark(executor=executor, timer=timer)
+    benchmark = Benchmark(executor, timer, workload, data_provider)
     
     # Execute the benchmark
     benchmark.run()
-    
-    # Check if the result is saved to a YAML file (it should be in 'benchmark_results.yml')
-    result_file = 'benchmark_results.yml'
-    assert os.path.exists(result_file), f"Result file {result_file} does not exist!"
-    
-    # Load the results from YAML file
-    with open(result_file, 'r') as file:
-        results = yaml.load(file, Loader=yaml.FullLoader)
+    results = benchmark.get_results()
         
     # Assert that the results contain the expected keys
     assert 'mean_time' in results
