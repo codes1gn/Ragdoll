@@ -18,8 +18,21 @@ class WorkloadBase(ABC):
     granularity: GranularityLevel = GranularityLevel.MODEL
     mode: RunMode = RunMode.INFERENCE
 
+    def prepare_workloads(self, workload_type):
+        """Prepare workloads based on ModelType or OperatorType."""
+        if isinstance(workload_type, ModelType):
+            self.load_model(workload_type)
+        elif isinstance(workload_type, OperatorType):
+            self.load_operator(workload_type)
+        else:
+            raise ValueError(f"Unsupported workload type: {workload_type}")
+
     @abstractmethod
-    def load_model(self, model_name: str):
-        """Load a model by name specific to each platform."""
+    def load_model(self, model_type: ModelType):
+        """Load a model based on the provided ModelType enum."""
+        pass
+
+    def load_operator(self, operator_type: OperatorType):
+        """Load a specific operator based on the OperatorType enum."""
         pass
 

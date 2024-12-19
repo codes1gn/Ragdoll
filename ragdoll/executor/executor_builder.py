@@ -1,15 +1,15 @@
 # executor/executor_builder.py
 
-from ragdoll.common.enum import ExecutorType
+from ragdoll.common import *
 from .torch_executor import TorchExecutor
 from .tf_executor import TFExecutor
 
 class ExecutorBuilder:
     @staticmethod
-    def build(executor_type: ExecutorType):
-        if executor_type == ExecutorType.TORCH:
+    def build(config: Config):
+        if config.executor == ExecutorType.TORCH:
             return TorchExecutor()
-        elif executor_type == ExecutorType.TENSORFLOW:
+        elif config.executor == ExecutorType.TENSORFLOW:
             return TFExecutor()
         # elif executor_type == ExecutorType.IREE:
         #     return IREEExecutor()

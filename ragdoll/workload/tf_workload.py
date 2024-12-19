@@ -11,14 +11,29 @@ class TFWorkload(WorkloadBase):
         super().__init__(granularity)
         self.model = None
 
-    def load_model(self, model_name: str):
-        """Load a TensorFlow model by name."""
-        if model_name == "resnet50":
+    def load_model(self, model_type: ModelType):
+        """Load a TensorFlow model based on the ModelType enum."""
+        if model_type == ModelType.RESNET50:
             self.model = tf.keras.applications.ResNet50(weights='imagenet')
-        elif model_name == "mobilenet":
+        elif model_type == ModelType.MOBILENET:
             self.model = tf.keras.applications.MobileNetV2(weights='imagenet')
         else:
-            raise ValueError(f"Unsupported model: {model_name}")
+            raise ValueError(f"Unsupported model: {model_type}")
+
+    def load_operator(self, operator_type: OperatorType):
+        """Load a TensorFlow operator based on the OperatorType enum."""
+        if operator_type == OperatorType.CONV2D:
+            self.operator = tf.keras.layers.Conv2D(64, 3, padding="same", activation="relu")
+        elif operator_type == OperatorType.FC:
+            self.operator = tf.keras.layers.Dense(1000, activation="softmax")
+        elif operator_type == OperatorType.RELU:
+            self.operator = tf.keras.layers.ReLU()
+        elif operator_type == OperatorType.BATCH_NORM:
+            self.operator = tf.keras.layers.BatchNormalization()
+        elif operator_type == OperatorType.MAX_POOL:
+            self.operator = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))
+        else:
+            raise ValueError(f"Unsupported operator: {operator_type}")
 
     # def run(self):
     #     """Execute the workload based on the run mode and input from the data provider."""

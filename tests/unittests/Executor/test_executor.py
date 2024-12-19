@@ -31,11 +31,11 @@ def config():
 @pytest.fixture
 def torch_executor(config):
     # Create a TorchExecutor with a Torch workload and data provider
-    executor = ExecutorBuilder.build(ExecutorType.TORCH)
+    executor = ExecutorBuilder.build(config)
     workload = WorkloadBuilder.build(config)
     data_provider = DataProviderBuilder.build(config)
     
-    workload.load_model("resnet18")
+    workload.prepare_workloads(ModelType.RESNET18)
     executor.set_workload(workload)
     executor.set_data_provider(data_provider)
     return executor
@@ -43,11 +43,11 @@ def torch_executor(config):
 @pytest.fixture
 def tf_executor(config):
     # Create a TFExecutor with a TensorFlow workload and data provider
-    executor = ExecutorBuilder.build(ExecutorType.TENSORFLOW)
+    executor = ExecutorBuilder.build(config)
     workload = WorkloadBuilder.build(config)
     data_provider = DataProviderBuilder.build(config)
     
-    workload.load_model("resnet18")
+    workload.prepare_workloads(ModelType.RESNET18)
     executor.set_workload(workload)
     executor.set_data_provider(data_provider)
     return executor

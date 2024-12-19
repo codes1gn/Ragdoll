@@ -9,6 +9,7 @@ import itertools
 @dataclass
 class Config:
     # Enum fields with default values
+    task_label: str = ""
     executor: ExecutorType = ExecutorType.UNKNOWN
     run_mode: RunMode = RunMode.UNKNOWN
     workload: WorkloadType = WorkloadType.UNKNOWN
@@ -29,6 +30,7 @@ class Config:
             config_data = yaml.safe_load(f)
 
         # Convert string values to enums using the `from_string` method of each enum
+        task_label = config_data.get('label', "")
         executor = ExecutorType.from_string(config_data.get('executor', 'unknown'))
         run_mode = RunMode.from_string(config_data.get('run_mode', 'unknown'))
         workload = WorkloadType.from_string(config_data.get('workload', 'unknown'))
@@ -41,6 +43,7 @@ class Config:
         dtype = getattr(np, config_data.get('dtype', "np.float32"), np.float32) 
 
         return cls(
+            task_label=task_label,
             executor=executor,
             run_mode=run_mode,
             workload=workload,
@@ -55,6 +58,7 @@ class Config:
 
     def __repr__(self):
         return (
+            f"Dump task: {self.task_label}\n"
             f"Config(executor={self.executor}, run_mode={self.run_mode}, "
             f"workload={self.workload}, dataset={self.dataset}, "
             f"device={self.device}, granularity={self.granularity}, "

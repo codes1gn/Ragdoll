@@ -2,11 +2,10 @@
 import yaml
 import json
 import os
-from ragdoll.common import TimerType
-from ragdoll.executor import ExecutorBase, ExecutorType
-from ragdoll.workload import WorkloadBase, RunMode
-from ragdoll.data_utils import DataProviderBase
-from ragdoll.benchmark import PyTimer, TimerBuilder
+from ragdoll.common import * 
+from ragdoll.executor import ExecutorBuilder, ExecutorBase
+from ragdoll.workload import WorkloadBuilder, WorkloadBase
+from ragdoll.data_utils import DataProviderBase, DataProviderBuilder
 from dataclasses import dataclass, field
 from .timer import *
 
@@ -21,23 +20,24 @@ def numpy_serializer(obj):
 
 @dataclass
 class Benchmark:
-    executor: ExecutorBase = None
-    workload: WorkloadBase = None
-    data_provider: DataProviderBase = None
+    executor: ExecutorBase = field(default=None)
+    workload: WorkloadBase = field(default=None)
+    data_provider: DataProviderBase = field(default=None)
     timer_type: TimerType = TimerType.PYTHON
     results: dict = field(default_factory=dict)
-    timer: TimerBase = None
+    timer: TimerBase = field(default=None)
+    logging_path: str = field(default="build/benchmarks/")
+    task_label: str = field(default="anon_task")
 
-    def __init__(self, 
-                 executor: ExecutorBase, 
-                 timer: TimerBase, 
-                 workload: WorkloadBase,
-                 data_provider: DataProviderBase):
-        """After initialization, set up the timer based on the type."""
-        self.timer = timer
-        self.executor = executor
-        self.workload = workload
-        self.data_provider = data_provider 
+    def __init__(self, config: Config):
+        self.task_label = config.task_label
+        self.timer = TimerBuilder.build(config.timer)
+        self.executor = ExecutorBuilder.build(config)
+        self.workload = WorkloadBuilder.build(config)
+        self.workload.prepare_workloads(ModelType.RESNET18)
+        self.data_provider = DataProviderBuilder.build(config) 
+        self.executor.set_workload(self.workload)
+        self.executor.set_data_provider(self.data_provider)
         self.results = {}
 
     def run(self, num_iterations: int = 10):
@@ -74,7 +74,8 @@ class Benchmark:
         self._save_to_json()
 
     def _save_to_json(self):
-        result_file = 'build/results/benchmark_results.json'
+        # varying task_label and logging path with init, if create from benchmark collector
+        result_file = self.logging_path + self.task_label + '.json'
 
         os.makedirs(os.path.dirname(result_file), exist_ok=True)
 

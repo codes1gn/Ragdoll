@@ -39,12 +39,6 @@ class ExecutorType(Enum, metaclass=EnumWithFromStringMeta):
     TVM = "tvm"
     IREE = "iree"
 
-class WorkloadType(Enum, metaclass=EnumWithFromStringMeta):
-    UNKNOWN = "unknown"
-    TORCH = "torch"
-    TENSORFLOW = "tensorflow"
-    IREE = "iree"
-
 class TimerType(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
     PYTHON = "python"
@@ -65,4 +59,31 @@ class DeviceType(Enum, metaclass=EnumWithFromStringMeta):
     CPU = "cpu"
     GPU = "gpu"
     TPU = "tpu"
+
+######################################################
+## Design about computing workloads
+######################################################
+class WorkloadType(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
+    TORCH = "torch"
+    TENSORFLOW = "tensorflow"
+    IREE = "iree"
+
+
+class ModelType(Enum):
+    RESNET18 = "resnet18"
+    RESNET50 = "resnet50"
+    MOBILENET = "mobilenet"
+    BERT = "bert"
+    VGG16 = "vgg16"
+
+class OperatorType(Enum):
+    CONV2D = "conv2d"
+    FC = "fully_connected"
+    RELU = "relu"
+    BATCH_NORM = "batch_norm"
+    MAX_POOL = "max_pool"
+    AVG_POOL = "avg_pool"
+    DROPOUT = "dropout"
+    # Add more operators as needed
 

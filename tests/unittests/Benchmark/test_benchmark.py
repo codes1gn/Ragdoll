@@ -13,11 +13,12 @@ from ragdoll.data_utils import DataProviderBuilder
 from ragdoll.workload import WorkloadBuilder, WorkloadType
 
 @pytest.fixture
-def config():
+def torch_train_config():
     # Load the configuration from a YAML file or directly create a config object
     # For testing purposes, you can create a config instance directly or load it from YAML.
     # Example: return Config.from_yaml("config.yaml")
     return Config(
+        task_label="smoke test",
         executor=ExecutorType.TORCH,
         run_mode=RunMode.INFERENCE,
         workload=WorkloadType.TORCH,  # This assumes WorkloadType.TORCH is available in your WorkloadBuilder
@@ -31,35 +32,29 @@ def config():
     )
 
 @pytest.fixture
-def benchmark_setup(config):
-    """Fixture to set up the basic benchmark environment."""
-    
-    # 设置 Executor（这里假设是Torch Executor）
-    executor = ExecutorBuilder.build(ExecutorType.TORCH)
-    
-    # 设置 Workload 和数据提供者
-    workload = WorkloadBuilder.build(config)
-    data_provider = DataProviderBuilder.build(config)
-    
-    workload.load_model("resnet18")
-    executor.set_workload(workload)
-    executor.set_data_provider(data_provider)
-    
-    return executor, workload, data_provider
+def torch_infer_config():
+    # Load the configuration from a YAML file or directly create a config object
+    # For testing purposes, you can create a config instance directly or load it from YAML.
+    # Example: return Config.from_yaml("config.yaml")
+    return Config(
+        task_label="smoke test",
+        executor=ExecutorType.TORCH,
+        run_mode=RunMode.INFERENCE,
+        workload=WorkloadType.TORCH,  # This assumes WorkloadType.TORCH is available in your WorkloadBuilder
+        dataset=DatasetType.CIFAR10,
+        device=DeviceType.GPU,
+        granularity=GranularityLevel.MODEL, 
+        timer=TimerType.PYTHON, 
+        batch_size=32,
+        input_shape=(3, 224, 224),
+        dtype=torch.float32
+    )
 
-@pytest.fixture
-def timer(config):
-    """Fixture to set up the Timer."""
-    return TimerBuilder.build(config.timer)
-
-def test_benchmark_execute_inference(benchmark_setup, timer):
+def test_benchmark_execute_inference(torch_infer_config):
     """Test the benchmark execution in inference mode and output results."""
 
-    executor, workload, data_provider = benchmark_setup
-    executor.run_mode = RunMode.INFERENCE
-    
     # Initialize the benchmark
-    benchmark = Benchmark(executor, timer, workload, data_provider)
+    benchmark = Benchmark(torch_infer_config)
     
     # Execute the benchmark
     benchmark.run()
@@ -81,14 +76,11 @@ def test_benchmark_execute_inference(benchmark_setup, timer):
     assert isinstance(results['summary']['confidence_interval'][0], float)
     assert isinstance(results['summary']['confidence_interval'][1], float)
 
-def test_benchmark_execute_training(benchmark_setup, timer):
+def test_benchmark_execute_training(torch_train_config):
     """Test the benchmark execution in training mode and output results."""
     
-    executor, workload, data_provider = benchmark_setup
-    executor.run_mode = RunMode.TRAINING
-    
     # Initialize the benchmark
-    benchmark = Benchmark(executor, timer, workload, data_provider)
+    benchmark = Benchmark(torch_train_config)
     
     # Execute the benchmark
     benchmark.run()

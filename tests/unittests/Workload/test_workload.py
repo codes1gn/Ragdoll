@@ -23,12 +23,12 @@ def tensorflow_workload():
 
 def test_inference_mode_pytorch(pytorch_workload):
     # Test inference mode for PyTorch workload
-    pytorch_workload.load_model("resnet18")
+    pytorch_workload.load_model(ModelType.RESNET18)
     assert pytorch_workload.mode == RunMode.INFERENCE, "Run mode should be inference"
 
 def test_training_mode_pytorch(pytorch_workload):
     # Test training mode for PyTorch workload
-    pytorch_workload.load_model("resnet18")
+    pytorch_workload.prepare_workloads(ModelType.RESNET18)
     
     # Run in training mode
     pytorch_workload.mode = RunMode.TRAINING
