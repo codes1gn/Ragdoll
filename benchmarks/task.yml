@@ -1,12 +1,12 @@
+task_label: smoke_test
 executor: torch
-run_mode: training
-workload: torch  # updated from 'torch_workload' to 'torch'
+run_mode: inference 
+workload: torch
 dataset: mnist
 device: gpu
 granularity: model
 timer: torch
-
 batch_size: 32
-input_shape: (3, 224, 224)
+input_shape: (1, 28, 28)
 dtype: np.float32
 

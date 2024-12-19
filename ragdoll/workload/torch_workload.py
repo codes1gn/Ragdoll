@@ -1,3 +1,5 @@
+import io
+import sys
 import torch
 import torch.nn as nn
 import torchvision.models as models
@@ -5,7 +7,7 @@ from typing import Any, Optional
 from dataclasses import dataclass, field
 
 from ragdoll.workload.workload_base import *
-from ragdoll.common.enum import * 
+from ragdoll.common import * 
 
 @dataclass
 class TorchWorkload(WorkloadBase):
@@ -24,7 +26,20 @@ class TorchWorkload(WorkloadBase):
     def load_model(self, model_type: ModelType):
         """Load a PyTorch model based on the ModelType enum."""
         if model_type == ModelType.RESNET18:
-            self.model = models.resnet18(pretrained=True)
+            captured_output = io.StringIO()
+            sys.stdout = captured_output
+
+            try:
+                TRACE_DEBUG("Loading model: mobilenet_v2")
+                # This will print detailed logs during the loading of the model
+                self.model = models.resnet18(pretrained=True)
+            finally:
+                sys.stdout = sys.__stdout__
+
+            captured_output.seek(0)  # Go to the beginning of the captured output
+            output = captured_output.read()
+            TRACE_DEBUG(f"Model loading details:\n{output}")
+
         elif model_type == ModelType.RESNET50:
             self.model = models.resnet50(pretrained=True)
         elif model_type == ModelType.MOBILENET:

@@ -18,6 +18,9 @@ class WorkloadBase(ABC):
     granularity: GranularityLevel = GranularityLevel.MODEL
     mode: RunMode = RunMode.INFERENCE
 
+    def __init__(self, config):
+        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.task_label))
+
     def prepare_workloads(self, workload_type):
         """Prepare workloads based on ModelType or OperatorType."""
         if isinstance(workload_type, ModelType):

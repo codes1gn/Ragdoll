@@ -9,6 +9,7 @@ class TimerBase:
     """Base class for Timer implementations with statistical features."""
 
     def __init__(self, repeat_samples=10, warmup_samples=2):
+        TRACE_INFO("Create Timer")
         self.repeat_samples = repeat_samples
         self.warmup_samples = warmup_samples
         self.times = []

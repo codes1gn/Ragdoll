@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from ragdoll.common import DeviceType, RunMode, ExecutorType
+from ragdoll.common import *
 from ragdoll.workload import WorkloadBase
 from ragdoll.data_utils import DataProviderBase
 
@@ -10,6 +10,9 @@ class ExecutorBase(ABC):
     data_provider: DataProviderBase = field(default=None)
     run_mode: RunMode = RunMode.INFERENCE
     device_info: dict = field(default_factory=dict)
+
+    def __init__(self, config: Config):
+        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.task_label))
 
     def set_workload(self, workload: WorkloadBase):
         """Attach a workload to the executor."""

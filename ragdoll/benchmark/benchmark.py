@@ -20,6 +20,7 @@ def numpy_serializer(obj):
 
 @dataclass
 class Benchmark:
+    config: Config = field(default=None)
     executor: ExecutorBase = field(default=None)
     workload: WorkloadBase = field(default=None)
     data_provider: DataProviderBase = field(default=None)
@@ -30,7 +31,9 @@ class Benchmark:
     task_label: str = field(default="anon_task")
 
     def __init__(self, config: Config):
+        self.config = config
         self.task_label = config.task_label
+        TRACE_INFO("Create Benchmark for task {}".format(self.task_label))
         self.timer = TimerBuilder.build(config.timer)
         self.executor = ExecutorBuilder.build(config)
         self.workload = WorkloadBuilder.build(config)
@@ -49,7 +52,7 @@ class Benchmark:
         """
         self.executor.set_workload(self.workload)
         self.executor.set_data_provider(self.data_provider)
-        print("start")
+        TRACE_INFO("Start Benchmarking on task {}".format(self.task_label))
         
         # Initialize timer and run the workload
 
@@ -63,12 +66,12 @@ class Benchmark:
         """
         Store the benchmark summary (execution time, iterations) into the results.
         """
-        print("store")
+        TRACE_INFO("Store Benchmark Results on task {}".format(self.task_label))
         # TODO: make a standalone summary class, make it dataclass
         self.results['mean_time'] = self.timer.mean_time()
         self.results['std_dev'] = self.timer.std_dev()
         self.results['summary'] = self.timer.summary()
-        print(self.results)
+        TRACE_INFO("Bench Summary:\n{}".format(self.results))
 
         # Save the results to a YAML file
         self._save_to_json()
@@ -82,7 +85,7 @@ class Benchmark:
         with open(result_file, 'w') as file:
             json.dump(self.results, file, default=numpy_serializer, indent=4, ensure_ascii=False)
 
-        print(f"Benchmark results saved to {result_file}")
+        TRACE_INFO(f"Benchmark results saved to {result_file}")
 
     def get_results(self):
         return self.results

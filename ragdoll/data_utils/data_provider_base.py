@@ -22,6 +22,7 @@ class DataProviderBase(ABC):
     dataset: any = field(init=False)
     
     def __init__(self, config: Config):
+        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.task_label))
         self.batch_size = config.batch_size
         self.input_shape = config.input_shape
         self.data_type = config.dtype
