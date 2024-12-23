@@ -40,6 +40,10 @@ class Config:
         timer = TimerType.from_string(config_data.get('timer', 'unknown'))
         batch_size = config_data.get('batch_size', 0)
         input_shape = config_data.get("input_shape", ())
+        if isinstance(input_shape, str):
+            # If input_shape is a string, try to parse it as a tuple or list of ints
+            input_shape = cls.parse_input_shape(input_shape)
+
         dtype = getattr(np, config_data.get('dtype', "np.float32"), np.float32) 
 
         return cls(
@@ -55,6 +59,26 @@ class Config:
             input_shape=input_shape,
             dtype=dtype
         )
+
+
+    @staticmethod
+    def parse_input_shape(input_shape_str: str) -> Tuple[int, ...]:
+        """Parse input_shape from a string into a tuple of ints."""
+        # Remove any extra whitespace and check if it is in tuple/list format
+        input_shape_str = input_shape_str.strip()
+        
+        # Try parsing the string into a tuple or list of integers
+        try:
+            # Use eval to parse string representation of tuple or list
+            parsed_shape = eval(input_shape_str)
+            # Check if the parsed shape is a tuple or list and contains only integers
+            if isinstance(parsed_shape, (tuple, list)) and all(isinstance(i, int) for i in parsed_shape):
+                return tuple(parsed_shape)  # Convert list to tuple if needed
+            else:
+                raise ValueError("Input shape elements must be integers.")
+        except (SyntaxError, ValueError):
+            raise ValueError(f"Invalid input shape format: {input_shape_str}")
+
 
     def __repr__(self):
         return (

@@ -2,11 +2,11 @@ task_label: smoke_test
 executor: torch
 run_mode: inference 
 workload: torch
-dataset: mnist
+dataset: synthetic
 device: gpu
 granularity: model
 timer: torch
 batch_size: 32
-input_shape: (1, 28, 28)
+input_shape: (3, 224, 224)
 dtype: np.float32
 

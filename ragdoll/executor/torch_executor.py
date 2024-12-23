@@ -3,7 +3,7 @@
 import torch
 from dataclasses import dataclass, field
 from .executor_base import ExecutorBase
-from ragdoll.common import DeviceType, RunMode
+from ragdoll.common import *
 
 @dataclass
 class TorchExecutor(ExecutorBase):
@@ -34,9 +34,9 @@ class TorchExecutor(ExecutorBase):
         if not self.workload or not self.data_provider:
             raise ValueError("Workload or data provider not set.")
 
-        print(self.workload.model)
+        TRACE_INFO("Executing model = ".format(self.workload.model))
         model = self.workload.model.to(self.device)
-        input_data, label_data = next(iter(self.data_provider))
+        input_data, label_data = self.data_provider.get_data()
         input_data = input_data.to(self.device)
         label_data = label_data.to(self.device)
 

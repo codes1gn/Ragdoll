@@ -18,10 +18,7 @@ class TorchDataProvider(DataProviderBase):
         """Load a PyTorch dataset with DataLoader support."""
         if self.dataset_type == DatasetType.SYNTHETIC:
             # Use synthetic data
-            self.dataset = torch.utils.data.DataLoader(
-                torch.utils.data.TensorDataset(torch.tensor(self.generate_synthetic_data(), dtype=torch.float32)),
-                batch_size=self.batch_size, shuffle=True
-            )
+            self.dataset = None
         elif self.dataset_type == DatasetType.MNIST:
             self.dataset = torch.utils.data.DataLoader(
                 datasets.MNIST(
@@ -30,6 +27,10 @@ class TorchDataProvider(DataProviderBase):
                 ),
                 batch_size=self.batch_size, shuffle=True
             )
+            for input, label in self.dataset:
+                TRACE_INFO('Dataset = MNIST; Input Shape = {}; Label Shape = {}'.format(input.shape, label.shape))
+                break
+            self._iterator = iter(self.dataset)
         elif self.dataset_type == DatasetType.CIFAR10:
             self.dataset = torch.utils.data.DataLoader(
                 datasets.CIFAR10(
@@ -38,9 +39,9 @@ class TorchDataProvider(DataProviderBase):
                 ),
                 batch_size=self.batch_size, shuffle=True
             )
+            self._iterator = iter(self.dataset)
         else:
             raise ValueError(f"Dataset {name} not supported for TorchDataProvider.")
-        self._iterator = iter(self.dataset)
 
     def get_data(self):
         """Get a batch of data."""

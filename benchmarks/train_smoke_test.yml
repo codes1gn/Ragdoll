@@ -1,0 +1,12 @@
+task_label: smoke_test
+executor: torch
+run_mode: training
+workload: torch
+dataset: synthetic
+device: gpu
+granularity: model
+timer: torch
+batch_size: 32
+input_shape: (3, 224, 224)
+dtype: np.float32
+
