@@ -20,3 +20,8 @@ data/
 mkdocs.yml
 nohup.out
 third_party/llvm-project/
+
+
+# Added by cargo
+
+/target

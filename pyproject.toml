@@ -16,6 +16,7 @@ pyyaml = "^6.0.2"
 mkdocs = "^1.6.1"
 mkdocs-material = "^9.5.49"
 mkdocs-markdownextradata-plugin = "^0.2.6"
+transformers = "^4.47.1"
 
 [tool.poetry.dev-dependencies]
 numpy = "1.23.4"
