@@ -10,11 +10,11 @@ class WorkloadBuilder:
     @staticmethod
     def build(config: Config) -> WorkloadBase:
         """Create a workload instance based on the specified type."""
-        if config.workload == WorkloadType.TORCH:
+        if config.workload_type == WorkloadType.TORCH:
             return TorchWorkload(config)
-        elif config.workload == WorkloadType.TENSORFLOW:
+        elif config.workload_type == WorkloadType.TENSORFLOW:
             return TFWorkload(config)
-        elif config.workload == WorkloadType.IREE:
+        elif config.workload_type == WorkloadType.IREE:
             return IREEWorkload(config)
         else:
             raise ValueError(f"Unsupported workload type: {config.workload}")

@@ -14,7 +14,6 @@ from ragdoll.data_utils import DataProviderBase, DataProviderBuilder
 def config():
     # Load the configuration from a YAML file or directly create a config object
     # For testing purposes, you can create a config instance directly or load it from YAML.
-    # Example: return Config.from_yaml("config.yaml")
     return Config(
         executor=ExecutorType.TORCH,
         run_mode=RunMode.INFERENCE,
@@ -35,7 +34,7 @@ def torch_executor(config):
     workload = WorkloadBuilder.build(config)
     data_provider = DataProviderBuilder.build(config)
     
-    workload.prepare_workloads(ModelType.RESNET18)
+    workload.prepare_workloads(ModelWorkload.RESNET18)
     executor.set_workload(workload)
     executor.set_data_provider(data_provider)
     return executor
@@ -47,7 +46,7 @@ def tf_executor(config):
     workload = WorkloadBuilder.build(config)
     data_provider = DataProviderBuilder.build(config)
     
-    workload.prepare_workloads(ModelType.RESNET18)
+    workload.prepare_workloads(ModelWorkload.RESNET18)
     executor.set_workload(workload)
     executor.set_data_provider(data_provider)
     return executor

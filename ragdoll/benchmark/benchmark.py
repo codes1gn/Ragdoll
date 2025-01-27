@@ -37,7 +37,7 @@ class Benchmark:
         self.timer = TimerBuilder.build(config.timer)
         self.executor = ExecutorBuilder.build(config)
         self.workload = WorkloadBuilder.build(config)
-        self.workload.prepare_workloads(ModelType.RESNET18)
+        self.workload.prepare_workloads(ModelWorkload.RESNET18)
         self.data_provider = DataProviderBuilder.build(config) 
         self.executor.set_workload(self.workload)
         self.executor.set_data_provider(self.data_provider)
@@ -79,6 +79,7 @@ class Benchmark:
     def _save_to_json(self):
         # varying task_label and logging path with init, if create from benchmark collector
         result_file = self.logging_path + self.task_label + '.json'
+        print("save to results file {}".format(result_file))
 
         os.makedirs(os.path.dirname(result_file), exist_ok=True)
 

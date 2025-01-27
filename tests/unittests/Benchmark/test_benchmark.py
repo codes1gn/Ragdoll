@@ -16,7 +16,7 @@ from ragdoll.workload import WorkloadBuilder, WorkloadType
 def torch_train_config():
     # Load the configuration from a YAML file or directly create a config object
     # For testing purposes, you can create a config instance directly or load it from YAML.
-    # Example: return Config.from_yaml("config.yaml")
+    # Example: return Config.load_task_from_yaml("config.yaml")
     return Config(
         task_label="smoke test",
         executor=ExecutorType.TORCH,
@@ -35,7 +35,7 @@ def torch_train_config():
 def torch_infer_config():
     # Load the configuration from a YAML file or directly create a config object
     # For testing purposes, you can create a config instance directly or load it from YAML.
-    # Example: return Config.from_yaml("config.yaml")
+    # Example: return Config.load_task_from_yaml("config.yaml")
     return Config(
         task_label="smoke test",
         executor=ExecutorType.TORCH,

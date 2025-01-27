@@ -22,20 +22,20 @@ class WorkloadBase(ABC):
         TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.task_label))
 
     def prepare_workloads(self, workload_type):
-        """Prepare workloads based on ModelType or OperatorType."""
-        if isinstance(workload_type, ModelType):
+        """Prepare workloads based on ModelWorkload or OpWorkload."""
+        if isinstance(workload_type, ModelWorkload):
             self.load_model(workload_type)
-        elif isinstance(workload_type, OperatorType):
+        elif isinstance(workload_type, OpWorkload):
             self.load_operator(workload_type)
         else:
             raise ValueError(f"Unsupported workload type: {workload_type}")
 
     @abstractmethod
-    def load_model(self, model_type: ModelType):
-        """Load a model based on the provided ModelType enum."""
+    def load_model(self, model_type: ModelWorkload):
+        """Load a model based on the provided ModelWorkload enum."""
         pass
 
-    def load_operator(self, operator_type: OperatorType):
-        """Load a specific operator based on the OperatorType enum."""
+    def load_operator(self, operator_type: OpWorkload):
+        """Load a specific operator based on the OpWorkload enum."""
         pass
 

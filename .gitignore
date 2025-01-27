@@ -17,7 +17,6 @@ sandbox/
 compile_commands.json
 *.ipynb_checkpoints*
 data/
-mkdocs.yml
 nohup.out
 third_party/llvm-project/
 

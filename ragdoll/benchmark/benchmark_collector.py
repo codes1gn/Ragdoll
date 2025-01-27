@@ -14,10 +14,11 @@ class BenchmarkCollector:
         self.load_config_files()
 
     def load_config_files(self):
-        TRACE_INFO("Load .yml task configuration files")
+        TRACE_INFO("Load task configuration files")
         config_files = glob.glob(os.path.join(self.config_dir, "*.yml"))
         for file in config_files:
-            config_data = Config.from_yaml(file)
+            config_data = Config.load_task_from_yaml(file)
+            TRACE_INFO("Load task: {}".format(config_data))
             self.task_configs.append(config_data)
     
     def collect_and_run_benchmarks(self):

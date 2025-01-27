@@ -28,7 +28,7 @@ def test_config_from_yaml(sample_config_file):
     """Test if the Config class correctly loads the YAML configuration."""
     
     # Load the config from the YAML file
-    config = Config.from_yaml(sample_config_file)
+    config = Config.load_task_from_yaml(sample_config_file)
 
     # Assert the loaded values match the expected enum values
     assert config.executor == ExecutorType.TORCH
@@ -55,7 +55,7 @@ def test_config_invalid_executor(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.from_yaml(sample_config_file)
+    config = Config.load_task_from_yaml(sample_config_file)
     assert config.executor == ExecutorType.UNKNOWN  # Should return UNKNOWN
 
 def test_config_invalid_run_mode(sample_config_file):
@@ -74,7 +74,7 @@ def test_config_invalid_run_mode(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.from_yaml(sample_config_file)
+    config = Config.load_task_from_yaml(sample_config_file)
     assert config.run_mode == RunMode.UNKNOWN  # Should return UNKNOWN
 
 def test_config_invalid_granularity(sample_config_file):
@@ -93,7 +93,7 @@ def test_config_invalid_granularity(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.from_yaml(sample_config_file)
+    config = Config.load_task_from_yaml(sample_config_file)
     assert config.granularity == GranularityLevel.UNKNOWN  # Should return UNKNOWN
 
 def test_config_invalid_timer(sample_config_file):
@@ -112,7 +112,7 @@ def test_config_invalid_timer(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.from_yaml(sample_config_file)
+    config = Config.load_task_from_yaml(sample_config_file)
     assert config.timer == TimerType.UNKNOWN  # Should return UNKNOWN
 
 def test_config_invalid_dataset(sample_config_file):
@@ -131,7 +131,7 @@ def test_config_invalid_dataset(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.from_yaml(sample_config_file)
+    config = Config.load_task_from_yaml(sample_config_file)
     assert config.dataset == DatasetType.UNKNOWN  # Should return UNKNOWN
 
 def test_config_invalid_device(sample_config_file):
@@ -150,6 +150,6 @@ def test_config_invalid_device(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.from_yaml(sample_config_file)
+    config = Config.load_task_from_yaml(sample_config_file)
     assert config.device == DeviceType.UNKNOWN  # Should return UNKNOWN
 

@@ -9,12 +9,12 @@ class IREEWorkload(WorkloadBase):
         super().__init__(granularity)
         self.model = None
 
-    def load_model(self, model: ModelType, model_format="onnx"):
+    def load_model(self, model: ModelWorkload, model_format="onnx"):
         """Load an IREE-compatible model (ONNX or TOSA)."""
         # Placeholder for actual IREE loading logic
         pass
 
-    def load_operator(self, operator: OperatorType, model_format="onnx"):
+    def load_operator(self, operator: OpWorkload, model_format="onnx"):
         """Load an IREE-compatible model (ONNX or TOSA)."""
         # Placeholder for actual IREE loading logic
         pass

@@ -23,9 +23,10 @@ class TorchWorkload(WorkloadBase):
         else:
             raise ValueError(f"Unsupported model: {model_name}")
 
-    def load_model(self, model_type: ModelType):
-        """Load a PyTorch model based on the ModelType enum."""
-        if model_type == ModelType.RESNET18:
+    def load_model(self, model_type: ModelWorkload):
+        """Load a PyTorch model based on the ModelWorkload enum."""
+        TRACE_INFO("load model = ".format(model_type))
+        if model_type == ModelWorkload.RESNET18:
             captured_output = io.StringIO()
             sys.stdout = captured_output
 
@@ -40,24 +41,24 @@ class TorchWorkload(WorkloadBase):
             output = captured_output.read()
             TRACE_DEBUG(f"Model loading details:\n{output}")
 
-        elif model_type == ModelType.RESNET50:
+        elif model_type == ModelWorkload.RESNET50:
             self.model = models.resnet50(pretrained=True)
-        elif model_type == ModelType.MOBILENET:
+        elif model_type == ModelWorkload.MOBILENET:
             self.model = models.mobilenet_v2(pretrained=True)
         else:
             raise ValueError(f"Unsupported model: {model_type}")
 
-    def load_operator(self, operator_type: OperatorType):
-        """Load a PyTorch operator based on the OperatorType enum."""
-        if operator_type == OperatorType.CONV2D:
+    def load_operator(self, operator_type: OpWorkload):
+        """Load a PyTorch operator based on the OpWorkload enum."""
+        if operator_type == OpWorkload.CONV2D:
             self.operator = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1)
-        elif operator_type == OperatorType.FC:
+        elif operator_type == OpWorkload.FC:
             self.operator = nn.Linear(64 * 32 * 32, 1000)
-        elif operator_type == OperatorType.RELU:
+        elif operator_type == OpWorkload.RELU:
             self.operator = nn.ReLU()
-        elif operator_type == OperatorType.BATCH_NORM:
+        elif operator_type == OpWorkload.BATCH_NORM:
             self.operator = nn.BatchNorm2d(64)
-        elif operator_type == OperatorType.MAX_POOL:
+        elif operator_type == OpWorkload.MAX_POOL:
             self.operator = nn.MaxPool2d(kernel_size=2, stride=2)
         else:
             raise ValueError(f"Unsupported operator: {operator_type}")

@@ -1,12 +1,13 @@
-task_label: smoke_test
+name: infer_smoke_test
 executor: torch
 run_mode: inference 
-workload: torch
+workload_type: torch
+workload_granularity: model
+model_workload: resnet18
 dataset: synthetic
 device: gpu
-granularity: model
 timer: torch
 batch_size: 32
 input_shape: (3, 224, 224)
-dtype: np.float32
+dtype: float32
 

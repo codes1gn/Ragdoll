@@ -1,0 +1,34 @@
+site_name: Ragdoll Manual
+site_url: http://127.0.0.1:8008
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.top
+    - search.highlight
+    - content.code.annotate
+
+docs_dir: documentation
+
+extra_javascript:
+  - assets/js/highlight.min.js
+  - assets/js/choreo.js
+  - assets/js/bash.min.js
+
+extra_css:
+  - assets/css/github-dark.min.css
+  - assets/css/choreo.css
+
+markdown_extensions:
+  - codehilite:
+      guess_lang: false
+      css_class: highlight
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started with Choreo: getting-started.md
+  - Design Rationales:
+    - Config-driven Benchmarking System: config-design-rationale.md

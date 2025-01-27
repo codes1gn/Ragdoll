@@ -21,16 +21,13 @@ class EnumWithFromStringMeta(EnumMeta):
         dct["from_string"] = classmethod(from_string)
         return super().__new__(cls, name, bases, dct)
 
+######################################################
+## System
+######################################################
 class RunMode(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
     INFERENCE = "inference"
     TRAINING = "training"
-
-class GranularityLevel(Enum, metaclass=EnumWithFromStringMeta):
-    UNKNOWN = "unknown"
-    OPERATOR = "operator"
-    MODEL = "model"
-    FUSED_OPERATOR = "fused_operator"
 
 class ExecutorType(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
@@ -61,7 +58,7 @@ class DeviceType(Enum, metaclass=EnumWithFromStringMeta):
     TPU = "tpu"
 
 ######################################################
-## Design about computing workloads
+## Computing workloads
 ######################################################
 class WorkloadType(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
@@ -69,15 +66,23 @@ class WorkloadType(Enum, metaclass=EnumWithFromStringMeta):
     TENSORFLOW = "tensorflow"
     IREE = "iree"
 
+class GranularityLevel(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
+    OPERATOR = "operator"
+    MODEL = "model"
+    FUSED_OPERATOR = "fused_operator"
 
-class ModelType(Enum):
+class ModelWorkload(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
+    ALEXNET = "alexnet"
     RESNET18 = "resnet18"
     RESNET50 = "resnet50"
     MOBILENET = "mobilenet"
     BERT = "bert"
     VGG16 = "vgg16"
 
-class OperatorType(Enum):
+class OpWorkload(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
     CONV2D = "conv2d"
     FC = "fully_connected"
     RELU = "relu"
