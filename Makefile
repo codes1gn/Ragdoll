@@ -118,3 +118,11 @@ status-doc:
 	@echo "Checking mkdocs serve process..."
 	@ps aux | grep 'mkdocs serve' | grep -v grep || echo "No mkdocs serve process is running."
 
+############################################################################
+# Notebook Utils 
+############################################################################
+
+jupyter-serve:
+	./tools/scripts/serving_notebook.sh
+jupyter-stop:
+	./tools/scripts/clean_notebook_servers.sh

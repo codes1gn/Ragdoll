@@ -348,6 +348,19 @@ testing = ["covdefaults (>=2.3)", "coverage (>=7.6.1)", "diff-cover (>=9.2)", "p
 typing = ["typing-extensions (>=4.12.2)"]
 
 [[package]]
+name = "flash-rwkv"
+version = "0.3.0"
+description = ""
+optional = false
+python-versions = "*"
+files = [
+    {file = "flash_rwkv-0.3.0-py3-none-any.whl", hash = "sha256:e081f240c21993496b9c36da818636d16158d834a5733d93f9ebcdd481c4fa37"},
+]
+
+[package.dependencies]
+torch = ">=1.13.0"
+
+[[package]]
 name = "flatbuffers"
 version = "24.3.25"
 description = "The FlatBuffers serialization format for Python"
@@ -2979,4 +2992,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9,<3.12"
-content-hash = "94cb1f328316858f7eea1d8ab25b6bbe2f0d232576e527d7a9150200ea217382"
+content-hash = "b0d5ee03f1b5da68b0917335166c433c3c0cda04d46bff94f15c937a2353c933"

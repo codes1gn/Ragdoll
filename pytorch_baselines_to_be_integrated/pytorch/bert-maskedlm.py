@@ -49,7 +49,8 @@ def benchmark(model, tokenizer, mode, iterations=20):
     if mode == 'train':
         optimizer = AdamW(model.parameters(), lr=5e-5)
 
-    text = "Hugging Face is creating a [MASK] ecosystem."
+    #text = "Hugging Face is creating a [MASK] ecosystem."
+    text = "Hugging Face is creating a revolutionary and dynamic ecosystem that brings together state-of-the-art machine learning models, cutting-edge research, and [MASK], services, and workflows. By leveraging the power of transformer-based architectures, the ecosystem enables the development of highly efficient natural language processing (NLP), computer vision, and multi-modal models. Hugging Face is building not only a platform for model sharing and collaboration, but also a space for innovation in AI ethics, fairness, and accessibility, ensuring that AI tools are available to everyone and are used responsibly to solve real-world problems. As the community grows, the ecosystem will continue to evolve, offering an expansive array of pre-trained models, datasets, and a comprehensive suite of tools for training, fine-tuning, and deploying state-of-the-art models, making AI development more inclusive and accessible than ever before.";
     # text = [
     #     "The cat sits outside",
     #     "A man is playing guitar",

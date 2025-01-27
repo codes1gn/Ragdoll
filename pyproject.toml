@@ -17,6 +17,7 @@ mkdocs = "^1.6.1"
 mkdocs-material = "^9.5.49"
 mkdocs-markdownextradata-plugin = "^0.2.6"
 transformers = "^4.47.1"
+flash-rwkv = "^0.3.0"
 
 [tool.poetry.dev-dependencies]
 numpy = "1.23.4"
