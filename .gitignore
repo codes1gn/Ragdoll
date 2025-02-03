@@ -8,6 +8,7 @@ codegen_tools_install/
 cmake-build-debug/
 cmake-build-release/
 dist/
+site/
 **/*.vmfb
 **/*.pyc
 **/*.env
