@@ -1,5 +1,5 @@
 site_name: Ragdoll Manual
-site_url: http://127.0.0.1:8008
+site_url: http://https://codes1gn.github.io/Ragdoll/
 
 theme:
   name: material
@@ -9,7 +9,7 @@ theme:
     - search.highlight
     - content.code.annotate
 
-docs_dir: documentation
+docs_dir: docs
 
 extra_javascript:
   - assets/js/highlight.min.js
