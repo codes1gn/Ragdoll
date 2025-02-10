@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Setup environment and run tests
+        run: |
+          make bootstrap
+          . ./sandbox/bin/activate
+          pip install poetry
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          make setup
+          make test
