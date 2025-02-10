@@ -17,10 +17,10 @@ def config():
     return Config(
         executor=ExecutorType.TORCH,
         run_mode=RunMode.INFERENCE,
-        workload=WorkloadType.TORCH,  # This assumes WorkloadType.TORCH is available in your WorkloadBuilder
+        workload_type=WorkloadType.TORCH,  # This assumes WorkloadType.TORCH is available in your WorkloadBuilder
         dataset=DatasetType.CIFAR10,
         device=DeviceType.GPU,
-        granularity=GranularityLevel.MODEL, 
+        workload_granularity=GranularityLevel.MODEL, 
         timer=TimerType.TORCH, 
         batch_size=32,
         input_shape=(3, 224, 224),

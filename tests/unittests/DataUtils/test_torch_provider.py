@@ -41,8 +41,9 @@ def test_iterator_synthetic_torch():
 
     num_batches = 5
     count = 0
-    for data_batch in provider:
+    for data_batch, data_label in provider:
         assert data_batch.shape == (32, 3, 224, 224), "Batch shape mismatch"
+        assert data_label.shape == (32,), "Batch shape mismatch"
         count += 1
         if count >= num_batches:
             break  # Stop after a few batches for testing
@@ -81,8 +82,9 @@ def test_iterator_synthetic_tf():
 
     num_batches = 5
     count = 0
-    for data_batch in provider:
+    for data_batch, data_label in provider:
         assert data_batch.shape == (32, 3, 224, 224), "Batch shape mismatch"
+        assert data_label.shape == (32,), "Batch shape mismatch"
         count += 1
         if count >= num_batches:
             break  # Stop after a few batches for testing

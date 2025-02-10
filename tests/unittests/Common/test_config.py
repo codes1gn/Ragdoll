@@ -10,11 +10,15 @@ def sample_config_yaml():
     return """
     executor: torch
     run_mode: training
-    workload: torch  # updated from 'torch_workload' to 'torch'
+    workload_type: torch  # updated from 'torch_workload' to 'torch'
     dataset: mnist
     device: gpu
-    granularity: model
+    workload_granularity: model
     timer: torch
+    model_workload: resnet18
+    batch_size: 32
+    input_shape: (3, 224, 224)
+    dtype: float32
     """
 
 @pytest.fixture
@@ -24,7 +28,7 @@ def sample_config_file(tmpdir, sample_config_yaml):
     config_file.write(sample_config_yaml)
     return str(config_file)
 
-def test_config_from_yaml(sample_config_file):
+def test_config_load_task_from_yaml(sample_config_file):
     """Test if the Config class correctly loads the YAML configuration."""
     
     # Load the config from the YAML file
@@ -33,10 +37,10 @@ def test_config_from_yaml(sample_config_file):
     # Assert the loaded values match the expected enum values
     assert config.executor == ExecutorType.TORCH
     assert config.run_mode == RunMode.TRAINING
-    assert config.workload == WorkloadType.TORCH  # updated to check 'torch' instead of 'torch_workload'
+    assert config.workload_type == WorkloadType.TORCH  # updated to check 'torch' instead of 'torch_workload'
     assert config.dataset == DatasetType.MNIST
     assert config.device == DeviceType.GPU
-    assert config.granularity == GranularityLevel.MODEL
+    assert config.workload_granularity == GranularityLevel.MODEL
     assert config.timer == TimerType.TORCH
 
 def test_config_invalid_executor(sample_config_file):
@@ -55,8 +59,8 @@ def test_config_invalid_executor(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.load_task_from_yaml(sample_config_file)
-    assert config.executor == ExecutorType.UNKNOWN  # Should return UNKNOWN
+    with pytest.raises(ValueError):
+        config = Config.load_task_from_yaml(sample_config_file)
 
 def test_config_invalid_run_mode(sample_config_file):
     """Test if an invalid run mode in the YAML results in UNKNOWN enum value."""
@@ -74,8 +78,8 @@ def test_config_invalid_run_mode(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.load_task_from_yaml(sample_config_file)
-    assert config.run_mode == RunMode.UNKNOWN  # Should return UNKNOWN
+    with pytest.raises(ValueError):
+        config = Config.load_task_from_yaml(sample_config_file)
 
 def test_config_invalid_granularity(sample_config_file):
     """Test if an invalid granularity in the YAML results in UNKNOWN enum value."""
@@ -93,8 +97,8 @@ def test_config_invalid_granularity(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.load_task_from_yaml(sample_config_file)
-    assert config.granularity == GranularityLevel.UNKNOWN  # Should return UNKNOWN
+    with pytest.raises(ValueError):
+        config = Config.load_task_from_yaml(sample_config_file)
 
 def test_config_invalid_timer(sample_config_file):
     """Test if an invalid timer in the YAML results in UNKNOWN enum value."""
@@ -112,8 +116,8 @@ def test_config_invalid_timer(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.load_task_from_yaml(sample_config_file)
-    assert config.timer == TimerType.UNKNOWN  # Should return UNKNOWN
+    with pytest.raises(ValueError):
+        config = Config.load_task_from_yaml(sample_config_file)
 
 def test_config_invalid_dataset(sample_config_file):
     """Test if an invalid dataset in the YAML results in UNKNOWN enum value."""
@@ -131,8 +135,8 @@ def test_config_invalid_dataset(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.load_task_from_yaml(sample_config_file)
-    assert config.dataset == DatasetType.UNKNOWN  # Should return UNKNOWN
+    with pytest.raises(ValueError):
+        config = Config.load_task_from_yaml(sample_config_file)
 
 def test_config_invalid_device(sample_config_file):
     """Test if an invalid device in the YAML results in UNKNOWN enum value."""
@@ -150,6 +154,6 @@ def test_config_invalid_device(sample_config_file):
         f.write(invalid_yaml)
 
     # Load the config and check the result
-    config = Config.load_task_from_yaml(sample_config_file)
-    assert config.device == DeviceType.UNKNOWN  # Should return UNKNOWN
+    with pytest.raises(ValueError):
+        config = Config.load_task_from_yaml(sample_config_file)
 
