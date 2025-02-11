@@ -9,8 +9,8 @@ from ragdoll.common import *
 def sample_config_yaml():
     """Fixture that provides a sample config.yaml content."""
     return """
-    # workload:
-    #   framework: torch
+    workload:
+      framework: torch
     #   granularity: operator
     #   operator: conv2d
 
@@ -51,4 +51,5 @@ def test_config_load_task_from_yaml(sample_config_file):
         print("Configuration error:", e)
 
     # Assert the loaded values match the expected enum values
+    assert config.workload.framework == WorkloadFrameworkNew.TORCH
     assert config.experiment.run_mode == RunModeNew.INFERENCE

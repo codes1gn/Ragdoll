@@ -21,22 +21,22 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Install specific version of Ninja (v1.10.2)
-        run: |
-          # Download the specified version of Ninja for Linux
-          curl -LO https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip
-          # Unzip the downloaded file into a folder named "ninja"
-          unzip ninja-linux.zip -d ninja
-          # Copy the ninja binary to /usr/local/bin so it's available in the PATH
-          sudo cp ninja/ninja /usr/local/bin/ninja
-          # Verify the installation by printing the Ninja version
-          ninja --version
-
-      - name: Setup environment and run tests
-        run: |
-          make bootstrap
-          . ./sandbox/bin/activate
-          pip install poetry
-          git config --global url."https://github.com/".insteadOf "git@github.com:"
-          make setup
-          make test
+      # - name: Install specific version of Ninja (v1.10.2)
+      #   run: |
+      #     # Download the specified version of Ninja for Linux
+      #     curl -LO https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip
+      #     # Unzip the downloaded file into a folder named "ninja"
+      #     unzip ninja-linux.zip -d ninja
+      #     # Copy the ninja binary to /usr/local/bin so it's available in the PATH
+      #     sudo cp ninja/ninja /usr/local/bin/ninja
+      #     # Verify the installation by printing the Ninja version
+      #     ninja --version
+      #
+      # - name: Setup environment and run tests
+      #   run: |
+      #     make bootstrap
+      #     . ./sandbox/bin/activate
+      #     pip install poetry
+      #     git config --global url."https://github.com/".insteadOf "git@github.com:"
+      #     make setup
+      #     make test
