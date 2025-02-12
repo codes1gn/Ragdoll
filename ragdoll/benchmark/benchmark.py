@@ -24,7 +24,7 @@ class Benchmark:
     executor: ExecutorBase = field(default=None)
     workload: WorkloadBase = field(default=None)
     data_provider: DataProviderBase = field(default=None)
-    timer_type: TimerType = TimerType.PYTHON
+    timer_type: TimerEnum = TimerEnum.PYTHON
     results: dict = field(default_factory=dict)
     timer: TimerBase = field(default=None)
     logging_path: str = field(default="build/benchmarks/")

@@ -10,7 +10,7 @@ from ragdoll.benchmark import Benchmark, TimerBuilder, TimerEnum
 from ragdoll.common import *
 from ragdoll.executor import ExecutorBuilder
 from ragdoll.data_utils import DataProviderBuilder
-from ragdoll.workload import WorkloadBuilder, WorkloadType
+from ragdoll.workload import WorkloadBuilder
 
 @pytest.fixture
 def torch_train_config():

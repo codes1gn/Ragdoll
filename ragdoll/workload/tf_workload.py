@@ -7,7 +7,7 @@ from ragdoll.common.enum import *
 class TFWorkload(WorkloadBase):
     """Defines a TensorFlow workload, supporting operator, model, and fused_operator granularity."""
 
-    def __init__(self, granularity: GranularityLevel = GranularityLevel.MODEL):
+    def __init__(self, granularity: GranularityEnum = GranularityEnum.MODEL):
         super().__init__(granularity)
         self.model = None
 
