@@ -20,7 +20,7 @@ def numpy_serializer(obj):
 
 @dataclass
 class Benchmark:
-    config: Config = field(default=None)
+    config: FullConfig = field(default=None)
     executor: ExecutorBase = field(default=None)
     workload: WorkloadBase = field(default=None)
     data_provider: DataProviderBase = field(default=None)
@@ -30,14 +30,14 @@ class Benchmark:
     logging_path: str = field(default="build/benchmarks/")
     task_label: str = field(default="anon_task")
 
-    def __init__(self, config: Config):
+    def __init__(self, config: FullConfig):
         self.config = config
-        self.task_label = config.task_label
-        TRACE_INFO("Create Benchmark for task {}".format(self.task_label))
-        self.timer = TimerBuilder.build(config.timer)
+        self.label = config.label
+        TRACE_INFO("Create Benchmark for task {}".format(self.label))
+        self.timer = TimerBuilder.build(config.experiment.timer)
         self.executor = ExecutorBuilder.build(config)
         self.workload = WorkloadBuilder.build(config)
-        self.workload.prepare_workloads(ModelWorkload.RESNET18)
+        self.workload.prepare_workloads(ModelEnum.RESNET18)
         self.data_provider = DataProviderBuilder.build(config) 
         self.executor.set_workload(self.workload)
         self.executor.set_data_provider(self.data_provider)

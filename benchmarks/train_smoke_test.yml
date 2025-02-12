@@ -1,13 +1,20 @@
-name: train_smoke_test
-executor: torch
-run_mode: training
-workload_type: torch
-workload_granularity: model
-model_workload: resnet18
-dataset: synthetic
-device: gpu
-timer: torch
-batch_size: 32
-input_shape: (3, 224, 224)
-dtype: float32
+label: train_smoke_test
+
+workload:
+  framework: torch
+  granularity: model 
+  model: resnet18 
+
+dataset:
+  source: synthetic
+  input_shape: [3, 224, 224]
+  batch_size: 32
+  dtype: float32
+
+experiment:
+  run_mode: training
+  executor:
+    framework: torch
+    device: gpu
+  timer: python
 

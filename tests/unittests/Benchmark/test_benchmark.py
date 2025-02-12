@@ -6,7 +6,7 @@ import yaml
 import json
 import torch
 import tensorflow as tf
-from ragdoll.benchmark import Benchmark, TimerBuilder, TimerType
+from ragdoll.benchmark import Benchmark, TimerBuilder, TimerEnum
 from ragdoll.common import *
 from ragdoll.executor import ExecutorBuilder
 from ragdoll.data_utils import DataProviderBuilder
@@ -16,38 +16,55 @@ from ragdoll.workload import WorkloadBuilder, WorkloadType
 def torch_train_config():
     # Load the configuration from a YAML file or directly create a config object
     # For testing purposes, you can create a config instance directly or load it from YAML.
-    # Example: return Config.load_task_from_yaml("config.yaml")
-    return Config(
-        task_label="smoke test",
-        executor=ExecutorType.TORCH,
-        run_mode=RunMode.INFERENCE,
-        workload_type=WorkloadType.TORCH,  # This assumes WorkloadType.TORCH is available in your WorkloadBuilder
-        dataset=DatasetType.CIFAR10,
-        device=DeviceType.GPU,
-        workload_granularity=GranularityLevel.MODEL, 
-        timer=TimerType.PYTHON, 
-        batch_size=32,
-        input_shape=(3, 224, 224),
-        dtype=torch.float32
+    # Example: return FullConfig.load_task_from_yaml("config.yaml")
+    return FullConfig(
+        label="smoke_test",
+        experiment=ExperimentConfig(
+            executor=ExecutorConfig(
+                framework=FrameworkEnum.TORCH,
+                device=DeviceEnum.GPU,
+            ),
+            run_mode=RunModeEnum.INFERENCE,
+            timer=TimerEnum.TORCH, 
+        ),
+        workload=ModelConfig(
+            framework=FrameworkEnum.TORCH,
+            granularity=GranularityEnum.MODEL,
+            model=ModelEnum.RESNET18,
+        ),
+        dataset=ConcreteDatasetConfig(
+            source=DataSourceEnum.CIFAR10,
+            batch_size=32,
+            dtype=DtypeEnum.FLOAT16,
+        ),
     )
 
 @pytest.fixture
 def torch_infer_config():
     # Load the configuration from a YAML file or directly create a config object
     # For testing purposes, you can create a config instance directly or load it from YAML.
-    # Example: return Config.load_task_from_yaml("config.yaml")
-    return Config(
-        task_label="smoke test",
-        executor=ExecutorType.TORCH,
-        run_mode=RunMode.INFERENCE,
-        workload_type=WorkloadType.TORCH,  # This assumes WorkloadType.TORCH is available in your WorkloadBuilder
-        dataset=DatasetType.CIFAR10,
-        device=DeviceType.GPU,
-        workload_granularity=GranularityLevel.MODEL, 
-        timer=TimerType.PYTHON, 
-        batch_size=32,
-        input_shape=(3, 224, 224),
-        dtype=torch.float32
+    # Example: return FullConfig.load_task_from_yaml("config.yaml")
+    return FullConfig(
+        label="smoke_test",
+        experiment=ExperimentConfig(
+            executor=ExecutorConfig(
+                framework=FrameworkEnum.TORCH,
+                device=DeviceEnum.GPU,
+            ),
+            run_mode=RunModeEnum.INFERENCE,
+            timer=TimerEnum.TORCH, 
+        ),
+        workload=ModelConfig(
+            framework=FrameworkEnum.TORCH,
+            granularity=GranularityEnum.MODEL,
+            model=ModelEnum.RESNET18,
+        ),
+        dataset=SyntheticDatasetConfig(
+            source=DataSourceEnum.SYNTHETIC,
+            input_shape=[3, 224, 224],
+            batch_size=32,
+            dtype=DtypeEnum.FLOAT32,
+        ),
     )
 
 def test_benchmark_execute_inference(torch_infer_config):

@@ -149,31 +149,31 @@ class TVMTimer(TimerBase):
 
 class TimerFactory:
     @staticmethod
-    def create_timer(timer_type: TimerType, repeat_samples=10, warmup_samples=2) -> TimerBase:
-        """Factory method to create a timer based on the given TimerType."""
-        if timer_type == TimerType.PYTHON:
+    def create_timer(timer_type: TimerEnum, repeat_samples=10, warmup_samples=2) -> TimerBase:
+        """Factory method to create a timer based on the given TimerEnum."""
+        if timer_type == TimerEnum.PYTHON:
             return PyTimer(repeat_samples, warmup_samples)
-        elif timer_type == TimerType.TORCH:
+        elif timer_type == TimerEnum.TORCH:
             return PyTorchTimer(repeat_samples, warmup_samples)
-        elif timer_type == TimerType.TENSORFLOW:
+        elif timer_type == TimerEnum.TENSORFLOW:
             return TensorFlowTimer(repeat_samples, warmup_samples)
-        elif timer_type == TimerType.IREE:
+        elif timer_type == TimerEnum.IREE:
             return IREETimer(repeat_samples, warmup_samples)
-        elif timer_type == TimerType.TVM:
+        elif timer_type == TimerEnum.TVM:
             return TVMTimer(repeat_samples, warmup_samples)
         else:
             raise ValueError(f"Unsupported Timer type: {timer_type}")
 
 
 class TimerBuilder:
-    """Builds a Timer instance based on a TimerType enum, with a default to PyTimer."""
+    """Builds a Timer instance based on a TimerEnum enum, with a default to PyTimer."""
 
     @staticmethod
-    def build(timer_type: TimerType, repeat_samples=10, warmup_samples=2) -> TimerBase:
-        """Creates a Timer based on the TimerType enum.
+    def build(timer_type: TimerEnum, repeat_samples=10, warmup_samples=2) -> TimerBase:
+        """Creates a Timer based on the TimerEnum enum.
 
         Args:
-            timer_type (TimerType): The TimerType enum to specify which Timer to create.
+            timer_type (TimerEnum): The TimerEnum enum to specify which Timer to create.
             repeat_samples (int): Number of repeat samples for timing.
             warmup_samples (int): Number of warmup runs before timing.
 

@@ -11,8 +11,11 @@ import numpy as np
 
 from .enum import *
 
+from typing import Literal, Optional, Union, List
+from pydantic import BaseModel, field_validator, root_validator, ValidationError
+
 @dataclass
-class Config:
+class ConfigLegacy:
     # Enum fields with default values
     task_label: str = ""
     executor: ExecutorType = ExecutorType.UNKNOWN
@@ -31,13 +34,13 @@ class Config:
     dtype: type = np.float32  # Default dtype to np.float32
 
     @classmethod
-    def load_task_from_yaml(cls, filepath: str) -> 'Config':
+    def load_task_from_yaml(cls, filepath: str) -> 'ConfigLegacy':
         """Load a config from a YAML file."""
         try:
             with open(filepath, 'r') as f:
                 config_data = yaml.safe_load(f)
         except FileNotFoundError:
-            raise FileNotFoundError(f"Config file not found: {filepath}")
+            raise FileNotFoundError(f"ConfigLegacy file not found: {filepath}")
         except yaml.YAMLError as e:
             raise ValueError(f"Invalid YAML format in config file: {filepath}") from e
 
@@ -104,7 +107,7 @@ class Config:
         return pformat(vars(self))
         # return (
         #     f"Dump task: {self.task_label}\n"
-        #     f"Config(executor={self.executor}, run_mode={self.run_mode}, "
+        #     f"ConfigLegacy(executor={self.executor}, run_mode={self.run_mode}, "
         #     f"workload_type={self.workload_type}, dataset={self.dataset}, "
         #     f"device={self.device}, workload_granularity={self.workload_granularity}, "
         #     f"model_workload={self.model_workload}, op_workload={self.op_workload}, "
@@ -156,10 +159,135 @@ class Config:
 
     def _validate_workload_consistency(self):
         """Validate workload type and granularity consistency."""
-        # 示例：如果 workload_type 是 MODEL，则 model_workload 必须有效
         if self.workload_granularity == GranularityLevel.MODEL:
             if self.model_workload == ModelWorkload.UNKNOWN:
                 raise ValueError("model_workload must be specified for MODEL workload type.")
         elif self.workload_granularity == GranularityLevel.OPERATOR:
             if self.op_workload == OpWorkload.UNKNOWN:
                 raise ValueError("op_workload must be specified for OPERATOR workload type.")
+
+class OperatorConfig(BaseModel):
+    framework: FrameworkEnum
+    granularity: GranularityEnum  # Must be "operator"
+    operator: OperatorEnum
+
+    @field_validator('granularity')
+    def must_be_synthetic(cls, v):
+        if v != GranularityEnum.OPERATOR:
+            raise ValueError('source must be SYNTHETIC')
+        return v
+
+class ModelConfig(BaseModel):
+    framework: FrameworkEnum
+    granularity: GranularityEnum
+    model: ModelEnum
+
+    @field_validator('granularity')
+    def must_be_synthetic(cls, v):
+        if v != GranularityEnum.MODEL:
+            raise ValueError('source must be SYNTHETIC')
+        return v
+
+class FusedOperatorConfig(BaseModel):
+    framework: FrameworkEnum
+    granularity: GranularityEnum
+    operators: List[OperatorEnum]
+
+    @field_validator('granularity')
+    def must_be_synthetic(cls, v):
+        if v != GranularityEnum.FUSED_OPERATOR:
+            raise ValueError('source must be SYNTHETIC')
+        return v
+
+# ---------------------------
+# Define Executor configuration as a nested model
+# ---------------------------
+class ExecutorConfig(BaseModel):
+    framework: FrameworkEnum
+    device: DeviceEnum
+
+# ---------------------------
+# Define Dataset configuration:
+# For "synthetic" type, both input_shape and batch_size are required.
+# For concrete datasets (like "cifar10", "mnist"), only batch_size is needed.
+# ---------------------------
+class SyntheticDatasetConfig(BaseModel):
+    source: DataSourceEnum
+    input_shape: List[int]
+    batch_size: int
+    dtype: DtypeEnum
+
+    @field_validator('source')
+    def must_be_synthetic(cls, v):
+        if v != DataSourceEnum.SYNTHETIC:
+            raise ValueError('source must be SYNTHETIC')
+        return v
+
+    @property
+    def input_shape(self):
+        # Just return the value of the field `input_shape`
+        return self._input_shape
+
+    @input_shape.setter
+    def input_shape(self, value):
+        self._input_shape = value
+
+class ConcreteDatasetConfig(BaseModel):
+    source: DataSourceEnum
+    batch_size: int
+    dtype: DtypeEnum
+
+    @field_validator('source')
+    def must_be_synthetic(cls, v):
+        if v == DataSourceEnum.SYNTHETIC:
+            raise ValueError('source must not be SYNTHETIC')
+        return v
+
+    @property
+    def input_shape(self):
+        # Dynamically set input_shape based on the source
+        if self.source == DataSourceEnum.CIFAR10:
+            return [3, 32, 32]  # Example for CIFAR10
+        elif self.source == DataSourceEnum.MNIST:
+            return [1, 28, 28]  # Example for MNIST
+        elif self.source == DataSourceEnum.SYNTHETIC:
+            raise ValueError("Synthetic dataset must use SyntheticDatasetConfig")
+
+
+DatasetConfig = Union[SyntheticDatasetConfig, ConcreteDatasetConfig]
+WorkloadConfig = Union[OperatorConfig, ModelConfig, FusedOperatorConfig]
+
+# ---------------------------
+# Define Experiment configuration model
+# ---------------------------
+class ExperimentConfig(BaseModel):
+    run_mode: RunModeEnum
+    executor: ExecutorConfig
+    timer: TimerEnum
+
+# ---------------------------
+# Define top-level configuration model integrating workload and experiment configurations
+# ---------------------------
+class FullConfig(BaseModel):
+    label: str
+    workload: WorkloadConfig
+    experiment: ExperimentConfig
+    dataset: DatasetConfig
+
+class ConfigBuilder:
+
+    @classmethod
+    def load_config(cls, filepath: str) -> 'FullConfig':
+        with open(filepath, "r") as file:
+            config_dict = yaml.safe_load(file)
+
+        # Parse the configuration using Pydantic, which validates the data types and structure.
+        try:
+            _config = FullConfig.model_validate(config_dict)
+            print("Parsed configuration:")
+            print(_config.model_dump_json(indent=2))
+            return _config
+
+        except Exception as e:
+            print("Configuration error:", e)
+

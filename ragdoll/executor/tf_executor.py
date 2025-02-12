@@ -3,7 +3,7 @@
 import tensorflow as tf
 from dataclasses import dataclass
 from .executor_base import ExecutorBase
-from ragdoll.common import DeviceType, RunMode
+from ragdoll.common import DeviceEnum, RunModeEnum
 
 @dataclass
 class TFExecutor(ExecutorBase):
@@ -15,12 +15,12 @@ class TFExecutor(ExecutorBase):
         devices = tf.config.list_physical_devices("GPU")
         if devices:
             self.device_info = {
-                "device_type": DeviceType.GPU,
+                "device_type": DeviceEnum.GPU,
                 "model": devices[0].device_type,
             }
         else:
             self.device_info = {
-                "device_type": DeviceType.CPU,
+                "device_type": DeviceEnum.CPU,
                 "model": "CPU",
             }
 
@@ -34,9 +34,9 @@ class TFExecutor(ExecutorBase):
 
         input_data = self.data_provider.get_data()
 
-        if self.run_mode == RunMode.INFERENCE:
+        if self.run_mode == RunModeEnum.INFERENCE:
             output = self.workload.model(input_data, training=False)
-        elif self.run_mode == RunMode.TRAINING:
+        elif self.run_mode == RunModeEnum.TRAINING:
             with tf.GradientTape() as tape:
                 output = self.workload.model(input_data, training=True)
         return output

@@ -5,7 +5,7 @@ import yaml
 from dataclasses import dataclass
 from enum import Enum, EnumMeta
 from typing import Literal, Optional, Union, List
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator, ValidationError
 
 
 class EnumWithFromStringMeta(EnumMeta):
@@ -101,19 +101,19 @@ class OpWorkload(Enum, metaclass=EnumWithFromStringMeta):
 # # Define enumeration classes for various configuration fields
 # # ---------------------------
 #
-class RunModeNew(Enum):
+class RunModeEnum(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
     INFERENCE = "inference"
     TRAINING = "training"
 
-class ExecutorFrameworkNew(Enum):
+class FrameworkEnum(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
     TORCH = "torch"
     TENSORFLOW = "tensorflow"
     TVM = "tvm"
     IREE = "iree"
 
-class TimerNew(Enum):
+class TimerEnum(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
     PYTHON = "python"
     TORCH = "torch"
@@ -121,28 +121,40 @@ class TimerNew(Enum):
     IREE = "iree"
     TVM = "tvm"
 
-class DeviceNew(Enum):
+class DataSourceEnum(Enum, metaclass=EnumWithFromStringMeta):
+    UNKNOWN = "unknown"
+    SYNTHETIC = "synthetic"
+    CIFAR10 = "cifar10"
+    MNIST = "mnist"
+
+class DtypeEnum(Enum, metaclass=EnumWithFromStringMeta):
+    FLOAT32 = "float32"
+    FLOAT16 = "float16"
+
+    def to_numpy(self):
+        import numpy as np
+        if self == DtypeEnum.FLOAT32:
+           return np.float32
+        elif self == DtypeENum.FLOAT16:
+            return np.float16
+        else:
+            raise ValueError(f"Unsupported enum value: {self}")
+
+class DeviceEnum(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
     CPU = "cpu"
     GPU = "gpu"
     TPU = "tpu"
 
-# Framework for workload purposes
-class WorkloadFrameworkNew(Enum):
-    UNKNOWN = "unknown"
-    TORCH = "torch"
-    TENSORFLOW = "tensorflow"
-    IREE = "iree"
-
 # Granularity level indicates the type of workload (operator, model, etc.)
-class GranularityLevelNew(Enum):
+class GranularityEnum(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
     OPERATOR = "operator"
     MODEL = "model"
     FUSED_OPERATOR = "fused_operator"
 
 # Operator workload options
-class OpWorkloadEnumNew(Enum):
+class OperatorEnum(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
     CONV2D = "conv2d"
     FULLY_CONNECTED = "fully_connected"
@@ -152,7 +164,7 @@ class OpWorkloadEnumNew(Enum):
     AVG_POOL = "avg_pool"
     DROPOUT = "dropout"
 
-class ModelWorkloadEnumNew(Enum, metaclass=EnumWithFromStringMeta):
+class ModelEnum(Enum, metaclass=EnumWithFromStringMeta):
     UNKNOWN = "unknown"
     ALEXNET = "alexnet"
     RESNET18 = "resnet18"
@@ -160,61 +172,3 @@ class ModelWorkloadEnumNew(Enum, metaclass=EnumWithFromStringMeta):
     MOBILENET = "mobilenet"
     BERT = "bert"
     VGG16 = "vgg16"
-#
-# # OperatorWorkload model represents an operator-level workload
-# class OperatorWorkloadNew(BaseModel):
-#     framework: WorkloadFrameworkNew
-#     granularity: Literal[GranularityLevelNew.OPERATOR.value]  # Must be "operator"
-#     operator: OpWorkloadEnumNew
-#
-# class ModelWorkload(BaseModel):
-#     framework: WorkloadFrameworkNew
-#     granularity: Literal[GranularityLevel.MODEL]
-#     model: ModelWorkloadEnumNew
-#
-# class FusedOperatorWorkload(BaseModel):
-#     framework: WorkloadFrameworkNew
-#     granularity: Literal[GranularityLevel.FUSED_OPERATOR]
-#     operators: List[OpWorkloadEnumNew]
-#
-#
-# # ---------------------------
-# # Define Executor configuration as a nested model
-# # ---------------------------
-# class ExecutorConfig(BaseModel):
-#     framework: ExecutorFrameworkNew
-#     device: DeviceNew
-#
-# # ---------------------------
-# # Define Dataset configuration:
-# # For "synthetic" type, both input_shape and batch_size are required.
-# # For concrete datasets (like "cifar10", "mnist"), only batch_size is needed.
-# # ---------------------------
-# class SyntheticDataset(BaseModel):
-#     type: Literal["synthetic"]
-#     input_shape: List[int]
-#     batch_size: int
-#
-# class ConcreteDataset(BaseModel):
-#     type: Literal["cifar10", "mnist"]
-#     batch_size: int
-#
-# # DatasetConfig is a union type of both possible dataset configurations.
-# DatasetConfig = Union[SyntheticDataset, ConcreteDataset]
-#
-# # ---------------------------
-# # Define Experiment configuration model
-# # ---------------------------
-class ExperimentConfig(BaseModel):
-    run_mode: RunModeNew
-#     executor: ExecutorConfig
-#     timer: TimerNew
-#     dataset: DatasetConfig
-#
-# # ---------------------------
-# # Define top-level configuration model integrating workload and experiment configurations
-# # ---------------------------
-class FullConfig(BaseModel):
-    # workload: Union[OperatorWorkloadNew, ModelWorkload, FusedOperatorWorkload]
-    experiment: ExperimentConfig
-

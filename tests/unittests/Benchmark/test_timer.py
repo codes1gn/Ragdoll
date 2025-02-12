@@ -16,8 +16,8 @@ def one_pos_function(inp0):
         pass
 
 @pytest.mark.parametrize("timer_type, repeat_samples, warmup_samples", [
-    (TimerType.PYTHON, 10, 3),
-    (TimerType.TORCH, 10, 3) if torch.cuda.is_available() else pytest.param("pytorch_timer", 10, 3, marks=pytest.mark.skip(reason="CUDA not available"))
+    (TimerEnum.PYTHON, 10, 3),
+    (TimerEnum.TORCH, 10, 3) if torch.cuda.is_available() else pytest.param("pytorch_timer", 10, 3, marks=pytest.mark.skip(reason="CUDA not available"))
 ])
 def test_timer(timer_type, repeat_samples, warmup_samples):
     """
@@ -56,8 +56,8 @@ def test_timer(timer_type, repeat_samples, warmup_samples):
 
 
 @pytest.mark.parametrize("timer_type, repeat_samples, warmup_samples", [
-    (TimerType.PYTHON, 10, 3),
-    (TimerType.TORCH, 10, 3) if torch.cuda.is_available() else pytest.param("pytorch_timer", 10, 3, marks=pytest.mark.skip(reason="CUDA not available"))
+    (TimerEnum.PYTHON, 10, 3),
+    (TimerEnum.TORCH, 10, 3) if torch.cuda.is_available() else pytest.param("pytorch_timer", 10, 3, marks=pytest.mark.skip(reason="CUDA not available"))
 ])
 def test_timer_one_arg(timer_type, repeat_samples, warmup_samples):
     """

@@ -17,20 +17,20 @@ from ragdoll.common import *
 class DataProviderBase(ABC):
     batch_size: int = 32
     input_shape: tuple = (3, 224, 224)
-    data_type: type = np.float32
-    dataset_type: DatasetType = DatasetType.SYNTHETIC
+    data_type: type = DtypeEnum.FLOAT32
+    data_source: DataSourceEnum = DataSourceEnum.SYNTHETIC
     dataset: any = field(init=None)
     
-    def __init__(self, config: Config):
-        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.task_label))
-        self.batch_size = config.batch_size
-        self.input_shape = config.input_shape
-        self.data_type = config.dtype
-        self.dataset_type = config.dataset
+    def __init__(self, config: FullConfig):
+        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.label))
+        self.batch_size = config.dataset.batch_size
+        self.input_shape = config.dataset.input_shape
+        self.data_type = config.dataset.dtype
+        self.data_source = config.dataset.source
         self.load_dataset(config)
 
     @abstractmethod
-    def load_dataset(self, config: Config):
+    def load_dataset(self, config: FullConfig):
         """Load the specified dataset."""
         pass
 
@@ -43,7 +43,7 @@ class DataProviderBase(ABC):
         TRACE_DEBUG("self.input_shape = {} with type = {}".format(self.input_shape, type(self.input_shape)))
         assert(isinstance(self.batch_size, int))
         assert(isinstance(self.input_shape, (tuple, list)) and all(isinstance(x, int) for x in self.input_shape))
-        inputs_data = np.random.rand(self.batch_size, *self.input_shape).astype(self.data_type) 
+        inputs_data = np.random.rand(self.batch_size, *self.input_shape).astype(self.data_type.to_numpy()) 
         labels_data = np.random.randint(0, 10, size=self.batch_size)
         inputs = torch.from_numpy(inputs_data)
         labels = torch.from_numpy(labels_data)
@@ -51,7 +51,7 @@ class DataProviderBase(ABC):
 
     def __iter__(self):
         """Returns an iterator that yields batches of data."""
-        if self.dataset_type == DatasetType.SYNTHETIC:
+        if self.data_source == DataSourceEnum.SYNTHETIC:
             # Infinite loop using itertools.cycle for synthetic data
             self._iterator = self._generate_synthetic_data_batches()  # Infinite synthetic data
         else:
@@ -70,7 +70,7 @@ class DataProviderBase(ABC):
 
     def __len__(self):
         """Return the total number of batches."""
-        if self.dataset_type == DatasetType.SYNTHETIC:
+        if self.data_source == DataSourceEnum.SYNTHETIC:
             return 10000
 
         if isinstance(self.dataset, torch.utils.data.DataLoader):

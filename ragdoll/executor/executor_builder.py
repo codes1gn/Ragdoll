@@ -6,11 +6,11 @@ from .tf_executor import TFExecutor
 
 class ExecutorBuilder:
     @staticmethod
-    def build(config: Config):
-        TRACE_INFO("build Executor for task {}".format(config.task_label))
-        if config.executor == ExecutorType.TORCH:
+    def build(config: FullConfig):
+        TRACE_INFO("build Executor for task {}".format(config.label))
+        if config.experiment.executor.framework == FrameworkEnum.TORCH:
             return TorchExecutor(config)
-        elif config.executor == ExecutorType.TENSORFLOW:
+        elif config.experiment.executor.framework == FrameworkEnum.TENSORFLOW:
             return TFExecutor(config)
         # elif executor_type == ExecutorType.IREE:
         #     return IREEExecutor()

@@ -36,18 +36,18 @@ def test_granularity_level_from_string():
     assert GranularityLevel.from_string("FUSED_OPERATOR") == GranularityLevel.FUSED_OPERATOR
 
 
-# Test RunMode Enum
+# Test RunModeEnum Enum
 def test_run_mode_from_string():
     # Valid strings
-    assert RunMode.from_string("inference") == RunMode.INFERENCE
-    assert RunMode.from_string("training") == RunMode.TRAINING
+    assert RunModeEnum.from_string("inference") == RunModeEnum.INFERENCE
+    assert RunModeEnum.from_string("training") == RunModeEnum.TRAINING
     
     # Invalid string, should return UNKNOWN
-    assert RunMode.from_string("unknown") == RunMode.UNKNOWN
+    assert RunModeEnum.from_string("unknown") == RunModeEnum.UNKNOWN
     
     # Case insensitivity
-    assert RunMode.from_string("INFERENCE") == RunMode.INFERENCE
-    assert RunMode.from_string("Training") == RunMode.TRAINING
+    assert RunModeEnum.from_string("INFERENCE") == RunModeEnum.INFERENCE
+    assert RunModeEnum.from_string("Training") == RunModeEnum.TRAINING
 
 
 # Test TimerType Enum
@@ -68,7 +68,7 @@ def test_timer_type_from_string():
 @pytest.mark.parametrize(
     "enum_class, valid_values, invalid_value",
     [
-        (RunMode, ["inference", "training"], "unknown"),
+        (RunModeEnum, ["inference", "training"], "unknown"),
         (GranularityLevel, ["operator", "model", "fused_operator"], "unknown"),
         (ExecutorType, ["torch", "tensorflow", "tvm", "iree"], "unknown"),
         (WorkloadType, ["torch", "tensorflow", "iree"], "unknown"),

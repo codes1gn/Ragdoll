@@ -8,11 +8,11 @@ from ragdoll.data_utils import DataProviderBase
 class ExecutorBase(ABC):
     workload: WorkloadBase = field(default=None)
     data_provider: DataProviderBase = field(default=None)
-    run_mode: RunMode = RunMode.INFERENCE
+    run_mode: RunModeEnum = RunModeEnum.INFERENCE
     device_info: dict = field(default_factory=dict)
 
-    def __init__(self, config: Config):
-        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.task_label))
+    def __init__(self, config: FullConfig):
+        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.label))
 
     def set_workload(self, workload: WorkloadBase):
         """Attach a workload to the executor."""
@@ -22,7 +22,7 @@ class ExecutorBase(ABC):
         """Attach a data provider to the executor."""
         self.data_provider = data_provider
 
-    def set_run_mode(self, mode: RunMode):
+    def set_run_mode(self, mode: RunModeEnum):
         """Set the mode to inference or training."""
         self.run_mode = mode
 

@@ -14,12 +14,12 @@ from .data_provider_base import *
 class TorchDataProvider(DataProviderBase):
     """Data provider for PyTorch, using torch DataLoader and common datasets."""
 
-    def load_dataset(self, config: Config):
+    def load_dataset(self, config: FullConfig):
         """Load a PyTorch dataset with DataLoader support."""
-        if self.dataset_type == DatasetType.SYNTHETIC:
+        if self.data_source == DataSourceEnum.SYNTHETIC:
             # Use synthetic data
             self.dataset = None
-        elif self.dataset_type == DatasetType.MNIST:
+        elif self.data_source == DataSourceEnum.MNIST:
             self.dataset = torch.utils.data.DataLoader(
                 datasets.MNIST(
                     root='./data', train=True, download=True,
@@ -31,7 +31,7 @@ class TorchDataProvider(DataProviderBase):
                 TRACE_INFO('Dataset = MNIST; Input Shape = {}; Label Shape = {}'.format(input.shape, label.shape))
                 break
             self._iterator = iter(self.dataset)
-        elif self.dataset_type == DatasetType.CIFAR10:
+        elif self.data_source == DataSourceEnum.CIFAR10:
             self.dataset = torch.utils.data.DataLoader(
                 datasets.CIFAR10(
                     root='./data', train=True, download=True,

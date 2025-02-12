@@ -15,27 +15,27 @@ __all__ = [
 @dataclass
 class WorkloadBase(ABC):
     """Abstract base class for defining different workload types across platforms."""
-    granularity: GranularityLevel = GranularityLevel.MODEL
-    mode: RunMode = RunMode.INFERENCE
+    granularity: GranularityEnum = GranularityEnum.MODEL
+    mode: RunModeEnum = RunModeEnum.INFERENCE
 
     def __init__(self, config):
-        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.task_label))
+        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.label))
 
     def prepare_workloads(self, workload_type):
-        """Prepare workloads based on ModelWorkload or OpWorkload."""
-        if isinstance(workload_type, ModelWorkload):
+        """Prepare workloads based on ModelEnum or OperatorEnum."""
+        if isinstance(workload_type, ModelEnum):
             self.load_model(workload_type)
-        elif isinstance(workload_type, OpWorkload):
+        elif isinstance(workload_type, OperatorEnum):
             self.load_operator(workload_type)
         else:
             raise ValueError(f"Unsupported workload type: {workload_type}")
 
     @abstractmethod
-    def load_model(self, model_type: ModelWorkload):
-        """Load a model based on the provided ModelWorkload enum."""
+    def load_model(self, model_type: ModelEnum):
+        """Load a model based on the provided ModelEnum enum."""
         pass
 
-    def load_operator(self, operator_type: OpWorkload):
-        """Load a specific operator based on the OpWorkload enum."""
+    def load_operator(self, operator_type: OperatorEnum):
+        """Load a specific operator based on the OperatorEnum enum."""
         pass
 

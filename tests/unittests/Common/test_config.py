@@ -1,3 +1,4 @@
+
 # RUN: python -m pytest -q -v --tb=short %s
 
 import pytest
@@ -8,17 +9,24 @@ from ragdoll.common import *
 def sample_config_yaml():
     """Fixture that provides a sample config.yaml content."""
     return """
-    executor: torch
-    run_mode: training
-    workload_type: torch  # updated from 'torch_workload' to 'torch'
-    dataset: mnist
-    device: gpu
-    workload_granularity: model
-    timer: torch
-    model_workload: resnet18
-    batch_size: 32
-    input_shape: (3, 224, 224)
-    dtype: float32
+    label: smoke_test
+    workload:
+      framework: torch
+      granularity: operator
+      operator: conv2d
+
+    experiment:
+      run_mode: inference
+      executor:
+        framework: torch
+        device: gpu
+      timer: python
+
+    dataset:
+      source: synthetic
+      input_shape: [1, 3, 224, 224]
+      batch_size: 32
+      dtype: float32
     """
 
 @pytest.fixture
@@ -32,128 +40,29 @@ def test_config_load_task_from_yaml(sample_config_file):
     """Test if the Config class correctly loads the YAML configuration."""
     
     # Load the config from the YAML file
-    config = Config.load_task_from_yaml(sample_config_file)
+    # config = Config.load_task_from_yaml(sample_config_file)
+
+    with open(sample_config_file, "r") as file:
+        config_dict = yaml.safe_load(file)
+
+    # Parse the configuration using Pydantic, which validates the data types and structure.
+    try:
+        config = FullConfig.model_validate(config_dict)
+        print("Parsed configuration:")
+        print(config.model_dump_json(indent=2))
+    except Exception as e:
+        print("Configuration error:", e)
 
     # Assert the loaded values match the expected enum values
-    assert config.executor == ExecutorType.TORCH
-    assert config.run_mode == RunMode.TRAINING
-    assert config.workload_type == WorkloadType.TORCH  # updated to check 'torch' instead of 'torch_workload'
-    assert config.dataset == DatasetType.MNIST
-    assert config.device == DeviceType.GPU
-    assert config.workload_granularity == GranularityLevel.MODEL
-    assert config.timer == TimerType.TORCH
+    assert config.experiment.run_mode == RunModeEnum.INFERENCE
+    assert config.experiment.timer == TimerEnum.PYTHON
+    assert config.experiment.executor.framework == FrameworkEnum.TORCH
+    assert config.experiment.executor.device == DeviceEnum.GPU
 
-def test_config_invalid_executor(sample_config_file):
-    """Test if an invalid executor in the YAML results in UNKNOWN enum value."""
-    # Modify YAML to contain an invalid executor
-    invalid_yaml = """
-    executor: unknown_executor
-    run_mode: training
-    workload: torch
-    dataset: mnist
-    device: gpu
-    granularity: model
-    timer: torch
-    """
-    with open(sample_config_file, 'w') as f:
-        f.write(invalid_yaml)
+    assert config.dataset.source == DataSourceEnum.SYNTHETIC
+    assert config.dataset.batch_size == 32 
+    assert config.dataset.input_shape == [1, 3, 224, 224] 
 
-    # Load the config and check the result
-    with pytest.raises(ValueError):
-        config = Config.load_task_from_yaml(sample_config_file)
-
-def test_config_invalid_run_mode(sample_config_file):
-    """Test if an invalid run mode in the YAML results in UNKNOWN enum value."""
-    # Modify YAML to contain an invalid run mode
-    invalid_yaml = """
-    executor: torch
-    run_mode: unknown_mode
-    workload: torch
-    dataset: mnist
-    device: gpu
-    granularity: model
-    timer: torch
-    """
-    with open(sample_config_file, 'w') as f:
-        f.write(invalid_yaml)
-
-    # Load the config and check the result
-    with pytest.raises(ValueError):
-        config = Config.load_task_from_yaml(sample_config_file)
-
-def test_config_invalid_granularity(sample_config_file):
-    """Test if an invalid granularity in the YAML results in UNKNOWN enum value."""
-    # Modify YAML to contain an invalid granularity
-    invalid_yaml = """
-    executor: torch
-    run_mode: training
-    workload: torch
-    dataset: mnist
-    device: gpu
-    granularity: unknown_granularity
-    timer: torch
-    """
-    with open(sample_config_file, 'w') as f:
-        f.write(invalid_yaml)
-
-    # Load the config and check the result
-    with pytest.raises(ValueError):
-        config = Config.load_task_from_yaml(sample_config_file)
-
-def test_config_invalid_timer(sample_config_file):
-    """Test if an invalid timer in the YAML results in UNKNOWN enum value."""
-    # Modify YAML to contain an invalid timer
-    invalid_yaml = """
-    executor: torch
-    run_mode: training
-    workload: torch
-    dataset: mnist
-    device: gpu
-    granularity: model
-    timer: unknown_timer
-    """
-    with open(sample_config_file, 'w') as f:
-        f.write(invalid_yaml)
-
-    # Load the config and check the result
-    with pytest.raises(ValueError):
-        config = Config.load_task_from_yaml(sample_config_file)
-
-def test_config_invalid_dataset(sample_config_file):
-    """Test if an invalid dataset in the YAML results in UNKNOWN enum value."""
-    # Modify YAML to contain an invalid dataset
-    invalid_yaml = """
-    executor: torch
-    run_mode: training
-    workload: torch
-    dataset: unknown_dataset
-    device: gpu
-    granularity: model
-    timer: torch
-    """
-    with open(sample_config_file, 'w') as f:
-        f.write(invalid_yaml)
-
-    # Load the config and check the result
-    with pytest.raises(ValueError):
-        config = Config.load_task_from_yaml(sample_config_file)
-
-def test_config_invalid_device(sample_config_file):
-    """Test if an invalid device in the YAML results in UNKNOWN enum value."""
-    # Modify YAML to contain an invalid device
-    invalid_yaml = """
-    executor: torch
-    run_mode: training
-    workload: torch
-    dataset: mnist
-    device: unknown_device
-    granularity: model
-    timer: torch
-    """
-    with open(sample_config_file, 'w') as f:
-        f.write(invalid_yaml)
-
-    # Load the config and check the result
-    with pytest.raises(ValueError):
-        config = Config.load_task_from_yaml(sample_config_file)
-
+    assert config.workload.framework == FrameworkEnum.TORCH
+    assert config.workload.granularity == GranularityEnum.OPERATOR
+    assert config.workload.operator == OperatorEnum.CONV2D

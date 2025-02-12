@@ -8,13 +8,13 @@ from ragdoll.workload.workload_base import WorkloadBase
 
 class WorkloadBuilder:
     @staticmethod
-    def build(config: Config) -> WorkloadBase:
+    def build(config: FullConfig) -> WorkloadBase:
         """Create a workload instance based on the specified type."""
-        if config.workload_type == WorkloadType.TORCH:
+        if config.workload.framework == FrameworkEnum.TORCH:
             return TorchWorkload(config)
-        elif config.workload_type == WorkloadType.TENSORFLOW:
+        elif config.workload.framework == FrameworkEnum.TENSORFLOW:
             return TFWorkload(config)
-        elif config.workload_type == WorkloadType.IREE:
+        elif config.workload.framework == FrameworkEnum.IREE:
             return IREEWorkload(config)
         else:
             raise ValueError(f"Unsupported workload type: {config.workload}")

@@ -10,32 +10,32 @@ class BenchmarkCollector:
     def __init__(self, config_dir: str):
         TRACE_INFO("Create BenchmarkCollector")
         self.config_dir = config_dir
-        self.task_configs: list[Config] = []
+        self.task_configs: list[FullConfig] = []
         self.load_config_files()
 
     def load_config_files(self):
         TRACE_INFO("Load task configuration files")
         config_files = glob.glob(os.path.join(self.config_dir, "*.yml"))
         for file in config_files:
-            config_data = Config.load_task_from_yaml(file)
-            TRACE_INFO("Load task: {}".format(config_data))
+            config_data = ConfigBuilder.load_config(file)
+            # TRACE_INFO("Load task: {}".format(config_data))
             self.task_configs.append(config_data)
     
     def collect_and_run_benchmarks(self):
         TRACE_INFO("Start to benchmark tasks")
         total_tasks = len(self.task_configs)
         for idx, config in enumerate(self.task_configs):
-            task_label = config.task_label
-            print(f"\nProcessing task {idx + 1}/{total_tasks}: {task_label}")
+            label = config.label
+            print(f"\nProcessing task {idx + 1}/{total_tasks}: {label}")
             
             benchmark = Benchmark(config)
             
-            print(f"Running benchmark for task: {task_label}")
-            benchmark.run()  # 执行基准测试
+            print(f"Running benchmark for task: {label}")
+            benchmark.run() 
             
             results = benchmark.get_results()
             summary = results["summary"]
-            print(f"Summary for task {task_label}: {summary}")
+            print(f"Summary for task {label}: {summary}")
 
             progress = (idx + 1) / total_tasks * 100
             print(f"Progress: {progress:.2f}%")

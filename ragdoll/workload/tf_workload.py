@@ -11,26 +11,26 @@ class TFWorkload(WorkloadBase):
         super().__init__(granularity)
         self.model = None
 
-    def load_model(self, model_type: ModelWorkload):
-        """Load a TensorFlow model based on the ModelWorkload enum."""
-        if model_type == ModelWorkload.RESNET50:
+    def load_model(self, model_type: ModelEnum):
+        """Load a TensorFlow model based on the ModelEnum enum."""
+        if model_type == ModelEnum.RESNET50:
             self.model = tf.keras.applications.ResNet50(weights='imagenet')
-        elif model_type == ModelWorkload.MOBILENET:
+        elif model_type == ModelEnum.MOBILENET:
             self.model = tf.keras.applications.MobileNetV2(weights='imagenet')
         else:
             raise ValueError(f"Unsupported model: {model_type}")
 
-    def load_operator(self, operator_type: OpWorkload):
-        """Load a TensorFlow operator based on the OpWorkload enum."""
-        if operator_type == OpWorkload.CONV2D:
+    def load_operator(self, operator_type: OperatorEnum):
+        """Load a TensorFlow operator based on the OperatorEnum enum."""
+        if operator_type == OperatorEnum.CONV2D:
             self.operator = tf.keras.layers.Conv2D(64, 3, padding="same", activation="relu")
-        elif operator_type == OpWorkload.FC:
+        elif operator_type == OperatorEnum.FC:
             self.operator = tf.keras.layers.Dense(1000, activation="softmax")
-        elif operator_type == OpWorkload.RELU:
+        elif operator_type == OperatorEnum.RELU:
             self.operator = tf.keras.layers.ReLU()
-        elif operator_type == OpWorkload.BATCH_NORM:
+        elif operator_type == OperatorEnum.BATCH_NORM:
             self.operator = tf.keras.layers.BatchNormalization()
-        elif operator_type == OpWorkload.MAX_POOL:
+        elif operator_type == OperatorEnum.MAX_POOL:
             self.operator = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))
         else:
             raise ValueError(f"Unsupported operator: {operator_type}")

@@ -16,13 +16,13 @@ class TorchExecutor(ExecutorBase):
         """Retrieve information about the device."""
         if self.device.type == "cuda":
             self.device_info = {
-                "device_type": DeviceType.GPU,
+                "device_type": DeviceEnum.GPU,
                 "model": torch.cuda.get_device_name(0),
                 "cuda_version": torch.version.cuda,
             }
         else:
             self.device_info = {
-                "device_type": DeviceType.CPU,
+                "device_type": DeviceEnum.CPU,
                 "model": "CPU",
             }
 
@@ -40,11 +40,12 @@ class TorchExecutor(ExecutorBase):
         input_data = input_data.to(self.device)
         label_data = label_data.to(self.device)
 
-        if self.run_mode == RunMode.INFERENCE:
+        if self.run_mode == RunModeEnum.INFERENCE:
             model.eval()
             with torch.no_grad():
                 output = model(input_data)
-        elif self.run_mode == RunMode.TRAINING:
+            return output
+        elif self.run_mode == RunModeEnum.TRAINING:
             # TODO: support multi steps
             model.train()
             output = model(input_data)
@@ -54,4 +55,6 @@ class TorchExecutor(ExecutorBase):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-        return output
+            return output
+        else:
+            unreachable()

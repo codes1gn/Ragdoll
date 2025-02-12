@@ -14,19 +14,19 @@ from .data_provider_base import *
 class TensorFlowDataProvider(DataProviderBase):
     """Data provider for TensorFlow framework, using tf.data.Dataset for common datasets."""
 
-    def load_dataset(self, config: Config):
+    def load_dataset(self, config: FullConfig):
         """Load a TensorFlow dataset with tf.data.Dataset support."""
-        if self.dataset_type == DatasetType.SYNTHETIC:
+        if self.data_source == DataSourceEnum.SYNTHETIC:
             # Use synthetic data
             dataset = tfDataset.from_tensor_slices(self.generate_synthetic_data())
             self.dataset = dataset.batch(self.batch_size).shuffle(10000)
-        elif self.dataset_type == DatasetType.MNIST:
+        elif self.data_source == DataSourceEnum.MNIST:
             (x_train, y_train), _ = tf.keras.datasets.mnist.load_data()
             dataset = (tfDataset.from_tensor_slices((x_train, y_train))
                        .shuffle(10000)
                        .batch(self.batch_size)
                        .map(lambda x, y: (tf.image.resize(tf.expand_dims(x, -1), self.input_shape[:2]), y)))
-        elif self.dataset_type == DatasetType.CIFAR10:
+        elif self.data_source == DataSourceEnum.CIFAR10:
             (x_train, y_train), _ = tf.keras.datasets.cifar10.load_data()
             dataset = (tfDataset.from_tensor_slices((x_train, y_train))
                        .shuffle(10000)
