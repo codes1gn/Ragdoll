@@ -22,12 +22,23 @@ class DataProviderBase(ABC):
     dataset: any = field(init=None)
     
     def __init__(self, config: FullConfig):
-        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.label))
+        TRACE("Create {} for task {}".format(self.__class__.__name__, config.label))
         self.batch_size = config.dataset.batch_size
         self.input_shape = config.dataset.input_shape
         self.data_type = config.dataset.dtype
         self.data_source = config.dataset.source
         self.load_dataset(config)
+        assert(self._validate())
+
+    def _validate(self) -> bool:
+        # Check if any field is None or empty
+        for field_name, value in self.__dict__.items():
+            if field_name == "dataset" and self.data_source == DataSourceEnum.SYNTHETIC:
+                continue
+            if value is None or (isinstance(value, str) and not value.strip()):
+                print(f"Field '{field_name}' is empty or not set.")
+                return False
+        return True
 
     @abstractmethod
     def load_dataset(self, config: FullConfig):
@@ -40,7 +51,7 @@ class DataProviderBase(ABC):
 
     def generate_synthetic_data(self):
         """Generate synthetic data for testing or default usage."""
-        TRACE_DEBUG("self.input_shape = {} with type = {}".format(self.input_shape, type(self.input_shape)))
+        DEBUG("self.input_shape = {} with type = {}".format(self.input_shape, type(self.input_shape)))
         assert(isinstance(self.batch_size, int))
         assert(isinstance(self.input_shape, (tuple, list)) and all(isinstance(x, int) for x in self.input_shape))
         inputs_data = np.random.rand(self.batch_size, *self.input_shape).astype(self.data_type.to_numpy()) 

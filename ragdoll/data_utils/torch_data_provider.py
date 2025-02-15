@@ -28,7 +28,7 @@ class TorchDataProvider(DataProviderBase):
                 batch_size=self.batch_size, shuffle=True
             )
             for input, label in self.dataset:
-                TRACE_INFO('Dataset = MNIST; Input Shape = {}; Label Shape = {}'.format(input.shape, label.shape))
+                TRACE('Dataset = MNIST; Input Shape = {}; Label Shape = {}'.format(input.shape, label.shape))
                 break
             self._iterator = iter(self.dataset)
         elif self.data_source == DataSourceEnum.CIFAR10:

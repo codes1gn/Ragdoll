@@ -10,6 +10,8 @@ class WorkloadBuilder:
     @staticmethod
     def build(config: FullConfig) -> WorkloadBase:
         """Create a workload instance based on the specified type."""
+
+        TRACE("call workload builder")
         if config.workload.framework == FrameworkEnum.TORCH:
             return TorchWorkload(config)
         elif config.workload.framework == FrameworkEnum.TENSORFLOW:

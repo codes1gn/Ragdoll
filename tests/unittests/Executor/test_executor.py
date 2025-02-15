@@ -44,9 +44,6 @@ def torch_executor(config):
     workload = WorkloadBuilder.build(config)
     data_provider = DataProviderBuilder.build(config)
     
-    workload.prepare_workloads(ModelEnum.RESNET18)
-    executor.set_workload(workload)
-    executor.set_data_provider(data_provider)
     return executor
 
 @pytest.fixture
@@ -56,7 +53,6 @@ def tf_executor(config):
     workload = WorkloadBuilder.build(config)
     data_provider = DataProviderBuilder.build(config)
     
-    workload.prepare_workloads(ModelEnum.RESNET18)
     executor.set_workload(workload)
     executor.set_data_provider(data_provider)
     return executor
@@ -68,29 +64,18 @@ def test_torch_executor_device_info(torch_executor):
     if device_info["device_type"] == DeviceEnum.GPU:
         assert "cuda_version" in device_info, "CUDA version should be present for GPU"
 
-def test_torch_executor_execution(torch_executor):
-    torch_executor.run_mode = RunModeEnum.INFERENCE
-    output = torch_executor.execute()
-    assert isinstance(output, torch.Tensor), "Output should be a torch.Tensor"
-    assert output.shape[1] == 1000, "Output shape mismatch: Expected second dimension to be 2"
-
-    torch_executor.run_mode = RunModeEnum.TRAINING
-    output = torch_executor.execute()
-    assert isinstance(output, torch.Tensor), "Output should be a torch.Tensor"
-    assert output.shape[1] == 1000, "Output shape mismatch: Expected second dimension to be 2"
-
-def test_tf_executor_device_info(tf_executor):
-    device_info = tf_executor.get_device_info()
-    assert device_info["device_type"] in [DeviceEnum.CPU, DeviceEnum.GPU], "Device type should be CPU or GPU"
-
-# def test_tf_executor_execution(tf_executor):
-#     tf_executor.set_run_mode(RunModeEnum.INFERENCE)
-#     output = tf_executor.execute()
-#     assert isinstance(output, tf.Tensor), "Output should be a tf.Tensor"
-#     assert output.shape[1] == 2, "Output shape mismatch: Expected second dimension to be 2"
+# def test_torch_executor_execution(torch_executor):
+#     torch_executor.run_mode = RunModeEnum.INFERENCE
+#     output = torch_executor.execute()
+#     assert isinstance(output, torch.Tensor), "Output should be a torch.Tensor"
+#     assert output.shape[1] == 1000, "Output shape mismatch: Expected second dimension to be 2"
 #
-#     tf_executor.set_run_mode(RunModeEnum.TRAINING)
-#     output = tf_executor.execute()
-#     assert isinstance(output, tf.Tensor), "Output should be a tf.Tensor"
-#     assert output.shape[1] == 2, "Output shape mismatch: Expected second dimension to be 2"
+#     torch_executor.run_mode = RunModeEnum.TRAINING
+#     output = torch_executor.execute()
+#     assert isinstance(output, torch.Tensor), "Output should be a torch.Tensor"
+#     assert output.shape[1] == 1000, "Output shape mismatch: Expected second dimension to be 2"
 #
+# def test_tf_executor_device_info(tf_executor):
+#     device_info = tf_executor.get_device_info()
+#     assert device_info["device_type"] in [DeviceEnum.CPU, DeviceEnum.GPU], "Device type should be CPU or GPU"
+

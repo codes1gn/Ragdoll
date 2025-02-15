@@ -9,12 +9,19 @@ class TimerBase:
     """Base class for Timer implementations with statistical features."""
 
     def __init__(self, repeat_samples=10, warmup_samples=2):
-        TRACE_INFO("Create Timer")
+        TRACE("Create Timer")
         self.repeat_samples = repeat_samples
         self.warmup_samples = warmup_samples
         self.times = []
         self.start_time = 0.0
         self.end_time = 0.0
+        self._validate()
+
+    def _validate(self) -> bool:
+        # Check if any field is None or empty
+        for field_name, value in self.__dict__.items():
+            if value is None or (isinstance(value, str) and not value.strip()):
+                raise ValueError(f"Field '{field_name}' is empty or not set.")
 
     def observe(self) -> float:
         """Return the current observed time. To be implemented by subclasses."""

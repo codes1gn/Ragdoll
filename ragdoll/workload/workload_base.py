@@ -15,26 +15,43 @@ __all__ = [
 @dataclass
 class WorkloadBase(ABC):
     """Abstract base class for defining different workload types across platforms."""
+    config: FullConfig = field(default=None)
     granularity: GranularityEnum = GranularityEnum.MODEL
     mode: RunModeEnum = RunModeEnum.INFERENCE
+    workload: Optional[Any] = None
 
-    def __init__(self, config):
-        TRACE_INFO("Create {} for task {}".format(self.__class__.__name__, config.label))
-
-    def prepare_workloads(self, workload_type):
-        """Prepare workloads based on ModelEnum or OperatorEnum."""
-        if isinstance(workload_type, ModelEnum):
-            self.load_model(workload_type)
-        elif isinstance(workload_type, OperatorEnum):
-            self.load_operator(workload_type)
+    def __post_init__(self):
+        TRACE("Create {} for task {}".format(self.__class__.__name__, self.config.label))
+        self.granularity = self.config.workload.granularity
+        self.mode = self.config.experiment.run_mode
+        if self.granularity == GranularityEnum.OPERATOR:
+            self.load_operator(self.config.workload.operator)
+        # elif self.granularity == GranularityEnum.FUSED_OPERATOR:
+        #     # need to handle this
+        #     self.load_operator_queue(config.workload.operator)
+        elif self.granularity == GranularityEnum.MODEL:
+            self.load_model(self.config.workload.model)
         else:
-            raise ValueError(f"Unsupported workload type: {workload_type}")
+            unreachable(f"Unsupported workload type: {self.config.granularity}")
+
+        assert(self._validate())
+
+    def _validate(self) -> bool:
+        # Check if any field is None or empty
+        TRACE("Check WorkloadBase validity {}".format(self.__class__.__name__))
+        for field_name, value in self.__dict__.items():
+            TRACE("Check field {}".format(field_name))
+            if value is None or (isinstance(value, str) and not value.strip()):
+                print(f"Field '{field_name}' is empty or not set.")
+                return False
+        return True
 
     @abstractmethod
     def load_model(self, model_type: ModelEnum):
         """Load a model based on the provided ModelEnum enum."""
         pass
 
+    @abstractmethod
     def load_operator(self, operator_type: OperatorEnum):
         """Load a specific operator based on the OperatorEnum enum."""
         pass
