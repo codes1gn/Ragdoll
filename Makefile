@@ -51,7 +51,7 @@ install:
 
 .PHONY: bench 
 bench: build
-	@ragdoll --bench --trace
+	@ragdoll --bench $(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
 ############################################################################
 # Testing & Validation
