@@ -77,37 +77,3 @@ class TorchExecutor(ExecutorBase):
         else:
             unreachable()
 
-
-    # def execute(self, workload: WorkloadBase = None, data_provider: DataProviderBase = None):
-    #     """Execute the workload using data from the data provider."""
-    #     # if not self.workload or not self.data_provider:
-    #     #     raise ValueError("Workload or data provider not set.")
-    #     assert(workload is not None)
-    #     assert(data_provider is not None)
-    #
-    #     # TODO: this part is logged by benchmark, try to make this super lightweight, 
-    #     # currently has 20% time cost on rn152 infer
-    #     TRACE("Executing model = {}".format(workload.workload))
-    #     model = workload.workload.to(self.device)
-    #     input_data, label_data = data_provider.get_data()
-    #     input_data = input_data.to(self.device)
-    #     label_data = label_data.to(self.device)
-    #
-    #     if self.run_mode == RunModeEnum.INFERENCE:
-    #         model.eval()
-    #         with torch.no_grad():
-    #             output = model(input_data)
-    #         return output
-    #     elif self.run_mode == RunModeEnum.TRAINING:
-    #         # TODO: support multi steps
-    #         model.train()
-    #         output = model(input_data)
-    #         loss_fn = torch.nn.CrossEntropyLoss()
-    #         optimizer = torch.optim.SGD(workload.workload.parameters(), lr=0.01)
-    #         loss = loss_fn(output, label_data)
-    #         optimizer.zero_grad()
-    #         loss.backward()
-    #         optimizer.step()
-    #         return output
-    #     else:
-    #         unreachable()

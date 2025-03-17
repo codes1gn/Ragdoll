@@ -4,25 +4,27 @@
 import pytest
 import torch
 import tensorflow as tf
+
 from ragdoll.common import *
 from ragdoll.executor import ExecutorBuilder
 from ragdoll.workload import WorkloadBase
 from ragdoll.workload import WorkloadBuilder  # Assuming you have a WorkloadBuilder class
 from ragdoll.data_utils import DataProviderBase, DataProviderBuilder
 
+
 @pytest.fixture
-def config():
+def test_config(device: DeviceEnum):
     # Load the configuration from a YAML file or directly create a config object
-    # For testing purposes, you can create a config instance directly or load it from YAML.
+    # Create a config instance with the given device type (CPU or GPU)
     return FullConfig(
         label="smoke_test",
         experiment=ExperimentConfig(
             executor=ExecutorConfig(
                 framework=FrameworkEnum.TORCH,
-                device=DeviceEnum.GPU,
+                device=device,
             ),
             run_mode=RunModeEnum.INFERENCE,
-            timer=TimerEnum.TORCH, 
+            timer=TimerEnum.TORCH,
         ),
         workload=ModelConfig(
             framework=FrameworkEnum.TORCH,
@@ -37,45 +39,18 @@ def config():
         ),
     )
 
-@pytest.fixture
-def torch_executor(config):
-    # Create a TorchExecutor with a Torch workload and data provider
-    executor = ExecutorBuilder.build(config)
-    workload = WorkloadBuilder.build(config)
-    data_provider = DataProviderBuilder.build(config)
-    
-    return executor
+@pytest.mark.parametrize("device", [DeviceEnum.CPU, DeviceEnum.GPU])
+def test_torch_executor_device(test_config, device: DeviceEnum):
+    # You can now use 'device' in your test
+    executor = ExecutorBuilder.build(test_config)
+    workload = WorkloadBuilder.build(test_config)
+    data_provider = DataProviderBuilder.build(test_config)
 
-@pytest.fixture
-def tf_executor(config):
-    # Create a TFExecutor with a TensorFlow workload and data provider
-    executor = ExecutorBuilder.build(config)
-    workload = WorkloadBuilder.build(config)
-    data_provider = DataProviderBuilder.build(config)
-    
-    executor.set_workload(workload)
-    executor.set_data_provider(data_provider)
-    return executor
-
-
-def test_torch_executor_device_info(torch_executor):
-    device_info = torch_executor.get_device_info()
-    assert device_info["device_type"] in [DeviceEnum.CPU, DeviceEnum.GPU], "Device type should be CPU or GPU"
-    if device_info["device_type"] == DeviceEnum.GPU:
-        assert "cuda_version" in device_info, "CUDA version should be present for GPU"
-
-# def test_torch_executor_execution(torch_executor):
-#     torch_executor.run_mode = RunModeEnum.INFERENCE
-#     output = torch_executor.execute()
-#     assert isinstance(output, torch.Tensor), "Output should be a torch.Tensor"
-#     assert output.shape[1] == 1000, "Output shape mismatch: Expected second dimension to be 2"
-#
-#     torch_executor.run_mode = RunModeEnum.TRAINING
-#     output = torch_executor.execute()
-#     assert isinstance(output, torch.Tensor), "Output should be a torch.Tensor"
-#     assert output.shape[1] == 1000, "Output shape mismatch: Expected second dimension to be 2"
-#
-# def test_tf_executor_device_info(tf_executor):
-#     device_info = tf_executor.get_device_info()
-#     assert device_info["device_type"] in [DeviceEnum.CPU, DeviceEnum.GPU], "Device type should be CPU or GPU"
+    # Perform your test with the executor
+    device_info = executor.get_device()
+    if device == DeviceEnum.CPU:
+        assert device_info == torch.device("cpu")
+    elif device == DeviceEnum.GPU:
+        if torch.cuda.is_available():
+            assert device_info == torch.device("cuda")
 
