@@ -21,7 +21,7 @@ def numpy_serializer(obj):
 # TODO: clear out unused fields, like timer_type
 @dataclass
 class Benchmark:
-    config: FullConfig = field(default=None)
+    config: BenchmarkConfig = field(default=None)
     executor: ExecutorBase = field(default=None)
     workload: WorkloadBase = field(default=None)
     data_provider: DataProviderBase = field(default=None)

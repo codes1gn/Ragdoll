@@ -8,7 +8,7 @@ from ragdoll.data_utils import DataProviderBase
 class ExecutorBase(ABC):
     # workload: WorkloadBase = field(default=None)
     # data_provider: DataProviderBase = field(default=None)
-    config: FullConfig = field(default=None)
+    config: BenchmarkConfig = field(default=None)
     run_mode: RunModeEnum = field(default=RunModeEnum.INFERENCE)
     device_info: dict = field(default_factory=dict)
 

@@ -17,7 +17,7 @@ class DataProviderBuilder:
     """Builds a DataProvider instance based on a string keyword, with a default to TorchDataProvider."""
 
     @staticmethod
-    def build(config: FullConfig) -> DataProviderBase:
+    def build(config: BenchmarkConfig) -> DataProviderBase:
         if config.experiment.executor.framework == FrameworkEnum.TORCH:
             return TorchDataProvider(config)
         elif config.experiment.executor.framework == FrameworkEnum.TENSORFLOW:

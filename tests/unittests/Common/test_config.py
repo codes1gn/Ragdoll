@@ -47,7 +47,7 @@ def test_config_load_task_from_yaml(sample_config_file):
 
     # Parse the configuration using Pydantic, which validates the data types and structure.
     try:
-        config = FullConfig.model_validate(config_dict)
+        config = BenchmarkConfig.model_validate(config_dict)
         print("Parsed configuration:")
         print(config.model_dump_json(indent=2))
     except Exception as e:

@@ -8,7 +8,7 @@ from ragdoll.workload.workload_base import WorkloadBase
 
 class WorkloadBuilder:
     @staticmethod
-    def build(config: FullConfig) -> WorkloadBase:
+    def build(config: BenchmarkConfig) -> WorkloadBase:
         """Create a workload instance based on the specified type."""
 
         TRACE("call workload builder")

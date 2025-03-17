@@ -118,7 +118,7 @@ class ExperimentConfig(BaseModel):
 # ---------------------------
 # Define top-level configuration model integrating workload and experiment configurations
 # ---------------------------
-class FullConfig(BaseModel):
+class BenchmarkConfig(BaseModel):
     label: str
     workload: WorkloadConfig
     experiment: ExperimentConfig
@@ -127,13 +127,13 @@ class FullConfig(BaseModel):
 class ConfigBuilder:
 
     @classmethod
-    def load_config(cls, filepath: str) -> 'FullConfig':
+    def load_config(cls, filepath: str) -> 'BenchmarkConfig':
         with open(filepath, "r") as file:
             config_dict = yaml.safe_load(file)
 
         # Parse the configuration using Pydantic, which validates the data types and structure.
         try:
-            _config = FullConfig.model_validate(config_dict)
+            _config = BenchmarkConfig.model_validate(config_dict)
             print("Parsed configuration:")
             print(_config.model_dump_json(indent=2))
             return _config

@@ -6,7 +6,7 @@ from .tf_executor import TFExecutor
 
 class ExecutorBuilder:
     @staticmethod
-    def build(config: FullConfig):
+    def build(config: BenchmarkConfig):
         TRACE("build Executor for task {}".format(config.label))
         if config.experiment.executor.framework == FrameworkEnum.TORCH:
             return TorchExecutor(config=config)

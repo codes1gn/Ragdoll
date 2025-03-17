@@ -16,7 +16,7 @@ from ragdoll.data_utils import DataProviderBase, DataProviderBuilder
 def test_config(device: DeviceEnum):
     # Load the configuration from a YAML file or directly create a config object
     # Create a config instance with the given device type (CPU or GPU)
-    return FullConfig(
+    return BenchmarkConfig(
         label="smoke_test",
         experiment=ExperimentConfig(
             executor=ExecutorConfig(

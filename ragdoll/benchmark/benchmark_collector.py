@@ -11,12 +11,12 @@ class BenchmarkCollector:
         TRACE("Create BenchmarkCollector")
         self.arguments = arguments
         self.config_dir = config_dir
-        self.task_configs: list[FullConfig] = []
+        self.task_configs: list[BenchmarkConfig] = []
         self.load_config_files()
 
     def load_config_files(self):
         TRACE("Load task configuration files")
-        config_files = glob.glob(os.path.join(self.config_dir, "*.yml"))
+        config_files = glob.glob(os.path.join(self.config_dir, "**", "*.yml"), recursive=True)
         for file in config_files:
             config_data = ConfigBuilder.load_config(file)
             self.task_configs.append(config_data)

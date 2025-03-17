@@ -13,7 +13,7 @@ from ragdoll.data_utils import DataProviderBuilder
 def torch_config():
     # Load the configuration from a YAML file or directly create a config object
     # For testing purposes, you can create a config instance directly or load it from YAML.
-    return FullConfig(
+    return BenchmarkConfig(
         label="smoke_test",
         experiment=ExperimentConfig(
             executor=ExecutorConfig(
@@ -40,7 +40,7 @@ def torch_config():
 def tf_config():
     # Load the configuration from a YAML file or directly create a config object
     # For testing purposes, you can create a config instance directly or load it from YAML.
-    return FullConfig(
+    return BenchmarkConfig(
         label="smoke_test",
         experiment=ExperimentConfig(
             executor=ExecutorConfig(

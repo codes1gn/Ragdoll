@@ -21,7 +21,7 @@ class DataProviderBase(ABC):
     data_source: DataSourceEnum = DataSourceEnum.SYNTHETIC
     dataset: any = field(init=None)
     
-    def __init__(self, config: FullConfig):
+    def __init__(self, config: BenchmarkConfig):
         TRACE("Create {} for task {}".format(self.__class__.__name__, config.label))
         self.batch_size = config.dataset.batch_size
         self.input_shape = config.dataset.input_shape
@@ -41,7 +41,7 @@ class DataProviderBase(ABC):
         return True
 
     @abstractmethod
-    def load_dataset(self, config: FullConfig):
+    def load_dataset(self, config: BenchmarkConfig):
         """Load the specified dataset."""
         pass
 

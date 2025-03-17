@@ -15,7 +15,7 @@ __all__ = [
 @dataclass
 class WorkloadBase(ABC):
     """Abstract base class for defining different workload types across platforms."""
-    config: FullConfig = field(default=None)
+    config: BenchmarkConfig = field(default=None)
     granularity: GranularityEnum = GranularityEnum.MODEL
     mode: RunModeEnum = RunModeEnum.INFERENCE
     workload: Optional[Any] = None

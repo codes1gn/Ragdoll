@@ -12,6 +12,7 @@ site/
 **/*.vmfb
 **/*.pyc
 **/*.env
+**.bak
 sandbox/
 **/__pycache__/*
 

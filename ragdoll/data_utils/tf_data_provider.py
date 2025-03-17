@@ -14,7 +14,7 @@ from .data_provider_base import *
 class TensorFlowDataProvider(DataProviderBase):
     """Data provider for TensorFlow framework, using tf.data.Dataset for common datasets."""
 
-    def load_dataset(self, config: FullConfig):
+    def load_dataset(self, config: BenchmarkConfig):
         """Load a TensorFlow dataset with tf.data.Dataset support."""
         if self.data_source == DataSourceEnum.SYNTHETIC:
             # Use synthetic data
