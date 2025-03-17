@@ -109,6 +109,7 @@ WorkloadConfig = Union[OperatorConfig, ModelConfig, FusedOperatorConfig]
 # ---------------------------
 # Define Experiment configuration model
 # ---------------------------
+# TODO: mock or pretrained
 class ExperimentConfig(BaseModel):
     run_mode: RunModeEnum
     executor: ExecutorConfig

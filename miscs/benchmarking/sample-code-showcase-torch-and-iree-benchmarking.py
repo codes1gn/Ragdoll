@@ -8,12 +8,11 @@ import numpy as np
 # import iree.compiler
 # import iree.runtime
 
-from ragdoll import benchmarking
-from ragdoll.benchmarking import timer 
 
 import warnings
 warnings.filterwarnings("ignore")
-
+from ragdoll.benchmark import *
+from ragdoll.common import *
 from timeit import timeit as ti
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -66,26 +65,39 @@ def get_dataframe(forward, backward, item):
 print("hello")
 
 MAGIC_NUM = 7777e-5
+_device = torch.device("cuda:0")
 
 model = models.resnet152(pretrained=False).train(False)
 model.load_state_dict({k: torch.ones_like(v) * MAGIC_NUM for k, v in model.state_dict().items()})
-model = torch.compile(model, backend="inductor")
+model = model.to(_device)
+# TODO:
+# 1. compile with dynamo
+# 2. randn with torch
+# 3. support backward.
 
-image = torch.randn(1, 3, 224, 224, requires_grad=True)
+# only for cpu
+# model = torch.compile(model, backend="inductor")
+
+# image = torch.randn(1, 3, 224, 224, requires_grad=True)
+inputs_data = np.random.rand(1, 3, 224, 224).astype(np.float32) 
+image = torch.from_numpy(inputs_data)
+image = image.to(_device)
+# image = torch.randn(1, 3, 224, 224, requires_grad=False)
 output = model(image)
-grad = torch.randn_like(output)
+# grad = torch.randn_like(output)
 
-image_np = image.detach().numpy()
-grad_np = grad.numpy()
+# image_np = image.detach().numpy()
+# grad_np = grad.numpy()
 
 df = pd.DataFrame()
 
 func_f = model
-func_b = torch.autograd.grad
+# func_b = torch.autograd.grad
 
-_timer = timer.TimerBuilder.create_timer("py_timer", repeat_samples=10, warmup_samples=2)
+_timer = TimerBuilder.build(TimerEnum.PYTHON, repeat_samples=33, warmup_samples=5)
 baseline_f = _timer.run(func_f, image).mean_time("ms")
-baseline_b = _timer.run(func_b, output, [image], grad, retain_graph=True).mean_time("ms")
+# baseline_b = _timer.run(func_b, output, [image], grad, retain_graph=True).mean_time("ms")
+baseline_b = _timer.run(func_f, image).mean_time("ms")
 df = pd.concat([df, get_dataframe(baseline_f, baseline_b, "Torch Dynamo")])
 
 print(df)

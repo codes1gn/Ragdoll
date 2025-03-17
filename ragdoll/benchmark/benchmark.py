@@ -18,6 +18,7 @@ def numpy_serializer(obj):
     raise TypeError(f"Type {type(obj)} not serializable")
 
 
+# TODO: clear out unused fields, like timer_type
 @dataclass
 class Benchmark:
     config: FullConfig = field(default=None)
@@ -68,7 +69,7 @@ class Benchmark:
         # Initialize timer and run the workload
 
         self.timer.run(self.executor.execute, self.workload, self.data_provider)
-        print(self.timer.summary())
+        print(self.timer.summary(unit="ms"))
 
         # Store summary of the benchmark run
         self._store_summary()

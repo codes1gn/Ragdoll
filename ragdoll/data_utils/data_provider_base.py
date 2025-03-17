@@ -54,6 +54,7 @@ class DataProviderBase(ABC):
         DEBUG("self.input_shape = {} with type = {}".format(self.input_shape, type(self.input_shape)))
         assert(isinstance(self.batch_size, int))
         assert(isinstance(self.input_shape, (tuple, list)) and all(isinstance(x, int) for x in self.input_shape))
+        # TODO: compare and determine the rng method
         inputs_data = np.random.rand(self.batch_size, *self.input_shape).astype(self.data_type.to_numpy()) 
         labels_data = np.random.randint(0, 10, size=self.batch_size)
         inputs = torch.from_numpy(inputs_data)

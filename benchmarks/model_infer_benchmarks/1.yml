@@ -1,0 +1,21 @@
+
+label: rn152-gpu-infer
+
+workload:
+  framework: torch
+  granularity: model 
+  model: resnet152 
+
+experiment:
+  run_mode: inference
+  executor:
+    framework: torch
+    device: gpu
+  timer: python
+
+dataset:
+  source: synthetic
+  input_shape: [3, 224, 224]
+  batch_size: 1
+  dtype: float32
+

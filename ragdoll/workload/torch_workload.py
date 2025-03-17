@@ -15,7 +15,7 @@ class TorchWorkload(WorkloadBase):
 
     def load_model(self, model_type: ModelEnum):
         """Load a PyTorch model based on the ModelEnum enum."""
-        TRACE("anchor load model = {}".format(model_type))
+        TRACE("load model = {}".format(model_type))
         if model_type == ModelEnum.RESNET18:
             captured_output = io.StringIO()
             sys.stdout = captured_output
@@ -23,7 +23,27 @@ class TorchWorkload(WorkloadBase):
             try:
                 DEBUG("Loading model: resnet18")
                 # This will print detailed logs during the loading of the model
-                self.workload = models.resnet18(pretrained=True)
+                self.workload = models.resnet18(pretrained=False)
+            finally:
+                sys.stdout = sys.__stdout__
+            assert(self.workload is not None)
+
+            captured_output.seek(0)  # Go to the beginning of the captured output
+            output = captured_output.read()
+            DEBUG(f"Model loading details:\n{output}")
+
+        elif model_type == ModelEnum.RESNET152:
+            captured_output = io.StringIO()
+            sys.stdout = captured_output
+
+            try:
+                DEBUG("Loading model: resnet152")
+                # This will print detailed logs during the loading of the model
+                # TODO: unify this part to support pretrained from config
+                self.workload = models.resnet152(pretrained=False)
+                # self.workload = models.resnet152(pretrained=False).train(False)
+                # MAGIC_NUM = 7777e-5
+                # self.workload.load_state_dict({k: torch.ones_like(v) * MAGIC_NUM for k, v in self.workload.state_dict().items()})
             finally:
                 sys.stdout = sys.__stdout__
             assert(self.workload is not None)
@@ -33,15 +53,16 @@ class TorchWorkload(WorkloadBase):
             DEBUG(f"Model loading details:\n{output}")
 
         elif model_type == ModelEnum.RESNET50:
-            self.workload = models.resnet50(pretrained=True)
+            self.workload = models.resnet50(pretrained=False)
         elif model_type == ModelEnum.MOBILENET:
-            self.workload = models.mobilenet_v2(pretrained=True)
+            # TODO: mark this with an argument or through config setting, experiments/workload/pretrained
+            self.workload = models.mobilenet_v2(pretrained=False)
         else:
             raise ValueError(f"Unsupported model: {model_type}")
 
     def load_operator(self, operator_type: OperatorEnum):
         """Load a PyTorch operator based on the OperatorEnum enum."""
-        TRACE("anchor load operator = {}".format(operator_type))
+        TRACE("load operator = {}".format(operator_type))
         if operator_type == OperatorEnum.CONV2D:
             self.workload = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1)
         elif operator_type == OperatorEnum.FC:

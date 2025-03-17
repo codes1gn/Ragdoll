@@ -91,6 +91,7 @@ class ModelEnum(Enum, metaclass=EnumWithFromStringMeta):
     ALEXNET = "alexnet"
     RESNET18 = "resnet18"
     RESNET50 = "resnet50"
+    RESNET152 = "resnet152"
     MOBILENET = "mobilenet"
     BERT = "bert"
     VGG16 = "vgg16"

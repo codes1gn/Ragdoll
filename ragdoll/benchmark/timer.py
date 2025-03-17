@@ -154,10 +154,22 @@ class TVMTimer(TimerBase):
         raise NotImplementedError("IREE timer is not implemented yet")
 
 
-class TimerFactory:
+class TimerBuilder:
+    """Builds a Timer instance based on a TimerEnum enum, with a default to PyTimer."""
+
+    # TODO: make config determine repeats and warmups
     @staticmethod
-    def create_timer(timer_type: TimerEnum, repeat_samples=10, warmup_samples=2) -> TimerBase:
-        """Factory method to create a timer based on the given TimerEnum."""
+    def build(timer_type: TimerEnum, repeat_samples=33, warmup_samples=5) -> TimerBase:
+        """Creates a Timer based on the TimerEnum enum.
+
+        Args:
+            timer_type (TimerEnum): The TimerEnum enum to specify which Timer to create.
+            repeat_samples (int): Number of repeat samples for timing.
+            warmup_samples (int): Number of warmup runs before timing.
+
+        Returns:
+            TimerBase: An instance of a Timer subclass.
+        """
         if timer_type == TimerEnum.PYTHON:
             return PyTimer(repeat_samples, warmup_samples)
         elif timer_type == TimerEnum.TORCH:
@@ -170,21 +182,3 @@ class TimerFactory:
             return TVMTimer(repeat_samples, warmup_samples)
         else:
             raise ValueError(f"Unsupported Timer type: {timer_type}")
-
-
-class TimerBuilder:
-    """Builds a Timer instance based on a TimerEnum enum, with a default to PyTimer."""
-
-    @staticmethod
-    def build(timer_type: TimerEnum, repeat_samples=10, warmup_samples=2) -> TimerBase:
-        """Creates a Timer based on the TimerEnum enum.
-
-        Args:
-            timer_type (TimerEnum): The TimerEnum enum to specify which Timer to create.
-            repeat_samples (int): Number of repeat samples for timing.
-            warmup_samples (int): Number of warmup runs before timing.
-
-        Returns:
-            TimerBase: An instance of a Timer subclass.
-        """
-        return TimerFactory.create_timer(timer_type, repeat_samples, warmup_samples)

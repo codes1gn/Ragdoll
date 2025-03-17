@@ -33,7 +33,12 @@ class ExecutorBase(ABC):
     #     self.data_provider = data_provider
 
     @abstractmethod
-    def load_device_info(self):
+    def load_available_devices(self):
+        """Retrieve device-specific information."""
+        pass
+
+    @abstractmethod
+    def get_device(self):
         """Retrieve device-specific information."""
         pass
 

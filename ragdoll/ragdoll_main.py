@@ -2,6 +2,9 @@ import argparse
 from .common import *
 from .benchmark.benchmark_collector import BenchmarkCollector
 
+import warnings
+warnings.filterwarnings("ignore")
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Ragdoll Benchmark CLI")
     parser.add_argument(
